@@ -45,12 +45,10 @@ $order = $api->sell("BNBBTC", $quantity, $price);
 
 #### Place a MARKET order
 ```php
-$quantity = 1;
 $order = $api->buy("BNBBTC", $quantity, 0, "MARKET");
 ```
 
 ```php
-$quantity = 1;
 $order = $api->sell("BNBBTC", $quantity, 0, "MARKET");
 ```
 
