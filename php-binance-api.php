@@ -128,5 +128,4 @@ class Binance {
 		return $prices;
 	}
 }
-
 // https://www.binance.com/restapipub.html
