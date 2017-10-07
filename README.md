@@ -37,6 +37,12 @@ $price = 0.0005;
 $order = $api->buy("BNBBTC", $quantity, $price);
 ```
 
+```php
+$quantity = 1;
+$price = 0.0006;
+$order = $api->sell("BNBBTC", $quantity, $price);
+```
+
 #### Place a MARKET order
 ```php
 $quantity = 1;
