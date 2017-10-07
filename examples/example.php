@@ -51,3 +51,8 @@ echo "Estimated Value: ".$api->btc_value." BTC\n";
 // Get all account orders; active, canceled, or filled.
 //$orders = $api->trades("BNBBTC");
 //print_r($orders);
+
+// Get Kline/candlestick data for a symbol
+// Periods: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
+$ticks = $api->candlesticks("BNBBTC", "5m");
+print_r($ticks);
