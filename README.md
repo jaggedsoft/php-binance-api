@@ -85,6 +85,6 @@ print_r($response);
 
 #### Get all account orders; active, canceled, or filled.
 ```php
-$orders = $api->trades("BNBBTC");
+$orders = $api->orders("BNBBTC");
 print_r($orders);
 ```
