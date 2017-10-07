@@ -19,15 +19,15 @@ echo "Price of BNB: {$ticker['BNBBTC']} BTC.\n";
 ```php
 $balances = $api->balances($ticker);
 print_r($balances);
+echo "BTC owned: ".$balances['BTC']['available']."\n";
+echo "ETH owned: ".$balances['ETH']['available']."\n";
+echo "Estimated Value: ".$api->btc_value." BTC\n";
 ```
 
 #### Get all bid/ask prices
 ```php
 $bookPrices = $api->bookPrices();
 print_r($bookPrices);
-echo "BTC owned: ".$balances['BTC']['available']."\n";
-echo "ETH owned: ".$balances['ETH']['available']."\n";
-echo "Estimated Value: ".$api->btc_value." BTC\n";
 ```
 
 #### Place a LIMIT order
