@@ -80,6 +80,10 @@ class Binance {
 		];
 		return $this->signedRequest("v3/order", $opt, "POST");
 	}
+	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
+	public function candlesticks($symbol, $interval = "5m") {
+		return $this->request("v1/klines",["symbol"=>$symbol, "interval"=>$interval]);
+	}
 	private function balanceData($array, $priceData = false) {
 		if ( $priceData ) $btc_value = 0.00;
 		$balances = [];
