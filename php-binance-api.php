@@ -46,7 +46,7 @@ class Binance {
 	private function request($url, $params = [], $method = "GET") {
 		$opt = [
 			"http" => [
-				"method" => "GET",
+				"method" => $method,
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n"
 			]
 		];
@@ -57,7 +57,7 @@ class Binance {
 	private function signedRequest($url, $params = [], $method = "GET") {
 		$opt = [
 			"http" => [
-				"method" => "GET",
+				"method" => $method,
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
 			]
 		];
