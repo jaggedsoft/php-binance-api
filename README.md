@@ -117,12 +117,11 @@ print_r($ticks);
 ```php
 $api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
     echo "{$symbol} depth cache update\n";
-    $limit = 10; // Show only the 10 closest asks/bids
-    $sorted = $api->sortDepth($symbol);
+    $limit = 11; // Show only the closest asks/bids
+    $sorted = $api->sortDepth($symbol, $limit);
     $bid = $api->first($sorted['bids']);
     $ask = $api->first($sorted['asks']);
-    $sorted['asks'] = array_reverse($sorted['asks']);
-    print_r($sorted);
+    $api->displayDepth($sorted);
     echo "ask: {$ask}\n";
     echo "bid: {$bid}\n";
 });
