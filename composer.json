@@ -5,7 +5,6 @@
             "url": "https://github.com/jaggedsoft/php-binance-api"
     }],
     "require": {
-        "ratchet/pawl": "^0.3.0",
-        "jaggedsoft/php-binance-api": "dev-master"
+        "ratchet/pawl": "^0.3.0"
     }
 }
