@@ -8,12 +8,16 @@ composer require jaggedsoft/php-binance-api
 <details>
  <summary>Click for help with installation</summary>
 
-#### Install Composer
-If the above step didn't work, install composer and try again:
+## Install Composer
+If the above step didn't work, install composer and try again.
+#### Linux:
 ```
 sudo apt-get install curl php5-cli git
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -s https://getcomposer.org/installer | php
 ```
+
+#### Windows:
+Download setup from here: https://getcomposer.org/doc/00-intro.md#installation-windows
 </details>
 
 #### Getting started
