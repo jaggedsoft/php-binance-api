@@ -15,14 +15,16 @@ If the above step didn't work, install composer and try again.
 sudo apt-get install curl php5-cli git
 curl -s https://getcomposer.org/installer | php
 ```
+Composer not found? Use this command instead:
+```
+php composer.phar require "jaggedsoft/php-binance-api @dev"
+```
 
 #### Windows:
-Download setup from here: https://getcomposer.org/doc/00-intro.md#installation-windows
+[Download installer for Windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
 
-## Install Beta Version
-```
-composer require "jaggedsoft/php-binance-api @dev"
-```
+
+
 </details>
 
 #### Getting started
