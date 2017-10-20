@@ -13,6 +13,8 @@
         "minimum-stability": "dev"
     },
     "autoload": {
-         "psr-4": {"": "jaggedsoft/php-binance-api"}
+        "classmap": [
+          "vendor/jaggedsoft/php-binance-api/php-binance-api.php"
+        ]
     }
 }
