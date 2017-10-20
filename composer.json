@@ -1,21 +1,8 @@
 {
     "repositories": [
         {
-            "type": "package",
-            "package": {
-                "name": "jaggedsoft/php-binance-api",
-                "version": "dev-master",
-                "source": {
-                    "url": "git://github.com/jaggedsoft/php-binance-api.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "autoload": {
-                    "psr-0" : {
-                        "jaggedsoft\\php-binance-api" : "src"
-                    }
-                }
-            }
+            "type": "vcs",
+            "url": "https://github.com/jaggedsoft/php-binance-api"
         }
     ],
     "require": {
