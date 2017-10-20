@@ -1,8 +1,17 @@
-<?php // https://github.com/jaggedsoft/php-binance-api
+<?php
+/* ============================================================
+ * php-binance-api
+ * https://github.com/jaggedsoft/php-binance-api
+ * ============================================================
+ * Copyright 2017-, Jon Eyrick
+ * Released under the MIT License
+ * ============================================================ */
 
-class Binance {
+require __DIR__.'/vendor/autoload.php';
+class binance {
 	public $btc_value = 0.00;
 	protected $base = "https://www.binance.com/api/", $api_key, $api_secret;
+	protected $depthCache = [], $depthQueue = [], $info = [];
 	public function __construct($api_key, $api_secret) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
@@ -37,8 +46,14 @@ class Binance {
 	public function account() {
 		return $this->signedRequest("v3/account");
 	}
+	public function prevDay($symbol) {
+		return $this->request("v1/24hr",["symbol"=>$symbol]);
+	}
 	public function depth($symbol) {
-		return $this->request("v1/depth",["symbol"=>$symbol]);
+		$json = $this->request("v1/depth",["symbol"=>$symbol]);
+		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
+		$this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
+		return $this->depthData($symbol, $json);
 	}
 	public function balances($priceData = false) {
 		return $this->balanceData($this->signedRequest("v3/account"),$priceData);
@@ -127,5 +142,73 @@ class Binance {
 		}
 		return $prices;
 	}
+	private function depthHandler($json) {
+		$symbol = $json['s'];
+		if ( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
+		foreach ( $json['b'] as $bid ) {
+			$this->depthCache[$symbol]['bids'][$bid[0]] = $bid[1];
+			if ( $bid[1] == "0.00000000" ) unset($this->depthCache[$symbol]['bids'][$bid[0]]);
+		}
+		foreach ( $json['a'] as $ask ) {
+			$this->depthCache[$symbol]['asks'][$ask[0]] = $ask[1];
+			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
+		}
+	}
+	public function first($array) {
+		return array_keys($array)[0];
+	}
+	public function last($array) {
+		return array_keys(array_slice($array, -1))[0];
+	}
+	public function sortDepth($symbol, $limit = 10) {
+		$bids = $this->depthCache[$symbol]['bids'];
+		$asks = $this->depthCache[$symbol]['asks'];
+		krsort($bids);
+		ksort($asks);
+		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
+	}
+	private function depthData($symbol, $json) {
+		$bids = $asks = [];
+		foreach ( $json['bids'] as $obj ) {
+			$bids[$obj[0]] = $obj[1];
+		}
+		foreach ( $json['asks'] as $obj ) {
+			$asks[$obj[0]] = $obj[1];
+		}
+		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
+	}
+	////////////////////////////////////
+	// WebSockets
+	public function depthCache($symbols, $callback) {
+		if ( !is_array($symbols) ) $symbols = [$symbols];
+		foreach ( $symbols as $symbol ) {
+			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = ['depthCallback' => $callback];
+			if ( !isset($this->depthQueue[$symbol]) ) $this->depthQueue[$symbol] = [];
+			if ( !isset($this->depthCache[$symbol]) ) $this->depthCache[$symbol] = ["bids" => [], "asks" => []];
+			$this->info[$symbol]['firstUpdate'] = 0;
+			\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@depth')->then(function($ws) {
+				$ws->on('message', function($data) use($ws) {
+					$json = json_decode($data, true);
+					$symbol = $json['s'];
+					if ( $this->info[$symbol]['firstUpdate'] == 0 ) {
+						$this->depthQueue[$symbol][] = $json;
+						return;
+					}
+					$this->depthHandler($json);
+					$this->info[$symbol]['depthCallback']($this, $symbol, $this->depthCache[$symbol]);
+				});
+				$ws->on('close', function($code = null, $reason = null) {
+					echo "depthCache({$symbol}) WebSocket Connection closed ({$code} - {$reason})\n";
+				});
+			}, function($e) {
+				echo "depthCache({$symbol})) Could not connect: {$e->getMessage()}\n";
+			});
+			$this->depth($symbol);
+			foreach ( $this->depthQueue[$symbol] as $data ) {
+				$this->depthHandler($json);
+			}
+			$this->depthQueue[$symbol] = [];
+			$callback($this, $symbol, $this->depthCache[$symbol]);
+		}
+	}
 }
-// https://www.binance.com/restapipub.html
