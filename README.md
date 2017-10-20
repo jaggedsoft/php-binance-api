@@ -18,13 +18,17 @@ curl -s https://getcomposer.org/installer | php
 
 #### Windows:
 Download setup from here: https://getcomposer.org/doc/00-intro.md#installation-windows
+
+## Install Beta Version
+```
+composer require "jaggedsoft/php-binance-api @dev"
+```
 </details>
 
 #### Getting started
 ```php
-<?php
-require 'php-binance-api.php';
-$api = new Binance("<api key>","<secret>");
+require 'vendor/autoload.php';
+$api = new Binance\API("<api key>","<secret>");
 ```
 
 #### Get latest price of a symbol
@@ -120,13 +124,13 @@ print_r($ticks);
 #### Grab realtime updated depth cache via WebSockets
 ```php
 $api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
-    echo "{$symbol} depth cache update\n";
-    $limit = 11; // Show only the closest asks/bids
-    $sorted = $api->sortDepth($symbol, $limit);
-    $bid = $api->first($sorted['bids']);
-    $ask = $api->first($sorted['asks']);
-    $api->displayDepth($sorted);
-    echo "ask: {$ask}\n";
-    echo "bid: {$bid}\n";
+	echo "{$symbol} depth cache update\n";
+	$limit = 11; // Show only the closest asks/bids
+	$sorted = $api->sortDepth($symbol, $limit);
+	$bid = $api->first($sorted['bids']);
+	$ask = $api->first($sorted['asks']);
+	$api->displayDepth($sorted);
+	echo "ask: {$ask}\n";
+	echo "bid: {$bid}\n";
 });
 ```
