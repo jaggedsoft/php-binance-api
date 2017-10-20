@@ -7,6 +7,7 @@
  * Released under the MIT License
  * ============================================================ */
 
+namespace binance;
 require __DIR__.'/vendor/autoload.php';
 class binance {
 	public $btc_value = 0.00;
