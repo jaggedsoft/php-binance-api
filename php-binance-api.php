@@ -160,7 +160,20 @@ class binance {
 	public function last($array) {
 		return array_keys(array_slice($array, -1))[0];
 	}
-	public function sortDepth($symbol, $limit = 10) {
+	public function displayDepth($array) {
+		foreach ( ['asks', 'bids'] as $type ) {
+			$entries = $array[$type];
+			if ( $type == 'asks' ) $entries = array_reverse($entries);
+			echo "{$type}:".PHP_EOL;
+			foreach ( $entries as $price => $quantity ) {
+				$total = number_format($price * $quantity,8,'.','');
+				$quantity = str_pad(str_pad(number_format(rtrim($quantity,'.0')),10,' ',STR_PAD_LEFT),15);
+				echo "{$price} {$quantity} {$total}".PHP_EOL;
+			}
+			//echo str_repeat('-', 32).PHP_EOL;
+		}
+	}
+	public function sortDepth($symbol, $limit = 11) {
 		$bids = $this->depthCache[$symbol]['bids'];
 		$asks = $this->depthCache[$symbol]['asks'];
 		krsort($bids);
@@ -210,5 +223,12 @@ class binance {
 			$this->depthQueue[$symbol] = [];
 			$callback($this, $symbol, $this->depthCache[$symbol]);
 		}
+	}
+	public function userData() {
+		$loop = React\EventLoop\Factory::create();
+		$loop->addPeriodicTimer(1, function() {
+			echo "tick\n";
+		});
+		$loop->run();
 	}
 }
