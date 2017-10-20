@@ -5,9 +5,14 @@
             "url": "https://github.com/jaggedsoft/php-binance-api"
     }],
     "require": {
-        "ratchet/pawl": "^0.3.0"
+        "ratchet/pawl": "^0.3.0",
+        "jaggedsoft/php-binance-api": "dev-master"
     },
     "config": {
-    	"optimize-autoloader": true
+    	"optimize-autoloader": true,
+        "minimum-stability": "dev"
+    },
+    "autoload": {
+         "psr-4": {"": "jaggedsoft/php-binance-api"}
     }
 }
