@@ -1,5 +1,5 @@
 # PHP Binance API
-This project is to help you get started trading on Binance with the API. Advance features are going to be added, such as WebSockets, reading candlestick chart data, stop losses and iceberg orders.
+This project is designed to help you make your own projects that interact with the [Binance API](https://www.binance.com/restapipub.html). You can stream candlestick chart data, market depth, or use other advanced features such as setting stop losses and iceberg orders. This project seeks to have complete API coverage including WebSockets.
 
 #### Getting started
 ```php
@@ -94,4 +94,21 @@ print_r($orders);
 //Periods: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
 $ticks = $api->candlesticks("BNBBTC", "5m");
 print_r($ticks);
+```
+
+## WebSocket API
+
+#### Grab realtime updated depth cache via WebSockets
+```php
+$api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
+    echo "{$symbol} depth cache update\n";
+    $limit = 10; // Show only the 10 closest asks/bids
+    $sorted = $api->sortDepth($symbol);
+    $bid = $api->first($sorted['bids']);
+    $ask = $api->first($sorted['asks']);
+    $sorted['asks'] = array_reverse($sorted['asks']);
+    print_r($sorted);
+    echo "ask: {$ask}\n";
+    echo "bid: {$bid}\n";
+});
 ```
