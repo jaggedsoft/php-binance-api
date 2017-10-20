@@ -5,6 +5,16 @@ This project is designed to help you make your own projects that interact with t
 ```
 composer require jaggedsoft/php-binance-api
 ```
+<details>
+ <summary>Click for help with installation</summary>
+
+#### Install Composer
+If the above step didn't work, install composer and try again:
+```
+sudo apt-get install curl php5-cli git
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+```
+</details>
 
 #### Getting started
 ```php
