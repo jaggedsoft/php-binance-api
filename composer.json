@@ -14,7 +14,7 @@
     },
     "autoload": {
         "classmap": [
-          "vendor/jaggedsoft/php-binance-api/php-binance-api.php"
+          "php-binance-api.php"
         ]
     }
 }
