@@ -7,9 +7,8 @@
  * Released under the MIT License
  * ============================================================ */
 
-namespace binance;
-require __DIR__.'/vendor/autoload.php';
-class binance {
+namespace Binance;
+class API {
 	public $btc_value = 0.00;
 	protected $base = "https://www.binance.com/api/", $api_key, $api_secret;
 	protected $depthCache = [], $depthQueue = [], $info = [];
