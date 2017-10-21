@@ -71,6 +71,7 @@ echo "Estimated Value: ".$api->btc_value." BTC".PHP_EOL;
             [onOrder] => 0.00000000
             [btcValue] => 0.21637426
         )
+... (more)
 ```
 </details>
 
@@ -125,7 +126,7 @@ $order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["icebergQty"=>$iceber
 print_r($order);
 ```
 
-#### Complete Trade History
+#### Complete Account Trade History
 ```php
 $history = $api->history("BNBBTC");
 print_r($history);
@@ -175,6 +176,7 @@ Array (
             [isBestMatch] => 1
         )
 )
+... (more)
 ```
 </details>
 
@@ -203,7 +205,7 @@ $response = $api->cancel("ETHBTC", $orderid);
 print_r($response);
 ```
 
-#### Aggregate Trades List
+#### Market History / Aggregate Trades
 ```php
 $trades = $api->aggTrades("BNBBTC");
 print_r($trades);
@@ -251,6 +253,7 @@ print_r($ticks);
             [close] => 0.00019692
             [volume] => 0.22270990
         )
+... (more)
 ```
 </details>
 
@@ -354,9 +357,11 @@ bid: 0.00022258
 ```
 </details>
 
-#### Coming Soon:
+
+#### Coming Soon: (Tomorrow, October 22)
 ###### WebSocket User Account Updates (Balance Updates, Order Status Updates)
 ###### Withdraw
 ###### Withdraw History
 ###### Deposit
 ###### Deposit History
+###### Better Documentation & Examples
