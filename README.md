@@ -10,10 +10,10 @@ composer require jaggedsoft/php-binance-api
 
 ## Install Composer
 If the above step didn't work, install composer and try again.
-#### Linux:
+#### Debian / Ubuntu
 ```
 sudo apt-get install curl php5-cli git
-curl -s https://getcomposer.org/installer | php
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 Composer not found? Use this command instead:
 ```
@@ -108,6 +108,12 @@ $response = $api->cancel("ETHBTC", $orderid);
 print_r($response);
 ```
 
+#### Aggregate Trades List
+```php
+$trades = $api->aggTrades("BNBBTC");
+print_r($trades);
+```
+
 #### Get all account orders; active, canceled, or filled.
 ```php
 $orders = $api->orders("BNBBTC");
@@ -123,16 +129,53 @@ print_r($ticks);
 
 ## WebSocket API
 
-#### Grab realtime updated depth cache via WebSockets
+#### Realtime updated chart data via WebSockets
+
+
+#### Realtime updated depth cache via WebSockets
 ```php
 $api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
 	echo "{$symbol} depth cache update\n";
+	//print_r($depth); // Print all depth data
 	$limit = 11; // Show only the closest asks/bids
 	$sorted = $api->sortDepth($symbol, $limit);
 	$bid = $api->first($sorted['bids']);
 	$ask = $api->first($sorted['asks']);
-	$api->displayDepth($sorted);
+	echo $api->displayDepth($sorted);
 	echo "ask: {$ask}\n";
 	echo "bid: {$bid}\n";
 });
 ```
+<details>
+ <summary>View Response</summary>
+
+```
+asks:
+0.00020649      1,194      0.24654906
+0.00020600        375      0.07725000
+0.00020586          4      0.00823440
+0.00020576          1      0.00205760
+0.00020564        226      0.04647464
+0.00020555         38      0.00781090
+0.00020552         98      0.02014096
+0.00020537        121      0.02484977
+0.00020520         46      0.09439200
+0.00020519         29      0.05950510
+0.00020518        311      0.06381098
+bids:
+0.00022258      5,142      1.14450636
+0.00020316          7      0.00142212
+0.00020315         82      0.01665830
+0.00020314         16      0.00325024
+0.00020313        512      0.10400256
+0.00020238          5      0.01011900
+0.00020154      1,207      0.24325878
+0.00020151          1      0.02015100
+0.00020150          3      0.60450000
+0.00020140        217      0.04370380
+0.00020135          1      0.02013500
+ask: 0.00020518
+bid: 0.00022258
+
+```
+</details>
