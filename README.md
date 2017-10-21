@@ -40,7 +40,7 @@ print_r($ticker); // List prices of all symbols
 echo "Price of BNB: {$ticker['BNBBTC']} BTC.".PHP_EOL;
 ```
 
-#### Get all of your positions, including estimated BTC value
+#### Get balances for all of your positions, including estimated BTC value
 ```php
 $balances = $api->balances($ticker);
 print_r($balances);
@@ -48,6 +48,27 @@ echo "BTC owned: ".$balances['BTC']['available'].PHP_EOL;
 echo "ETH owned: ".$balances['ETH']['available'].PHP_EOL;
 echo "Estimated Value: ".$api->btc_value." BTC".PHP_EOL;
 ```
+
+<details>
+ <summary>View Response</summary>
+
+```
+    [WTC] => Array
+        (
+            [available] => 909.61000000
+            [onOrder] => 0.00000000
+            [btcValue] => 0.94015470
+        )
+
+    [BNB] => Array
+        (
+            [available] => 1045.94316876
+            [onOrder] => 0.00000000
+            [btcValue] => 0.21637426
+        )
+```
+</details>
+
 
 #### Get all bid/ask prices
 ```php
@@ -70,18 +91,87 @@ $order = $api->sell("BNBBTC", $quantity, $price);
 
 #### Place a MARKET order
 ```php
+$quantity = 1;
 $order = $api->buy("BNBBTC", $quantity, 0, "MARKET");
 ```
 
 ```php
-$order = $api->sell("BNBBTC", $quantity, 0, "MARKET");
+$quantity = 0.01;
+$order = $api->sell("ETHBTC", $quantity, 0, "MARKET");
 ```
 
-#### Get Trade History
+#### Place a STOP LOSS order
+```php
+// When the stop is reached, a stop order becomes a market order
+$quantity = 1;
+$price = 0.5; // Try to sell it for 0.5 btc
+$stopPrice = 0.4; // Sell immediately if price goes below 0.4 btc
+$order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["stopPrice"=>$stopPrice]);
+print_r($order);
+```
+
+#### Place an ICEBERG order
+```php
+// Iceberg orders are intended to conceal the true order quantity.
+$quantity = 1;
+$price = 0.5;
+$icebergQty = 10;
+$order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["icebergQty"=>$icebergQty]);
+print_r($order);
+```
+
+#### Complete Trade History
 ```php
 $history = $api->history("BNBBTC");
 print_r($history);
 ```
+
+<details>
+ <summary>View Response</summary>
+
+```
+Array (
+    [0] => Array (
+            [id] => 831585
+            [orderId] => 3635308
+            [price] => 0.00028800
+            [qty] => 4.00000000
+            [commission] => 0.00200000
+            [commissionAsset] => BNB
+            [time] => 1504805561369
+            [isBuyer] => 1
+            [isMaker] =>
+            [isBestMatch] => 1
+        )
+
+    [1] => Array (
+            [id] => 1277334
+            [orderId] => 6126625
+            [price] => 0.00041054
+            [qty] => 16.00000000
+            [commission] => 0.00800000
+            [commissionAsset] => BNB
+            [time] => 1507059468604
+            [isBuyer] => 1
+            [isMaker] =>
+            [isBestMatch] => 1
+        )
+
+    [2] => Array (
+            [id] => 1345995
+            [orderId] => 6407202
+            [price] => 0.00035623
+            [qty] => 30.00000000
+            [commission] => 0.01500000
+            [commissionAsset] => BNB
+            [time] => 1507434311489
+            [isBuyer] => 1
+            [isMaker] => 1
+            [isBestMatch] => 1
+        )
+)
+```
+</details>
 
 #### Get Market Depth
 ```php
@@ -126,10 +216,80 @@ print_r($orders);
 $ticks = $api->candlesticks("BNBBTC", "5m");
 print_r($ticks);
 ```
+<details>
+ <summary>View Response</summary>
+
+```
+   [1508560200000] => Array
+        (
+            [open] => 0.00019691
+            [high] => 0.00019695
+            [low] => 0.00019502
+            [close] => 0.00019503
+            [volume] => 0.13712290
+        )
+
+    [1508560500000] => Array
+        (
+            [open] => 0.00019502
+            [high] => 0.00019693
+            [low] => 0.00019501
+            [close] => 0.00019692
+            [volume] => 1.03216357
+        )
+
+    [1508560800000] => Array
+        (
+            [open] => 0.00019692
+            [high] => 0.00019692
+            [low] => 0.00019689
+            [close] => 0.00019692
+            [volume] => 0.22270990
+        )
+```
+</details>
 
 ## WebSocket API
 
-#### Realtime updated chart data via WebSockets
+#### Realtime Chart Cache via WebSockets
+```php
+$api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+    echo "{$symbol} chart update\n";
+    print_r($chart);
+});
+```
+<details>
+ <summary>View Response</summary>
+
+```
+   [1508560200000] => Array
+        (
+            [open] => 0.00019691
+            [high] => 0.00019695
+            [low] => 0.00019502
+            [close] => 0.00019503
+            [volume] => 0.13712290
+        )
+
+    [1508560500000] => Array
+        (
+            [open] => 0.00019502
+            [high] => 0.00019693
+            [low] => 0.00019501
+            [close] => 0.00019692
+            [volume] => 1.03216357
+        )
+
+    [1508560800000] => Array
+        (
+            [open] => 0.00019692
+            [high] => 0.00019692
+            [low] => 0.00019689
+            [close] => 0.00019692
+            [volume] => 0.22270990
+        )
+```
+</details>
 
 
 #### Trade Updates via WebSocket
