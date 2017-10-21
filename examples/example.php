@@ -1,6 +1,6 @@
 <?php
-require 'php-binance-api.php';
-$api = new Binance("<api key>","<secret>");
+require '../vendor/autoload.php';
+$api = new Binance\API("<api key>","<secret>");
 
 // Get latest price of a symbol
 $ticker = $api->prices();
@@ -27,9 +27,21 @@ echo "Estimated Value: ".$api->btc_value." BTC\n";
 //$quantity = 1;
 //$order = $api->buy("BNBBTC", $quantity, 0, "MARKET");
 
-// Get Trade History
-//$trades = $api->trades("BNBBTC");
-//print_r($trades);
+// Place a STOP LOSS order
+// When the stop is reached, a stop order becomes a market order
+//$quantity = 1;
+//$price = 0.5; // Try to sell it for 0.5 btc
+//$stopPrice = 0.4; // Sell immediately if price goes below 0.4 btc
+//$order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["stopPrice"=>$stopPrice]);
+//print_r($order);
+
+// Place an ICEBERG order
+// Iceberg orders are intended to conceal the true order quantity.
+//$quantity = 1;
+//$price = 0.5;
+//$icebergQty = 10;
+//$order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["icebergQty"=>$icebergQty]);
+//print_r($order);
 
 // Get Market Depth
 //$depth = $api->depth("ETHBTC");
@@ -49,8 +61,8 @@ echo "Estimated Value: ".$api->btc_value." BTC\n";
 //print_r($response);
 
 // Get all account orders; active, canceled, or filled.
-//$orders = $api->trades("BNBBTC");
-//print_r($orders);
+//$history = $api->history("BNBBTC");
+//print_r($history);
 
 // Get Kline/candlestick data for a symbol
 // Periods: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
