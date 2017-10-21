@@ -60,7 +60,7 @@ echo "Estimated Value: ".$api->btc_value." BTC\n";
 //$response = $api->cancel("ETHBTC", $orderid);
 //print_r($response);
 
-// Get all account orders; active, canceled, or filled.
+// Get Trade History
 //$history = $api->history("BNBBTC");
 //print_r($history);
 
@@ -68,3 +68,33 @@ echo "Estimated Value: ".$api->btc_value." BTC\n";
 // Periods: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
 $ticks = $api->candlesticks("BNBBTC", "5m");
 print_r($ticks);
+
+// Aggregate Trades List
+//$trades = $api->aggTrades("BNBBTC");
+//print_r($trades);
+
+// Trade Updates via WebSocket
+//$api->trades(["BNBBTC"], function($api, $symbol, $trades) {
+//    echo "{$symbol} trades update".PHP_EOL;
+//    print_r($trades);
+//});
+
+
+// Get complete realtime chart data via WebSockets
+//$api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+//    echo "{$symbol} chart update\n";
+//    print_r($chart);
+//});
+
+
+// Grab realtime updated depth cache via WebSockets
+$api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
+    echo "{$symbol} depth cache update\n";
+    $limit = 11; // Show only the closest asks/bids
+    $sorted = $api->sortDepth($symbol, $limit);
+    $bid = $api->first($sorted['bids']);
+    $ask = $api->first($sorted['asks']);
+    echo $api->displayDepth($sorted);
+    echo "ask: {$ask}\n";
+    echo "bid: {$bid}\n";
+});
