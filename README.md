@@ -37,16 +37,16 @@ $api = new Binance\API("<api key>","<secret>");
 ```php
 $ticker = $api->prices();
 print_r($ticker); // List prices of all symbols
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.\n";
+echo "Price of BNB: {$ticker['BNBBTC']} BTC.".PHP_EOL;
 ```
 
 #### Get all of your positions, including estimated BTC value
 ```php
 $balances = $api->balances($ticker);
 print_r($balances);
-echo "BTC owned: ".$balances['BTC']['available']."\n";
-echo "ETH owned: ".$balances['ETH']['available']."\n";
-echo "Estimated Value: ".$api->btc_value." BTC\n";
+echo "BTC owned: ".$balances['BTC']['available'].PHP_EOL;
+echo "ETH owned: ".$balances['ETH']['available'].PHP_EOL;
+echo "Estimated Value: ".$api->btc_value." BTC".PHP_EOL;
 ```
 
 #### Get all bid/ask prices
@@ -79,8 +79,8 @@ $order = $api->sell("BNBBTC", $quantity, 0, "MARKET");
 
 #### Get Trade History
 ```php
-$trades = $api->trades("BNBBTC");
-print_r($trades);
+$history = $api->history("BNBBTC");
+print_r($history);
 ```
 
 #### Get Market Depth
@@ -132,18 +132,27 @@ print_r($ticks);
 #### Realtime updated chart data via WebSockets
 
 
+#### Trade Updates via WebSocket
+```php
+$api->trades(["BNBBTC"], function($api, $symbol, $trades) {
+    echo "{$symbol} trades update".PHP_EOL;
+    print_r($trades);
+});
+```
+
+
 #### Realtime updated depth cache via WebSockets
 ```php
 $api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
-	echo "{$symbol} depth cache update\n";
+	echo "{$symbol} depth cache update".PHP_EOL;
 	//print_r($depth); // Print all depth data
 	$limit = 11; // Show only the closest asks/bids
 	$sorted = $api->sortDepth($symbol, $limit);
 	$bid = $api->first($sorted['bids']);
 	$ask = $api->first($sorted['asks']);
 	echo $api->displayDepth($sorted);
-	echo "ask: {$ask}\n";
-	echo "bid: {$bid}\n";
+	echo "ask: {$ask}".PHP_EOL;
+	echo "bid: {$bid}".PHP_EOL;
 });
 ```
 <details>
