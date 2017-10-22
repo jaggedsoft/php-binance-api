@@ -8,7 +8,7 @@ This project is designed to help you make your own projects that interact with t
 
 #### Installation
 ```
-composer require jaggedsoft/php-binance-api
+composer require "jaggedsoft/php-binance-api @dev"
 ```
 <details>
  <summary>Click for help with installation</summary>
