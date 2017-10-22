@@ -1045,21 +1045,23 @@ bid: 0.00022258
 #### User Data: Account Balance Updates, Trade Updates, New Orders, Filled Orders, Cancelled Orders via WebSocket
 ```php
 $balance_update = function($api, $balances) {
-	echo "Balance update".PHP_EOL;
 	print_r($balances);
+	echo "Balance update".PHP_EOL;
 };
+
 $order_update = function($api, $report) {
 	echo "Order update".PHP_EOL;
 	print_r($report);
+	$price = $report['price'];
+	$quantity = $report['quantity'];
 	$symbol = $report['symbol'];
 	$side = $report['side'];
 	$orderType = $report['orderType'];
 	$orderId = $report['orderId'];
 	$orderStatus = $report['orderStatus'];
-	$price = $report['price'];
-	$quantity = $report['quantity'];
-	if ( $report['executionType'] == "NEW" ) {
-		if ( $report['orderStatus'] == "REJECTED" ) {
+	$executionType = $report['orderStatus'];
+	if ( $executionType == "NEW" ) {
+		if ( $executionType == "REJECTED" ) {
 			echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
 		}
 		echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
