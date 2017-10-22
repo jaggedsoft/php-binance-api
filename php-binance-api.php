@@ -476,7 +476,7 @@ class API {
 			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
 		/*$loop = \React\EventLoop\Factory::create();
-		$loop->addPeriodicTimer(30, function() use (&$listenKey) {
+		$loop->addPeriodicTimer(30, function() use ($listenKey) {
 			$this->apiRequest("v1/userDataStream?listenKey={$listenKey}", "PUT");
 		});
 		$loop->run();*/
