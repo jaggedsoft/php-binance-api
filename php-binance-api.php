@@ -6,11 +6,14 @@
  * Copyright 2017-, Jon Eyrick
  * Released under the MIT License
  * ============================================================ */
+
 namespace Binance;
 class API {
-	protected $base = "https://www.binance.com/api/", $api_key, $api_secret;
-	protected $depthCache = [], $depthQueue = [];
-	protected $charts = [], $chartQueue = [];
+	protected $base = "https://www.binance.com/api/", $wapi = "https://www.binance.com/wapi/", $api_key, $api_secret;
+	protected $depthCache = [];
+	protected $depthQueue = [];
+	protected $chartQueue = [];
+	protected $charts = [];
 	protected $info = [];
 	public $balances = [], $btc_value = 0.00;
 	public function __construct($api_key = '', $api_secret = '') {
@@ -23,20 +26,39 @@ class API {
 	public function sell($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
+	public function marketBuy($symbol, $quantity) {
+		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags = []);
+	}
+	public function marketSell($symbol, $quantity) {
+		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags = []);
+	}
 	public function cancel($symbol, $orderid) {
-		return $this->signedRequest("v3/order",["symbol"=>$symbol, "orderId"=>$orderid], "DELETE");
+		return $this->signedRequest("v3/order", ["symbol"=>$symbol, "orderId"=>$orderid], "DELETE");
 	}
 	public function orderStatus($symbol, $orderid) {
-		return $this->signedRequest("v3/order",["symbol"=>$symbol, "orderId"=>$orderid]);
+		return $this->signedRequest("v3/order", ["symbol"=>$symbol, "orderId"=>$orderid]);
 	}
 	public function openOrders($symbol) {
 		return $this->signedRequest("v3/openOrders",["symbol"=>$symbol]);
 	}
 	public function orders($symbol, $limit = 500) {
-		return $this->signedRequest("v3/allOrders",["symbol"=>$symbol, "limit"=>$limit]);
+		return $this->signedRequest("v3/allOrders", ["symbol"=>$symbol, "limit"=>$limit]);
 	}
 	public function history($symbol) {
-		return $this->signedRequest("v3/myTrades",["symbol"=>$symbol]);
+		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol]);
+	}
+	public function withdraw($asset, $address, $amount) {
+		return $this->signedRequest("v1/withdraw.html", ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true], "POST");
+	}
+	public function depositHistory($asset = false) {
+		$params = ["wapi"=>true];
+		if ( $asset ) $params['asset'] = $asset;
+		return $this->signedRequest("v1/getDepositHistory.html", $params, "POST");
+	}
+	public function withdrawHistory($asset = false) {
+		$params = ["wapi"=>true];
+		if ( $asset ) $params['asset'] = $asset;
+		return $this->signedRequest("v1/getWithdrawHistory.html", $params, "POST");
 	}
 	public function prices() {
 		return $this->priceData($this->request("v1/ticker/allPrices"));
@@ -48,10 +70,10 @@ class API {
 		return $this->signedRequest("v3/account");
 	}
 	public function prevDay($symbol) {
-		return $this->request("v1/24hr",["symbol"=>$symbol]);
+		return $this->request("v1/ticker/24hr", ["symbol"=>$symbol]);
 	}
 	public function aggTrades($symbol) {
-		return $this->tradesData($this->request("v1/aggTrades",["symbol"=>$symbol]));
+		return $this->tradesData($this->request("v1/aggTrades", ["symbol"=>$symbol]));
 	}
 	public function depth($symbol) {
 		$json = $this->request("v1/depth",["symbol"=>$symbol]);
@@ -76,6 +98,7 @@ class API {
 	}
 	
 	private function signedRequest($url, $params = [], $method = "GET") {
+		$base = $this->base;
 		$opt = [
 			"http" => [
 				"method" => $method,
@@ -84,9 +107,13 @@ class API {
 		];
 		$context = stream_context_create($opt);
 		$params['timestamp'] = number_format(microtime(true)*1000,0,'.','');
+		if ( isset($params['wapi']) ) {
+			unset($params['wapi']);
+			$base = $this->wapi;
+		}
 		$query = http_build_query($params, '', '&');
 		$signature = hash_hmac('sha256', $query, $this->api_secret);
-		$endpoint = "{$this->base}{$url}?{$query}&signature={$signature}";
+		$endpoint = "{$base}{$url}?{$query}&signature={$signature}";
 		return json_decode(file_get_contents($endpoint, false, $context), true);
 	}
 	
@@ -153,6 +180,36 @@ class API {
 			$this->btc_value = $btc_value;
 		}
 		return $balances;
+	}
+	
+	// Convert balance WebSocket data into array
+	private function balanceHandler($json) {
+		$balances = [];
+		foreach ( $json as $item ) {
+			$asset = $item->a;
+			$available = $item->f;
+			$onOrder = $item->l;
+			$balances[$asset] = ["available"=>$available, "onOrder"=>$onOrder];
+		}
+		return $balances;
+	}
+	
+	// Convert WebSocket trade execution into array
+	private function executionHandler($json) {
+		return [
+			"symbol" => $json->s,
+			"side" => $json->S,
+			"orderType" => $json->o,
+			"quantity" => $json->q,
+			"price" => $json->p,
+			"executionType" => $json->x,
+			"orderStatus" => $json->X,
+			"rejectReason" => $json->r,
+			"orderId" => $json->i,
+			"clientOrderId" => $json->c,
+			"orderTime" => $json->T,
+			"eventTime" => $json->E
+		];
 	}
 	
 	// Convert kline data into object
@@ -331,7 +388,7 @@ class API {
 		}
 	}
 	
-	// Trades WebSocket Endpointc
+	// Trades WebSocket Endpoint
 	public function trades($symbols, $callback) {
 		foreach ( $symbols as $symbol ) {
 			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
@@ -393,10 +450,9 @@ class API {
 	}
 	
 	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
-	public function userData($balance_callback, $execution_callback = false) {
+	public function userData(&$balance_callback, &$execution_callback = false) {
 		$response = $this->apiRequest("v1/userDataStream", "POST");
 		$listenKey = $this->options['listenKey'] = $response['listenKey'];
-		
 		$this->info['balanceCallback'] = $balance_callback;
 		$this->info['executionCallback'] = $execution_callback;
 		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$listenKey)->then(function($ws) {
@@ -404,25 +460,25 @@ class API {
 				$json = json_decode($data);
 				$type = $json->e;
 				if ( $type == "outboundAccountInfo") {
-					$balances = [];
+					$balances = $this->balanceHandler($json->B);
 					$this->info['balanceCallback']($this, $balances);
 				} elseif ( $type == "executionReport" ) {
-					$report = [];
-					$this->info['executionCallback']($this, $report);
+					$report = $this->executionHandler($json);
+					if ( $this->info['executionCallback'] ) {
+						$this->info['executionCallback']($this, $report);
+					}
 				}
 			});
 			$ws->on('close', function($code = null, $reason = null) {
-				echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
+				echo "userData: WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
 			});
 		}, function($e) {
-			echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}".PHP_EOL;
+			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
-		// websocket
-		//if execution callback
-		$loop = \React\EventLoop\Factory::create();
+		/*$loop = \React\EventLoop\Factory::create();
 		$loop->addPeriodicTimer(30, function() use (&$listenKey) {
 			$this->apiRequest("v1/userDataStream?listenKey={$listenKey}", "PUT");
 		});
-		$loop->run();
+		$loop->run();*/
 	}
 }
