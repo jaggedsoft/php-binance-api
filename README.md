@@ -755,12 +755,12 @@ $order = $api->sell("BNBBTC", $quantity, $price);
 #### Place a MARKET order
 ```php
 $quantity = 1;
-$order = $api->buy("BNBBTC", $quantity, 0, "MARKET");
+$order = $api->marketBuy("BNBBTC", $quantity);
 ```
 
 ```php
 $quantity = 0.01;
-$order = $api->sell("ETHBTC", $quantity, 0, "MARKET");
+$order = $api->marketSell("ETHBTC", $quantity);
 ```
 
 <details>
@@ -981,6 +981,7 @@ $api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
             [close] => 0.00019692
             [volume] => 0.22270990
         )
+... (more)
 ```
 </details>
 
