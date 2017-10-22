@@ -45,6 +45,97 @@ print_r($ticker); // List prices of all symbols
 echo "Price of BNB: {$ticker['BNBBTC']} BTC.".PHP_EOL;
 ```
 
+<details>
+ <summary>View Response</summary>
+
+```
+Array
+(
+    [ETHBTC] => 0.05050800
+    [LTCBTC] => 0.00967400
+    [BNBBTC] => 0.00021479
+    [NEOBTC] => 0.00479300
+    [123456] => 0.00030000
+    [QTUMETH] => 0.03482000
+    [EOSETH] => 0.00176100
+    [SNTETH] => 0.00008766
+    [BNTETH] => 0.00662400
+    [BCCBTC] => 0.05629200
+    [GASBTC] => 0.00338500
+    [BNBETH] => 0.00418603
+    [BTMETH] => 0.00018900
+    [HCCBTC] => 0.00000180
+    [BTCUSDT] => 6028.95000000
+    [ETHUSDT] => 304.98000000
+    [HSRBTC] => 0.00289000
+    [OAXETH] => 0.00136700
+    [DNTETH] => 0.00020573
+    [MCOETH] => 0.02685800
+    [ICNETH] => 0.00395000
+    [ELCBTC] => 0.00000053
+    [MCOBTC] => 0.00133000
+    [WTCBTC] => 0.00117000
+    [WTCETH] => 0.02300000
+    [LLTBTC] => 0.00001669
+    [LRCBTC] => 0.00001100
+    [LRCETH] => 0.00016311
+    [QTUMBTC] => 0.00178400
+    [YOYOBTC] => 0.00000481
+    [OMGBTC] => 0.00125600
+    [OMGETH] => 0.02497000
+    [ZRXBTC] => 0.00003376
+    [ZRXETH] => 0.00067001
+    [STRATBTC] => 0.00052100
+    [STRATETH] => 0.00950200
+    [SNGLSBTC] => 0.00002216
+    [SNGLSETH] => 0.00043508
+    [BQXBTC] => 0.00010944
+    [BQXETH] => 0.00241250
+    [KNCBTC] => 0.00017060
+    [KNCETH] => 0.00340090
+    [FUNBTC] => 0.00000313
+    [FUNETH] => 0.00006184
+    [SNMBTC] => 0.00001761
+    [SNMETH] => 0.00035599
+    [NEOETH] => 0.09500000
+    [IOTABTC] => 0.00006783
+    [IOTAETH] => 0.00136000
+    [LINKBTC] => 0.00004476
+    [LINKETH] => 0.00087796
+    [XVGBTC] => 0.00000081
+    [XVGETH] => 0.00001611
+    [CTRBTC] => 0.00009408
+    [CTRETH] => 0.00187010
+    [SALTBTC] => 0.00044400
+    [SALTETH] => 0.00890000
+    [MDABTC] => 0.00021973
+    [MDAETH] => 0.00435550
+    [MTLBTC] => 0.00116900
+    [MTLETH] => 0.02470000
+    [SUBBTC] => 0.00002163
+    [SUBETH] => 0.00042901
+    [EOSBTC] => 0.00008822
+    [SNTBTC] => 0.00000438
+    [ETC] => 0.00000000
+    [ETCETH] => 0.03600000
+    [ETCBTC] => 0.00180800
+    [MTHBTC] => 0.00001425
+    [MTHETH] => 0.00028092
+    [ENGBTC] => 0.00007040
+    [ENGETH] => 0.00138220
+    [DNTBTC] => 0.00001052
+    [ZECBTC] => 0.00000000
+    [ZECETH] => 0.00000000
+    [BNTBTC] => 0.00033501
+    [ASTBTC] => 0.00004528
+    [ASTETH] => 0.00083990
+    [DASHBTC] => 0.04651300
+    [DASHETH] => 0.90520000
+)
+Price of BNB: 0.00021479 BTC.
+```
+</details>
+
 #### Get balances for all of your positions, including estimated BTC value
 ```php
 $balances = $api->balances($ticker);
@@ -80,7 +171,573 @@ echo "Estimated Value: ".$api->btc_value." BTC".PHP_EOL;
 ```php
 $bookPrices = $api->bookPrices();
 print_r($bookPrices);
+echo "Bid price of BNB: {$bookPrices['BNBBTC']['bid']}".PHP_EOL;
 ```
+
+<details>
+ <summary>View Response</summary>
+
+```
+Price of BNB: 0.00021491
+
+Array
+(
+    [ETHBTC] => Array
+        (
+            [bid] => 0.05053000
+            [bids] => 7.21000000
+            [ask] => 0.05076000
+            [asks] => 13.73600000
+        )
+    [LTCBTC] => Array
+        (
+            [bid] => 0.00966500
+            [bids] => 62.57000000
+            [ask] => 0.00967100
+            [asks] => 5.48000000
+        )
+    [BNBBTC] => Array
+        (
+            [bid] => 0.00021010
+            [bids] => 6.00000000
+            [ask] => 0.00021479
+            [asks] => 76.00000000
+        )
+    [NEOBTC] => Array
+        (
+            [bid] => 0.00476600
+            [bids] => 5.16000000
+            [ask] => 0.00479900
+            [asks] => 276.00000000
+        )
+    [QTUMETH] => Array
+        (
+            [bid] => 0.03515000
+            [bids] => 11.87000000
+            [ask] => 0.03599900
+            [asks] => 0.60000000
+        )
+    [EOSETH] => Array
+        (
+            [bid] => 0.00176000
+            [bids] => 52.63000000
+            [ask] => 0.00177900
+            [asks] => 654.44000000
+        )
+    [SNTETH] => Array
+        (
+            [bid] => 0.00008522
+            [bids] => 2347.00000000
+            [ask] => 0.00008764
+            [asks] => 2151.00000000
+        )
+    [BNTETH] => Array
+        (
+            [bid] => 0.00662400
+            [bids] => 1940.32000000
+            [ask] => 0.00683900
+            [asks] => 64.89000000
+        )
+    [BCCBTC] => Array
+        (
+            [bid] => 0.05614300
+            [bids] => 2.15000000
+            [ask] => 0.05710000
+            [asks] => 0.75900000
+        )
+    [GASBTC] => Array
+        (
+            [bid] => 0.00337800
+            [bids] => 597.29000000
+            [ask] => 0.00338500
+            [asks] => 14.63000000
+        )
+    [BNBETH] => Array
+        (
+            [bid] => 0.00411497
+            [bids] => 375.00000000
+            [ask] => 0.00418603
+            [asks] => 4.00000000
+        )
+    [BTMETH] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [HCCBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [BTCUSDT] => Array
+        (
+            [bid] => 5970.00000000
+            [bids] => 0.00500000
+            [ask] => 5989.96000000
+            [asks] => 0.26295200
+        )
+    [ETHUSDT] => Array
+        (
+            [bid] => 303.86000000
+            [bids] => 4.27000000
+            [ask] => 304.99000000
+            [asks] => 0.11361000
+        )
+    [HSRBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [OAXETH] => Array
+        (
+            [bid] => 0.00137100
+            [bids] => 145.88000000
+            [ask] => 0.00139500
+            [asks] => 960.81000000
+        )
+    [DNTETH] => Array
+        (
+            [bid] => 0.00020421
+            [bids] => 19401.00000000
+            [ask] => 0.00020573
+            [asks] => 1.00000000
+        )
+    [MCOETH] => Array
+        (
+            [bid] => 0.02630000
+            [bids] => 20.36000000
+            [ask] => 0.02684100
+            [asks] => 75.35000000
+        )
+    [ICNETH] => Array
+        (
+            [bid] => 0.00391600
+            [bids] => 51.07000000
+            [ask] => 0.00396800
+            [asks] => 146.69000000
+        )
+    [ELCBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [MCOBTC] => Array
+        (
+            [bid] => 0.00132800
+            [bids] => 24.64000000
+            [ask] => 0.00133200
+            [asks] => 8.26000000
+        )
+    [WTCBTC] => Array
+        (
+            [bid] => 0.00116640
+            [bids] => 104.00000000
+            [ask] => 0.00118000
+            [asks] => 1572.00000000
+        )
+    [WTCETH] => Array
+        (
+            [bid] => 0.02311400
+            [bids] => 0.99000000
+            [ask] => 0.02330000
+            [asks] => 27.68000000
+        )
+    [LLTBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [LRCBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [LRCETH] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [QTUMBTC] => Array
+        (
+            [bid] => 0.00178700
+            [bids] => 328.30000000
+            [ask] => 0.00180500
+            [asks] => 50.00000000
+        )
+    [YOYOBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [OMGBTC] => Array
+        (
+            [bid] => 0.00126100
+            [bids] => 61.00000000
+            [ask] => 0.00126400
+            [asks] => 8.50000000
+        )
+    [OMGETH] => Array
+        (
+            [bid] => 0.02467200
+            [bids] => 60.99000000
+            [ask] => 0.02527500
+            [asks] => 7.98000000
+        )
+    [ZRXBTC] => Array
+        (
+            [bid] => 0.00003370
+            [bids] => 69.00000000
+            [ask] => 0.00003377
+            [asks] => 7437.00000000
+        )
+    [ZRXETH] => Array
+        (
+            [bid] => 0.00065565
+            [bids] => 68.00000000
+            [ask] => 0.00069171
+            [asks] => 123.00000000
+        )
+    [STRATBTC] => Array
+        (
+            [bid] => 0.00051200
+            [bids] => 387.00000000
+            [ask] => 0.00052100
+            [asks] => 17.90000000
+        )
+    [STRATETH] => Array
+        (
+            [bid] => 0.00988800
+            [bids] => 299.97000000
+            [ask] => 0.01084600
+            [asks] => 133.91000000
+        )
+    [SNGLSBTC] => Array
+        (
+            [bid] => 0.00002211
+            [bids] => 1028.00000000
+            [ask] => 0.00002217
+            [asks] => 536.00000000
+        )
+    [SNGLSETH] => Array
+        (
+            [bid] => 0.00043801
+            [bids] => 892.00000000
+            [ask] => 0.00043902
+            [asks] => 1585.00000000
+        )
+    [BQXBTC] => Array
+        (
+            [bid] => 0.00011061
+            [bids] => 1814.00000000
+            [ask] => 0.00011496
+            [asks] => 1707.00000000
+        )
+    [BQXETH] => Array
+        (
+            [bid] => 0.00220610
+            [bids] => 109.00000000
+            [ask] => 0.00241190
+            [asks] => 2606.00000000
+        )
+    [KNCBTC] => Array
+        (
+            [bid] => 0.00017061
+            [bids] => 1109.00000000
+            [ask] => 0.00017297
+            [asks] => 63.00000000
+        )
+    [KNCETH] => Array
+        (
+            [bid] => 0.00340090
+            [bids] => 3.00000000
+            [ask] => 0.00342860
+            [asks] => 515.00000000
+        )
+    [FUNBTC] => Array
+        (
+            [bid] => 0.00000314
+            [bids] => 17100.00000000
+            [ask] => 0.00000317
+            [asks] => 15600.00000000
+        )
+    [FUNETH] => Array
+        (
+            [bid] => 0.00006186
+            [bids] => 4473.00000000
+            [ask] => 0.00006467
+            [asks] => 42036.00000000
+        )
+    [SNMBTC] => Array
+        (
+            [bid] => 0.00001760
+            [bids] => 3695.00000000
+            [ask] => 0.00001781
+            [asks] => 623.00000000
+        )
+    [SNMETH] => Array
+        (
+            [bid] => 0.00034783
+            [bids] => 507.00000000
+            [ask] => 0.00035350
+            [asks] => 1501.00000000
+        )
+    [NEOETH] => Array
+        (
+            [bid] => 0.09414500
+            [bids] => 12.38000000
+            [ask] => 0.09599700
+            [asks] => 23.38000000
+        )
+    [IOTABTC] => Array
+        (
+            [bid] => 0.00006791
+            [bids] => 2000.00000000
+            [ask] => 0.00006857
+            [asks] => 1861.00000000
+        )
+    [IOTAETH] => Array
+        (
+            [bid] => 0.00135101
+            [bids] => 1461.00000000
+            [ask] => 0.00138938
+            [asks] => 21.00000000
+        )
+    [LINKBTC] => Array
+        (
+            [bid] => 0.00004400
+            [bids] => 683.00000000
+            [ask] => 0.00004491
+            [asks] => 7292.00000000
+        )
+    [LINKETH] => Array
+        (
+            [bid] => 0.00086045
+            [bids] => 682.00000000
+            [ask] => 0.00087683
+            [asks] => 4286.00000000
+        )
+    [XVGBTC] => Array
+        (
+            [bid] => 0.00000080
+            [bids] => 96600.00000000
+            [ask] => 0.00000081
+            [asks] => 179622.00000000
+        )
+    [XVGETH] => Array
+        (
+            [bid] => 0.00001556
+            [bids] => 96537.00000000
+            [ask] => 0.00001675
+            [asks] => 4.00000000
+        )
+    [CTRBTC] => Array
+        (
+            [bid] => 0.00009346
+            [bids] => 2133.00000000
+            [ask] => 0.00009470
+            [asks] => 1992.00000000
+        )
+    [CTRETH] => Array
+        (
+            [bid] => 0.00187050
+            [bids] => 501.00000000
+            [ask] => 0.00189230
+            [asks] => 105.00000000
+        )
+    [SALTBTC] => Array
+        (
+            [bid] => 0.00044400
+            [bids] => 181.09000000
+            [ask] => 0.00044700
+            [asks] => 1144.81000000
+        )
+    [SALTETH] => Array
+        (
+            [bid] => 0.00866500
+            [bids] => 216.71000000
+            [ask] => 0.00893900
+            [asks] => 237.00000000
+        )
+    [MDABTC] => Array
+        (
+            [bid] => 0.00021328
+            [bids] => 555.00000000
+            [ask] => 0.00021973
+            [asks] => 236.00000000
+        )
+    [MDAETH] => Array
+        (
+            [bid] => 0.00425610
+            [bids] => 450.00000000
+            [ask] => 0.00441450
+            [asks] => 511.00000000
+        )
+    [MTLBTC] => Array
+        (
+            [bid] => 0.00114500
+            [bids] => 194.48000000
+            [ask] => 0.00117000
+            [asks] => 1.40000000
+        )
+    [MTLETH] => Array
+        (
+            [bid] => 0.02156000
+            [bids] => 183.00000000
+            [ask] => 0.02436700
+            [asks] => 200.97000000
+        )
+    [SUBBTC] => Array
+        (
+            [bid] => 0.00002116
+            [bids] => 520.00000000
+            [ask] => 0.00002177
+            [asks] => 957.00000000
+        )
+    [SUBETH] => Array
+        (
+            [bid] => 0.00042121
+            [bids] => 202.00000000
+            [ask] => 0.00044390
+            [asks] => 69.00000000
+        )
+    [EOSBTC] => Array
+        (
+            [bid] => 0.00008837
+            [bids] => 52.00000000
+            [ask] => 0.00008901
+            [asks] => 565.00000000
+        )
+    [SNTBTC] => Array
+        (
+            [bid] => 0.00000431
+            [bids] => 11731.00000000
+            [ask] => 0.00000439
+            [asks] => 9000.00000000
+        )
+    [ETC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [ETCETH] => Array
+        (
+            [bid] => 0.03600000
+            [bids] => 460.15000000
+            [ask] => 0.03699600
+            [asks] => 30.00000000
+        )
+    [ETCBTC] => Array
+        (
+            [bid] => 0.00181200
+            [bids] => 6.90000000
+            [ask] => 0.00183700
+            [asks] => 2.72000000
+        )
+    [MTHBTC] => Array
+        (
+            [bid] => 0.00001400
+            [bids] => 400.00000000
+            [ask] => 0.00001467
+            [asks] => 615.00000000
+        )
+    [MTHETH] => Array
+        (
+            [bid] => 0.00027316
+            [bids] => 399.00000000
+            [ask] => 0.00029096
+            [asks] => 24939.00000000
+        )
+    [ENGBTC] => Array
+        (
+            [bid] => 0.00006927
+            [bids] => 2896.00000000
+            [ask] => 0.00007040
+            [asks] => 75.00000000
+        )
+    [ENGETH] => Array
+        (
+            [bid] => 0.00138220
+            [bids] => 1111.00000000
+            [ask] => 0.00142990
+            [asks] => 2010.00000000
+        )
+    [DNTBTC] => Array
+        (
+            [bid] => 0.00001053
+            [bids] => 11295.00000000
+            [ask] => 0.00001065
+            [asks] => 8272.00000000
+        )
+    [ZECBTC] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [ZECETH] => Array
+        (
+            [bid] => 0.00000000
+            [bids] => 0.00000000
+            [ask] => 0.00000000
+            [asks] => 0.00000000
+        )
+    [BNTBTC] => Array
+        (
+            [bid] => 0.00033500
+            [bids] => 15.00000000
+            [ask] => 0.00033996
+            [asks] => 679.00000000
+        )
+    [ASTBTC] => Array
+        (
+            [bid] => 0.00004133
+            [bids] => 9513.00000000
+            [ask] => 0.00004528
+            [asks] => 4170.00000000
+        )
+    [ASTETH] => Array
+        (
+            [bid] => 0.00083830
+            [bids] => 4296.00000000
+            [ask] => 0.00084900
+            [asks] => 999.00000000
+        )
+    [DASHBTC] => Array
+        (
+            [bid] => 0.04651200
+            [bids] => 0.25000000
+            [ask] => 0.04659000
+            [asks] => 1.00000000
+        )
+    [DASHETH] => Array
+        (
+            [bid] => 0.90420000
+            [bids] => 63.96400000
+            [ask] => 0.94375000
+            [asks] => 0.36900000
+        )
+)
+```
+</details>
 
 #### Place a LIMIT order
 ```php
@@ -106,6 +763,27 @@ $quantity = 0.01;
 $order = $api->sell("ETHBTC", $quantity, 0, "MARKET");
 ```
 
+<details>
+ <summary>View Response</summary>
+
+```
+(
+    [symbol] => BNBBTC
+    [orderId] => 7652393
+    [clientOrderId] => aAE7BNUhITQj3eg04iG1sY
+    [transactTime] => 1508564815865
+    [price] => 0.00000000
+    [origQty] => 1.00000000
+    [executedQty] => 1.00000000
+    [status] => FILLED
+    [timeInForce] => GTC
+    [type] => MARKET
+    [side] => BUY
+)
+```
+</details>
+
+
 #### Place a STOP LOSS order
 ```php
 // When the stop is reached, a stop order becomes a market order
@@ -124,6 +802,13 @@ $price = 0.5;
 $icebergQty = 10;
 $order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["icebergQty"=>$icebergQty]);
 print_r($order);
+```
+
+#### Getting 24hr ticker price change statistics for a symbol
+```php
+$prevDay = $api->prevDay("BNBBTC");
+print_r($prevDay);
+echo "BNB price change since yesterday: ".$prevDay['priceChangePercent']."%".PHP_EOL;
 ```
 
 #### Complete Account Trade History
@@ -357,11 +1042,106 @@ bid: 0.00022258
 ```
 </details>
 
+#### User Data: Account Balance Updates, Trade Updates, New Orders, Filled Orders, Cancelled Orders via WebSocket
+```php
+$balance_update = function($api, $balances) {
+	echo "Balance update".PHP_EOL;
+	print_r($balances);
+};
+$order_update = function($api, $report) {
+	echo "Order update".PHP_EOL;
+	print_r($report);
+	$symbol = $report['symbol'];
+	$side = $report['side'];
+	$orderType = $report['orderType'];
+	$orderId = $report['orderId'];
+	$orderStatus = $report['orderStatus'];
+	$price = $report['price'];
+	$quantity = $report['quantity'];
+	if ( $report['executionType'] == "NEW" ) {
+		if ( $report['orderStatus'] == "REJECTED" ) {
+			echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
+		}
+		echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
+		echo "..price: {$price}, quantity: {$quantity}".PHP_EOL;
+		return;
+	}
+	//NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
+	echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
+};
+$api->userData($balance_update, $order_update);
+```
 
-#### Coming Soon: (Tomorrow, October 22)
-###### WebSocket User Account Updates (Balance Updates, Order Status Updates)
-###### Withdraw
-###### Withdraw History
-###### Deposit
-###### Deposit History
-###### Better Documentation & Examples
+<details>
+ <summary>View Response</summary>
+
+```
+Order update
+    [symbol] => BNBETH
+    [side] => BUY
+    [orderType] => LIMIT
+    [quantity] => 2.00000000
+    [price] => 0.00623005
+    [executionType] => NEW
+    [orderStatus] => NEW
+    [rejectReason] => NONE
+    [orderId] => 4102532
+    [clientOrderId] => ULtH25RPmICFH0jvsQiq8y
+    [orderTime] => 1508637831437
+    [eventTime] => 1508637831440
+
+BNBETH BUY LIMIT ORDER #4102532 (NEW)
+..price: 0.00623005, quantity: 2.00000000
+
+Balance update
+    [BTC] => Array
+        (
+            [available] => 0.18167974
+            [onOrder] => 0.00000000
+        )
+
+    [LTC] => Array
+        (
+            [available] => 0.00000000
+            [onOrder] => 0.00000000
+        )
+
+    [ETH] => Array
+        (
+            [available] => 26.68739238
+            [onOrder] => 2.55103500
+        )
+...(more)
+```
+</details>
+
+#### Withdraw
+```php
+$asset = "BTC";
+$address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
+$amount = 0.2;
+$response = $api->withdraw($asset, $address, $amount);
+print_r($response);
+```
+
+#### Get All Withdraw History
+```php
+$withdrawHistory = $api->withdrawHistory();
+print_r($withdrawHistory);
+```
+
+#### Get Withdraw History for a specific asset
+```php
+$withdrawHistory = $api->withdrawHistory("BTC");
+print_r($withdrawHistory);
+```
+
+#### Get All Deposit History
+```php
+$depositHistory = $api->depositHistory();
+print_r($depositHistory);
+```
+
+#### Coming Soon:
+###### Better Examples
+###### More Documentation
