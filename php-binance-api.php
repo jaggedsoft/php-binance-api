@@ -449,6 +449,16 @@ class API {
 		}
 	}
 	
+	// Keep-alive function for userDataStream
+	public function keepAlive() {
+		$loop = \React\EventLoop\Factory::create();
+		$loop->addPeriodicTimer(30, function() {
+			$listenKey = $this->options['listenKey'];
+			$this->apiRequest("v1/userDataStream?listenKey={$listenKey}", "PUT");
+		});
+		$loop->run();
+	}
+	
 	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
 	public function userData(&$balance_callback, &$execution_callback = false) {
 		$response = $this->apiRequest("v1/userDataStream", "POST");
@@ -475,10 +485,5 @@ class API {
 		}, function($e) {
 			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
-		/*$loop = \React\EventLoop\Factory::create();
-		$loop->addPeriodicTimer(30, function() use ($listenKey) {
-			$this->apiRequest("v1/userDataStream?listenKey={$listenKey}", "PUT");
-		});
-		$loop->run();*/
 	}
 }
