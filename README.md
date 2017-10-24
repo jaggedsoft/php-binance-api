@@ -1144,7 +1144,3 @@ print_r($withdrawHistory);
 $depositHistory = $api->depositHistory();
 print_r($depositHistory);
 ```
-
-#### Coming Soon:
-###### Better Examples
-###### More Documentation
