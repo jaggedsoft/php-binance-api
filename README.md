@@ -6,6 +6,8 @@
 # PHP Binance API
 This project is designed to help you make your own projects that interact with the [Binance API](https://www.binance.com/restapipub.html). You can stream candlestick chart data, market depth, or use other advanced features such as setting stop losses and iceberg orders. This project seeks to have complete API coverage including WebSockets.
 
+There are other projects with [better documentation](https://github.com/larislackers/php-binance) but this project includes extra features such as a complete depth cache and chart cache.
+
 #### Installation
 ```
 composer require "jaggedsoft/php-binance-api @dev"
