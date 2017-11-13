@@ -267,6 +267,17 @@ class API {
 		return $prices;
 	}
 	
+	// Converts Chart Data into array for highstock & kline charts
+	public function highstock($chart, $include_volume = false) {
+		$array = [];
+		foreach ( $chart as $timestamp => $obj ) {
+			$line = [$timestamp, $obj['open'], $obj['high'], $obj['low'], $obj['close']];
+			if ( $include_volume ) $line[] = $obj['volume'];
+			$array[] = $line;
+		}
+		return $array;
+	}
+	
 	// For WebSocket Depth Cache
 	private function depthHandler($json) {
 		$symbol = $json['s'];
