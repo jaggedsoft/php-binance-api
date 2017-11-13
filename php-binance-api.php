@@ -267,6 +267,22 @@ class API {
 		return $prices;
 	}
 	
+	// Converts depth cache into a cumulative array
+	public function cumulative($depth) {
+		$bids = []; $asks = [];
+		$cumulative = 0;
+		foreach ( $depth['bids'] as $price => $quantity ) {
+			$cumulative+= $quantity;
+			$bids[] = [$price, $cumulative];
+		}
+		$cumulative = 0;
+		foreach ( $depth['asks'] as $price => $quantity ) {
+			$cumulative+= $quantity;
+			$asks[] = [$price, $cumulative];
+		}
+		return ["bids"=>$bids, "asks"=>array_reverse($asks)];
+	}
+	
 	// Converts Chart Data into array for highstock & kline charts
 	public function highstock($chart, $include_volume = false) {
 		$array = [];
