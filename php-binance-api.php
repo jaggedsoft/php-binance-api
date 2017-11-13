@@ -271,8 +271,14 @@ class API {
 	public function highstock($chart, $include_volume = false) {
 		$array = [];
 		foreach ( $chart as $timestamp => $obj ) {
-			$line = [$timestamp, $obj['open'], $obj['high'], $obj['low'], $obj['close']];
-			if ( $include_volume ) $line[] = $obj['volume'];
+			$line = [
+				$timestamp,
+				floatval($obj['open']),
+				floatval($obj['high']),
+				floatval($obj['low']),
+				floatval($obj['close'])
+			];
+			if ( $include_volume ) $line[] = floatval($obj['volume']);
 			$array[] = $line;
 		}
 		return $array;
