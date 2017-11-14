@@ -86,26 +86,43 @@ class API {
 	}
 	
 	private function request($url, $params = [], $method = "GET") {
-		$opt = [
-			"http" => [
-				"method" => $method,
-				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n"
-			]
-		];
-		$context = stream_context_create($opt);
 		$query = http_build_query($params, '', '&');
-		return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT,
+            "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n"
+        );
+
+        $url = $this->base.$url.'?'.$query;
+
+        if (!empty($queryString)) {
+            $url .= '?'.$queryString;
+        }
+
+        if ($method === 'POST') {
+            curl_setopt($ch, CURLOPT_POST, true);
+        }
+
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $response = curl_exec($ch);
+
+		return json_decode($response, true);
 	}
 	
 	private function signedRequest($url, $params = [], $method = "GET") {
 		$base = $this->base;
-		$opt = [
-			"http" => [
-				"method" => $method,
-				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
-			]
-		];
-		$context = stream_context_create($opt);
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT,
+            "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
+        );
+
 		$params['timestamp'] = number_format(microtime(true)*1000,0,'.','');
 		if ( isset($params['wapi']) ) {
 			unset($params['wapi']);
@@ -114,7 +131,17 @@ class API {
 		$query = http_build_query($params, '', '&');
 		$signature = hash_hmac('sha256', $query, $this->api_secret);
 		$endpoint = "{$base}{$url}?{$query}&signature={$signature}";
-		return json_decode(file_get_contents($endpoint, false, $context), true);
+
+        if ($method === 'POST') {
+            curl_setopt($ch, CURLOPT_POST, true);
+        }
+
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_URL, $endpoint);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $response = curl_exec($ch);
+        return json_decode($response, true);
 	}
 	
 	private function apiRequest($url, $method = "GET") {
