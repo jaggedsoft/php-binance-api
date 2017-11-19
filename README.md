@@ -1130,6 +1130,17 @@ $response = $api->withdraw($asset, $address, $amount);
 print_r($response);
 ```
 
+#### Withdraw with addressTag
+```php
+//Required for coins like XMR, XRP, etc.
+$address = "44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn";
+$addressTag = "0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1
+";
+$amount = 0.1;
+$response = $api->withdraw($asset, $address, $amount, $addressTag);
+print_r($response);
+```
+
 #### Get All Withdraw History
 ```php
 $withdrawHistory = $api->withdrawHistory();
@@ -1140,6 +1151,12 @@ print_r($withdrawHistory);
 ```php
 $withdrawHistory = $api->withdrawHistory("BTC");
 print_r($withdrawHistory);
+```
+
+#### Get Deposit Address
+```php
+$depositAddress = $api->depositAddress("VEN");
+print_r($depositAddress);
 ```
 
 #### Get All Deposit History
