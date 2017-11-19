@@ -9,7 +9,7 @@
 
 namespace Binance;
 class API {
-	protected $base = "https://www.binance.com/api/", $wapi = "https://www.binance.com/wapi/", $api_key, $api_secret;
+	protected $base = "https://api.binance.com/api/", $wapi = "https://api.binance.com/wapi/", $api_key, $api_secret;
 	protected $depthCache = [];
 	protected $depthQueue = [];
 	protected $chartQueue = [];
@@ -47,18 +47,24 @@ class API {
 	public function history($symbol) {
 		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol]);
 	}
-	public function withdraw($asset, $address, $amount) {
-		return $this->signedRequest("v1/withdraw.html", ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true], "POST");
+	public function withdraw($asset, $address, $amount, $addressTag = false) {
+		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true];
+		if ( $addressTag ) $options['addressTag'] = $addressTag;
+		return $this->signedRequest("v3/withdraw.html", $options, "POST");
+	}
+	public function depositAddress($asset) {
+		$params = ["wapi"=>true, "asset"=>$asset];
+		return $this->signedRequest("v3/depositAddress.html", $params, "GET");
 	}
 	public function depositHistory($asset = false) {
 		$params = ["wapi"=>true];
 		if ( $asset ) $params['asset'] = $asset;
-		return $this->signedRequest("v1/getDepositHistory.html", $params, "POST");
+		return $this->signedRequest("v3/depositHistory.html", $params, "GET");
 	}
 	public function withdrawHistory($asset = false) {
 		$params = ["wapi"=>true];
 		if ( $asset ) $params['asset'] = $asset;
-		return $this->signedRequest("v1/getWithdrawHistory.html", $params, "POST");
+		return $this->signedRequest("v3/withdrawHistory.html", $params, "GET");
 	}
 	public function prices() {
 		return $this->priceData($this->request("v1/ticker/allPrices"));
