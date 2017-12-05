@@ -176,7 +176,9 @@ class API {
 					$btc_value+= $obj['free'];
 					continue;
 				}
-				$btcValue = number_format($obj['free'] * $priceData[$asset.'BTC'],8,'.','');
+				$symbol = $asset.'BTC';
+				if ( $symbol == 'USDTBTC' ) $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'],8,'.','');
+				else $btcValue = number_format($obj['free'] * $priceData[$symbol],8,'.','');
 				$balances[$asset]['btcValue'] = $btcValue;
 				$btc_value+= $btcValue;
 			}
