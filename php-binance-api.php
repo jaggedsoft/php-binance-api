@@ -90,7 +90,7 @@ class API {
 	public function balances($priceData = false) {
 		return $this->balanceData($this->signedRequest("v3/account"),$priceData);
 	}
-	
+
 	private function request($url, $params = [], $method = "GET") {
 		$opt = [
 			"http" => [
@@ -102,7 +102,7 @@ class API {
 		$query = http_build_query($params, '', '&');
 		return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);
 	}
-	
+
 	private function signedRequest($url, $params = [], $method = "GET") {
 		$base = $this->base;
 		$opt = [
@@ -122,7 +122,7 @@ class API {
 		$endpoint = "{$base}{$url}?{$query}&signature={$signature}";
 		return json_decode(file_get_contents($endpoint, false, $context), true);
 	}
-	
+
 	private function apiRequest($url, $method = "GET") {
 		$opt = [
 			"http" => [
@@ -133,7 +133,7 @@ class API {
 		$context = stream_context_create($opt);
 		return json_decode(file_get_contents($this->base.$url, false, $context), true);
 	}
-	
+
 	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		$opt = [
 			"symbol" => $symbol,
@@ -150,7 +150,7 @@ class API {
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		return $this->signedRequest("v3/order", $opt, "POST");
 	}
-	
+
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
 	public function candlesticks($symbol, $interval = "5m") {
 		if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
@@ -159,7 +159,7 @@ class API {
 		$this->charts[$symbol][$interval] = $ticks;
 		return $ticks;
 	}
-	
+
 	// Converts all your balances into a nice array
 	// If priceData is passed from $api->prices() it will add btcValue to each symbol
 	// This function sets $btc_value which is your estimated BTC value of all assets combined
@@ -189,7 +189,7 @@ class API {
 		}
 		return $balances;
 	}
-	
+
 	// Convert balance WebSocket data into array
 	private function balanceHandler($json) {
 		$balances = [];
@@ -201,7 +201,7 @@ class API {
 		}
 		return $balances;
 	}
-	
+
 	// Convert WebSocket trade execution into array
 	private function executionHandler($json) {
 		return [
@@ -219,7 +219,7 @@ class API {
 			"eventTime" => $json->E
 		];
 	}
-	
+
 	// Convert kline data into object
 	private function chartData($symbol, $interval, $ticks) {
 		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
@@ -227,18 +227,20 @@ class API {
 		$output = [];
 		foreach ( $ticks as $tick ) {
 			list($openTime, $open, $high, $low, $close, $assetVolume, $closeTime, $baseVolume, $trades, $assetBuyVolume, $takerBuyVolume, $ignored) = $tick;
-			$output[$openTime] = [
+			$output[] = [
 				"open" => $open,
 				"high" => $high,
 				"low" => $low,
 				"close" => $close,
-				"volume" => $baseVolume
+				"volume" => $baseVolume,
+				"openTime" =>$openTime,
+				"closeTime" =>$closeTime
 			];
 		}
 		$this->info[$symbol][$interval]['firstOpen'] = $openTime;
 		return $output;
 	}
-	
+
 	// Convert aggTrades data into easier format
 	private function tradesData($trades) {
 		$output = [];
@@ -251,8 +253,8 @@ class API {
 		}
 		return $output;
 	}
-	
-	// Consolidates Book Prices into an easy to use object 
+
+	// Consolidates Book Prices into an easy to use object
 	private function bookPriceData($array) {
 		$bookprices = [];
 		foreach ( $array as $obj ) {
@@ -265,7 +267,7 @@ class API {
 		}
 		return $bookprices;
 	}
-	
+
 	// Converts Price Data into an easy key/value array
 	private function priceData($array) {
 		$prices = [];
@@ -274,7 +276,7 @@ class API {
 		}
 		return $prices;
 	}
-	
+
 	// Converts depth cache into a cumulative array
 	public function cumulative($depth) {
 		$bids = []; $asks = [];
@@ -290,7 +292,7 @@ class API {
 		}
 		return ["bids"=>$bids, "asks"=>array_reverse($asks)];
 	}
-	
+
 	// Converts Chart Data into array for highstock & kline charts
 	public function highstock($chart, $include_volume = false) {
 		$array = [];
@@ -307,7 +309,7 @@ class API {
 		}
 		return $array;
 	}
-	
+
 	// For WebSocket Depth Cache
 	private function depthHandler($json) {
 		$symbol = $json['s'];
@@ -321,7 +323,7 @@ class API {
 			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
 		}
 	}
-	
+
 	// For WebSocket Chart Cache
 	private function chartHandler($symbol, $interval, $json) {
 		if ( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
@@ -340,17 +342,17 @@ class API {
 		$volume = $chart->q; //+trades buyVolume assetVolume makerVolume
 		$this->charts[$symbol][$interval][$tick] = ["open"=>$open, "high"=>$high, "low"=>$low, "close"=>$close, "volume"=>$volume];
 	}
-	
+
 	// Gets first key of an array
 	public function first($array) {
 		return array_keys($array)[0];
 	}
-	
+
 	// Gets last key of an array
 	public function last($array) {
 		return array_keys(array_slice($array, -1))[0];
 	}
-	
+
 	// Formats nicely for console output
 	public function displayDepth($array) {
 		$output = '';
@@ -367,7 +369,7 @@ class API {
 		}
 		return $output;
 	}
-	
+
 	// Sorts depth data for display & getting highest bid and lowest ask
 	public function sortDepth($symbol, $limit = 11) {
 		$bids = $this->depthCache[$symbol]['bids'];
@@ -376,7 +378,7 @@ class API {
 		ksort($asks);
 		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
 	}
-	
+
 	// Formats depth data for nice display
 	private function depthData($symbol, $json) {
 		$bids = $asks = [];
@@ -388,11 +390,11 @@ class API {
 		}
 		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
 	}
-	
+
 	////////////////////////////////////
 	// WebSockets
 	////////////////////////////////////
-	
+
 	// Pulls /depth data and subscribes to @depth WebSocket endpoint
 	// Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()
 	public function depthCache($symbols, $callback) {
@@ -428,7 +430,7 @@ class API {
 			$callback($this, $symbol, $this->depthCache[$symbol]);
 		}
 	}
-	
+
 	// Trades WebSocket Endpoint
 	public function trades($symbols, $callback) {
 		foreach ( $symbols as $symbol ) {
@@ -453,8 +455,8 @@ class API {
 			});
 		}
 	}
-	
-	
+
+
 	// Pulls /kline data and subscribes to @klines WebSocket endpoint
 	public function chart($symbols, $interval = "30m", $callback) {
 		foreach ( $symbols as $symbol ) {
@@ -489,7 +491,7 @@ class API {
 			$this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
 		}
 	}
-	
+
 	// Keep-alive function for userDataStream
 	public function keepAlive() {
 		$loop = \React\EventLoop\Factory::create();
@@ -499,7 +501,7 @@ class API {
 		});
 		$loop->run();
 	}
-	
+
 	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
 	public function userData(&$balance_callback, &$execution_callback = false) {
 		$response = $this->apiRequest("v1/userDataStream", "POST");
