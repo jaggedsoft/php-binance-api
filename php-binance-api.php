@@ -177,10 +177,14 @@ class API {
 					continue;
 				}
 				$symbol = $asset.'BTC';
-				if ( $symbol == 'USDTBTC' ) $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'],8,'.','');
-				else $btcValue = number_format($obj['free'] * $priceData[$symbol],8,'.','');
-				$balances[$asset]['btcValue'] = $btcValue;
-				$btc_value+= $btcValue;
+				if ( !isset($priceData[$symbol]) ) {
+					$balances[$asset]['btcValue'] = 0;
+				} else {
+					if ( $symbol == 'USDTBTC' ) $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'],8,'.','');
+					else $btcValue = number_format($obj['free'] * $priceData[$symbol],8,'.','');
+					$balances[$asset]['btcValue'] = $btcValue;
+					$btc_value+= $btcValue;
+				}
 			}
 		}
 		if ( $priceData ) {
