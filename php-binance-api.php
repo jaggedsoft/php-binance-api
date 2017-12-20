@@ -15,7 +15,9 @@ class API {
 	protected $chartQueue = [];
 	protected $charts = [];
 	protected $info = [];
-	public $balances = [], $btc_value = 0.00;
+	public $balances = [];
+	public $btc_value = 0.00; // value of available assets
+	public $btc_total = 0.00; // value of available + onOrder assets
 	public function __construct($api_key = '', $api_secret = '') {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
@@ -44,8 +46,11 @@ class API {
 	public function orders($symbol, $limit = 500) {
 		return $this->signedRequest("v3/allOrders", ["symbol"=>$symbol, "limit"=>$limit]);
 	}
-	public function history($symbol) {
-		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol]);
+	public function history($symbol, $limit = 500) {
+		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol, "limit"=>$limit]);
+	}
+	public function exchangeInfo() {
+		return $this->apiRequest("v1/exchangeInfo");
 	}
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true];
@@ -95,6 +100,7 @@ class API {
 		$opt = [
 			"http" => [
 				"method" => $method,
+				"ignore_errors" => true,
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n"
 			]
 		];
@@ -108,6 +114,7 @@ class API {
 		$opt = [
 			"http" => [
 				"method" => $method,
+				"ignore_errors" => true,
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
 			]
 		];
@@ -119,14 +126,16 @@ class API {
 		}
 		$query = http_build_query($params, '', '&');
 		$signature = hash_hmac('sha256', $query, $this->api_secret);
-		$endpoint = "{$base}{$url}?{$query}&signature={$signature}";
-		return json_decode(file_get_contents($endpoint, false, $context), true);
+		$endpoint = $base.$url.'?'.$query.'&signature='.$signature;
+		$data = file_get_contents($endpoint, false, $context);
+		return json_decode($data, true);
 	}
 
 	private function apiRequest($url, $method = "GET") {
 		$opt = [
 			"http" => [
 				"method" => $method,
+				"ignore_errors" => true,
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
 			]
 		];
@@ -161,35 +170,43 @@ class API {
 	}
 
 	// Converts all your balances into a nice array
-	// If priceData is passed from $api->prices() it will add btcValue to each symbol
-	// This function sets $btc_value which is your estimated BTC value of all assets combined
+	// If priceData is passed from $api->prices() it will add btcValue & btcTotal to each symbol
+	// This function sets $btc_value which is your estimated BTC value of all assets combined and $btc_total which includes amount on order
 	private function balanceData($array, $priceData = false) {
-		if ( $priceData ) $btc_value = 0.00;
+		if ( $priceData ) $btc_value = $btc_total = 0.00;
 		$balances = [];
 		foreach ( $array['balances'] as $obj ) {
 			$asset = $obj['asset'];
-			$balances[$asset] = ["available"=>$obj['free'], "onOrder"=>$obj['locked'], "btcValue"=>0.00000000];
+			$balances[$asset] = ["available"=>$obj['free'], "onOrder"=>$obj['locked'], "btcValue"=>0.00000000, "btcTotal"=>0.00000000];
 			if ( $priceData ) {
-				if ( $obj['free'] < 0.00000001 ) continue;
+				if ( $obj['free'] + $obj['locked'] < 0.00000001 ) continue;
 				if ( $asset == 'BTC' ) {
 					$balances[$asset]['btcValue'] = $obj['free'];
+					$balances[$asset]['btcTotal'] = $obj['free'] + $obj['locked'];
 					$btc_value+= $obj['free'];
+					$btc_total+= $obj['free'] + $obj['locked'];
 					continue;
 				}
 				$symbol = $asset.'BTC';
-				if ( !isset($priceData[$symbol]) ) {
-					$balances[$asset]['btcValue'] = 0;
+				if ( $symbol == 'USDTBTC' ) {
+					$btcValue = number_format($obj['free'] / $priceData['BTCUSDT'],8,'.','');
+					$btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'],8,'.','');
+				} elseif ( !isset($priceData[$symbol]) ) {
+					$btcValue = $btcTotal = 0;
 				} else {
-					if ( $symbol == 'USDTBTC' ) $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'],8,'.','');
-					else $btcValue = number_format($obj['free'] * $priceData[$symbol],8,'.','');
-					$balances[$asset]['btcValue'] = $btcValue;
-					$btc_value+= $btcValue;
+					$btcValue = number_format($obj['free'] * $priceData[$symbol],8,'.','');
+					$btcTotal = number_format(($obj['free'] + $obj['locked']) * $priceData[$symbol],8,'.','');
 				}
+				$balances[$asset]['btcValue'] = $btcValue;
+				$balances[$asset]['btcTotal'] = $btcTotal;
+				$btc_value+= $btcValue;
+				$btc_total+= $btcTotal;
 			}
 		}
 		if ( $priceData ) {
 			uasort($balances, function($a, $b) { return $a['btcValue'] < $b['btcValue']; });
 			$this->btc_value = $btc_value;
+			$this->btc_total = $btc_total;
 		}
 		return $balances;
 	}
@@ -231,7 +248,7 @@ class API {
 		$output = [];
 		foreach ( $ticks as $tick ) {
 			list($openTime, $open, $high, $low, $close, $assetVolume, $closeTime, $baseVolume, $trades, $assetBuyVolume, $takerBuyVolume, $ignored) = $tick;
-			$output[] = [
+			$output[$openTime] = [
 				"open" => $open,
 				"high" => $high,
 				"low" => $low,
