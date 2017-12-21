@@ -420,14 +420,17 @@ class API {
 	// Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()
 	public function depthCache($symbols, $callback) {
 		if ( !is_array($symbols) ) $symbols = [$symbols];
+		$loop = \React\EventLoop\Factory::create();
+		$react = new \React\Socket\Connector($loop);
+		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
 			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
 			$this->info[$symbol]['depthCallback'] = $callback;
 			if ( !isset($this->depthQueue[$symbol]) ) $this->depthQueue[$symbol] = [];
 			if ( !isset($this->depthCache[$symbol]) ) $this->depthCache[$symbol] = ["bids" => [], "asks" => []];
 			$this->info[$symbol]['firstUpdate'] = 0;
-			\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@depth')->then(function($ws) {
-				$ws->on('message', function($data) use($ws) {
+			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@depth')->then(function($ws) use($callback) {
+				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data, true);
 					$symbol = $json['s'];
 					if ( $this->info[$symbol]['firstUpdate'] == 0 ) {
@@ -435,30 +438,37 @@ class API {
 						return;
 					}
 					$this->depthHandler($json);
-					$this->info[$symbol]['depthCallback']($this, $symbol, $this->depthCache[$symbol]);
+					//$this->info[$symbol]['depthCallback']($this, $symbol, $this->depthCache[$symbol]);
+					call_user_func($callback, $this, $symbol, $this->depthCache($symbol));
 				});
 				$ws->on('close', function($code = null, $reason = null) {
 					echo "depthCache({$symbol}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
 				});
-			}, function($e) {
+			}, function($e) use($loop) {
 				echo "depthCache({$symbol})) Could not connect: {$e->getMessage()}".PHP_EOL;
+				$loop->stop();
 			});
 			$this->depth($symbol);
 			foreach ( $this->depthQueue[$symbol] as $data ) {
 				$this->depthHandler($json);
 			}
 			$this->depthQueue[$symbol] = [];
-			$callback($this, $symbol, $this->depthCache[$symbol]);
+			call_user_func($callback, $this, $symbol, $this->depthCache[$symbol]);
 		}
+		$loop->run();
 	}
 
 	// Trades WebSocket Endpoint
 	public function trades($symbols, $callback) {
+		if ( !is_array($symbols) ) $symbols = [$symbol];
+		$loop = \React\EventLoop\Factory::create();
+		$react = new \React\Socket\Connector($loop);
+		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
 			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
-			$this->info[$symbol]['tradesCallback'] = $callback;
-			\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@aggTrade')->then(function($ws) {
-				$ws->on('message', function($data) use($ws) {
+			//$this->info[$symbol]['tradesCallback'] = $callback;
+			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@aggTrade')->then(function($ws) use($callback) {
+				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data, true);
 					$symbol = $json['s'];
 					$price = $json['p'];
@@ -466,20 +476,27 @@ class API {
 					$timestamp = $json['T'];
 					$maker = $json['m'] ? 'true' : 'false';
 					$trades = ["price"=>$price, "quantity"=>$quantity, "timestamp"=>$timestamp, "maker"=>$maker];
-					$this->info[$symbol]['tradesCallback']($this, $symbol, $trades);
+					//$this->info[$symbol]['tradesCallback']($this, $symbol, $trades);
+					call_user_func($callback, $this, $symbol, $trades);
 				});
 				$ws->on('close', function($code = null, $reason = null) {
 					echo "trades({$symbol}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
 				});
-			}, function($e) {
+			}, function($e) use($loop) {
 				echo "trades({$symbol}) Could not connect: {$e->getMessage()}".PHP_EOL;
+				$loop->stop();
 			});
 		}
+		$loop->run();
 	}
 
 
 	// Pulls /kline data and subscribes to @klines WebSocket endpoint
 	public function chart($symbols, $interval = "30m", $callback) {
+		if ( !is_array($symbols) ) $symbols = [$symbol];
+		$loop = \React\EventLoop\Factory::create();
+		$react = new \React\Socket\Connector($loop);
+		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
 			if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
 			$this->charts[$symbol][$interval] = [];
@@ -488,29 +505,33 @@ class API {
 			if ( !isset($this->chartQueue[$symbol]) ) $this->chartQueue[$symbol] = [];
 			$this->chartQueue[$symbol][$interval] = [];
 			$this->info[$symbol][$interval]['firstOpen'] = 0;
-			$this->info[$symbol]['chartCallback'.$interval] = $callback;
-			\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@kline_'.$interval)->then(function($ws) {
-				$ws->on('message', function($data) use($ws) {
+			//$this->info[$symbol]['chartCallback'.$interval] = $callback;
+			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@kline_'.$interval)->then(function($ws) use($callback) {
+				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data);
 					$chart = $json->k;
 					$symbol = $json->s;
 					$interval = $chart->i;
 					$this->chartHandler($symbol, $interval, $json);
-					$this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
+					//$this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
+					call_user_func($callback, $this, $symbol, $this->charts[$symbol][$interval]);
 				});
 				$ws->on('close', function($code = null, $reason = null) {
 					echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
 				});
-			}, function($e) {
+			}, function($e) use($loop) {
 				echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}".PHP_EOL;
+				$loop->stop();
 			});
 			$this->candlesticks($symbol, $interval);
 			foreach ( $this->chartQueue[$symbol][$interval] as $json ) {
 				$this->chartHandler($symbol, $interval, $json);
 			}
 			$this->chartQueue[$symbol][$interval] = [];
-			$this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
+			//$this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
+			call_user_func($callback, $this, $symbol, $this->charts[$symbol][$interval]);
 		}
+		$loop->run();
 	}
 
 	// Keep-alive function for userDataStream
