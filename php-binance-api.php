@@ -460,7 +460,7 @@ class API {
 
 	// Trades WebSocket Endpoint
 	public function trades($symbols, $callback) {
-		if ( !is_array($symbols) ) $symbols = [$symbol];
+		if ( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
 		$connector = new \Ratchet\Client\Connector($loop, $react);
@@ -493,7 +493,7 @@ class API {
 
 	// Pulls /kline data and subscribes to @klines WebSocket endpoint
 	public function chart($symbols, $interval = "30m", $callback) {
-		if ( !is_array($symbols) ) $symbols = [$symbol];
+		if ( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
 		$connector = new \Ratchet\Client\Connector($loop, $react);
