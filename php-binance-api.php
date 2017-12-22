@@ -425,7 +425,6 @@ class API {
 		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
 			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
-			$this->info[$symbol]['depthCallback'] = $callback;
 			if ( !isset($this->depthQueue[$symbol]) ) $this->depthQueue[$symbol] = [];
 			if ( !isset($this->depthCache[$symbol]) ) $this->depthCache[$symbol] = ["bids" => [], "asks" => []];
 			$this->info[$symbol]['firstUpdate'] = 0;
@@ -438,7 +437,6 @@ class API {
 						return;
 					}
 					$this->depthHandler($json);
-					$this->info[$symbol]['depthCallback']($this, $symbol, $this->depthCache[$symbol]);
 					call_user_func($callback, $this, $symbol, $this->depthCache[$symbol]);
 				});
 				$ws->on('close', function($code = null, $reason = null) {
