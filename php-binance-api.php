@@ -438,8 +438,8 @@ class API {
 						return;
 					}
 					$this->depthHandler($json);
-					//$this->info[$symbol]['depthCallback']($this, $symbol, $this->depthCache[$symbol]);
-					call_user_func($callback, $this, $symbol, $this->depthCache($symbol));
+					$this->info[$symbol]['depthCallback']($this, $symbol, $this->depthCache[$symbol]);
+					call_user_func($callback, $this, $symbol, $this->depthCache[$symbol]);
 				});
 				$ws->on('close', function($code = null, $reason = null) {
 					echo "depthCache({$symbol}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
