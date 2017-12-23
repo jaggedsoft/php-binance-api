@@ -110,6 +110,8 @@ class API {
 	}
 
 	private function signedRequest($url, $params = [], $method = "GET") {
+		if ( empty($this->api_key) ) die("signedRequest error: API Key not set!");
+		if ( empty($this->api_secret) ) die("signedRequest error: API Secret not set!");
 		$base = $this->base;
 		$opt = [
 			"http" => [
@@ -132,6 +134,7 @@ class API {
 	}
 
 	private function apiRequest($url, $method = "GET") {
+		if ( empty($this->api_key) ) die("apiRequest error: API Key not set!");
 		$opt = [
 			"http" => [
 				"method" => $method,
