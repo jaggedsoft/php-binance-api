@@ -3,7 +3,8 @@
 
 class Binance {
 	public $btc_value = 0.00;
-	protected $base = "https://api.binance.com/api/", $api_key, $api_secret;
+// 	protected $base = "https://api.binance.com/api/", $api_key, $api_secret;
+  	protected $base = "https://api-binance-com-acpd91s6n7el.runscope.net/api/", $api_key, $api_secret;
 	public function __construct($api_key, $api_secret) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
@@ -65,17 +66,25 @@ class Binance {
 		return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);
 	}
 	private function signedRequest($url, $params = [], $method = "GET") {
+		$params['timestamp'] = number_format(microtime(true)*1000,0,'.','');
+		$query = http_build_query($params, '', '&');
+		$signature = hash_hmac('sha256', $query, $this->api_secret);
 		$opt = [
 			"http" => [
 				"method" => $method,
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
 			]
 		];
+		if ( $method == 'GET' ) {
+			// parameters encoded as query string in URL
+			$endpoint = "{$this->base}{$url}?{$query}&signature={$signature}";
+		} else {
+			// parameters encoded as POST data (in $context)
+			$endpoint = "{$this->base}{$url}";
+			$postdata = "{$query}&signature={$signature}";
+			$opt['http']['content'] = $postdata;
+		}
 		$context = stream_context_create($opt);
-		$params['timestamp'] = number_format(microtime(true)*1000,0,'.','');
-		$query = http_build_query($params, '', '&');
-		$signature = hash_hmac('sha256', $query, $this->api_secret);
-		$endpoint = "{$this->base}{$url}?{$query}&signature={$signature}";
 		return json_decode(file_get_contents($endpoint, false, $context), true);
 	}
 	private function order_test($side, $symbol, $quantity, $price, $type = "LIMIT") {
@@ -88,7 +97,7 @@ class Binance {
 			"timeInForce" => "GTC",
 			"recvWindow" => 60000
 		];
-		return $this->signedRequest("v3/order", $opt, "POST");
+		return $this->signedRequest("v3/order/test", $opt, "POST");
 	}
 	private function order($side, $symbol, $quantity, $price, $type = "LIMIT") {
 		$opt = [
