@@ -8,6 +8,12 @@ class Binance {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 	}
+	public function buy_test($symbol, $quantity, $price, $type = "LIMIT") {
+		return $this->order_test("BUY", $symbol, $quantity, $price, $type);
+	}
+	public function sell_test($symbol, $quantity, $price, $type = "LIMIT") {
+		return $this->order_test("SELL", $symbol, $quantity, $price, $type);
+	}
 	public function buy($symbol, $quantity, $price, $type = "LIMIT") {
 		return $this->order("BUY", $symbol, $quantity, $price, $type);
 	}
@@ -71,6 +77,18 @@ class Binance {
 		$signature = hash_hmac('sha256', $query, $this->api_secret);
 		$endpoint = "{$this->base}{$url}?{$query}&signature={$signature}";
 		return json_decode(file_get_contents($endpoint, false, $context), true);
+	}
+	private function order_test($side, $symbol, $quantity, $price, $type = "LIMIT") {
+		$opt = [
+			"symbol" => $symbol,
+			"side" => $side,
+			"type" => $type,
+			"price" => $price,
+			"quantity" => $quantity,
+			"timeInForce" => "GTC",
+			"recvWindow" => 60000
+		];
+		return $this->signedRequest("v3/order", $opt, "POST");
 	}
 	private function order($side, $symbol, $quantity, $price, $type = "LIMIT") {
 		$opt = [
