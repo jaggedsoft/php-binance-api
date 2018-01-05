@@ -81,7 +81,7 @@ class Binance {
 			"http" => [
 				"method" => $method,
 				"ignore_errors" => true,
-				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
+				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\nContent-type: application/x-www-form-urlencoded\r\n"
 			]
 		];
 		if ( $method == 'GET' ) {
