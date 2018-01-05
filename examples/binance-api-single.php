@@ -9,6 +9,15 @@ class Binance {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 	}
+	public function ping() {
+		return $this->request("v1/ping");
+	}
+	public function time() {
+		return $this->request("v1/time");
+	}
+	public function exchangeInfo() {
+		return $this->request("v1/exchangeInfo");
+	}
 	public function buy_test($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order_test("BUY", $symbol, $quantity, $price, $type);
 	}
