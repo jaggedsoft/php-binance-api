@@ -20,16 +20,16 @@ class Binance {
 		return $this->request("v1/exchangeInfo");
 	}
 	public function buy_test($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		return $this->order_test("BUY", $symbol, $quantity, $price, $type);
+		return $this->order_test("BUY", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function sell_test($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		return $this->order_test("SELL", $symbol, $quantity, $price, $type);
+		return $this->order_test("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		return $this->order("BUY", $symbol, $quantity, $price, $type);
+		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function sell($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		return $this->order("SELL", $symbol, $quantity, $price, $type);
+		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function cancel($symbol, $orderid) {
 		return $this->signedRequest("v3/order",["symbol"=>$symbol, "orderId"=>$orderid], "DELETE");
@@ -111,7 +111,8 @@ class Binance {
 			$opt["timeInForce"] = "GTC";
 		}
 		// allow additional options passed through $flags
-		if ( isset($flags['timeInForce']) ) $opt["timeInForce"] = $flags['timeInForce'];
+		if ( isset($flags['recvWindow']) ) $opt['recvWindow'] = $flags['recvWindow'];
+		if ( isset($flags['timeInForce']) ) $opt['timeInForce'] = $flags['timeInForce'];
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		return $this->signedRequest("v3/order/test", $opt, "POST");
@@ -129,6 +130,7 @@ class Binance {
 			$opt["timeInForce"] = "GTC";
 		}
 		// allow additional options passed through $flags
+		if ( isset($flags['recvWindow']) ) $opt["recvWindow"] = $flags['recvWindow'];
 		if ( isset($flags['timeInForce']) ) $opt["timeInForce"] = $flags['timeInForce'];
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
