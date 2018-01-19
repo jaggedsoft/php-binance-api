@@ -786,20 +786,22 @@ $order = $api->marketSell("ETHBTC", $quantity);
 #### Place a STOP LOSS order
 ```php
 // When the stop is reached, a stop order becomes a market order
+$type = "STOP_LOSS"; // Set the type STOP_LOSS (market) or STOP_LOSS_LIMIT, and TAKE_PROFIT (market) or TAKE_PROFIT_LIMIT
 $quantity = 1;
 $price = 0.5; // Try to sell it for 0.5 btc
 $stopPrice = 0.4; // Sell immediately if price goes below 0.4 btc
-$order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["stopPrice"=>$stopPrice]);
+$order = $api->sell("BNBBTC", $quantity, $price, $type, ["stopPrice"=>$stopPrice]);
 print_r($order);
 ```
 
 #### Place an ICEBERG order
 ```php
 // Iceberg orders are intended to conceal the true order quantity.
+$type = "LIMIT"; // LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT
 $quantity = 1;
 $price = 0.5;
 $icebergQty = 10;
-$order = $api->sell("BNBBTC", $quantity, $price, "LIMIT", ["icebergQty"=>$icebergQty]);
+$order = $api->sell("BNBBTC", $quantity, $price, $type, ["icebergQty"=>$icebergQty]);
 print_r($order);
 ```
 
