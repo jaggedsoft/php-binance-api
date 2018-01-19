@@ -72,7 +72,7 @@ class API {
 		return $this->signedRequest("v3/withdrawHistory.html", $params, "GET");
 	}
 	public function prices() {
-		return $this->priceData($this->request("v1/ticker/allPrices"));
+		return $this->priceData($this->request("v3/ticker/price"));
 	}
 	public function bookPrices() {
 		return $this->bookPriceData($this->request("v1/ticker/allBookTickers"));
