@@ -75,7 +75,7 @@ class API {
 		return $this->priceData($this->request("v3/ticker/price"));
 	}
 	public function bookPrices() {
-		return $this->bookPriceData($this->request("v1/ticker/allBookTickers"));
+		return $this->bookPriceData($this->request("v3/ticker/bookTicker"));
 	}
 	public function account() {
 		return $this->signedRequest("v3/account");
