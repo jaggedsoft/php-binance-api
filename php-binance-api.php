@@ -52,8 +52,8 @@ class API {
 	public function exchangeInfo() {
 		return $this->apiRequest("v1/exchangeInfo");
 	}
-	public function withdraw($asset, $address, $amount, $addressTag = false) {
-		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true];
+	public function withdraw($asset, $address, $amount, $addressTag = false, $memo = false, $name = false) {
+		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "memo"=>$memo, "name"=>$name, "wapi"=>true];
 		if ( $addressTag ) $options['addressTag'] = $addressTag;
 		return $this->signedRequest("v3/withdraw.html", $options, "POST");
 	}
