@@ -106,7 +106,12 @@ class API {
 		];
 		$context = stream_context_create($opt);
 		$query = http_build_query($params, '', '&');
-		return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);
+		try {
+			$data = file_get_contents($this->base.$url.'?'.$query, false, $context);
+		} catch ( Exception $e ) {
+			return ["error"=>$e->getMessage()];
+		}
+		return json_decode($data, true);
 	}
 
 	private function signedRequest($url, $params = [], $method = "GET") {
@@ -129,8 +134,16 @@ class API {
 		$query = http_build_query($params, '', '&');
 		$signature = hash_hmac('sha256', $query, $this->api_secret);
 		$endpoint = $base.$url.'?'.$query.'&signature='.$signature;
-		$data = file_get_contents($endpoint, false, $context);
-		return json_decode($data, true);
+		try {
+			$data = file_get_contents($endpoint, false, $context);
+		} catch ( Exception $e ) {
+			return ["error"=>$e->getMessage()];
+		}
+		$json = json_decode($data, true);
+		if ( isset($json['msg']) ) {
+			echo "signedRequest error: {$data}".PHP_EOL;
+		}
+		return $json;
 	}
 
 	private function apiRequest($url, $method = "GET") {
@@ -143,7 +156,12 @@ class API {
 			]
 		];
 		$context = stream_context_create($opt);
-		return json_decode(file_get_contents($this->base.$url, false, $context), true);
+		try {
+			$data = file_get_contents($this->base.$url, false, $context);
+		} catch ( Exception $e ) {
+			return ["error"=>$e->getMessage()];
+		}
+		return json_decode($data, true);
 	}
 
 	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
@@ -178,6 +196,10 @@ class API {
 	private function balanceData($array, $priceData = false) {
 		if ( $priceData ) $btc_value = $btc_total = 0.00;
 		$balances = [];
+		if ( empty($array) || empty($array['balances']) ) {
+			echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option.".PHP_EOL;
+			return [];
+		}
 		foreach ( $array['balances'] as $obj ) {
 			$asset = $obj['asset'];
 			$balances[$asset] = ["available"=>$obj['free'], "onOrder"=>$obj['locked'], "btcValue"=>0.00000000, "btcTotal"=>0.00000000];
