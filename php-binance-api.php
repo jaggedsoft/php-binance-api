@@ -182,9 +182,17 @@ class API {
 	}
 
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
-	public function candlesticks($symbol, $interval = "5m") {
+	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
 		if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
-		$response = $this->request("v1/klines", ["symbol"=>$symbol, "interval"=>$interval]);
+		$opt = [
+		    "symbol" => $symbol,
+		    "interval" => $interval
+		];
+		if ($limit) $opt["limit"] = $limit;
+		if ($startTime) $opt["startTime"] = $startTime;
+		if ($endTime) $opt["endTime"] = $endTime;
+
+		$response = $this->request("v1/klines", $opt);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
 		return $ticks;
