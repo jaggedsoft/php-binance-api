@@ -995,6 +995,19 @@ $api->trades(["BNBBTC"], function($api, $symbol, $trades) {
 });
 ```
 
+#### Get ticker updates for all symbols via WebSocket
+```php
+$api->ticker(false, function($api, $symbol, $ticker) {
+	print_r($ticker);
+});
+```
+
+#### Get ticker updates for a specific symbol via WebSocket
+```php
+$api->ticker("BNBBTC", function($api, $symbol, $ticker) {
+	print_r($ticker);
+});
+```
 
 #### Realtime updated depth cache via WebSockets
 ```php
