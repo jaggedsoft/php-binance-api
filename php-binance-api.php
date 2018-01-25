@@ -182,17 +182,9 @@ class API {
 	}
 
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
-	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
+	public function candlesticks($symbol, $interval = "5m") {
 		if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
-		$opt = [
-		    "symbol" => $symbol,
-		    "interval" => $interval
-		];
-		if ($limit) $opt["limit"] = $limit;
-		if ($startTime) $opt["startTime"] = $startTime;
-		if ($endTime) $opt["endTime"] = $endTime;
-
-		$response = $this->request("v1/klines", $opt);
+		$response = $this->request("v1/klines", ["symbol"=>$symbol, "interval"=>$interval]);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
 		return $ticks;
@@ -254,6 +246,35 @@ class API {
 			$balances[$asset] = ["available"=>$available, "onOrder"=>$onOrder];
 		}
 		return $balances;
+	}
+	
+	// Convert WebSocket ticker data into array
+	private function tickerStreamHandler($json) {
+		return [
+			"eventType" => $json->e,
+			"eventTime" => $json->E,
+			"symbol" => $json->s,
+			"priceChange" => $json->p,
+			"percentChange" => $json->P,
+			"averagePrice" => $json->w,
+			"prevClose" => $json->x,
+			"close" => $json->c,
+			"closeQty" => $json->Q,
+			"bestBid" => $json->b,
+			"bestBidQty" => $json->B,
+			"bestAsk" => $json->a,
+			"bestaskQty" => $json->A,
+			"open" => $json->o,
+			"high" => $json->h,
+			"low" => $json->l,
+			"volume" => $json->v,
+			"quoteVolume" => $json->q,
+			"openTime" => $json->O,
+			"closeTime" => $json->C,
+			"firstTradeId" => $json->F,
+			"lastTradeId" => $json->L,
+			"numTrades" => $json->n
+		];
 	}
 
 	// Convert WebSocket trade execution into array
@@ -521,6 +542,29 @@ class API {
 		$loop->run();
 	}
 
+	// Pulls 24h price change statistics via WebSocket
+	public function ticker($symbol, $callback) {
+		$endpoint = $symbol ? strtolower($symbol).'@ticker' : '!ticker@arr';
+		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$endpoint)->then(function($ws) use($callback, $symbol) {
+			$ws->on('message', function($data) use($ws, $callback, $symbol) {
+				$json = json_decode($data);
+				if ( $symbol ) {
+					call_user_func($callback, $this, $symbol, $this->tickerStreamHandler($json));
+				} else {
+					foreach ( $json as $obj ) {
+						$return = $this->tickerStreamHandler($obj);
+						$symbol = $return['symbol'];
+						call_user_func($callback, $this, $symbol, $return);
+					}
+				}
+			});
+			$ws->on('close', function($code = null, $reason = null) {
+				echo "ticker: WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
+			});
+		}, function($e) {
+			echo "ticker: Could not connect: {$e->getMessage()}".PHP_EOL;
+		});
+	}
 
 	// Pulls /kline data and subscribes to @klines WebSocket endpoint
 	public function chart($symbols, $interval = "30m", $callback) {
