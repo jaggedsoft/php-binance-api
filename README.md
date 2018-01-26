@@ -1183,4 +1183,13 @@ signedRequest error: {"code":-1021,"msg":"Timestamp for this request was 1000ms 
 signedRequest error: {"code":-1021,"msg":"Timestamp for this request is outside of the recvWindow."}
 balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option.
 ```
-If you still have trouble, you can call `$api->useServerTime();` before running other functions
+
+#### useServerTime Method 1
+```php
+$api = new Binance\API("<key>", "<secret>", ['useServerTime'=>true]);
+```
+#### useServerTime Method 2
+```php
+//Call this before running any functions
+$api->useServerTime();
+```
