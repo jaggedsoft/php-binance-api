@@ -14,13 +14,16 @@ class API {
 	protected $depthQueue = [];
 	protected $chartQueue = [];
 	protected $charts = [];
-	protected $info = [];
+	protected $info = ["timeOffset"=>0];
 	public $balances = [];
 	public $btc_value = 0.00; // value of available assets
 	public $btc_total = 0.00; // value of available + onOrder assets
-	public function __construct($api_key = '', $api_secret = '') {
+	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false]) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
+		if ( isset($options['useServerTime']) && $options['useServerTime'] ) {
+			$this->useServerTime();
+		}
 	}
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
@@ -48,6 +51,13 @@ class API {
 	}
 	public function history($symbol, $limit = 500) {
 		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol, "limit"=>$limit]);
+	}
+	public function useServerTime() {
+		$serverTime = $this->apiRequest("v1/time")['serverTime'];
+		$this->info['timeOffset'] = $serverTime - (microtime(true)*1000);
+	}
+	public function time() {
+		return $this->apiRequest("v1/time");
 	}
 	public function exchangeInfo() {
 		return $this->apiRequest("v1/exchangeInfo");
@@ -126,7 +136,8 @@ class API {
 			]
 		];
 		$context = stream_context_create($opt);
-		$params['timestamp'] = number_format(microtime(true)*1000,0,'.','');
+		$ts = (microtime(true)*1000) + $this->info['timeOffset'];
+		$params['timestamp'] = number_format($ts,0,'.','');
 		if ( isset($params['wapi']) ) {
 			unset($params['wapi']);
 			$base = $this->wapi;

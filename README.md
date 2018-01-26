@@ -1175,3 +1175,12 @@ print_r($depositAddress);
 $depositHistory = $api->depositHistory();
 print_r($depositHistory);
 ```
+
+### Troubleshooting
+If you get the following errors, please synchronize your system time.
+```
+signedRequest error: {"code":-1021,"msg":"Timestamp for this request was 1000ms ahead of the server's time."}
+signedRequest error: {"code":-1021,"msg":"Timestamp for this request is outside of the recvWindow."}
+balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option.
+```
+If you still have trouble, you can call `$api->useServerTime();` before running other functions
