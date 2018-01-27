@@ -60,7 +60,7 @@ class API {
 		return $this->apiRequest("v1/time");
 	}
 	public function exchangeInfo() {
-		return $this->apiRequest("v1/exchangeInfo");
+		return $this->request("v1/exchangeInfo");
 	}
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true];
