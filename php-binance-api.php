@@ -60,7 +60,7 @@ class API {
 		return $this->apiRequest("v1/time");
 	}
 	public function exchangeInfo() {
-		return $this->apiRequest("v1/exchangeInfo");
+		return $this->request("v1/exchangeInfo");
 	}
 	public function withdraw($asset, $address, $amount, $addressTag = false, $memo = false, $name = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "memo"=>$memo, "name"=>$name, "wapi"=>true];
@@ -183,7 +183,7 @@ class API {
 			"quantity" => $quantity,
 			"recvWindow" => 60000
 		];
-		if ( $type == "LIMIT" ) {
+		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
 		}
