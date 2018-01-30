@@ -183,7 +183,7 @@ class API {
 			"quantity" => $quantity,
 			"recvWindow" => 60000
 		];
-		if ( $type == "LIMIT" ) {
+		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
 		}
