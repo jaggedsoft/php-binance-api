@@ -62,8 +62,8 @@ class API {
 	public function exchangeInfo() {
 		return $this->request("v1/exchangeInfo");
 	}
-	public function withdraw($asset, $address, $amount, $addressTag = false, $memo = false, $name = false) {
-		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "memo"=>$memo, "name"=>$name, "wapi"=>true];
+	public function withdraw($asset, $address, $amount, $addressTag = false) {
+		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
 		if ( $addressTag ) $options['addressTag'] = $addressTag;
 		return $this->signedRequest("v3/withdraw.html", $options, "POST");
 	}
@@ -189,6 +189,7 @@ class API {
 		}
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
+		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
 		return $this->signedRequest("v3/order", $opt, "POST");
 	}
 
