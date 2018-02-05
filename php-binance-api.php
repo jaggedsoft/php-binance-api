@@ -63,7 +63,7 @@ class API {
 		return $this->request("v1/exchangeInfo");
 	}
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
-		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true];
+		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
 		if ( $addressTag ) $options['addressTag'] = $addressTag;
 		return $this->signedRequest("v3/withdraw.html", $options, "POST");
 	}
