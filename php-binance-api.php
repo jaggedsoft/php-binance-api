@@ -283,7 +283,7 @@ class API {
 			"bestBid" => $json->b,
 			"bestBidQty" => $json->B,
 			"bestAsk" => $json->a,
-			"bestaskQty" => $json->A,
+			"bestAskQty" => $json->A,
 			"open" => $json->o,
 			"high" => $json->h,
 			"low" => $json->l,
