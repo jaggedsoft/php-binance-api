@@ -137,6 +137,44 @@ Price of BNB: 0.00021479 BTC.
 ```
 </details>
 
+### Get miniTicker for all symbols
+```php
+$api->miniTicker(function($api, $ticker) {
+	print_r($ticker);
+});
+```
+
+<details>
+ <summary>View Response</summary>
+
+```
+    [7] => Array
+        (
+            [symbol] => LTCUSDT
+            [close] => 182.85000000
+            [open] => 192.62000000
+            [high] => 195.25000000
+            [low] => 173.08000000
+            [volume] => 238603.66451000
+            [quoteVolume] => 43782422.11276660
+            [eventTime] => 1520497914289
+        )
+
+    [8] => Array
+        (
+            [symbol] => ICXBTC
+            [close] => 0.00029790
+            [open] => 0.00030550
+            [high] => 0.00031600
+            [low] => 0.00026850
+            [volume] => 8468620.53000000
+            [quoteVolume] => 2493.60935828
+            [eventTime] => 1520497915200
+        )
+
+```
+</details>
+
 #### Get balances for all of your positions, including estimated BTC value
 ```php
 $balances = $api->balances($ticker);
