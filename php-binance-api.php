@@ -657,7 +657,7 @@ class API {
 							"eventTime" => $obj['E']
 						];
 					}
-					call_user_func($callback, $this, $symbols);
+					call_user_func($callback, $this, $markets);
 				    });
 				    $ws->on('close', function($code = null, $reason = null) {
 					echo "miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
