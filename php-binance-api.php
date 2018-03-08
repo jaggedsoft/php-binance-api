@@ -666,4 +666,20 @@ class API {
 			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
 	}
+	
+	public function miniTicker($callback)
+	{
+		\Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@3000ms')
+			->then(function($ws) use($callback) {
+			    $ws->on('message', function($data) use($ws, $callback) {
+				$json = json_decode($data);
+				call_user_func($callback, $this, $json);
+			    });
+			    $ws->on('close', function($code = null, $reason = null) {
+				echo "ticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+			    });
+			}, function($e) {
+			    echo "ticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
+			});
+	}
 }
