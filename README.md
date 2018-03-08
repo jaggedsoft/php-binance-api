@@ -39,6 +39,21 @@ require 'vendor/autoload.php';
 $api = new Binance\API("<api key>","<secret>");
 ```
 
+#### Getting started with proxy
+```php
+require 'vendor/autoload.php';
+
+$proxyConf = [
+  'proto' => 'tcp',
+  'address' => '192.168.1.1',
+  'port' => '8080',
+  'user' => 'dude',
+  'pass' => 'd00d'
+];
+
+$api = new Binance\API("<api key>","<secret>", ['useServerTime'=>false], $proxyConf);
+```
+
 #### Get latest price of a symbol
 ```php
 $ticker = $api->prices();
