@@ -283,7 +283,7 @@ class API {
 			"bestBid" => $json->b,
 			"bestBidQty" => $json->B,
 			"bestAsk" => $json->a,
-			"bestaskQty" => $json->A,
+			"bestAskQty" => $json->A,
 			"open" => $json->o,
 			"high" => $json->h,
 			"low" => $json->l,
@@ -639,31 +639,31 @@ class API {
 		$loop->run();
 	}
 
-	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
-	public function userData(&$balance_callback, &$execution_callback = false) {
-		$response = $this->apiRequest("v1/userDataStream", "POST");
-		$listenKey = $this->options['listenKey'] = $response['listenKey'];
-		$this->info['balanceCallback'] = $balance_callback;
-		$this->info['executionCallback'] = $execution_callback;
-		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$listenKey)->then(function($ws) {
-			$ws->on('message', function($data) use($ws) {
-				$json = json_decode($data);
-				$type = $json->e;
-				if ( $type == "outboundAccountInfo") {
-					$balances = $this->balanceHandler($json->B);
-					$this->info['balanceCallback']($this, $balances);
-				} elseif ( $type == "executionReport" ) {
-					$report = $this->executionHandler($json);
-					if ( $this->info['executionCallback'] ) {
-						$this->info['executionCallback']($this, $report);
+	public function miniTicker($callback) {
+		\Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms')
+			->then(function($ws) use($callback) {
+			    $ws->on('message', function($data) use($ws, $callback) {
+					$json = json_decode($data, true);
+					$markets = [];
+					foreach ( $json as $obj ) {
+						$markets[] = [
+							"symbol" => $obj['s'],
+							"close" => $obj['c'],
+							"open" => $obj['o'],
+							"high" => $obj['h'],
+							"low" => $obj['l'],
+							"volume" => $obj['v'],
+							"quoteVolume" => $obj['q'],
+							"eventTime" => $obj['E']
+						];
 					}
-				}
+					call_user_func($callback, $this, $symbols);
+				    });
+				    $ws->on('close', function($code = null, $reason = null) {
+					echo "miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+			    });
+			}, function($e) {
+			    echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
 			});
-			$ws->on('close', function($code = null, $reason = null) {
-				echo "userData: WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
-			});
-		}, function($e) {
-			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
-		});
 	}
 }

@@ -4,6 +4,8 @@
 # PHP Binance API
 This project is designed to help you make your own projects that interact with the [Binance API](https://github.com/binance-exchange/binance-official-api-docs). You can stream candlestick chart data, market depth, or use other advanced features such as setting stop losses and iceberg orders. This project seeks to have complete API coverage including WebSockets.
 
+> *This package needs help from the community*! Maintaining [node-binance-api](https://github.com/jaggedsoft/node-binance-api) is taking up the majority of my time. Improvements contributed to this project are more than welcome, and you will be given full credit for changes. All pull requests are welcome.
+
 #### Installation
 ```
 composer require "jaggedsoft/php-binance-api @dev"
@@ -132,6 +134,44 @@ Array
     [DASHETH] => 0.90520000
 )
 Price of BNB: 0.00021479 BTC.
+```
+</details>
+
+### Get miniTicker for all symbols
+```php
+$api->miniTicker(function($api, $ticker) {
+	print_r($ticker);
+});
+```
+
+<details>
+ <summary>View Response</summary>
+
+```
+    [7] => Array
+        (
+            [symbol] => LTCUSDT
+            [close] => 182.85000000
+            [open] => 192.62000000
+            [high] => 195.25000000
+            [low] => 173.08000000
+            [volume] => 238603.66451000
+            [quoteVolume] => 43782422.11276660
+            [eventTime] => 1520497914289
+        )
+
+    [8] => Array
+        (
+            [symbol] => ICXBTC
+            [close] => 0.00029790
+            [open] => 0.00030550
+            [high] => 0.00031600
+            [low] => 0.00026850
+            [volume] => 8468620.53000000
+            [quoteVolume] => 2493.60935828
+            [eventTime] => 1520497915200
+        )
+
 ```
 </details>
 
