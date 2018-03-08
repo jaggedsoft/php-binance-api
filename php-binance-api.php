@@ -15,12 +15,15 @@ class API {
 	protected $chartQueue = [];
 	protected $charts = [];
 	protected $info = ["timeOffset"=>0];
+	protected $proxyConf = null;
 	public $balances = [];
 	public $btc_value = 0.00; // value of available assets
 	public $btc_total = 0.00; // value of available + onOrder assets
-	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false]) {
+	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null ) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
+		$this->proxyConf = $proxyConf;
+
 		if ( isset($options['useServerTime']) && $options['useServerTime'] ) {
 			$this->useServerTime();
 		}
@@ -106,6 +109,30 @@ class API {
 		return $this->balanceData($this->signedRequest("v3/account"),$priceData);
 	}
 
+	private function getProxyUriString()
+	{
+		$uri = "";
+		$uri .= isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "tcp";
+		$uri .= "://";
+		$uri .= isset( $this->proxyConf['address'] ) ? $this->proxyConf['address'] : "localhost";
+		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy address not set defaulting to localhost\n";
+		$uri .= ":";
+		$uri .= isset( $this->proxyConf['port'] ) ? $this->proxyConf['port'] : "1080";
+		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
+
+		return $uri;
+	}
+
+	private function appendProxyAuthString()
+	{
+		if( isset($this->proxyConf['user']) && isset($this->proxyConf['pass']) )
+		{
+			$auth = base64_encode( $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
+			return "Proxy-Authorization: Basic $auth\r\n";
+		}
+		return "";
+	}
+
 	private function request($url, $params = [], $method = "GET") {
 		$opt = [
 			"http" => [
@@ -114,6 +141,13 @@ class API {
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n"
 			]
 		];
+
+		if( is_array($this->proxyConf) ) {
+			$opt['http']['request_fulluri'] = true;
+			$opt['http']['proxy'] = $this->getProxyUriString();
+			$opt['http']['header'] .= $this->appendProxyAuthString();
+		}
+
 		$context = stream_context_create($opt);
 		$query = http_build_query($params, '', '&');
 		try {
@@ -135,6 +169,13 @@ class API {
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
 			]
 		];
+
+		if( is_array($this->proxyConf) ) {
+			$opt['http']['request_fulluri'] = true;
+			$opt['http']['proxy'] = $this->getProxyUriString();
+			$opt['http']['header'] .= $this->appendProxyAuthString();
+		}
+
 		$context = stream_context_create($opt);
 		$ts = (microtime(true)*1000) + $this->info['timeOffset'];
 		$params['timestamp'] = number_format($ts,0,'.','');
@@ -166,6 +207,13 @@ class API {
 				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
 			]
 		];
+
+		if( is_array($this->proxyConf) ) {
+			$opt['http']['request_fulluri'] = true;
+			$opt['http']['proxy'] = $this->getProxyUriString();
+			$opt['http']['header'] .= $this->appendProxyAuthString();
+		}
+
 		$context = stream_context_create($opt);
 		try {
 			$data = file_get_contents($this->base.$url, false, $context);
@@ -203,7 +251,7 @@ class API {
 		if ($limit) $opt["limit"] = $limit;
 		if ($startTime) $opt["startTime"] = $startTime;
 		if ($endTime) $opt["endTime"] = $endTime;
-		
+
 		$response = $this->request("v1/klines", $opt);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
@@ -267,7 +315,7 @@ class API {
 		}
 		return $balances;
 	}
-	
+
 	// Convert WebSocket ticker data into array
 	private function tickerStreamHandler($json) {
 		return [
