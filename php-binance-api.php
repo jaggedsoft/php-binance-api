@@ -9,13 +9,17 @@
 
 namespace Binance;
 class API {
-	protected $base = "https://api.binance.com/api/", $wapi = "https://api.binance.com/wapi/", $api_key, $api_secret;
+	protected $base = "https://api.binance.com/api/";
+	protected $wapi = "https://api.binance.com/wapi/";
+	protected $api_key;
+	protected $api_secret;
 	protected $depthCache = [];
 	protected $depthQueue = [];
 	protected $chartQueue = [];
 	protected $charts = [];
 	protected $info = ["timeOffset"=>0];
 	protected $proxyConf = null;
+	public $httpDebug = false;
 	public $balances = [];
 	public $btc_value = 0.00; // value of available assets
 	public $btc_total = 0.00; // value of available + onOrder assets
@@ -31,196 +35,187 @@ class API {
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
 	}
+	public function buyTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+		return $this->orderTest("BUY", $symbol, $quantity, $price, $type, $flags);
+	}
 	public function sell($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
+	}
+	public function sellTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+		return $this->orderTest("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function marketBuy($symbol, $quantity) {
 		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags = []);
 	}
+	public function marketBuyTest($symbol, $quantity) {
+		return $this->orderTest("BUY", $symbol, $quantity, 0, "MARKET", $flags = []);
+	}
 	public function marketSell($symbol, $quantity) {
 		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags = []);
 	}
+	public function marketSellTest($symbol, $quantity) {
+		return $this->orderTest("SELL", $symbol, $quantity, 0, "MARKET", $flags = []);
+	}
 	public function cancel($symbol, $orderid) {
-		return $this->signedRequest("v3/order", ["symbol"=>$symbol, "orderId"=>$orderid], "DELETE");
+		return $this->httpRequest("v3/order", "DELETE", ["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 	public function orderStatus($symbol, $orderid) {
-		return $this->signedRequest("v3/order", ["symbol"=>$symbol, "orderId"=>$orderid]);
+		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], false);
 	}
 	public function openOrders($symbol) {
-		return $this->signedRequest("v3/openOrders",["symbol"=>$symbol]);
+		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], false);
 	}
 	public function orders($symbol, $limit = 500) {
-		return $this->signedRequest("v3/allOrders", ["symbol"=>$symbol, "limit"=>$limit]);
+		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit], false);
 	}
 	public function history($symbol, $limit = 500) {
-		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol, "limit"=>$limit]);
+		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit], false);
 	}
 	public function useServerTime() {
-		$serverTime = $this->apiRequest("v1/time")['serverTime'];
+		$serverTime = $this->httpRequest("v1/time")['serverTime'];
 		$this->info['timeOffset'] = $serverTime - (microtime(true)*1000);
 	}
 	public function time() {
-		return $this->apiRequest("v1/time");
+		return $this->httpRequest("v1/time");
 	}
 	public function exchangeInfo() {
-		return $this->request("v1/exchangeInfo");
+		return $this->httpRequest("v1/exchangeInfo");
 	}
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
 		if ( $addressTag ) $options['addressTag'] = $addressTag;
-		return $this->signedRequest("v3/withdraw.html", $options, "POST");
+		return $this->httpRequest("v3/withdraw.html", "POST", $options);
 	}
 	public function depositAddress($asset) {
 		$params = ["wapi"=>true, "asset"=>$asset];
-		return $this->signedRequest("v3/depositAddress.html", $params, "GET");
+		return $this->httpRequest("v3/depositAddress.html", "GET", $params);
 	}
 	public function depositHistory($asset = false) {
 		$params = ["wapi"=>true];
 		if ( $asset ) $params['asset'] = $asset;
-		return $this->signedRequest("v3/depositHistory.html", $params, "GET");
+		return $this->httpRequest("v3/depositHistory.html", "GET", $params);
 	}
 	public function withdrawHistory($asset = false) {
 		$params = ["wapi"=>true];
 		if ( $asset ) $params['asset'] = $asset;
-		return $this->signedRequest("v3/withdrawHistory.html", $params, "GET");
+		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params);
 	}
 	public function prices() {
-		return $this->priceData($this->request("v3/ticker/price"));
+		return $this->priceData($this->httpRequest("v3/ticker/price"));
 	}
 	public function bookPrices() {
-		return $this->bookPriceData($this->request("v3/ticker/bookTicker"));
+		return $this->bookPriceData($this->httpRequest("v3/ticker/bookTicker"));
 	}
 	public function account() {
-		return $this->signedRequest("v3/account");
+		return $this->httpRequest("v3/account");
 	}
 	public function prevDay($symbol) {
-		return $this->request("v1/ticker/24hr", ["symbol"=>$symbol]);
+		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol], false);
 	}
 	public function aggTrades($symbol) {
-		return $this->tradesData($this->request("v1/aggTrades", ["symbol"=>$symbol]));
+		return $this->tradesData($this->httpRequest("v1/aggTrades", "GET", ["symbol"=>$symbol]));
 	}
 	public function depth($symbol) {
-		$json = $this->request("v1/depth",["symbol"=>$symbol]);
+		$json = $this->httpRequest("v1/depth", "GET", ["symbol"=>$symbol]);
 		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
 		$this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
 		return $this->depthData($symbol, $json);
 	}
 	public function balances($priceData = false) {
-		return $this->balanceData($this->signedRequest("v3/account"),$priceData);
+		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), "GET", $priceData);
 	}
 
 	private function getProxyUriString()
 	{
-		$uri = "";
-		$uri .= isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "tcp";
+		$uri = isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "http";
+		// https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html
+		$supportedProxyProtocols = array('http', 'https', 'socks4', 'socks4a', 'socks5', 'socks5h');
+		if(in_array($uri, $supportedProxyProtocols) == false) {
+			die("Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ",$supportedProxyProtocols)  . "\n");
+		}
+
 		$uri .= "://";
 		$uri .= isset( $this->proxyConf['address'] ) ? $this->proxyConf['address'] : "localhost";
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy address not set defaulting to localhost\n";
 		$uri .= ":";
 		$uri .= isset( $this->proxyConf['port'] ) ? $this->proxyConf['port'] : "1080";
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
-
 		return $uri;
 	}
 
-	private function appendProxyAuthString()
-	{
-		if( isset($this->proxyConf['user']) && isset($this->proxyConf['pass']) )
-		{
-			$auth = base64_encode( $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
-			return "Proxy-Authorization: Basic $auth\r\n";
-		}
-		return "";
-	}
+	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
+		// is cURL installed yet?
+		if (!function_exists('curl_init')) {
+		  die('Sorry cURL is not installed!');
+	   }
 
-	private function request($url, $params = [], $method = "GET") {
-		$opt = [
-			"http" => [
-				"method" => $method,
-				"ignore_errors" => true,
-				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n"
-			]
-		];
-
-		if( is_array($this->proxyConf) ) {
-			$opt['http']['request_fulluri'] = true;
-			$opt['http']['proxy'] = $this->getProxyUriString();
-			$opt['http']['header'] .= $this->appendProxyAuthString();
-		}
-
-		$context = stream_context_create($opt);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_VERBOSE, $this->httpDebug);
 		$query = http_build_query($params, '', '&');
-		try {
-			$data = file_get_contents($this->base.$url.'?'.$query, false, $context);
-		} catch ( Exception $e ) {
-			return ["error"=>$e->getMessage()];
-		}
-		return json_decode($data, true);
-	}
 
-	private function signedRequest($url, $params = [], $method = "GET") {
-		if ( empty($this->api_key) ) die("signedRequest error: API Key not set!");
-		if ( empty($this->api_secret) ) die("signedRequest error: API Secret not set!");
-		$base = $this->base;
-		$opt = [
-			"http" => [
-				"method" => $method,
-				"ignore_errors" => true,
-				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
-			]
-		];
-
-		if( is_array($this->proxyConf) ) {
-			$opt['http']['request_fulluri'] = true;
-			$opt['http']['proxy'] = $this->getProxyUriString();
-			$opt['http']['header'] .= $this->appendProxyAuthString();
+		// signed with params
+		if($signed == true) {
+			if(empty($this->api_key) ) die("signedRequest error: API Key not set!");
+			if(empty($this->api_secret) ) die("signedRequest error: API Secret not set!");
+			$base = $this->base;
+			$ts = (microtime(true)*1000) + $this->info['timeOffset'];
+			$params['timestamp'] = number_format($ts,0,'.','');
+			if(isset($params['wapi'])) {
+				unset($params['wapi']);
+				$base = $this->wapi;
+			}
+			$query = http_build_query($params, '', '&');
+			$signature = hash_hmac('sha256', $query, $this->api_secret);
+			$endpoint = $base.$url.'?'.$query.'&signature='.$signature;
+			curl_setopt($ch, CURLOPT_URL, $endpoint);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-MBX-APIKEY: ' . $this->api_key));
+		}
+		// params so buildquery string and append to url
+		else if(count($params)>0){
+			curl_setopt($ch, CURLOPT_URL, $this->base.$url.'?'.$query);
+		}
+		// no params so just the base url
+		else {
+			curl_setopt($ch, CURLOPT_URL, $this->base.$url);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-MBX-APIKEY: ' . $this->api_key));
 		}
 
-		$context = stream_context_create($opt);
-		$ts = (microtime(true)*1000) + $this->info['timeOffset'];
-		$params['timestamp'] = number_format($ts,0,'.','');
-		if ( isset($params['wapi']) ) {
-			unset($params['wapi']);
-			$base = $this->wapi;
+		curl_setopt($ch, CURLOPT_USERAGENT, "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)");
+
+		// Post and postfields
+		if($method == "POST") {
+			curl_setopt($ch, CURLOPT_POST, true);
+			//curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		}
-		$query = http_build_query($params, '', '&');
-		$signature = hash_hmac('sha256', $query, $this->api_secret);
-		$endpoint = $base.$url.'?'.$query.'&signature='.$signature;
-		try {
-			$data = file_get_contents($endpoint, false, $context);
-		} catch ( Exception $e ) {
-			return ["error"=>$e->getMessage()];
+		// proxy settings
+		if(is_array($this->proxyConf)) {
+			curl_setopt($ch, CURLOPT_PROXY, $this->getProxyUriString());
+			if(isset($this->proxyConf['user']) && isset($this->proxyConf['pass'])) {
+				curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
+			}
 		}
-		$json = json_decode($data, true);
-		if ( isset($json['msg']) ) {
-			echo "signedRequest error: {$data}".PHP_EOL;
+
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		// headers will proceed the output, json_decode will fail below
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+		$output = curl_exec($ch);
+
+		// Check if any error occurred
+		if(curl_errno($ch) > 0)	{
+			echo 'Curl error: ' . curl_error($ch) . "\n";
+			return [];
 		}
+
+		curl_close($ch);
+		$json = json_decode($output, true);
+
+		if(isset($json['msg'])) {
+			echo "signedRequest error: {$output}".PHP_EOL;
+		}
+
 		return $json;
-	}
-
-	private function apiRequest($url, $method = "GET") {
-		if ( empty($this->api_key) ) die("apiRequest error: API Key not set!");
-		$opt = [
-			"http" => [
-				"method" => $method,
-				"ignore_errors" => true,
-				"header" => "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\nX-MBX-APIKEY: {$this->api_key}\r\n"
-			]
-		];
-
-		if( is_array($this->proxyConf) ) {
-			$opt['http']['request_fulluri'] = true;
-			$opt['http']['proxy'] = $this->getProxyUriString();
-			$opt['http']['header'] .= $this->appendProxyAuthString();
-		}
-
-		$context = stream_context_create($opt);
-		try {
-			$data = file_get_contents($this->base.$url, false, $context);
-		} catch ( Exception $e ) {
-			return ["error"=>$e->getMessage()];
-		}
-		return json_decode($data, true);
 	}
 
 	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
@@ -238,7 +233,25 @@ class API {
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
-		return $this->signedRequest("v3/order", $opt, "POST");
+		return $this->httpRequest("v3/order", "POST", $opt, true );
+	}
+
+	public function orderTest($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+		$opt = [
+			"symbol" => $symbol,
+			"side" => $side,
+			"type" => $type,
+			"quantity" => $quantity,
+			"recvWindow" => 60000
+		];
+		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
+			$opt["price"] = $price;
+			$opt["timeInForce"] = "GTC";
+		}
+		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
+		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
+		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
+		return $this->httpRequest("v3/order/test", "POST", $opt);
 	}
 
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
@@ -252,7 +265,7 @@ class API {
 		if ($startTime) $opt["startTime"] = $startTime;
 		if ($endTime) $opt["endTime"] = $endTime;
 
-		$response = $this->request("v1/klines", $opt);
+		$response = $this->httpRequest("v1/klines", "GET", $opt);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
 		return $ticks;
