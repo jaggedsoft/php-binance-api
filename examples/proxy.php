@@ -3,7 +3,7 @@
 require '../php-binance-api.php';
 
 $proxyConf = [
-  'proto' => 'tcp',
+  'proto' => 'http',
   'address' => '192.168.1.1',
   'port' => '8080',
   'user' => 'dude',
