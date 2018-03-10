@@ -19,6 +19,8 @@ class API {
 	protected $charts = [];
 	protected $info = ["timeOffset"=>0];
 	protected $proxyConf = null;
+	protected $transfered = 0;
+	protected $requestCount = 0;
 	public $httpDebug = false;
 	public $balances = [];
 	public $btc_value = 0.00; // value of available assets
@@ -60,16 +62,16 @@ class API {
 		return $this->httpRequest("v3/order", "DELETE", ["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 	public function orderStatus($symbol, $orderid) {
-		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], false);
+		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 	public function openOrders($symbol) {
-		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], false);
+		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], true);
 	}
 	public function orders($symbol, $limit = 500) {
-		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit], false);
+		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit], true);
 	}
 	public function history($symbol, $limit = 500) {
-		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit], false);
+		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit], true);
 	}
 	public function useServerTime() {
 		$serverTime = $this->httpRequest("v1/time")['serverTime'];
@@ -84,21 +86,21 @@ class API {
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
 		if ( $addressTag ) $options['addressTag'] = $addressTag;
-		return $this->httpRequest("v3/withdraw.html", "POST", $options);
+		return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
 	}
 	public function depositAddress($asset) {
 		$params = ["wapi"=>true, "asset"=>$asset];
-		return $this->httpRequest("v3/depositAddress.html", "GET", $params);
+		return $this->httpRequest("v3/depositAddress.html", "GET", $params, true);
 	}
 	public function depositHistory($asset = false) {
 		$params = ["wapi"=>true];
 		if ( $asset ) $params['asset'] = $asset;
-		return $this->httpRequest("v3/depositHistory.html", "GET", $params);
+		return $this->httpRequest("v3/depositHistory.html", "GET", $params, true);
 	}
 	public function withdrawHistory($asset = false) {
 		$params = ["wapi"=>true];
 		if ( $asset ) $params['asset'] = $asset;
-		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params);
+		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
 	}
 	public function prices() {
 		return $this->priceData($this->httpRequest("v3/ticker/price"));
@@ -107,10 +109,10 @@ class API {
 		return $this->bookPriceData($this->httpRequest("v3/ticker/bookTicker"));
 	}
 	public function account() {
-		return $this->httpRequest("v3/account");
+		return $this->httpRequest("v3/account", true);
 	}
 	public function prevDay($symbol) {
-		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol], false);
+		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol]);
 	}
 	public function aggTrades($symbol) {
 		return $this->tradesData($this->httpRequest("v1/aggTrades", "GET", ["symbol"=>$symbol]));
@@ -199,7 +201,7 @@ class API {
 		// headers will proceed the output, json_decode will fail below
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 		$output = curl_exec($ch);
 
 		// Check if any error occurred
@@ -214,6 +216,9 @@ class API {
 		if(isset($json['msg'])) {
 			echo "signedRequest error: {$output}".PHP_EOL;
 		}
+
+		$this->transfered += strlen( $output );
+		$this->requestCount++;
 
 		return $json;
 	}
@@ -233,7 +238,7 @@ class API {
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
-		return $this->httpRequest("v3/order", "POST", $opt, true );
+		return $this->httpRequest("v3/order", "POST", $opt, true);
 	}
 
 	public function orderTest($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
@@ -251,7 +256,7 @@ class API {
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
-		return $this->httpRequest("v3/order/test", "POST", $opt);
+		return $this->httpRequest("v3/order/test", "POST", $opt,true);
 	}
 
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
@@ -726,5 +731,15 @@ class API {
 			}, function($e) {
 			    echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
 			});
+	}
+
+	public function getTransfered() {
+		$base = log($this->transfered, 1024);
+		$suffixes = array('', 'K', 'M', 'G', 'T');
+		return round(pow(1024, $base - floor($base)), 2) .' '. $suffixes[floor($base)];
+	}
+
+	public function getRequestCount() {
+		return $this->requestCount;
 	}
 }
