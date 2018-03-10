@@ -124,7 +124,7 @@ class API {
 		return $this->depthData($symbol, $json);
 	}
 	public function balances($priceData = false) {
-		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), "GET", $priceData);
+		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
 
 	private function getProxyUriString()
@@ -148,8 +148,8 @@ class API {
 	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
 		// is cURL installed yet?
 		if (!function_exists('curl_init')) {
-		  die('Sorry cURL is not installed!');
-	   }
+			die('Sorry cURL is not installed!');
+		}
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_VERBOSE, $this->httpDebug);
@@ -201,7 +201,7 @@ class API {
 		// headers will proceed the output, json_decode will fail below
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 		$output = curl_exec($ch);
 
 		// Check if any error occurred
