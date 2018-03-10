@@ -9,7 +9,7 @@
     }],
     "require": {
         "php": ">=5.4",
-        "curl/curl": "^1.5",
+        "ext-curl": "*",
         "ratchet/pawl": "^0.3.0",
         "react/socket": "^1.0 || ^0.8 || ^0.7",
         "ratchet/rfc6455": "^0.2.3",
