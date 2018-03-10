@@ -1248,3 +1248,13 @@ $api = new Binance\API("<key>", "<secret>", ['useServerTime'=>true]);
 //Call this before running any functions
 $api->useServerTime();
 ```
+
+#### Basic stats: Get api call counter
+```php
+$api->getRequestCount();
+```
+
+#### Basic stats: Get total data transfered
+```php
+$api->getTransfered();
+```
