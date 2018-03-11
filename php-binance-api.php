@@ -33,6 +33,20 @@ class API {
 		if ( isset($options['useServerTime']) && $options['useServerTime'] ) {
 			$this->useServerTime();
 		}
+
+		$this->setupApiConfigFromFile();
+	}
+	private function setupApiConfigFromFile()
+	{
+		if(empty($this->api_key) == false || empty($this->api_key) == false) {
+			return;
+		}
+		if(file_exists(getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json") == false) {
+			return;
+		}
+		$contents = json_decode(file_get_contents(getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json"), true);
+		$this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
+		$this->api_secret = isset($contents['api_secret']) ? $contents['api_secret'] : "";
 	}
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);

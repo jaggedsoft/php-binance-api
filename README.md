@@ -54,6 +54,23 @@ $proxyConf = [
 $api = new Binance\API("<api key>","<secret>", ['useServerTime'=>false], $proxyConf);
 ```
 
+#### Config file in home directory
+If you dont wish to store your API key and secret in your scripts, load it from your home directory
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<api key>",
+    "api-secret": "<secret>"
+}
+EOF
+```
+
+Leave these variables blank in the constructor
+```php
+$api = new Binance\API("", "", ['useServerTime'=>false], $proxyConf);
+```
+
 #### Get latest price of a symbol
 ```php
 $ticker = $api->prices();
