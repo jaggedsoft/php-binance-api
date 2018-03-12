@@ -39,21 +39,6 @@ require 'vendor/autoload.php';
 $api = new Binance\API("<api key>","<secret>");
 ```
 
-#### Getting started with proxy
-```php
-require 'vendor/autoload.php';
-
-$proxyConf = [
-  'proto' => 'tcp',
-  'address' => '192.168.1.1',
-  'port' => '8080',
-  'user' => 'dude',
-  'pass' => 'd00d'
-];
-
-$api = new Binance\API("<api key>","<secret>", ['useServerTime'=>false], $proxyConf);
-```
-
 #### Get latest price of a symbol
 ```php
 $ticker = $api->prices();
@@ -1230,6 +1215,52 @@ print_r($depositAddress);
 $depositHistory = $api->depositHistory();
 print_r($depositHistory);
 ```
+
+
+### Advanced Examples
+
+#### Basic stats: Get api call counter
+```php
+$api->getRequestCount();
+```
+
+#### Basic stats: Get total data transferred
+```php
+$api->getTransfered();
+```
+
+#### Proxy configuration
+```php
+require 'vendor/autoload.php';
+
+$proxyConf = [
+  'proto' => 'tcp',
+  'address' => '192.168.1.1',
+  'port' => '8080',
+  'user' => 'dude',
+  'pass' => 'd00d'
+];
+
+$api = new Binance\API("<api key>","<secret>", ['useServerTime'=>false], $proxyConf);
+```
+
+#### Config file in home directory
+If you dont wish to store your API key and secret in your scripts, load it from your home directory
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<api key>",
+    "api-secret": "<secret>"
+}
+EOF
+```
+
+Then leave these variables blank in the constructor
+```php
+$api = new Binance\API("", "", ['useServerTime'=>false], $proxyConf);
+```
+
 
 ### Troubleshooting
 If you get the following errors, please synchronize your system time.
