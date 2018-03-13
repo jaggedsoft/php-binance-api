@@ -10,7 +10,9 @@ $proxyConf = [
   'pass' => 'd00d'
 ];
 
-$api = new Binance\API("<key>","<secret>",["useServerTime"=>false],$proxyConf);
+// @see home_directory_config.php
+// use config from ~/.confg/jaggedsoft/php-binance-api.json
+$api = new Binance\API("","",["useServerTime"=>false],$proxyConf);
 
 $ticker = $api->prices();
 print_r($ticker); // List prices of all symbols

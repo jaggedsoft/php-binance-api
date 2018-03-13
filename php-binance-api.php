@@ -30,7 +30,7 @@ class API {
 		$this->api_secret = $api_secret;
 		$this->proxyConf = $proxyConf;
 
-		if ( isset($options['useServerTime']) && $options['useServerTime'] ) {
+		if(isset($options['useServerTime']) && $options['useServerTime']) {
 			$this->useServerTime();
 		}
 
@@ -46,7 +46,7 @@ class API {
 		}
 		$contents = json_decode(file_get_contents(getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json"), true);
 		$this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
-		$this->api_secret = isset($contents['api_secret']) ? $contents['api_secret'] : "";
+		$this->api_secret = isset($contents['api-secret']) ? $contents['api-secret'] : "";
 	}
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
@@ -133,7 +133,7 @@ class API {
 	}
 	public function depth($symbol) {
 		$json = $this->httpRequest("v1/depth", "GET", ["symbol"=>$symbol]);
-		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
+		if(!isset($this->info[$symbol])) $this->info[$symbol] = [];
 		$this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
 		return $this->depthData($symbol, $json);
 	}
@@ -203,6 +203,12 @@ class API {
 			curl_setopt($ch, CURLOPT_POST, true);
 			//curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		}
+
+		// Delete Method
+		if($method == "DELETE") {
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+		}
+
 		// proxy settings
 		if(is_array($this->proxyConf)) {
 			curl_setopt($ch, CURLOPT_PROXY, $this->getProxyUriString());
