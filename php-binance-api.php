@@ -203,6 +203,12 @@ class API {
 			curl_setopt($ch, CURLOPT_POST, true);
 			//curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		}
+
+		// Delete Method
+		if($method == "DELETE") {
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+		}
+
 		// proxy settings
 		if(is_array($this->proxyConf)) {
 			curl_setopt($ch, CURLOPT_PROXY, $this->getProxyUriString());
