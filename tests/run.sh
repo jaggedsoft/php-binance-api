@@ -1,4 +1,7 @@
 #!/bin/bash
+
+mkdir -vp ~/.config/jaggedsoft/
+
 cat > ~/.config/jaggedsoft/php-binance-api.json <<EOT
 {
     "api-key": "z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5",
