@@ -49,6 +49,9 @@ final class BinanceTest extends TestCase
 
       foreach ($check_keys as $check_key) {
          $this->assertTrue( isset( $details[ $check_key ] ) );
+         if( isset( $details[ $check_key ] ) == false ) {
+            fwrite(STDOUT, __METHOD__ . ": exchange info error: $check_key missing\n");
+         }
       }
 
       $this->assertTrue( count( $details[ 'balances' ] ) > 0 );
@@ -218,7 +221,10 @@ final class BinanceTest extends TestCase
       $check_keys = array( 'timezone', 'serverTime', 'rateLimits', 'exchangeFilters', 'symbols' );
 
       foreach ($check_keys as $check_key) {
-         $this->assertTrue( isset( $details[ $check_key ] ) );
+         $this->assertTrue( isset( $result[ $check_key ] ) );
+         if( isset( $result[ $check_key ] ) == false ) {
+            fwrite(STDOUT, __METHOD__ . ": exchange info error: $check_key missing\n");
+         }
       }
 
       $this->assertTrue( count( $details[ 'symbols' ] ) > 0 );
