@@ -81,12 +81,12 @@ class API {
 	public function openOrders($symbol) {
 		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], true);
 	}
-	public function orders($symbol, $limit = 500) {
-		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit], true);
+	public function orders($symbol, $limit = 500, $fromOrderId = 1) {
+		return $this->signedRequest("v3/allOrders", ["symbol"=>$symbol, "limit"=>$limit, "orderId"=>$orderId]);
 	}
-	public function history($symbol, $limit = 500) {
-		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit], true);
-	}
+	public function history($symbol, $limit = 500, $fromTradeId = 1) {
+		return $this->signedRequest("v3/myTrades", ["symbol"=>$symbol, "limit"=>$limit, "fromId"=>$fromId]);
+	}	
 	public function useServerTime() {
 		$serverTime = $this->httpRequest("v1/time")['serverTime'];
 		$this->info['timeOffset'] = $serverTime - (microtime(true)*1000);
