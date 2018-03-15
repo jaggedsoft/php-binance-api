@@ -227,8 +227,8 @@ final class BinanceTest extends TestCase
          }
       }
 
-      $this->assertTrue( count( $details[ 'symbols' ] ) > 0 );
-      $this->assertTrue( count( $details[ 'rateLimits' ] ) > 0 );
+      $this->assertTrue( count( $result[ 'symbols' ] ) > 0 );
+      $this->assertTrue( count( $result[ 'rateLimits' ] ) > 0 );
 
       if( isset( $result['code'] ) ) {
          fwrite(STDOUT, __METHOD__ . ": exchange info error: " . $result['code'] . ":" . $result['msg'] ."\n");
