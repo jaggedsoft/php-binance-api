@@ -7,6 +7,8 @@
  * Released under the MIT License
  * ============================================================ */
 
+obvious error
+
 namespace Binance;
 class API {
 	protected $base = "https://api.binance.com/api/";
