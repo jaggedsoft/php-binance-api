@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 7.0
+
+before_script:
+   - cd tests
+   - bash prep.sh
+
+script:
+  - mkdir -p build/logs
+  - bash run.sh

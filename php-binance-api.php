@@ -81,11 +81,11 @@ class API {
 	public function openOrders($symbol) {
 		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], true);
 	}
-	public function orders($symbol, $limit = 500) {
-		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit], true);
+	public function orders($symbol, $limit = 500, $fromOrderId = 1) {
+		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit, "orderId"=>$fromOrderId], true);
 	}
-	public function history($symbol, $limit = 500) {
-		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit], true);
+	public function history($symbol, $limit = 500, $fromTradeId = 1) {
+		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit, "fromId"=>$fromTradeId], true);
 	}
 	public function useServerTime() {
 		$serverTime = $this->httpRequest("v1/time")['serverTime'];
@@ -123,7 +123,7 @@ class API {
 		return $this->bookPriceData($this->httpRequest("v3/ticker/bookTicker"));
 	}
 	public function account() {
-		return $this->httpRequest("v3/account", true);
+		return $this->httpRequest("v3/account", "GET", [], true);
 	}
 	public function prevDay($symbol) {
 		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol]);
