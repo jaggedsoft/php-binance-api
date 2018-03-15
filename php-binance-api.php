@@ -86,7 +86,7 @@ class API {
 	}
 	public function history($symbol, $limit = 500, $fromTradeId = 1) {
 		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit, "fromId"=>$fromTradeId], true);
-	}	
+	}
 	public function useServerTime() {
 		$serverTime = $this->httpRequest("v1/time")['serverTime'];
 		$this->info['timeOffset'] = $serverTime - (microtime(true)*1000);
@@ -123,7 +123,7 @@ class API {
 		return $this->bookPriceData($this->httpRequest("v3/ticker/bookTicker"));
 	}
 	public function account() {
-		return $this->httpRequest("v3/account", true);
+		return $this->httpRequest("v3/account", "GET", [], true);
 	}
 	public function prevDay($symbol) {
 		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol]);
