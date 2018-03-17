@@ -9,7 +9,6 @@ cat > ~/.config/jaggedsoft/php-binance-api.json <<EOT
 }
 EOT
 
-cd tests
 mkdir -p build/logs
 
 travis_retry composer install --no-interaction --no-suggest
