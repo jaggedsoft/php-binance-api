@@ -11,3 +11,8 @@ EOT
 
 cd tests
 mkdir -p build/logs
+
+travis_retry composer install --no-interaction --no-suggest
+wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+chmod +x coveralls.phar
+php coveralls.phar --version
