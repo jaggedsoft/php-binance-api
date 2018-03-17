@@ -11,7 +11,8 @@ before_script:
   - chmod +x coveralls.phar
   - php coveralls.phar --version
   - |
-    echo -e '{ "api-key": "z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5", "api-secret": "ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z" }' >
+    echo -e '{ "api-key": "z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5",'  > .config/jaggedsoft/php-binance-api.json
+    echo -e '"api-secret": "ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z" }' >> .config/jaggedsoft/php-binance-api.json
     
 script:
   - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test
