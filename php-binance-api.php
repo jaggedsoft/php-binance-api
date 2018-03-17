@@ -588,7 +588,7 @@ class API {
 			if ( !isset($this->depthQueue[$symbol]) ) $this->depthQueue[$symbol] = [];
 			if ( !isset($this->depthCache[$symbol]) ) $this->depthCache[$symbol] = ["bids" => [], "asks" => []];
 			$this->info[$symbol]['firstUpdate'] = 0;
-			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@depth')->then(function($ws) use($callback, $symbol) {
+			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@depth')->then(function($ws) use($callback, $symbol, $loop) {
 				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data, true);
 					$symbol = $json['s'];
@@ -599,8 +599,9 @@ class API {
 					$this->depthHandler($json);
 					call_user_func($callback, $this, $symbol, $this->depthCache[$symbol]);
 				});
-				$ws->on('close', function($code = null, $reason = null) use($symbol) {
+				$ws->on('close', function($code = null, $reason = null) use($symbol, $loop) {
 					echo "depthCache({$symbol}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
+					$loop->stop();
 				});
 			}, function($e) use($loop) {
 				echo "depthCache({$symbol})) Could not connect: {$e->getMessage()}".PHP_EOL;
@@ -625,7 +626,7 @@ class API {
 		foreach ( $symbols as $symbol ) {
 			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
 			//$this->info[$symbol]['tradesCallback'] = $callback;
-			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@aggTrade')->then(function($ws) use($callback, $symbol) {
+			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@aggTrade')->then(function($ws) use($callback, $symbol, $loop) {
 				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data, true);
 					$symbol = $json['s'];
@@ -637,8 +638,9 @@ class API {
 					//$this->info[$symbol]['tradesCallback']($this, $symbol, $trades);
 					call_user_func($callback, $this, $symbol, $trades);
 				});
-				$ws->on('close', function($code = null, $reason = null) use($symbol) {
+				$ws->on('close', function($code = null, $reason = null) use($symbol, $loop) {
 					echo "trades({$symbol}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
+					$loop->stop();
 				});
 			}, function($e) use($loop) {
 				echo "trades({$symbol}) Could not connect: {$e->getMessage()}".PHP_EOL;
@@ -687,7 +689,7 @@ class API {
 			$this->chartQueue[$symbol][$interval] = [];
 			$this->info[$symbol][$interval]['firstOpen'] = 0;
 			//$this->info[$symbol]['chartCallback'.$interval] = $callback;
-			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@kline_'.$interval)->then(function($ws) use($callback, $symbol) {
+			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@kline_'.$interval)->then(function($ws) use($callback, $symbol, $loop) {
 				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data);
 					$chart = $json->k;
@@ -697,8 +699,9 @@ class API {
 					//$this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
 					call_user_func($callback, $this, $symbol, $this->charts[$symbol][$interval]);
 				});
-				$ws->on('close', function($code = null, $reason = null) use($symbol) {
+				$ws->on('close', function($code = null, $reason = null) use($symbol, $loop) {
 					echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
+					$loop->stop();
 				});
 			}, function($e) use($loop) {
 				echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}".PHP_EOL;
