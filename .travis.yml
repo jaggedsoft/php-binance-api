@@ -2,11 +2,21 @@ language: php
 
 php:
   - 7.0
-
+  
 before_script:
-   - cd tests
-   - bash prep.sh
+  - bash prep.sh
 
 script:
-  - mkdir -p build/logs
   - bash run.sh
+
+after_success:
+ - travis_retry php coveralls.phar -v
+ - bash <(curl -s https://codecov.io/bash)
+
+branches:
+  only: master
+  
+cache:
+  directories:
+  - vendor
+  - $HOME/.cache/composer
