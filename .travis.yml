@@ -13,7 +13,7 @@ before_script:
   - |
     echo "{ 'api-key': 'z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5', 'api-secret': 'ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z' }" > ~/.config/jaggedsoft/php-binance-api.json
 script:
-  - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php BinanceTest
+  - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test
 
 after_success:
  - travis_retry php coveralls.phar -v
