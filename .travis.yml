@@ -2,13 +2,18 @@ language: php
 
 php:
   - 7.0
-  
+
 before_script:
-  - cd tests
-  - bash prep.sh
+  - mkdir -vp ~/.config/jaggedsoft/
+  - echo "{ 'api-key': 'z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5', 'api-secret': 'ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z' }" > ~/.config/jaggedsoft/php-binance-api.json
+  - mkdir -vp build/logs
+  - travis_retry composer install --no-interaction --no-suggest
+  - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+  - chmod +x coveralls.phar
+  - php coveralls.phar --version
 
 script:
-  - bash run.sh
+  - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php BinanceTest
 
 after_success:
  - travis_retry php coveralls.phar -v
@@ -16,7 +21,7 @@ after_success:
 
 branches:
   only: master
-  
+
 cache:
   directories:
   - vendor
