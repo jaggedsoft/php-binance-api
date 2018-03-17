@@ -8,3 +8,6 @@ cat > ~/.config/jaggedsoft/php-binance-api.json <<EOT
     "api-secret": "ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z"
 }
 EOT
+
+cd tests
+mkdir -p build/logs
