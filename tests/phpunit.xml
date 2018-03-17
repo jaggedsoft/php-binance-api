@@ -6,15 +6,16 @@
 
     <filter>
         <whitelist>
-            <directory>./</directory>
+            <directory>../</directory>
             <exclude>
-                <directory>./vendor</directory>
+                <directory>./tests/vendor</directory>
+                <directory>./examples</directory>
             </exclude>
         </whitelist>
     </filter>
 
     <testsuite name="PHP Binance Api">
-        <directory suffix=".php">./</directory>
+        <directory suffix=".php">../</directory>
     </testsuite>
 
 </phpunit>
