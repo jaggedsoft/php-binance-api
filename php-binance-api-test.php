@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-require 'php-binance-api-test.php';
+require 'php-binance-api.php';
 
 use PHPUnit\Framework\TestCase;
 
