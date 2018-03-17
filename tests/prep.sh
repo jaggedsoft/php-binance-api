@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 PHP_UNIT_DIR=$(pwd)
 mkdir -vp ~/.config/jaggedsoft/
