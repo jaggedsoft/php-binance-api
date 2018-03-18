@@ -60,17 +60,17 @@ class API {
 	public function sellTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->orderTest("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
-	public function marketBuy($symbol, $quantity) {
-		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags = []);
+	public function marketBuy($symbol, $quantity, $flags = []) {
+		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
-	public function marketBuyTest($symbol, $quantity) {
-		return $this->orderTest("BUY", $symbol, $quantity, 0, "MARKET", $flags = []);
+	public function marketBuyTest($symbol, $quantity, $flags = []) {
+		return $this->orderTest("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
-	public function marketSell($symbol, $quantity) {
-		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags = []);
+	public function marketSell($symbol, $quantity, $flags = []) {
+		return $this->order("SELL", $symbol, $quantity, 0, "MARKET");
 	}
-	public function marketSellTest($symbol, $quantity) {
-		return $this->orderTest("SELL", $symbol, $quantity, 0, "MARKET", $flags = []);
+	public function marketSellTest($symbol, $quantity, $flags = []) {
+		return $this->orderTest("SELL", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 	public function cancel($symbol, $orderid) {
 		return $this->httpRequest("v3/order", "DELETE", ["symbol"=>$symbol, "orderId"=>$orderid], true);
