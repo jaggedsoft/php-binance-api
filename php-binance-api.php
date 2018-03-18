@@ -140,7 +140,7 @@ class API {
 	public function balances($priceData = false) {
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
-	private function getProxyUriString()
+	public function getProxyUriString()
 	{
 		$uri = isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "http";
 		// https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html
