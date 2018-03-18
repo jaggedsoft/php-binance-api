@@ -206,6 +206,7 @@ final class BinanceTest extends TestCase
    }
    public function testUseServerTime() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $this->_testable->useServerTime();
       $this->assertTrue( true );
    }
    public function testTime() {
@@ -240,19 +241,41 @@ final class BinanceTest extends TestCase
    }
    public function testWithdraw() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
+      $amount = 0.2;
+      $result = $this->_testable->withdraw($asset, $address, $amount, false);
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": withdraw error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testDepositAddress() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $result = $this->_testable->depositAddress($asset);
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": depsoit error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testDepositHistory() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $result = $this->_testable->depositHistory();
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": deposit history error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testWithdrawHistory() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $result = $this->_testable->withdrawHistory();
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": withdraw history error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testPrices() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -308,6 +331,7 @@ final class BinanceTest extends TestCase
       fwrite(STDOUT, __METHOD__ . "\n");
       $result = $this->_testable->balances();
       $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
          fwrite(STDOUT, __METHOD__ . ": balances error: " . $result['code'] . ":" . $result['msg'] ."\n");
@@ -315,7 +339,18 @@ final class BinanceTest extends TestCase
    }
    public function testGetProxyUriString() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+
+      $proxyConf = [
+        'proto' => 'http',
+        'address' => '192.168.1.1',
+        'port' => '8080',
+        'user' => 'dude',
+        'pass' => 'd00d'
+      ];
+
+      $this->_testable->setProxy( $proxyConf );
+      $uri = $this->_testable->getProxyUriString();
+      $this->assertTrue( $uri == $proxyConf['proto'] . "://" . $proxyConf['address'] . ":" . $proxyConf['port'] );
    }
    public function testHttpRequest() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -331,11 +366,22 @@ final class BinanceTest extends TestCase
    }
    public function testCandlesticks() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->candlesticks("BNBBTC", "5m");
+      $this->assertTrue( is_array( $result ) );
+
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": candlesticks error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testBalanceData() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $ticker = $this->_testable->prices();
+      $result = $this->_testable->balances( $ticker );
+      $this->assertTrue( is_array( $result ) );
+
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": balances error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testBalanceHandler() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -428,11 +474,13 @@ final class BinanceTest extends TestCase
 
    public function testGetTransfered() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $result = $this->_testable->getTransfered();
       $this->assertTrue( true );
    }
 
    public function testGetRequestCount() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $result = $this->_testable->getRequestCount();
       $this->assertTrue( true );
    }
 }

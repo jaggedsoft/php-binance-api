@@ -25,7 +25,7 @@ class API {
 	public $balances = [];
 	public $btc_value = 0.00; // value of available assets
 	public $btc_total = 0.00; // value of available + onOrder assets
-	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null ) {
+	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 		$this->proxyConf = $proxyConf;
@@ -140,7 +140,6 @@ class API {
 	public function balances($priceData = false) {
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
-
 	private function getProxyUriString()
 	{
 		$uri = isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "http";
@@ -157,6 +156,10 @@ class API {
 		$uri .= isset( $this->proxyConf['port'] ) ? $this->proxyConf['port'] : "1080";
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
 		return $uri;
+	}
+	public function setProxy( $proxyconf )
+	{
+		$this->proxyConf = $proxyconf;
 	}
 
 	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
