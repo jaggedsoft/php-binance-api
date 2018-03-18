@@ -9,7 +9,11 @@
 
 declare(strict_types=1);
 
-require '../php-binance-api.php';
+require 'php-binance-api.php';
+
+file_put_contents( getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" ,
+   "{ \"api-key\": \"z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5\",
+      \"api-secret\": \"ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z\" }");
 
 use PHPUnit\Framework\TestCase;
 
