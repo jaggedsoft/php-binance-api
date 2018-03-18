@@ -67,7 +67,7 @@ class API {
 		return $this->orderTest("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 	public function marketSell($symbol, $quantity, $flags = []) {
-		return $this->order("SELL", $symbol, $quantity, 0, "MARKET");
+		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags));
 	}
 	public function marketSellTest($symbol, $quantity, $flags = []) {
 		return $this->orderTest("SELL", $symbol, $quantity, 0, "MARKET", $flags);
