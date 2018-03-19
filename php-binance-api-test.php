@@ -437,7 +437,7 @@ final class BinanceTest extends TestCase
    public function testFirst() {
       fwrite(STDOUT, __METHOD__ . "\n");
       $arr = array( "one" => 6, "two" => 7, "three" => 8 );
-      $this->assertTrue( $this->_testable->first( $arr ) == 6 );
+      $this->assertTrue( $this->_testable->first( $arr ) == "one" );
       $arr = array();
       $this->assertTrue( $this->_testable->first( $arr ) == null );
    }
