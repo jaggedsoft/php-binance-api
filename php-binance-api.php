@@ -25,7 +25,7 @@ class API {
 	public $balances = [];
 	public $btc_value = 0.00; // value of available assets
 	public $btc_total = 0.00; // value of available + onOrder assets
-	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null ) {
+	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 		$this->proxyConf = $proxyConf;
@@ -67,7 +67,7 @@ class API {
 		return $this->orderTest("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 	public function marketSell($symbol, $quantity, $flags = []) {
-		return $this->order("SELL", $symbol, $quantity, 0, "MARKET");
+		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 	public function marketSellTest($symbol, $quantity, $flags = []) {
 		return $this->orderTest("SELL", $symbol, $quantity, 0, "MARKET", $flags);
@@ -79,7 +79,10 @@ class API {
 		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 	public function openOrders($symbol) {
-		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], true);
+		$params = [];
+		if($symbol)
+		    $params = ["symbol"=>$symbol];
+		return $this->httpRequest("v3/openOrders","GET", $params, true);
 	}
 	public function orders($symbol, $limit = 500, $fromOrderId = 1) {
 		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit, "orderId"=>$fromOrderId], true);
@@ -140,8 +143,7 @@ class API {
 	public function balances($priceData = false) {
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
-
-	private function getProxyUriString()
+	public function getProxyUriString()
 	{
 		$uri = isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "http";
 		// https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html
@@ -157,6 +159,9 @@ class API {
 		$uri .= isset( $this->proxyConf['port'] ) ? $this->proxyConf['port'] : "1080";
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
 		return $uri;
+	}
+	public function setProxy( $proxyconf ) {
+		$this->proxyConf = $proxyconf;
 	}
 
 	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
@@ -491,6 +496,56 @@ class API {
 		return $array;
 	}
 
+	// Gets first key of an array
+	public function first($array) {
+		if(count($array)>0)	{
+			return array_keys($array)[0];
+		}
+		return null;
+	}
+
+	// Gets last key of an array
+	public function last($array) {
+		if(count($array)>0)	{
+			return array_keys(array_slice($array, -1))[0];
+		}
+		return null;
+	}
+
+	// Formats nicely for console output
+	public function displayDepth($array) {
+		$output = '';
+		foreach ( ['asks', 'bids'] as $type ) {
+			$entries = $array[$type];
+			if ( $type == 'asks' ) $entries = array_reverse($entries);
+			$output.= "{$type}:".PHP_EOL;
+			foreach ( $entries as $price => $quantity ) {
+				$total = number_format($price * $quantity,8,'.','');
+				$quantity = str_pad(str_pad(number_format(rtrim($quantity,'.0')),10,' ',STR_PAD_LEFT),15);
+				$output.= "{$price} {$quantity} {$total}".PHP_EOL;
+			}
+			//echo str_repeat('-', 32).PHP_EOL;
+		}
+		return $output;
+	}
+
+	// Formats depth data for nice display
+	private function depthData($symbol, $json) {
+		$bids = $asks = [];
+		foreach ( $json['bids'] as $obj ) {
+			$bids[$obj[0]] = $obj[1];
+		}
+		foreach ( $json['asks'] as $obj ) {
+			$asks[$obj[0]] = $obj[1];
+		}
+		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
+	}
+
+
+	////////////////////////////////////
+	// WebSockets
+	////////////////////////////////////
+
 	// For WebSocket Depth Cache
 	private function depthHandler($json) {
 		$symbol = $json['s'];
@@ -524,33 +579,6 @@ class API {
 		$this->charts[$symbol][$interval][$tick] = ["open"=>$open, "high"=>$high, "low"=>$low, "close"=>$close, "volume"=>$volume];
 	}
 
-	// Gets first key of an array
-	public function first($array) {
-		return array_keys($array)[0];
-	}
-
-	// Gets last key of an array
-	public function last($array) {
-		return array_keys(array_slice($array, -1))[0];
-	}
-
-	// Formats nicely for console output
-	public function displayDepth($array) {
-		$output = '';
-		foreach ( ['asks', 'bids'] as $type ) {
-			$entries = $array[$type];
-			if ( $type == 'asks' ) $entries = array_reverse($entries);
-			$output.= "{$type}:".PHP_EOL;
-			foreach ( $entries as $price => $quantity ) {
-				$total = number_format($price * $quantity,8,'.','');
-				$quantity = str_pad(str_pad(number_format(rtrim($quantity,'.0')),10,' ',STR_PAD_LEFT),15);
-				$output.= "{$price} {$quantity} {$total}".PHP_EOL;
-			}
-			//echo str_repeat('-', 32).PHP_EOL;
-		}
-		return $output;
-	}
-
 	// Sorts depth data for display & getting highest bid and lowest ask
 	public function sortDepth($symbol, $limit = 11) {
 		$bids = $this->depthCache[$symbol]['bids'];
@@ -559,22 +587,6 @@ class API {
 		ksort($asks);
 		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
 	}
-
-	// Formats depth data for nice display
-	private function depthData($symbol, $json) {
-		$bids = $asks = [];
-		foreach ( $json['bids'] as $obj ) {
-			$bids[$obj[0]] = $obj[1];
-		}
-		foreach ( $json['asks'] as $obj ) {
-			$asks[$obj[0]] = $obj[1];
-		}
-		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
-	}
-
-	////////////////////////////////////
-	// WebSockets
-	////////////////////////////////////
 
 	// Pulls /depth data and subscribes to @depth WebSocket endpoint
 	// Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()

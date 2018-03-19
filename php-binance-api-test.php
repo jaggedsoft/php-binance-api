@@ -10,6 +10,7 @@
 declare(strict_types=1);
 
 require 'php-binance-api.php';
+require 'vendor/autoload.php';
 
 file_put_contents( getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" ,
    "{ \"api-key\": \"z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5\",
@@ -206,6 +207,7 @@ final class BinanceTest extends TestCase
    }
    public function testUseServerTime() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $this->_testable->useServerTime();
       $this->assertTrue( true );
    }
    public function testTime() {
@@ -240,19 +242,41 @@ final class BinanceTest extends TestCase
    }
    public function testWithdraw() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
+      $amount = 0.2;
+      $result = $this->_testable->withdraw($asset, $address, $amount, false);
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": withdraw error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testDepositAddress() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $result = $this->_testable->depositAddress($asset);
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": depsoit error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testDepositHistory() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $result = $this->_testable->depositHistory();
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": deposit history error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testWithdrawHistory() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $asset = "BTC";
+      $result = $this->_testable->withdrawHistory();
       $this->assertTrue( true );
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": withdraw history error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testPrices() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -308,6 +332,7 @@ final class BinanceTest extends TestCase
       fwrite(STDOUT, __METHOD__ . "\n");
       $result = $this->_testable->balances();
       $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
          fwrite(STDOUT, __METHOD__ . ": balances error: " . $result['code'] . ":" . $result['msg'] ."\n");
@@ -315,7 +340,18 @@ final class BinanceTest extends TestCase
    }
    public function testGetProxyUriString() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+
+      $proxyConf = [
+        'proto' => 'http',
+        'address' => '192.168.1.1',
+        'port' => '8080',
+        'user' => 'dude',
+        'pass' => 'd00d'
+      ];
+
+      $this->_testable->setProxy( $proxyConf );
+      $uri = $this->_testable->getProxyUriString();
+      $this->assertTrue( $uri == $proxyConf['proto'] . "://" . $proxyConf['address'] . ":" . $proxyConf['port'] );
    }
    public function testHttpRequest() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -331,11 +367,22 @@ final class BinanceTest extends TestCase
    }
    public function testCandlesticks() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->candlesticks("BNBBTC", "5m");
+      $this->assertTrue( is_array( $result ) );
+
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": candlesticks error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testBalanceData() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $ticker = $this->_testable->prices();
+      $result = $this->_testable->balances( $ticker );
+      $this->assertTrue( is_array( $result ) );
+
+      if( isset( $result['code'] ) ) {
+         fwrite(STDOUT, __METHOD__ . ": balances error: " . $result['code'] . ":" . $result['msg'] ."\n");
+      }
    }
    public function testBalanceHandler() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -353,10 +400,6 @@ final class BinanceTest extends TestCase
       fwrite(STDOUT, __METHOD__ . "\n");
       $this->assertTrue( true );
    }
-   public function testTradesData() {
-      fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
-   }
    public function testBookPriceData() {
       fwrite(STDOUT, __METHOD__ . "\n");
       $this->assertTrue( true );
@@ -367,7 +410,17 @@ final class BinanceTest extends TestCase
    }
    public function testCumulative() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->depth( "TRXBTC" );
+      $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $result = $this->_testable->cumulative( $result );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $this->assertTrue( is_array( $result['bids'] ) );
+      $this->assertTrue( is_array( $result['asks'] ) );
+      $this->assertTrue( count( $result['bids'] ) > 0);
+      $this->assertTrue( count( $result['asks'] ) > 0);
    }
    public function testHighstock() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -383,15 +436,27 @@ final class BinanceTest extends TestCase
    }
    public function testFirst() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $arr = array( "one" => 6, "two" => 7, "three" => 8 );
+      $this->assertTrue( $this->_testable->first( $arr ) == "one" );
+      $arr = array();
+      $this->assertTrue( $this->_testable->first( $arr ) == null );
    }
    public function testLast() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $arr = array( "one" => 6, "two" => 7, "three" => 8 );
+      $this->assertTrue( $this->_testable->last( $arr ) == "three" );
+      $arr = array();
+      $this->assertTrue( $this->_testable->last( $arr ) == null );
    }
    public function testDisplayDepth() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->depth( "TRXBTC" );
+      $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $result = $this->_testable->displayDepth( $result );
+      $this->assertTrue( is_string( $result ) );
+      $this->assertTrue( $result != "" );
    }
    public function testSortDepth() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -428,11 +493,13 @@ final class BinanceTest extends TestCase
 
    public function testGetTransfered() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $result = $this->_testable->getTransfered();
       $this->assertTrue( true );
    }
 
    public function testGetRequestCount() {
       fwrite(STDOUT, __METHOD__ . "\n");
+      $result = $this->_testable->getRequestCount();
       $this->assertTrue( true );
    }
 }
