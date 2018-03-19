@@ -493,39 +493,6 @@ class API {
 		return $array;
 	}
 
-	// For WebSocket Depth Cache
-	private function depthHandler($json) {
-		$symbol = $json['s'];
-		if ( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
-		foreach ( $json['b'] as $bid ) {
-			$this->depthCache[$symbol]['bids'][$bid[0]] = $bid[1];
-			if ( $bid[1] == "0.00000000" ) unset($this->depthCache[$symbol]['bids'][$bid[0]]);
-		}
-		foreach ( $json['a'] as $ask ) {
-			$this->depthCache[$symbol]['asks'][$ask[0]] = $ask[1];
-			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
-		}
-	}
-
-	// For WebSocket Chart Cache
-	private function chartHandler($symbol, $interval, $json) {
-		if ( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
-			$this->chartQueue[$symbol][$interval][] = $json;
-			return;
-		}
-		$chart = $json->k;
-		$symbol = $json->s;
-		$interval = $chart->i;
-		$tick = $chart->t;
-		if ( $tick < $this->info[$symbol][$interval]['firstOpen'] ) return; // Filter out of sync data
-		$open = $chart->o;
-		$high = $chart->h;
-		$low = $chart->l;
-		$close = $chart->c;
-		$volume = $chart->q; //+trades buyVolume assetVolume makerVolume
-		$this->charts[$symbol][$interval][$tick] = ["open"=>$open, "high"=>$high, "low"=>$low, "close"=>$close, "volume"=>$volume];
-	}
-
 	// Gets first key of an array
 	public function first($array) {
 		if(count($array)>0)	{
@@ -559,15 +526,6 @@ class API {
 		return $output;
 	}
 
-	// Sorts depth data for display & getting highest bid and lowest ask
-	public function sortDepth($symbol, $limit = 11) {
-		$bids = $this->depthCache[$symbol]['bids'];
-		$asks = $this->depthCache[$symbol]['asks'];
-		krsort($bids);
-		ksort($asks);
-		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
-	}
-
 	// Formats depth data for nice display
 	private function depthData($symbol, $json) {
 		$bids = $asks = [];
@@ -580,9 +538,52 @@ class API {
 		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
 	}
 
+
 	////////////////////////////////////
 	// WebSockets
 	////////////////////////////////////
+
+	// For WebSocket Depth Cache
+	private function depthHandler($json) {
+		$symbol = $json['s'];
+		if ( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
+		foreach ( $json['b'] as $bid ) {
+			$this->depthCache[$symbol]['bids'][$bid[0]] = $bid[1];
+			if ( $bid[1] == "0.00000000" ) unset($this->depthCache[$symbol]['bids'][$bid[0]]);
+		}
+		foreach ( $json['a'] as $ask ) {
+			$this->depthCache[$symbol]['asks'][$ask[0]] = $ask[1];
+			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
+		}
+	}
+
+	// For WebSocket Chart Cache
+	private function chartHandler($symbol, $interval, $json) {
+		if ( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
+			$this->chartQueue[$symbol][$interval][] = $json;
+			return;
+		}
+		$chart = $json->k;
+		$symbol = $json->s;
+		$interval = $chart->i;
+		$tick = $chart->t;
+		if ( $tick < $this->info[$symbol][$interval]['firstOpen'] ) return; // Filter out of sync data
+		$open = $chart->o;
+		$high = $chart->h;
+		$low = $chart->l;
+		$close = $chart->c;
+		$volume = $chart->q; //+trades buyVolume assetVolume makerVolume
+		$this->charts[$symbol][$interval][$tick] = ["open"=>$open, "high"=>$high, "low"=>$low, "close"=>$close, "volume"=>$volume];
+	}
+
+	// Sorts depth data for display & getting highest bid and lowest ask
+	public function sortDepth($symbol, $limit = 11) {
+		$bids = $this->depthCache[$symbol]['bids'];
+		$asks = $this->depthCache[$symbol]['asks'];
+		krsort($bids);
+		ksort($asks);
+		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
+	}
 
 	// Pulls /depth data and subscribes to @depth WebSocket endpoint
 	// Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()
