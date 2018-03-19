@@ -79,7 +79,10 @@ class API {
 		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 	public function openOrders($symbol) {
-		return $this->httpRequest("v3/openOrders","GET", ["symbol"=>$symbol], true);
+		$params = [];
+		if($symbol)
+		    $params = ["symbol"=>$symbol];
+		return $this->httpRequest("v3/openOrders","GET", $params, true);
 	}
 	public function orders($symbol, $limit = 500, $fromOrderId = 1) {
 		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit, "orderId"=>$fromOrderId], true);
