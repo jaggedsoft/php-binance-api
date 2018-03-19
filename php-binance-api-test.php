@@ -400,10 +400,6 @@ final class BinanceTest extends TestCase
       fwrite(STDOUT, __METHOD__ . "\n");
       $this->assertTrue( true );
    }
-   public function testTradesData() {
-      fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
-   }
    public function testBookPriceData() {
       fwrite(STDOUT, __METHOD__ . "\n");
       $this->assertTrue( true );
@@ -414,7 +410,17 @@ final class BinanceTest extends TestCase
    }
    public function testCumulative() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->depth( "TRXBTC" );
+      $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $result = $this->_testable->cumulative( $result );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $this->assertTrue( is_array( $result['bids'] ) );
+      $this->assertTrue( is_array( $result['asks'] ) );
+      $this->assertTrue( count( $result['bids'] ) > 0);
+      $this->assertTrue( count( $result['asks'] ) > 0);
    }
    public function testHighstock() {
       fwrite(STDOUT, __METHOD__ . "\n");
@@ -430,19 +436,36 @@ final class BinanceTest extends TestCase
    }
    public function testFirst() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $arr = [ 6, 7, 8 ];
+      $this->assertTrue( $this->_testable->first( $arr ) == 6 );
+      $arr = [];
+      $this->assertTrue( $this->_testable->first( $arr ) == null );
    }
    public function testLast() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $arr = [ 6, 7, 8 ];
+      $this->assertTrue( $this->_testable->last( $arr ) == 8 );
+      $arr = [];
+      $this->assertTrue( $this->_testable->last( $arr ) == null );
    }
    public function testDisplayDepth() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->depth( "TRXBTC" );
+      $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $result = $this->_testable->displayDepth( $result );
+      $this->assertTrue( is_string( $result ) );
+      $this->assertTrue( $result != "" );
    }
    public function testSortDepth() {
       fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
+      $result = $this->_testable->depth( "TRXBTC" );
+      $this->assertTrue( ( isset( $result['code'] ) == false ) );
+      $this->assertTrue( isset( $result['bids'] ) );
+      $this->assertTrue( isset( $result['asks'] ) );
+      $result = $this->_testable->sortDepth( $result );
+      $this->assertTrue( is_array( $result ) );
    }
    public function testDepthData() {
       fwrite(STDOUT, __METHOD__ . "\n");

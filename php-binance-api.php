@@ -157,8 +157,7 @@ class API {
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
 		return $uri;
 	}
-	public function setProxy( $proxyconf )
-	{
+	public function setProxy( $proxyconf ) {
 		$this->proxyConf = $proxyconf;
 	}
 
@@ -529,12 +528,18 @@ class API {
 
 	// Gets first key of an array
 	public function first($array) {
-		return array_keys($array)[0];
+		if(count($array)>0)	{
+			return array_keys($array)[0];
+		}
+		return null;
 	}
 
 	// Gets last key of an array
 	public function last($array) {
-		return array_keys(array_slice($array, -1))[0];
+		if(count($array)>0)	{
+			return array_keys(array_slice($array, -1))[0];
+		}
+		return null;
 	}
 
 	// Formats nicely for console output
