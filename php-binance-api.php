@@ -52,25 +52,25 @@ class API {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function buyTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		return $this->orderTest("BUY", $symbol, $quantity, $price, $type, $flags);
+		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags, true);
 	}
 	public function sell($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
 	public function sellTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		return $this->orderTest("SELL", $symbol, $quantity, $price, $type, $flags);
+		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags, true);
 	}
 	public function marketBuy($symbol, $quantity, $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 	public function marketBuyTest($symbol, $quantity, $flags = []) {
-		return $this->orderTest("BUY", $symbol, $quantity, 0, "MARKET", $flags);
+		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
 	}
 	public function marketSell($symbol, $quantity, $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 	public function marketSellTest($symbol, $quantity, $flags = []) {
-		return $this->orderTest("SELL", $symbol, $quantity, 0, "MARKET", $flags);
+		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags, true);
 	}
 	public function cancel($symbol, $orderid) {
 		return $this->httpRequest("v3/order", "DELETE", ["symbol"=>$symbol, "orderId"=>$orderid], true);
@@ -248,7 +248,7 @@ class API {
 		return $json;
 	}
 
-	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = [], $test = false) {
 		$opt = [
 			"symbol" => $symbol,
 			"side" => $side,
@@ -263,25 +263,9 @@ class API {
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
-		return $this->httpRequest("v3/order", "POST", $opt, true);
-	}
 
-	public function orderTest($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
-		$opt = [
-			"symbol" => $symbol,
-			"side" => $side,
-			"type" => $type,
-			"quantity" => $quantity,
-			"recvWindow" => 60000
-		];
-		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
-			$opt["price"] = $price;
-			$opt["timeInForce"] = "GTC";
-		}
-		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
-		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
-		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
-		return $this->httpRequest("v3/order/test", "POST", $opt,true);
+		$qstring = ( $test == false ) ? "v3/order" : "v3/order/test";
+		return $this->httpRequest($qstring, "POST", $opt, true);
 	}
 
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M

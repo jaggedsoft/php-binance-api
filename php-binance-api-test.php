@@ -361,10 +361,6 @@ final class BinanceTest extends TestCase
       fwrite(STDOUT, __METHOD__ . "\n");
       $this->assertTrue( true );
    }
-   public function testOrderTest() {
-      fwrite(STDOUT, __METHOD__ . "\n");
-      $this->assertTrue( true );
-   }
    public function testCandlesticks() {
       fwrite(STDOUT, __METHOD__ . "\n");
       $result = $this->_testable->candlesticks("BNBBTC", "5m");
