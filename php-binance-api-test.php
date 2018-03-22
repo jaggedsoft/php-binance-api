@@ -93,8 +93,8 @@ final class BinanceTest extends TestCase
                               "0.0000001",
                               "0.00000001" );
 
-      foreach ($$rangeValues as $buyAmount) {
-         foreach ($$rangeValues as $buyValue) {
+      foreach ($rangeValues as $buyAmount) {
+         foreach ($rangeValues as $buyValue) {
             // string check
             $result = $this->_testable->buyTest( $symbol, $buyAmount, $buyValue );
             $this->assertTrue( ( isset( $result['code'] ) == false ) );
@@ -163,7 +163,7 @@ final class BinanceTest extends TestCase
                               "0.0000001",
                               "0.00000001" );
 
-      foreach ($$rangeValues as $buyValue) {
+      foreach ($rangeValues as $buyValue) {
          // string check
          $result = $this->_testable->marketBuy( $symbol, $buyAmount, $buyValue );
          $this->assertTrue( ( isset( $result['code'] ) == false ) );
