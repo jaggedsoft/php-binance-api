@@ -163,9 +163,9 @@ final class BinanceTest extends TestCase
                               "0.0000001",
                               "0.00000001" );
 
-      foreach ($rangeValues as $buyValue) {
+      foreach ($rangeValues as $buyAmount) {
          // string check
-         $result = $this->_testable->marketBuy( $symbol, $buyAmount, $buyValue );
+         $result = $this->_testable->marketBuy( $symbol, $buyAmount );
          $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
          if( isset( $result['code'] ) ) {
