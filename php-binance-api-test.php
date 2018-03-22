@@ -29,7 +29,7 @@ final class BinanceTest extends TestCase
    public static function setUpBeforeClass() {
       self::debug( 0, __METHOD__, "" );
       if( file_exists( getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" ) == false ) {
-         self::debug( 1, __METHOD__, getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json not found" );
+         self::debug( 0, __METHOD__, getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json not found" );
          exit;
       }
    }
@@ -100,28 +100,28 @@ final class BinanceTest extends TestCase
             $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
             if( isset( $result['code'] ) ) {
-               self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+               self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
             }
             // int check
             $result = $this->_testable->buyTest( $symbol, intval( $buyAmount ), intval( $buyValue ) );
             $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
             if( isset( $result['code'] ) ) {
-               self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+               self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
             }
             // double check
             $result = $this->_testable->buyTest( $symbol, doubleval( $buyAmount ), doubleval( $buyValue ) );
             $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
             if( isset( $result['code'] ) ) {
-               self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+               self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
             }
             // float check
             $result = $this->_testable->buyTest( $symbol, floatval( $buyAmount ), floatval( $buyValue ) );
             $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
             if( isset( $result['code'] ) ) {
-               self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+               self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
             }
          }
       }
@@ -136,7 +136,7 @@ final class BinanceTest extends TestCase
       }
 
       if( isset( $result['code'] ) == false ) {
-         self::debug( 1, __METHOD__, "shouldn't be any money in the account" );
+         self::debug( 0, __METHOD__, "shouldn't be any money in the account" );
       }
    }
    public function testSellTest() {
@@ -145,7 +145,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "sell error: " . $result['code'] . ":" . $result['msg'] );
+         self::debug( 0, __METHOD__, "sell error: " . $result['code'] . ":" . $result['msg'] );
       }
    }
    public function testMarketBuy() {
@@ -173,7 +173,7 @@ final class BinanceTest extends TestCase
          }
 
          if( isset( $result['code'] ) == false ) {
-            self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+            self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
          }
          // int check
          $result = $this->_testable->marketBuy( $symbol, intval( $buyAmount ) );
@@ -184,7 +184,7 @@ final class BinanceTest extends TestCase
          }
 
          if( isset( $result['code'] ) == false ) {
-            self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+            self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
          }
          // double check
          $result = $this->_testable->marketBuy( $symbol, doubleval( $buyAmount ) );
@@ -195,7 +195,7 @@ final class BinanceTest extends TestCase
          }
 
          if( isset( $result['code'] ) == false ) {
-            self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+            self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
          }
          // float check
          $result = $this->_testable->marketBuy( $symbol, floatval( $buyAmount ) );
@@ -206,7 +206,7 @@ final class BinanceTest extends TestCase
          }
 
          if( isset( $result['code'] ) == false ) {
-            self::debug( 1, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
+            self::debug( 0, __METHOD__, " buy error: " . $result['code'] . ":" . $result['msg'] );
          }
       }
    }
@@ -216,7 +216,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "market buy error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "market buy error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testMarketSell() {
@@ -229,7 +229,7 @@ final class BinanceTest extends TestCase
       }
 
       if( isset( $result['code'] ) == false ) {
-         self::debug( 1, __METHOD__, "shouldn't be any code in the account");
+         self::debug( 0, __METHOD__, "shouldn't be any code in the account");
       }
    }
    public function testMarketSellTest() {
@@ -238,7 +238,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "market sell error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "market sell error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testCancel() {
@@ -251,7 +251,7 @@ final class BinanceTest extends TestCase
       }
 
       if( isset( $result['code'] ) == false ) {
-         self::debug( 1, __METHOD__, "shouldn't be anything to cancel");
+         self::debug( 0, __METHOD__, "shouldn't be anything to cancel");
       }
    }
    public function testOrderStatus() {
@@ -264,7 +264,7 @@ final class BinanceTest extends TestCase
       }
 
       if( isset( $result['code'] ) == false ) {
-         self::debug( 1, __METHOD__, "shouldn't be any order with this id");
+         self::debug( 0, __METHOD__, "shouldn't be any order with this id");
       }
    }
    public function testOpenOrders() {
@@ -274,7 +274,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "open orders error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "open orders error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testOrders() {
@@ -284,7 +284,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "orders error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "orders error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testHistory() {
@@ -294,7 +294,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "my trades error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "my trades error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testUseServerTime() {
@@ -309,7 +309,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( isset( $result[ 'serverTime' ] ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "server time error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "server time error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testExchangeInfo() {
@@ -321,7 +321,7 @@ final class BinanceTest extends TestCase
       foreach ($check_keys as $check_key) {
          $this->assertTrue( isset( $result[ $check_key ] ) );
          if( isset( $result[ $check_key ] ) == false ) {
-            self::debug( 1, __METHOD__, "exchange info error: $check_key missing\n");
+            self::debug( 0, __METHOD__, "exchange info error: $check_key missing\n");
          }
       }
 
@@ -329,7 +329,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( count( $result[ 'rateLimits' ] ) > 0 );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "exchange info error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "exchange info error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testWithdraw() {
@@ -340,7 +340,7 @@ final class BinanceTest extends TestCase
       $result = $this->_testable->withdraw($asset, $address, $amount, false);
       $this->assertTrue( true );
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "withdraw error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "withdraw error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testDepositAddress() {
@@ -349,7 +349,7 @@ final class BinanceTest extends TestCase
       $result = $this->_testable->depositAddress($asset);
       $this->assertTrue( true );
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "depsoit error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "depsoit error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testDepositHistory() {
@@ -358,7 +358,7 @@ final class BinanceTest extends TestCase
       $result = $this->_testable->depositHistory();
       $this->assertTrue( true );
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "deposit history error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "deposit history error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testWithdrawHistory() {
@@ -367,7 +367,7 @@ final class BinanceTest extends TestCase
       $result = $this->_testable->withdrawHistory();
       $this->assertTrue( true );
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "withdraw history error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "withdraw history error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testPrices() {
@@ -377,7 +377,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( count( $result ) > 0 );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "prices error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "prices error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testBookPrices() {
@@ -387,7 +387,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( count( $result ) > 0 );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "book prices error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "book prices error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testPrevDay() {
@@ -396,7 +396,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( ( isset( $result['code'] ) == false ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "previous day error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "previous day error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testAggTrades() {
@@ -406,7 +406,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( count( $result ) > 0 );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "agg trades error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "agg trades error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testDepth() {
@@ -417,7 +417,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( isset( $result['asks'] ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "depth error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "depth error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testBalances() {
@@ -427,7 +427,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "balances error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "balances error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testGetProxyUriString() {
@@ -459,7 +459,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "candlesticks error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "candlesticks error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testBalanceData() {
@@ -469,7 +469,7 @@ final class BinanceTest extends TestCase
       $this->assertTrue( is_array( $result ) );
 
       if( isset( $result['code'] ) ) {
-         self::debug( 1, __METHOD__, "balances error: " . $result['code'] . ":" . $result['msg']);
+         self::debug( 0, __METHOD__, "balances error: " . $result['code'] . ":" . $result['msg']);
       }
    }
    public function testBalanceHandler() {
