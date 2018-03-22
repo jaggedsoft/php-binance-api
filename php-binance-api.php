@@ -256,6 +256,14 @@ class API {
 			"quantity" => $quantity,
 			"recvWindow" => 60000
 		];
+
+		// someone has preformated there 8 decimal point double already
+		// dont do anything, leave them do whatever they want
+		if ( gettype( $price ) != "string" ) {
+			// for every other type, lets format it appropriately
+			$price = number_format($price, 8, '.', '');
+		}
+
 		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
