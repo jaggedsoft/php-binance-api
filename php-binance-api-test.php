@@ -38,7 +38,7 @@ final class BinanceTest extends TestCase
       $this->_testable = new Binance\API();
       $this->assertInstanceOf('Binance\API', $this->_testable);
    }
-/*
+
    public function testInstantiate() {
       self::debug( 0, __METHOD__, "" );
       $this->_testable = new Binance\API();
@@ -79,7 +79,6 @@ final class BinanceTest extends TestCase
          self::debug( 0, __METHOD__, "shouldn't be any money in the account" );
       }
    }
-*/
    public function testBuyTest() {
       self::debug( 0, __METHOD__, "" );
 
