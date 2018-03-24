@@ -731,6 +731,34 @@ class API {
 		});
 		$loop->run();
 	}
+	
+	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
+	public function userData(&$balance_callback, &$execution_callback = false) {
+		$response = $this->apiRequest("v1/userDataStream", "POST");
+		$listenKey = $this->options['listenKey'] = $response['listenKey'];
+		$this->info['balanceCallback'] = $balance_callback;
+		$this->info['executionCallback'] = $execution_callback;
+		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$listenKey)->then(function($ws) {
+			$ws->on('message', function($data) use($ws) {
+				$json = json_decode($data);
+				$type = $json->e;
+				if ( $type == "outboundAccountInfo") {
+					$balances = $this->balanceHandler($json->B);
+					$this->info['balanceCallback']($this, $balances);
+				} elseif ( $type == "executionReport" ) {
+					$report = $this->executionHandler($json);
+					if ( $this->info['executionCallback'] ) {
+						$this->info['executionCallback']($this, $report);
+					}
+				}
+			});
+			$ws->on('close', function($code = null, $reason = null) {
+				echo "userData: WebSocket Connection closed! ({$code} - {$reason})".PHP_EOL;
+			});
+		}, function($e) {
+			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
+		});
+	}
 
 	public function miniTicker($callback) {
 		\Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms')
