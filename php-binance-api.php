@@ -727,14 +727,14 @@ class API {
 		$loop = \React\EventLoop\Factory::create();
 		$loop->addPeriodicTimer(30, function() {
 			$listenKey = $this->options['listenKey'];
-			$this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", [], true);
+			$this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", []);
 		});
 		$loop->run();
 	}
 	
 	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
 	public function userData(&$balance_callback, &$execution_callback = false) {
-		$response = $this->apiRequest("v1/userDataStream", "POST");
+		$response = $this->httpRequest("v1/userDataStream", "POST", []);
 		$listenKey = $this->options['listenKey'] = $response['listenKey'];
 		$this->info['balanceCallback'] = $balance_callback;
 		$this->info['executionCallback'] = $execution_callback;
