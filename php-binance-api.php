@@ -727,7 +727,7 @@ class API {
 		$loop = \React\EventLoop\Factory::create();
 		$loop->addPeriodicTimer(30, function() {
 			$listenKey = $this->options['listenKey'];
-			$this->apiRequest("v1/userDataStream?listenKey={$listenKey}", "PUT");
+			$this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", [], true);
 		});
 		$loop->run();
 	}
