@@ -280,7 +280,7 @@ class API {
 	 */
 	public function openOrders($symbol = null) {
 		$params = [];
-		if( is_null( $symbol _) != true ) {
+		if( is_null( $symbol ) != true ) {
 		    $params = ["symbol"=>$symbol];
 		}
 		return $this->httpRequest("v3/openOrders","GET", $params, true);
