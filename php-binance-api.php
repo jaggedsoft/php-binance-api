@@ -46,7 +46,7 @@ class API {
 		$this->api_secret = isset( $contents['api-secret'] ) ? $contents['api-secret'] : "";
 	}
 	private function setupProxyConfigFromFile()	{
-		if( $proxyConf != null ) return;
+		if( is_null( $this->proxyConf ) == false ) return;
 		if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false ) return;
 
 		$contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
@@ -181,7 +181,6 @@ class API {
 	public function setProxy( $proxyconf ) {
 		$this->proxyConf = $proxyconf;
 	}
-
 	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
 		// is cURL installed yet?
 		if (!function_exists('curl_init')) {
