@@ -424,30 +424,98 @@ class API {
 		}
 		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
 	}
+
+	/**
+	 * prices get all the current prices
+	 *
+	 * $ticker = $api->prices();
+	 *
+	 * @return array with error message or array of all the currencies prices
+	 */
 	public function prices() {
 		return $this->priceData($this->httpRequest("v3/ticker/price"));
 	}
+
+	/**
+	 * bookPrices get all bid/asks prices
+	 *
+	 * $ticker = $api->bookPrices();
+	 *
+	 * @return array with error message or array of all the book prices
+	 */
 	public function bookPrices() {
 		return $this->bookPriceData($this->httpRequest("v3/ticker/bookTicker"));
 	}
+
+	/**
+	 * account get all information about the api account
+	 *
+	 * $account = $api->account();
+	 *
+	 * @return array with error message or array of all the account information
+	 */
 	public function account() {
 		return $this->httpRequest("v3/account", "GET", [], true);
 	}
+
+	/**
+	 * prevDay get 24hr ticker price change statistics for a symbol
+	 *
+	 * $prevDay = $api->prevDay("BNBBTC");
+	 *
+	 * @param $symbol the symbol to get the previous day change for
+	 * @return array with error message or array of prevDay change
+	 */
 	public function prevDay($symbol) {
 		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol]);
 	}
+
+	/**
+	 * aggTrades get Market History / Aggregate Trades
+	 *
+	 * $trades = $api->aggTrades("BNBBTC");
+	 *
+	 * @param $symbol the symbol to get the trade information for
+	 * @return array with error message or array of market history
+	 */
 	public function aggTrades($symbol) {
 		return $this->tradesData($this->httpRequest("v1/aggTrades", "GET", ["symbol"=>$symbol]));
 	}
+
+	/**
+	 * depth get Market depth
+	 *
+	 * $depth = $api->depth("ETHBTC");
+	 *
+	 * @param $symbol the symbol to get the depth information for
+	 * @return array with error message or array of market depth
+	 */
 	public function depth($symbol) {
 		$json = $this->httpRequest("v1/depth", "GET", ["symbol"=>$symbol]);
 		if(!isset($this->info[$symbol])) $this->info[$symbol] = [];
 		$this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
 		return $this->depthData($symbol, $json);
 	}
+
+	/**
+	 * balances get balances for the account assets
+	 *
+	 * $balances = $api->balances($ticker);
+	 *
+	 * @param $priceData array of the symbols balances are required for
+	 * @return array with error message or array of balances
+	 */
 	public function balances($priceData = false) {
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
+
+	/**
+	 * getProxyUriString get Uniform Resource Identifier string assocaited with proxy config
+	 *
+	 * $balances = $api->getProxyUriString();
+	 *
+	 * @return string uri
+	 */
 	public function getProxyUriString()
 	{
 		$uri = isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "http";
@@ -464,9 +532,42 @@ class API {
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
 		return $uri;
 	}
+
+	/**
+	 * setProxy set proxy config by passing in an array of the proxy configuration
+	 *
+	 * $proxyConf = [
+	 * 'proto' => 'tcp',
+	 * 'address' => '192.168.1.1',
+	 * 'port' => '8080',
+	 * 'user' => 'dude',
+	 * 'pass' => 'd00d'
+	 * ];
+	 *
+	 * $api->setProxy( $proxyconf );
+	 *
+	 * @return nothing
+	 */
 	public function setProxy( $proxyconf ) {
 		$this->proxyConf = $proxyconf;
 	}
+
+	/**
+	 * httpRequest curl wrapper for all http api requests.
+	 * You can't call this function directly, use the helper functions
+	 * @see buy
+	 * @see sell
+	 * @see marketBuy
+	 * @see marketSell
+	 *
+	 * $this->httpRequest( "https://api.binance.com/api/v1/ticker/24hr");
+	 *
+	 * @param $url the endpoint to query, typically includes query string
+	 * @param $method this should be typically GET, POST or DELETE
+	 * @param $params array addtional options for the request
+	 * @param $signed bool true or false sign the request with api secret
+	 * @return array containing the response
+	 */
 	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
 		// is cURL installed yet?
 		if (!function_exists('curl_init')) {
@@ -538,6 +639,25 @@ class API {
 		$this->requestCount++;
 		return $json;
 	}
+
+	/**
+	 * order formats the orders before sending them to the curl wrapper function
+	 * You can call this function directly or use the helper functions
+	 * @see buy
+	 * @see sell
+	 * @see marketBuy
+	 * @see marketSell
+	 *
+	 * $this->httpRequest( "https://api.binance.com/api/v1/ticker/24hr");
+	 *
+	 * @param $side typically "BUY" or "SELL"
+	 * @param $symbol to buy or sell
+	 * @param $quantity in the order
+	 * @param $price for the order
+	 * @param $type is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc.
+	 * @param $flags additional transaction options
+	 * @return array containing the response
+	 */
 	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = [], $test = false) {
 		$opt = [
 			"symbol" => $symbol,
@@ -562,7 +682,20 @@ class API {
 		$qstring = ( $test == false ) ? "v3/order" : "v3/order/test";
 		return $this->httpRequest($qstring, "POST", $opt, true);
 	}
-	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
+
+	/**
+	 * candlesticks get the cancles for the given intervals
+	 * 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
+	 *
+	 * $candles = $api->candlesticks("BNBBTC", "5m");
+	 *
+	 * @param $symbol to query
+	 * @param $interval to request
+	 * @param $limit limit the amount of candles
+	 * @param $startTime request candle information starting from here
+	 * @param $endTime request candle information ending here
+	 * @return array containing the response
+	 */
 	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
 		if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
 		$opt = [
@@ -577,9 +710,18 @@ class API {
 		$this->charts[$symbol][$interval] = $ticks;
 		return $ticks;
 	}
-	// Converts all your balances into a nice array
-	// If priceData is passed from $api->prices() it will add btcValue & btcTotal to each symbol
-	// This function sets $btc_value which is your estimated BTC value of all assets combined and $btc_total which includes amount on order
+
+	/**
+	 * balanceData Converts all your balances into a nice array
+	 * If priceData is passed from $api->prices() it will add btcValue & btcTotal to each symbol
+	 * This function sets $btc_value which is your estimated BTC value of all assets combined and $btc_total which includes amount on order
+	 *
+	 * $candles = $api->candlesticks("BNBBTC", "5m");
+	 *
+	 * @param $array of your balances
+	 * @param $priceData array of prices
+	 * @return array containing the response
+	 */
 	private function balanceData($array, $priceData = false) {
 		if ( $priceData ) $btc_value = $btc_total = 0.00;
 		$balances = [];
