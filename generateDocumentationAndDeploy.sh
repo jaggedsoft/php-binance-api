@@ -72,8 +72,6 @@ echo "" > .nojekyll
 echo 'Generating Doxygen code documentation...'
 # Redirect both stderr and stdout to the log file AND the console.
 
-sed -ri "s#TARGET_FILES#INPUT = $TRAVIS_BUILD_DIR/php-binance-api.php#" $TRAVIS_BUILD_DIR/generateDocumentationAndDeploy.sh
-grep "INPUT" $TRAVIS_BUILD_DIR/generateDocumentationAndDeploy.sh
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
 ################################################################################
