@@ -1,64 +1,94 @@
 <?php
 /* ============================================================
- * php-binance-api
- * https://github.com/jaggedsoft/php-binance-api
+ * @package php-binance-api
+ * @link https://github.com/jaggedsoft/php-binance-api
  * ============================================================
- * Copyright 2017-, Jon Eyrick
- * Released under the MIT License
- * ============================================================ */
-
+ * @copyright 2017-2018
+ * @author Jon Eyrick
+ * @license MIT License
+ * ============================================================
+ * A curl HTTP REST wrapper for the binance currency exchange
+ * */
 namespace Binance;
+/**
+ * Main Binace API class
+ *
+ * Eg. Usage:
+ * require 'vendor/autoload.php';
+ * $api = new Binance\API();
+ */
 class API {
-	protected $base = "https://api.binance.com/api/";
-	protected $wapi = "https://api.binance.com/wapi/";
-	protected $api_key;
-	protected $api_secret;
-	protected $depthCache = [];
-	protected $depthQueue = [];
-	protected $chartQueue = [];
-	protected $charts = [];
-	protected $info = ["timeOffset"=>0];
-	protected $proxyConf = null;
-	protected $transfered = 0;
-	protected $requestCount = 0;
-	public $httpDebug = false;
-	public $balances = [];
-	public $btc_value = 0.00; // value of available assets
-	public $btc_total = 0.00; // value of available + onOrder assets
+	protected $base = "https://api.binance.com/api/"; ///< REST endpoint for the currency exchange
+	protected $wapi = "https://api.binance.com/wapi/"; ///< REST endpoint for the withdrawals
+	protected $api_key; ///< API key that you created in the binance website member area
+	protected $api_secret; ///< API secret that was given to you when you created the api key
+	protected $depthCache = []; ///< Websockets depth cache
+	protected $depthQueue = []; ///< Websockets depth queue
+	protected $chartQueue = []; ///< Websockets chart queue
+	protected $charts = []; ///< Websockets chart data
+	protected $info = ["timeOffset"=>0]; ///< Additional connection options
+	protected $proxyConf = null; ///< Used for story the proxy configuration
+	protected $transfered = 0; ///< This stores the amount of bytes transfered
+	protected $requestCount = 0; ///< This stores the amount of API requests
+	public $httpDebug = false; ///< If you enable this, curl will output debugging information
+	public $balances = []; ///< binace balances from the last run
+	public $btc_value = 0.00; ///< value of available assets
+	public $btc_total = 0.00; ///< value of available + onOrder assets
+
+	/**
+	 * Constructor for the class, There are 4 ways to contruct the class:
+	 *- You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor
+	 *- new Binance\API( $api_key, $api_secret);
+	 *- new Binance\API( $api_key, $api_secret, $options);
+	 *- new Binance\API( $api_key, $api_secret, $options, $proxyConf);
+	 *
+	 * @param $api_key string api key
+	 * @param $api_secret string api secret
+	 * @param $options array addtional coniguration options
+	 * @param $proxyConf array config
+	 * @return nothing
+	 */
 	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 		$this->proxyConf = $proxyConf;
-
 		if(isset($options['useServerTime']) && $options['useServerTime']) {
 			$this->useServerTime();
 		}
-
 		$this->setupApiConfigFromFile();
 		$this->setupProxyConfigFromFile();
 	}
+
+	/**
+	 * If no paramaters are supplied in the constructor, this function will attempt
+	 * to load the api_key and api_secret from the users home directory in the file
+	 * ~/jaggedsoft/php-binance-api.json
+	 * @return nothing
+	 */
 	private function setupApiConfigFromFile()	{
 		if( empty( $this->api_key ) == false || empty( $this->api_key ) == false) return;
 		if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false ) return;
-
 		$contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
 		$this->api_key = isset( $contents['api-key'] ) ? $contents['api-key'] : "";
 		$this->api_secret = isset( $contents['api-secret'] ) ? $contents['api-secret'] : "";
 	}
+
+	/**
+	 * If no paramaters are supplied in the constructor ofr the proxy confguration,
+	 * this function will attempt to load the proxy  info from the users home directory
+	 * ~/jaggedsoft/php-binance-api.json
+	 * @return nothing
+	 */
 	private function setupProxyConfigFromFile()	{
 		if( is_null( $this->proxyConf ) == false ) return;
 		if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false ) return;
-
 		$contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
-
 		if( isset( $contents['proto'] ) == false ) return;
 		if( isset( $contents['address'] ) == false ) return;
 		if( isset( $contents['port'] ) == false ) return;
-
 		$this->proxyConf['proto'] = $contents['proto'];
 		$this->proxyConf['address'] = $contents['address'];
 		$this->proxyConf['port'] = $contents['port'];
-
 		if( isset( $contents['user'] ) ) {
 			$this->proxyConf['user'] = isset( $contents['user'] ) ? $contents['user'] : "";
 		}
@@ -66,75 +96,332 @@ class API {
 			$this->proxyConf['pass'] = isset( $contents['pass'] ) ? $contents['pass'] : "";
 		}
 	}
+
+	/**
+	 * buy attempts to create a currency order
+	 * each currency supports a number of order types, such as
+	 * -LIMIT
+	 * -MARKET
+	 * -STOP_LOSS
+	 * -STOP_LOSS_LIMIT
+	 * -TAKE_PROFIT
+	 * -TAKE_PROFIT_LIMIT
+	 * -LIMIT_MAKER
+	 *
+	 * You should check the @see exchangeInfo for each currency to determine
+	 * what types of orders can be placed against specific pairs
+	 *
+	 * $quantity = 1;
+	 * $price = 0.0005;
+	 * $order = $api->buy("BNBBTC", $quantity, $price);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $price price per unit you want to spend
+	 * @param $type string type of order
+	 * @param $flags array addtional options for order type
+	 * @return array with error message or the order details
+	 */
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
 	}
+
+	/**
+	 * buyTest attempts to create a TEST currency order
+	 * @see buy()
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $price price per unit you want to spend
+	 * @param $type array config
+	 * @param $flags array config
+	 * @return array with error message or empty or the order details
+	 */
 	public function buyTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags, true);
 	}
+
+	/**
+	 * sell attempts to create a currency order
+	 * each currency supports a number of order types, such as
+	 * -LIMIT
+	 * -MARKET
+	 * -STOP_LOSS
+	 * -STOP_LOSS_LIMIT
+	 * -TAKE_PROFIT
+	 * -TAKE_PROFIT_LIMIT
+	 * -LIMIT_MAKER
+	 *
+	 * You should check the @see exchangeInfo for each currency to determine
+	 * what types of orders can be placed against specific pairs
+	 *
+	 * $quantity = 1;
+	 * $price = 0.0005;
+	 * $order = $api->sell("BNBBTC", $quantity, $price);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $price price per unit you want to spend
+	 * @param $type string type of order
+	 * @param $flags array addtional options for order type
+	 * @return array with error message or the order details
+	 */
 	public function sell($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
+
+	/**
+	 * sellTest attempts to create a TEST currency order
+	 * @see sell()
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $price price per unit you want to spend
+	 * @param $type array config
+	 * @param $flags array config
+	 * @return array with error message or empty or the order details
+	 */
 	public function sellTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags, true);
 	}
+
+	/**
+	 * marketBuy attempts to create a currency order at given market price
+	 *
+	 * $quantity = 1;
+	 * $order = $api->marketBuy("BNBBTC", $quantity);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $flags array addtional options for order type
+	 * @return array with error message or the order details
+	 */
 	public function marketBuy($symbol, $quantity, $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
+
+	/**
+	 * marketBuyTest attempts to create a TEST currency order at given market price
+	 * @see marketBuy()
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $flags array addtional options for order type
+	 * @return array with error message or the order details
+	 */
 	public function marketBuyTest($symbol, $quantity, $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
 	}
+
+	/**
+	 * marketSell attempts to create a currency order at given market price
+	 *
+	 * $quantity = 1;
+	 * $order = $api->marketSell("BNBBTC", $quantity);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $flags array addtional options for order type
+	 * @return array with error message or the order details
+	 */
 	public function marketSell($symbol, $quantity, $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
 	}
+
+	/**
+	 * marketSellTest attempts to create a TEST currency order at given market price
+	 * @see marketSellTest()
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $quantity the quantity required
+	 * @param $flags array addtional options for order type
+	 * @return array with error message or the order details
+	 */
 	public function marketSellTest($symbol, $quantity, $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags, true);
 	}
+
+	/**
+	 * cancel attempts to cancel a currency order
+	 *
+	 * $orderid = "123456789";
+	 * $order = $api->cancel("BNBBTC", $orderid);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $orderid the orderid to cancel
+	 * @return array with error message or the order details
+	 */
 	public function cancel($symbol, $orderid) {
 		return $this->httpRequest("v3/order", "DELETE", ["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
+
+	/**
+	 * orderStatus attempts to get orders status
+	 *
+	 * $orderid = "123456789";
+	 * $order = $api->orderStatus("BNBBTC", $orderid);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $orderid the orderid to cancel
+	 * @return array with error message or the order details
+	 */
 	public function orderStatus($symbol, $orderid) {
 		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
-	public function openOrders($symbol) {
+
+	/**
+	 * openOrders attempts to get open orders for all currencies or a specific currency
+	 *
+	 * $allOpenOrders = $api->openOrders();
+	 * $allBNBOrders = $api->openOrders( "BNBBTC" );
+	 *
+	 * @param $symbol the currency symbol
+	 * @return array with error message or the order details
+	 */
+	public function openOrders($symbol = null) {
 		$params = [];
-		if($symbol)
+		if( is_null( $symbol _) != true ) {
 		    $params = ["symbol"=>$symbol];
+		}
 		return $this->httpRequest("v3/openOrders","GET", $params, true);
 	}
+
+	/**
+	 * orders attempts to get the orders for all or a specific currency
+	 *
+	 * $allBNBOrders = $api->orders( "BNBBTC" );
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $limit the amount of orders returned
+	 * @param $fromOrderId return the orders from this order onwards
+	 * @return array with error message or array of orderDetails array
+	 */
 	public function orders($symbol, $limit = 500, $fromOrderId = 1) {
 		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit, "orderId"=>$fromOrderId], true);
 	}
+
+	/**
+	 * history Get the complete account trade history for all or a specific currency
+	 *
+	 * $allHistory = $api->history();
+	 * $BNBHistory = $api->history("BNBBTC");
+	 * $limitBNBHistory = $api->history("BNBBTC",5);
+	 * $limitBNBHistoryFromId = $api->history("BNBBTC",5,3);
+	 *
+	 * @param $symbol the currency symbol
+	 * @param $limit the amount of orders returned
+	 * @param $fromOrderId return the orders from this order onwards
+	 * @return array with error message or array of orderDetails array
+	 */
 	public function history($symbol, $limit = 500, $fromTradeId = 1) {
 		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit, "fromId"=>$fromTradeId], true);
 	}
+
+	/**
+	 * useServerTime adds the 'useServerTime'=>true to the API request to avoid time errors
+	 *
+	 * $api->useServerTime();
+	 *
+	 * @return nothing
+	 */
 	public function useServerTime() {
 		$serverTime = $this->httpRequest("v1/time")['serverTime'];
 		$this->info['timeOffset'] = $serverTime - (microtime(true)*1000);
 	}
+
+	/**
+	 * time Gets the server time
+	 *
+	 * $time = $api->time();
+	 *
+	 * @return array with error message or array with server time key
+	 */
 	public function time() {
 		return $this->httpRequest("v1/time");
 	}
+
+	/**
+	 * exchangeInfo Gets the complete exchange info, including limits, currency options etc.
+	 *
+	 * $info = $api->exchangeInfo();
+	 *
+	 * @return array with error message or exchange info array
+	 */
 	public function exchangeInfo() {
 		return $this->httpRequest("v1/exchangeInfo");
 	}
+
+	/**
+	 * withdraw requests a asset be withdrawn from binance to another wallet
+	 *
+	 * $asset = "BTC";
+	 * $address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
+	 * $amount = 0.2;
+	 * $response = $api->withdraw($asset, $address, $amount);
+	 *
+	 * $address = "44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn";
+	 * $addressTag = "0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1";
+	 * $amount = 0.1;
+	 * $response = $api->withdraw($asset, $address, $amount, $addressTag);
+	 *
+	 * @param $asset the currency such as BTC
+	 * @param $address the addressed to whihc the asset should be deposited
+	 * @param $amount the amount of the asset to transfer
+	 * @param $addressTag adtional transactionid required by some assets
+	 * @return array with error message or array transaction
+	 */
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
 		if ( $addressTag ) $options['addressTag'] = $addressTag;
 		return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
 	}
+
+	/**
+	 * depositAddress get the deposit address for an asset
+	 *
+	 * $depositAddress = $api->depositAddress("VEN");
+	 *
+	 * @param $asset the currency such as BTC
+	 * @return array with error message or array deposit address information
+	 */
 	public function depositAddress($asset) {
 		$params = ["wapi"=>true, "asset"=>$asset];
 		return $this->httpRequest("v3/depositAddress.html", "GET", $params, true);
 	}
+
+	/**
+	 * depositAddress get the deposit history for an asset
+	 *
+	 * $depositHistory = $api->depositHistory();
+	 *
+	 * $depositHistory = $api->depositHistory( "BTC" );
+	 *
+	 * @param $asset empty or the currency such as BTC
+	 * @return array with error message or array deposit history information
+	 */
 	public function depositHistory($asset = false) {
 		$params = ["wapi"=>true];
-		if ( $asset ) $params['asset'] = $asset;
+		if ( is_string( $asset ) == true ) {
+			$params['asset'] = $asset;
+		}
 		return $this->httpRequest("v3/depositHistory.html", "GET", $params, true);
 	}
+
+	/**
+	 * withdrawHistory get the withdrawal history for an asset
+	 *
+	 * $withdrawHistory = $api->withdrawHistory();
+	 *
+	 * $withdrawHistory = $api->withdrawHistory( "BTC" );
+	 *
+	 * @param $asset empty or the currency such as BTC
+	 * @return array with error message or array deposit history information
+	 */
 	public function withdrawHistory($asset = false) {
 		$params = ["wapi"=>true];
-		if ( $asset ) $params['asset'] = $asset;
+		if ( is_string( $asset ) == true ) {
+			$params['asset'] = $asset;
+		}
 		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
 	}
 	public function prices() {
@@ -169,7 +456,6 @@ class API {
 		if(in_array($uri, $supportedProxyProtocols) == false) {
 			die("Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ",$supportedProxyProtocols)  . "\n");
 		}
-
 		$uri .= "://";
 		$uri .= isset( $this->proxyConf['address'] ) ? $this->proxyConf['address'] : "localhost";
 		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy address not set defaulting to localhost\n";
@@ -186,11 +472,9 @@ class API {
 		if (!function_exists('curl_init')) {
 			die('Sorry cURL is not installed!');
 		}
-
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_VERBOSE, $this->httpDebug);
 		$query = http_build_query($params, '', '&');
-
 		// signed with params
 		if($signed == true) {
 			if(empty($this->api_key) ) die("signedRequest error: API Key not set!");
@@ -217,20 +501,16 @@ class API {
 			curl_setopt($ch, CURLOPT_URL, $this->base.$url);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-MBX-APIKEY: ' . $this->api_key));
 		}
-
 		curl_setopt($ch, CURLOPT_USERAGENT, "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)");
-
 		// Post and postfields
 		if($method == "POST") {
 			curl_setopt($ch, CURLOPT_POST, true);
 			//curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		}
-
 		// Delete Method
 		if($method == "DELETE") {
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 		}
-
 		// proxy settings
 		if(is_array($this->proxyConf)) {
 			curl_setopt($ch, CURLOPT_PROXY, $this->getProxyUriString());
@@ -238,33 +518,26 @@ class API {
 				curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
 			}
 		}
-
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		// headers will proceed the output, json_decode will fail below
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 		$output = curl_exec($ch);
-
 		// Check if any error occurred
 		if(curl_errno($ch) > 0)	{
 			echo 'Curl error: ' . curl_error($ch) . "\n";
 			return [];
 		}
-
 		curl_close($ch);
 		$json = json_decode($output, true);
-
 		if(isset($json['msg'])) {
 			echo "signedRequest error: {$output}".PHP_EOL;
 		}
-
 		$this->transfered += strlen( $output );
 		$this->requestCount++;
-
 		return $json;
 	}
-
 	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = [], $test = false) {
 		$opt = [
 			"symbol" => $symbol,
@@ -273,14 +546,12 @@ class API {
 			"quantity" => $quantity,
 			"recvWindow" => 60000
 		];
-
 		// someone has preformated there 8 decimal point double already
 		// dont do anything, leave them do whatever they want
 		if ( gettype( $price ) != "string" ) {
 			// for every other type, lets format it appropriately
 			$price = number_format($price, 8, '.', '');
 		}
-
 		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
@@ -288,11 +559,9 @@ class API {
 		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
 		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
 		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
-
 		$qstring = ( $test == false ) ? "v3/order" : "v3/order/test";
 		return $this->httpRequest($qstring, "POST", $opt, true);
 	}
-
 	//1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
 	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
 		if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
@@ -303,13 +572,11 @@ class API {
 		if ($limit) $opt["limit"] = $limit;
 		if ($startTime) $opt["startTime"] = $startTime;
 		if ($endTime) $opt["endTime"] = $endTime;
-
 		$response = $this->httpRequest("v1/klines", "GET", $opt);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
 		return $ticks;
 	}
-
 	// Converts all your balances into a nice array
 	// If priceData is passed from $api->prices() it will add btcValue & btcTotal to each symbol
 	// This function sets $btc_value which is your estimated BTC value of all assets combined and $btc_total which includes amount on order
@@ -355,7 +622,6 @@ class API {
 		}
 		return $balances;
 	}
-
 	// Convert balance WebSocket data into array
 	private function balanceHandler($json) {
 		$balances = [];
@@ -367,7 +633,6 @@ class API {
 		}
 		return $balances;
 	}
-
 	// Convert WebSocket ticker data into array
 	private function tickerStreamHandler($json) {
 		return [
@@ -396,7 +661,6 @@ class API {
 			"numTrades" => $json->n
 		];
 	}
-
 	// Convert WebSocket trade execution into array
 	private function executionHandler($json) {
 		return [
@@ -414,7 +678,6 @@ class API {
 			"eventTime" => $json->E
 		];
 	}
-
 	// Convert kline data into object
 	private function chartData($symbol, $interval, $ticks) {
 		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
@@ -435,7 +698,6 @@ class API {
 		$this->info[$symbol][$interval]['firstOpen'] = $openTime;
 		return $output;
 	}
-
 	// Convert aggTrades data into easier format
 	private function tradesData($trades) {
 		$output = [];
@@ -448,7 +710,6 @@ class API {
 		}
 		return $output;
 	}
-
 	// Consolidates Book Prices into an easy to use object
 	private function bookPriceData($array) {
 		$bookprices = [];
@@ -462,7 +723,6 @@ class API {
 		}
 		return $bookprices;
 	}
-
 	// Converts Price Data into an easy key/value array
 	private function priceData($array) {
 		$prices = [];
@@ -471,7 +731,6 @@ class API {
 		}
 		return $prices;
 	}
-
 	// Converts depth cache into a cumulative array
 	public function cumulative($depth) {
 		$bids = []; $asks = [];
@@ -487,7 +746,6 @@ class API {
 		}
 		return ["bids"=>$bids, "asks"=>array_reverse($asks)];
 	}
-
 	// Converts Chart Data into array for highstock & kline charts
 	public function highstock($chart, $include_volume = false) {
 		$array = [];
@@ -504,7 +762,6 @@ class API {
 		}
 		return $array;
 	}
-
 	// Gets first key of an array
 	public function first($array) {
 		if(count($array)>0)	{
@@ -512,7 +769,6 @@ class API {
 		}
 		return null;
 	}
-
 	// Gets last key of an array
 	public function last($array) {
 		if(count($array)>0)	{
@@ -520,7 +776,6 @@ class API {
 		}
 		return null;
 	}
-
 	// Formats nicely for console output
 	public function displayDepth($array) {
 		$output = '';
@@ -537,7 +792,6 @@ class API {
 		}
 		return $output;
 	}
-
 	// Formats depth data for nice display
 	private function depthData($symbol, $json) {
 		$bids = $asks = [];
@@ -549,12 +803,9 @@ class API {
 		}
 		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
 	}
-
-
 	////////////////////////////////////
 	// WebSockets
 	////////////////////////////////////
-
 	// For WebSocket Depth Cache
 	private function depthHandler($json) {
 		$symbol = $json['s'];
@@ -568,7 +819,6 @@ class API {
 			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
 		}
 	}
-
 	// For WebSocket Chart Cache
 	private function chartHandler($symbol, $interval, $json) {
 		if ( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
@@ -587,7 +837,6 @@ class API {
 		$volume = $chart->q; //+trades buyVolume assetVolume makerVolume
 		$this->charts[$symbol][$interval][$tick] = ["open"=>$open, "high"=>$high, "low"=>$low, "close"=>$close, "volume"=>$volume];
 	}
-
 	// Sorts depth data for display & getting highest bid and lowest ask
 	public function sortDepth($symbol, $limit = 11) {
 		$bids = $this->depthCache[$symbol]['bids'];
@@ -596,7 +845,6 @@ class API {
 		ksort($asks);
 		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
 	}
-
 	// Pulls /depth data and subscribes to @depth WebSocket endpoint
 	// Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()
 	public function depthCache($symbols, $callback) {
@@ -637,7 +885,6 @@ class API {
 		}
 		$loop->run();
 	}
-
 	// Trades WebSocket Endpoint
 	public function trades($symbols, $callback) {
 		if ( !is_array($symbols) ) $symbols = [$symbols];
@@ -670,7 +917,6 @@ class API {
 		}
 		$loop->run();
 	}
-
 	// Pulls 24h price change statistics via WebSocket
 	public function ticker($symbol, $callback) {
 		$endpoint = $symbol ? strtolower($symbol).'@ticker' : '!ticker@arr';
@@ -694,7 +940,6 @@ class API {
 			echo "ticker: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
 	}
-
 	// Pulls /kline data and subscribes to @klines WebSocket endpoint
 	public function chart($symbols, $interval = "30m", $callback) {
 		if ( !is_array($symbols) ) $symbols = [$symbols];
@@ -738,7 +983,6 @@ class API {
 		}
 		$loop->run();
 	}
-
 	// Keep-alive function for userDataStream
 	public function keepAlive() {
 		$loop = \React\EventLoop\Factory::create();
@@ -748,7 +992,6 @@ class API {
 		});
 		$loop->run();
 	}
-
 	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
 	public function userData(&$balance_callback, &$execution_callback = false) {
 		$response = $this->httpRequest("v1/userDataStream", "POST", []);
@@ -776,7 +1019,6 @@ class API {
 			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
 	}
-
 	public function miniTicker($callback) {
 		\Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms')
 			->then(function($ws) use($callback) {
@@ -804,13 +1046,11 @@ class API {
 			    echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
 			});
 	}
-
 	public function getTransfered() {
 		$base = log($this->transfered, 1024);
 		$suffixes = array('', 'K', 'M', 'G', 'T');
 		return round(pow(1024, $base - floor($base)), 2) .' '. $suffixes[floor($base)];
 	}
-
 	public function getRequestCount() {
 		return $this->requestCount;
 	}
