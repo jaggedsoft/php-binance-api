@@ -35,18 +35,36 @@ class API {
 		}
 
 		$this->setupApiConfigFromFile();
+		$this->setupProxyConfigFromFile();
 	}
-	private function setupApiConfigFromFile()
-	{
-		if(empty($this->api_key) == false || empty($this->api_key) == false) {
-			return;
+	private function setupApiConfigFromFile()	{
+		if( empty( $this->api_key ) == false || empty( $this->api_key ) == false) return;
+		if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false ) return;
+
+		$contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
+		$this->api_key = isset( $contents['api-key'] ) ? $contents['api-key'] : "";
+		$this->api_secret = isset( $contents['api-secret'] ) ? $contents['api-secret'] : "";
+	}
+	private function setupProxyConfigFromFile()	{
+		if( $proxyConf != null ) return;
+		if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false ) return;
+
+		$contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
+
+		if( isset( $contents['proto'] ) == false ) return;
+		if( isset( $contents['address'] ) == false ) return;
+		if( isset( $contents['port'] ) == false ) return;
+
+		$this->proxyConf['proto'] = $contents['proto'];
+		$this->proxyConf['address'] = $contents['address'];
+		$this->proxyConf['port'] = $contents['port'];
+
+		if( isset( $contents['user'] ) ) {
+			$this->proxyConf['user'] = isset( $contents['user'] ) ? $contents['user'] : "";
 		}
-		if(file_exists(getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json") == false) {
-			return;
+		if( isset( $contents['pass'] ) ) {
+			$this->proxyConf['pass'] = isset( $contents['pass'] ) ? $contents['pass'] : "";
 		}
-		$contents = json_decode(file_get_contents(getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json"), true);
-		$this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
-		$this->api_secret = isset($contents['api-secret']) ? $contents['api-secret'] : "";
 	}
 	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
@@ -731,7 +749,7 @@ class API {
 		});
 		$loop->run();
 	}
-	
+
 	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
 	public function userData(&$balance_callback, &$execution_callback = false) {
 		$response = $this->httpRequest("v1/userDataStream", "POST", []);
