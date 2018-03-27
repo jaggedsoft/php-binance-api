@@ -19,6 +19,7 @@ after_success:
  - bash <(curl -s https://codecov.io/bash)
  - cd $TRAVIS_BUILD_DIR
  - chmod +x generateDocumentationAndDeploy.sh
+ - sed "s#TARGET_DIR#$TRAVIS_BUILD_DIR/php-binance-api.php#g" -i generateDocumentationAndDeploy.sh
  - ./generateDocumentationAndDeploy.sh
 
 branches:
