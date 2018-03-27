@@ -18,8 +18,9 @@ after_success:
  - travis_retry php coveralls.phar -v
  - bash <(curl -s https://codecov.io/bash)
  - cd $TRAVIS_BUILD_DIR
- - chmod +x generateDocumentationAndDeploy.sh
- - ./generateDocumentationAndDeploy.sh
+ - mkdir -cp doc
+ - chmod +x docs.sh
+ - ./docs.sh
 
 branches:
   only: master
@@ -30,6 +31,7 @@ env:
     - DOXYFILE: $TRAVIS_BUILD_DIR/doxy.gen
     - GH_REPO_REF: github.com/jaggedsoft/php-binance-api.git
     - DOXY_FILES: $TRAVIS_BUILD_DIR/php-binance-api.php
+    - DOXY_FILES_EXCLUDE: $TRAVIS_BUILD_DIR/examples/*
 
 addons:
   apt:

@@ -11,7 +11,7 @@
  * */
 namespace Binance;
 /**
- * Main Binace API class
+ * Main Binance class
  *
  * Eg. Usage:
  * require 'vendor/autoload.php';
@@ -310,7 +310,7 @@ class API {
 	 *
 	 * @param $symbol the currency symbol
 	 * @param $limit the amount of orders returned
-	 * @param $fromOrderId return the orders from this order onwards
+	 * @param $fromTradeId return the orders from this order onwards
 	 * @return array with error message or array of orderDetails array
 	 */
 	public function history($symbol, $limit = 500, $fromTradeId = 1) {
@@ -656,6 +656,7 @@ class API {
 	 * @param $price for the order
 	 * @param $type is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc.
 	 * @param $flags additional transaction options
+	 * @param $test whether to test or not, test only validates the query
 	 * @return array containing the response
 	 */
 	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = [], $test = false) {
