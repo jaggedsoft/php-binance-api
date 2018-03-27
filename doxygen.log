@@ -11,11 +11,18 @@ Warning: ignoring unsupported tag `DOCBOOK_PROGRAMLISTING =' at line 1918, file 
 Warning: ignoring unsupported tag `PLANTUML_JAR_PATH      =' at line 2347, file /home/travis/build/jaggedsoft/php-binance-api/doxy.gen
 Warning: ignoring unsupported tag `PLANTUML_CFG_FILE      =' at line 2352, file /home/travis/build/jaggedsoft/php-binance-api/doxy.gen
 Warning: ignoring unsupported tag `PLANTUML_INCLUDE_PATH  =' at line 2357, file /home/travis/build/jaggedsoft/php-binance-api/doxy.gen
-error: fatal: at line 818 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
-error: fatal: at line 818 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
-error: fatal: at line 818 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 1058 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
+error: fatal: at line 1058 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 1058 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
 warning: source examples/ is not a readable file or directory... skipping.
 fatal: /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: '/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php' is outside repository
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:15: warning: Found unknown command `\API'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:39: warning: Found unknown command `\API'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:40: warning: Found unknown command `\API'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:41: warning: Found unknown command `\API'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:303: warning: argument '$fromOrderId' of command @param is not found in the argument list of Binance\API::history($symbol,$limit=500,$fromTradeId=1)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:303: warning: The following parameters of Binance\API\history($symbol,$limit=500,$fromTradeId=1) are not documented:
+  parameter '$fromTradeId'
 Notice: Output directory `doc' does not exist. I have created it for you.
 Parsing layout file /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php...
 Searching for include files...
