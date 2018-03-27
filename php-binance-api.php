@@ -15,7 +15,7 @@ namespace Binance;
  *
  * Eg. Usage:
  * require 'vendor/autoload.php';
- * $api = new Binance\API();
+ * $api = new Binance\\API();  // double backslash for doxygen
  */
 class API {
 	protected $base = "https://api.binance.com/api/"; ///< REST endpoint for the currency exchange
@@ -38,9 +38,9 @@ class API {
 	/**
 	 * Constructor for the class, There are 4 ways to contruct the class:
 	 *- You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor
-	 *- new Binance\API( $api_key, $api_secret);
-	 *- new Binance\API( $api_key, $api_secret, $options);
-	 *- new Binance\API( $api_key, $api_secret, $options, $proxyConf);
+	 *- new Binance\\API( $api_key, $api_secret); // double backslash for doxygen
+	 *- new Binance\\API( $api_key, $api_secret, $options); // double backslash for doxygen
+	 *- new Binance\\API( $api_key, $api_secret, $options, $proxyConf); // double backslash for doxygen
 	 *
 	 * @param $api_key string api key
 	 * @param $api_secret string api secret
@@ -765,7 +765,15 @@ class API {
 		}
 		return $balances;
 	}
-	// Convert balance WebSocket data into array
+
+	/**
+	 * balanceHandler Convert balance WebSocket data into array
+	 *
+	 * $data = $this->balanceHandler( $json );
+	 *
+	 * @param $json data to convert
+	 * @return array
+	 */
 	private function balanceHandler($json) {
 		$balances = [];
 		foreach ( $json as $item ) {
@@ -776,7 +784,15 @@ class API {
 		}
 		return $balances;
 	}
-	// Convert WebSocket ticker data into array
+
+	/**
+	 * tickerStreamHandler Convert WebSocket ticker data into array
+	 *
+	 * $data = $this->tickerStreamHandler( $json );
+	 *
+	 * @param $json data to convert
+	 * @return array
+	 */
 	private function tickerStreamHandler($json) {
 		return [
 			"eventType" => $json->e,
@@ -804,7 +820,15 @@ class API {
 			"numTrades" => $json->n
 		];
 	}
-	// Convert WebSocket trade execution into array
+
+	/**
+	 * tickerStreamHandler Convert WebSocket trade execution into array
+	 *
+	 * $data = $this->executionHandler( $json );
+	 *
+	 * @param $json data to convert
+	 * @return array
+	 */
 	private function executionHandler($json) {
 		return [
 			"symbol" => $json->s,

@@ -18,7 +18,7 @@ after_success:
  - travis_retry php coveralls.phar -v
  - bash <(curl -s https://codecov.io/bash)
  - cd $TRAVIS_BUILD_DIR
- - mkdir -cp doc
+ - mkdir -vp doc
  - chmod +x docs.sh
  - ./docs.sh
 
