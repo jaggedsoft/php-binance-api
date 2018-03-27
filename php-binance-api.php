@@ -128,8 +128,12 @@ class API {
 	public function account() {
 		return $this->httpRequest("v3/account", "GET", [], true);
 	}
-	public function prevDay($symbol) {
-		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol]);
+	public function prevDay($symbol = '') {
+		$additionalData = [];
+		if(!empty($symbol)){
+			$additionalData = ['symbol' => $symbol];
+		}
+		return $this->httpRequest("v1/ticker/24hr", "GET", $additionalData);
 	}
 	public function aggTrades($symbol) {
 		return $this->tradesData($this->httpRequest("v1/aggTrades", "GET", ["symbol"=>$symbol]));
