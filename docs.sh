@@ -97,6 +97,10 @@ You can donwload a copy of the documentation using the following url:
 [download](https://github.com/jaggedsoft/php-binance-api/archive/gh-pages.zip)
 EOF
 
+    cd latex
+    make
+    cd..
+    
     echo 'Uploading documentation to the gh-pages branch...'
     # Add everything in this directory (the Doxygen code documentation) to the
     # gh-pages branch.
