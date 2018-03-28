@@ -81,6 +81,20 @@ doxygen $DOXYFILE 2>&1 | tee doxygen.log
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "doc/html" ] && [ -f "doc/html/index.html" ]; then
 
+    mv "doc/html/*" .
+
+cat <<EOF > README.md
+# php-binance-api
+PHP Binance API is an asynchronous PHP library for the Binance API designed to be easy to use.
+https://github.com/binance-exchange/php-binance-api
+
+## Documentation
+You are looking at the doxygen documentation branch, this is auto generated
+
+You can donwload a copy of the documentation using the following url:
+[download](https://github.com/jaggedsoft/php-binance-api/archive/gh-pages.zip)
+EOF
+
     echo 'Uploading documentation to the gh-pages branch...'
     # Add everything in this directory (the Doxygen code documentation) to the
     # gh-pages branch.

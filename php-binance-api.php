@@ -15,7 +15,7 @@ namespace Binance;
  *
  * Eg. Usage:
  * require 'vendor/autoload.php';
- * $api = new Binance\\API();  // double backslash for doxygen
+ * $api = new Binance\\API();
  */
 class API {
 	protected $base = "https://api.binance.com/api/"; ///< REST endpoint for the currency exchange
@@ -38,9 +38,9 @@ class API {
 	/**
 	 * Constructor for the class, There are 4 ways to contruct the class:
 	 *- You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor
-	 *- new Binance\\API( $api_key, $api_secret); // double backslash for doxygen
-	 *- new Binance\\API( $api_key, $api_secret, $options); // double backslash for doxygen
-	 *- new Binance\\API( $api_key, $api_secret, $options, $proxyConf); // double backslash for doxygen
+	 *- new Binance\\API( $api_key, $api_secret);
+	 *- new Binance\\API( $api_key, $api_secret, $options);
+	 *- new Binance\\API( $api_key, $api_secret, $options, $proxyConf);
 	 *
 	 * @param $api_key string api key
 	 * @param $api_secret string api secret
@@ -845,7 +845,17 @@ class API {
 			"eventTime" => $json->E
 		];
 	}
-	// Convert kline data into object
+
+	/**
+	 * chartData Convert kline data into object
+	 *
+	 * $object = $this->chartData($symbol, $interval, $ticks);
+	 *
+	 * @param $symbol of your currency
+	 * @param $interval the time interval
+	 * @param $ticks the canbles array
+	 * @return array object of the chartdata
+	 */
 	private function chartData($symbol, $interval, $ticks) {
 		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
 		if ( !isset($this->info[$symbol][$interval]) ) $this->info[$symbol][$interval] = [];
@@ -865,7 +875,15 @@ class API {
 		$this->info[$symbol][$interval]['firstOpen'] = $openTime;
 		return $output;
 	}
-	// Convert aggTrades data into easier format
+
+	/**
+	 * tradesData Convert aggTrades data into easier format
+	 *
+	 * $tradesData = $this->tradesData($trades);
+	 *
+	 * @param $trades array of trade information
+	 * @return array easier format for trade information
+	 */
 	private function tradesData($trades) {
 		$output = [];
 		foreach ( $trades as $trade ) {
@@ -877,7 +895,15 @@ class API {
 		}
 		return $output;
 	}
-	// Consolidates Book Prices into an easy to use object
+
+	/**
+	 * bookPriceData Consolidates Book Prices into an easy to use object
+	 *
+	 * $bookPriceData = $this->bookPriceData($array);
+	 *
+	 * @param $array book prices
+	 * @return array easier format for book prices information
+	 */
 	private function bookPriceData($array) {
 		$bookprices = [];
 		foreach ( $array as $obj ) {
@@ -890,7 +916,15 @@ class API {
 		}
 		return $bookprices;
 	}
-	// Converts Price Data into an easy key/value array
+
+	/**
+	 * priceData Converts Price Data into an easy key/value array
+	 *
+	 * $array = $this->priceData($array);
+	 *
+	 * @param $array of prices
+	 * @return array of key/value pairs
+	 */
 	private function priceData($array) {
 		$prices = [];
 		foreach ( $array as $obj ) {
@@ -898,7 +932,15 @@ class API {
 		}
 		return $prices;
 	}
-	// Converts depth cache into a cumulative array
+
+	/**
+	 * cumulative Converts depth cache into a cumulative array
+	 *
+	 * $cumulative = $api->cumulative($depth);
+	 *
+	 * @param $depth cache array
+	 * @return array cumulative depth cache
+	 */
 	public function cumulative($depth) {
 		$bids = []; $asks = [];
 		$cumulative = 0;
@@ -913,7 +955,16 @@ class API {
 		}
 		return ["bids"=>$bids, "asks"=>array_reverse($asks)];
 	}
-	// Converts Chart Data into array for highstock & kline charts
+
+	/**
+	 * highstock Converts Chart Data into array for highstock & kline charts
+	 *
+	 * $highstock = $api->highstock($chart, $include_volume);
+	 *
+	 * @param $chart array
+	 * @param $include_volume bool for inclusion of volume
+	 * @return array highchart data
+	 */
 	public function highstock($chart, $include_volume = false) {
 		$array = [];
 		foreach ( $chart as $timestamp => $obj ) {
@@ -929,21 +980,45 @@ class API {
 		}
 		return $array;
 	}
-	// Gets first key of an array
+
+	/**
+	 * first Gets first key of an array
+	 *
+	 * $first = $api->first($array);
+	 *
+	 * @param $array array
+	 * @return string key or null
+	 */
 	public function first($array) {
 		if(count($array)>0)	{
 			return array_keys($array)[0];
 		}
 		return null;
 	}
-	// Gets last key of an array
+
+	/**
+	 * last Gets last key of an array
+	 *
+	 * $last = $api->last($array);
+	 *
+	 * @param $array array
+	 * @return string key or null
+	 */
 	public function last($array) {
 		if(count($array)>0)	{
 			return array_keys(array_slice($array, -1))[0];
 		}
 		return null;
 	}
-	// Formats nicely for console output
+
+	/**
+	 * displayDepth Formats nicely for console output
+	 *
+	 * $outputString = $api->displayDepth($array);
+	 *
+	 * @param $array array
+	 * @return string of the depth information
+	 */
 	public function displayDepth($array) {
 		$output = '';
 		foreach ( ['asks', 'bids'] as $type ) {
@@ -959,7 +1034,17 @@ class API {
 		}
 		return $output;
 	}
-	// Formats depth data for nice display
+
+	/**
+	 * depthData Formats depth data for nice display
+	 *
+	 * $array = $this->depthData($symbol, $json);
+	 *
+	 * @param $symbol to display
+	 * @param $json array of the depth infomration
+	 * @return array of the depth information
+	 */
+	//
 	private function depthData($symbol, $json) {
 		$bids = $asks = [];
 		foreach ( $json['bids'] as $obj ) {
@@ -970,6 +1055,7 @@ class API {
 		}
 		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
 	}
+	
 	////////////////////////////////////
 	// WebSockets
 	////////////////////////////////////
