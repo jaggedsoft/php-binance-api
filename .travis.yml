@@ -10,16 +10,36 @@ before_script:
   - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
   - chmod +x coveralls.phar
   - php coveralls.phar --version
-    
+
 script:
   - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test
 
 after_success:
  - travis_retry php coveralls.phar -v
  - bash <(curl -s https://codecov.io/bash)
+ - cd $TRAVIS_BUILD_DIR
+ - chmod +x docs.sh
+ - ./docs.sh
 
 branches:
   only: master
+
+env:
+  global:
+    - GH_REPO_NAME: php-binance-api
+    - DOXYFILE: $TRAVIS_BUILD_DIR/doxy.gen
+    - GH_REPO_REF: github.com/jaggedsoft/php-binance-api.git
+    - DOXY_FILES: $TRAVIS_BUILD_DIR/php-binance-api.php
+    - DOXY_FILES_EXCLUDE: $TRAVIS_BUILD_DIR/examples/*
+
+addons:
+  apt:
+    packages:
+      - doxygen
+      - doxygen-doc
+      - doxygen-latex
+      - doxygen-gui
+      - graphviz
 
 cache:
   directories:

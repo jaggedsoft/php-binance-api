@@ -1,4 +1,4 @@
-[![GitHub last commit](https://img.shields.io/github/last-commit/jaggedsoft/php-binance-api.svg)](#) [![HitCount](http://hits.dwyl.io/jaggedsoft/php-binance-api.svg)](http://hits.dwyl.io/jaggedsoft/php-binance-api) [![Packagist Downloads](https://img.shields.io/packagist/dt/jaggedsoft/php-binance-api.svg)](https://packagist.org/packages/jaggedsoft/php-binance-api) [![Build Status](https://travis-ci.org/jaggedsoft/php-binance-api.svg?branch=master)](https://travis-ci.org/jaggedsoft/php-binance-api) [![Coverage Status](https://coveralls.io/repos/github/jaggedsoft/php-binance-api/badge.svg?branch=master)](https://coveralls.io/github/jaggedsoft/php-binance-api) [![CodeCov](https://codecov.io/gh/jaggedsoft/php-binance-api/branch/master/graph/badge.svg)](https://codecov.io/github/jaggedsoft/php-binance-api/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/jaggedsoft/php-binance-api.svg)](#) [![HitCount](http://hits.dwyl.io/jaggedsoft/php-binance-api.svg)](http://hits.dwyl.io/jaggedsoft/php-binance-api) [![Packagist Downloads](https://img.shields.io/packagist/dt/jaggedsoft/php-binance-api.svg)](https://packagist.org/packages/jaggedsoft/php-binance-api) [![Build Status](https://travis-ci.org/jaggedsoft/php-binance-api.svg?branch=master)](https://travis-ci.org/jaggedsoft/php-binance-api) [![Coverage Status](https://coveralls.io/repos/github/jaggedsoft/php-binance-api/badge.svg?branch=master)](https://coveralls.io/github/jaggedsoft/php-binance-api) [![CodeCov](https://codecov.io/gh/jaggedsoft/php-binance-api/branch/master/graph/badge.svg)](https://codecov.io/github/jaggedsoft/php-binance-api/) [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/jaggedsoft/php-binance-api/grade.svg)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/jaggedsoft/php-binance-api)
 
 # PHP Binance API
 This project is designed to help you make your own projects that interact with the [Binance API](https://github.com/binance-exchange/binance-official-api-docs). You can stream candlestick chart data, market depth, or use other advanced features such as setting stop losses and iceberg orders. This project seeks to have complete API coverage including WebSockets.
@@ -27,8 +27,6 @@ php composer.phar require "jaggedsoft/php-binance-api @dev"
 
 #### Windows:
 [Download installer for Windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
-
-
 
 </details>
 
@@ -1251,6 +1249,20 @@ cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
 {
     "api-key": "<api key>",
     "api-secret": "<secret>"
+}
+EOF
+```
+
+Optionally add proxy configuration
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<api key>",
+    "api-secret": "<secret>",
+    "proto": "https",
+    "address": "proxy.domain.com",
+    "port": "1080"
 }
 EOF
 ```
