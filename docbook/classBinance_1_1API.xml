@@ -1,0 +1,2326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="classBinance_1_1API">
+<title>Binance::API class Reference</title>
+        <simplesect>
+            <title>Protected Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$base<para><emphasis>REST endpoint for the currency exchange.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$wapi<para><emphasis>REST endpoint for the withdrawals.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$api_key<para><emphasis>API key that you created in the binance website member area.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$api_secret<para><emphasis>API secret that was given to you when you created the api key.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$depthCache<para><emphasis>Websockets depth cache.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$depthQueue<para><emphasis>Websockets depth queue.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$chartQueue<para><emphasis>Websockets chart queue.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$charts<para><emphasis>Websockets chart data.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$info<para><emphasis>Additional connection options.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$proxyConf<para><emphasis>Used for story the proxy configuration.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$transfered<para><emphasis>This stores the amount of bytes transfered.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$requestCount<para><emphasis>This stores the amount of API requests.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+        <simplesect>
+            <title>Public Attributes</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$httpDebug<para><emphasis>If you enable this, curl will output debugging information.</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$balances<para><emphasis>binace balances from the last run</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$btc_value<para><emphasis>value of available assets</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$btc_total<para><emphasis>value of available + onOrder assets</emphasis></para></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+        <simplesect>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1adbd7fdb4457492d7b6bad7b120492770">__construct</link> (
+ $api_key,  $api_secret,  $options, false] ,  $proxyConf)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a8debc23a73d11fc6ed2b19365de17fdf">buy</link> (
+ $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ad45ea86647eb309bbff25c2760ff44c6">buyTest</link> (
+ $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aebb5a164303af16e66c2b9281f45a315">sell</link> (
+ $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a34b5e813092766a1dd546eedf77cbde5">sellTest</link> (
+ $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a0fa240adf5da87c6b39ce8ba9c9925be">marketBuy</link> (
+ $symbol,  $quantity,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ab97b393885bf23255396c26351c3bae0">marketBuyTest</link> (
+ $symbol,  $quantity,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a372c642283c163b018bc5c0cbebfccfd">marketSell</link> (
+ $symbol,  $quantity,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a572ddd85dd67b768a59e9d84bcdc1dfb">marketSellTest</link> (
+ $symbol,  $quantity,  $flags)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ad77198b60157ef3f4c7acd684ed64ed5">cancel</link> (
+ $symbol,  $orderid)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1adc33d167e8c8fa8aba1831de948b1558">orderStatus</link> (
+ $symbol,  $orderid)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aaf2a8365d8f8a4a336c422183cddd0bf">openOrders</link> (
+ $symbol)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a7d7f83f4843ad13d1ee812a9ca08facb">orders</link> (
+ $symbol,  $limit,  $fromOrderId)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a597ed694e6371dfd44acc1787d34b33b">history</link> (
+ $symbol,  $limit,  $fromTradeId)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f">useServerTime</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b">time</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a">exchangeInfo</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1adcfbb41f48480958d59f547c61308acc">withdraw</link> (
+ $asset,  $address,  $amount,  $addressTag)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ac3869aafdca5696b65b6102a13de1491">depositAddress</link> (
+ $asset)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a11dd19cfaa85a0bcbc6b74f68eac68fd">depositHistory</link> (
+ $asset)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a28af87f4769cdc6be3328b4f1b4e1ca4">withdrawHistory</link> (
+ $asset)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698">prices</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97">bookPrices</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5">account</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aeb54dfcbcbbd971bd3393491c99da5b0">prevDay</link> (
+ $symbol)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a028d3ff42cd67abab4c745851eedb901">aggTrades</link> (
+ $symbol)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a3a0c0a9284bf3447f4905cc71b975fd4">depth</link> (
+ $symbol)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1afe968feb47f5b68853dae571cb75800c">balances</link> (
+ $priceData)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1af1d41534a9f67bc74a6133efa2df4df7">getProxyUriString</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aaeffb0ae4ae4b57030b5e586af9796c7">setProxy</link> (
+ $proxyconf)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a672f348fa579428bc57e7f3673214c0c">order</link> (
+ $side,  $symbol,  $quantity,  $price,  $type,  $flags,  $test)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1af0cefd5aec5137cb94a07d9bcfba13c6">candlesticks</link> (
+ $symbol,  $interval,  $limit,  $startTime,  $endTime)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aa6439ce0ad7eff968a70c441c3a5b444">cumulative</link> (
+ $depth)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a9afbbfbd53c700745bba158493cfb541">highstock</link> (
+ $chart,  $include_volume)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ab941e8a3238d029ba5dc168cc1b5c20b">first</link> (
+ $array)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ad3c68f4e2c1e05f08e147083e9abd5d4">last</link> (
+ $array)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a344e647311d050adf2ac30acc293da28">displayDepth</link> (
+ $array)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">sortDepth</link> (
+ $symbol,  $limit)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a45372f030cfca92206638f69f114216a">depthCache</link> (
+ $symbols,  $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661">trades</link> (
+ $symbols,  $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d">ticker</link> (
+ $symbol,  $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2">chart</link> (
+ $symbols,  $interval,  $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312">keepAlive</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd">userData</link> (
+&amp; $balance_callback, &amp; $execution_callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">miniTicker</link> (
+ $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a">getTransfered</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c">getRequestCount</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+        <simplesect>
+            <title></title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85">setupApiConfigFromFile</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165">setupProxyConfigFromFile</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a697f5b28ecf517a7a7ddcdaaf93bc2ad">httpRequest</link> (
+ $url,  $method,  $params,  $signed)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1abaed7f9d835c8ea6200fa43e3f47e3a0">balanceData</link> (
+ $array,  $priceData)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a231cf707f991a15f34e6d1148602c1af">balanceHandler</link> (
+ $json)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a032befc6598403b6b2cd33016dc3a114">tickerStreamHandler</link> (
+ $json)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ae0eff555cf95cfc65e0c44b78cbcf8d9">executionHandler</link> (
+ $json)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1adfc552373fd3c1d1741e4838aa312cc8">chartData</link> (
+ $symbol,  $interval,  $ticks)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a31c51812e766866a7b6ddfcddf11fbe5">tradesData</link> (
+ $trades)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a20a8fbf026233ef08370a6116cb79609">bookPriceData</link> (
+ $array)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a800848d5a50512be2bb5a5180d953f7b">priceData</link> (
+ $array)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aa98398afa4cebbfff5e3459c62c332b6">depthData</link> (
+ $symbol,  $json)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ad364a2fb92952f00dd5ecc55f38694d9">depthHandler</link> (
+ $json)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a1d8f77cb5fbc8d6096d567e072d5137f">chartHandler</link> (
+ $symbol,  $interval,  $json)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </simplesect>
+    <simplesect>
+        <title>Brief Description</title>
+
+<para>Main Binance class. </para>
+    </simplesect>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>
+                <para>Definition at line 20 of file php-binance-api.php</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>php-binance-api.php</para></listitem></itemizedlist></para>
+        </simplesect>
+            <section xml:id="classBinance_1_1API_1adbd7fdb4457492d7b6bad7b120492770">
+                <title>Binance\API::__construct ($api_key= &apos;&apos;, $api_secret= &apos;&apos;, $options=[&quot;useServerTime&quot;=&gt;false], $proxyConf=null)</title> <emphasis>Constructor for the class, There are 4 ways to contruct the class:</emphasis>
+                
+<para><itemizedlist>
+<listitem>
+<para>You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor</para>
+</listitem><listitem>
+<para>new Binance\API( $api_key, $api_secret);</para>
+</listitem><listitem>
+<para>new Binance\API( $api_key, $api_secret, $options);</para>
+</listitem><listitem>
+<para>new Binance\API( $api_key, $api_secret, $options, $proxyConf);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$api_key</entry>
+                                <entry>
+<para>string api key </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$api_secret</entry>
+                                <entry>
+<para>string api secret </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$options</entry>
+                                <entry>
+<para>array addtional coniguration options </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$proxyConf</entry>
+                                <entry>
+<para>array config </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+</listitem></itemizedlist>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a8debc23a73d11fc6ed2b19365de17fdf">
+                <title>Binance\API::buy ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>buy attempts to create a currency order
+each currency supports a number of order types, such as
+-LIMIT
+-MARKET
+-STOP_LOSS
+-STOP_LOSS_LIMIT
+-TAKE_PROFIT
+-TAKE_PROFIT_LIMIT
+-LIMIT_MAKER</emphasis>
+                
+<para>You should check the <formalpara><title>See Also: </title>
+
+<para>exchangeInfo for each currency to determine what types of orders can be placed against specific pairs</para>
+</formalpara>
+$quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quantity, $price);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$price</entry>
+                                <entry>
+<para>price per unit you want to spend </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$type</entry>
+                                <entry>
+<para>string type of order </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array addtional options for order type </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ad45ea86647eb309bbff25c2760ff44c6">
+                <title>Binance\API::buyTest ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>buyTest attempts to create a TEST currency order</emphasis>
+                
+<para><formalpara><title>See Also: </title>
+
+<para>buy()</para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$price</entry>
+                                <entry>
+<para>price per unit you want to spend </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$type</entry>
+                                <entry>
+<para>array config </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array config </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or empty or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aebb5a164303af16e66c2b9281f45a315">
+                <title>Binance\API::sell ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>sell attempts to create a currency order
+each currency supports a number of order types, such as
+-LIMIT
+-MARKET
+-STOP_LOSS
+-STOP_LOSS_LIMIT
+-TAKE_PROFIT
+-TAKE_PROFIT_LIMIT
+-LIMIT_MAKER</emphasis>
+                
+<para>You should check the <formalpara><title>See Also: </title>
+
+<para>exchangeInfo for each currency to determine what types of orders can be placed against specific pairs</para>
+</formalpara>
+$quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quantity, $price);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$price</entry>
+                                <entry>
+<para>price per unit you want to spend </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$type</entry>
+                                <entry>
+<para>string type of order </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array addtional options for order type </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a34b5e813092766a1dd546eedf77cbde5">
+                <title>Binance\API::sellTest ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>sellTest attempts to create a TEST currency order</emphasis>
+                
+<para><formalpara><title>See Also: </title>
+
+<para>sell()</para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$price</entry>
+                                <entry>
+<para>price per unit you want to spend </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$type</entry>
+                                <entry>
+<para>array config </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array config </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or empty or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a0fa240adf5da87c6b39ce8ba9c9925be">
+                <title>Binance\API::marketBuy ($symbol, $quantity, $flags=[])</title> <emphasis>marketBuy attempts to create a currency order at given market price</emphasis>
+                
+<para>$quantity = 1; $order = $api-&gt;marketBuy(&quot;BNBBTC&quot;, $quantity);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array addtional options for order type </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ab97b393885bf23255396c26351c3bae0">
+                <title>Binance\API::marketBuyTest ($symbol, $quantity, $flags=[])</title> <emphasis>marketBuyTest attempts to create a TEST currency order at given market price</emphasis>
+                
+<para><formalpara><title>See Also: </title>
+
+<para>marketBuy()</para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array addtional options for order type </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a372c642283c163b018bc5c0cbebfccfd">
+                <title>Binance\API::marketSell ($symbol, $quantity, $flags=[])</title> <emphasis>marketSell attempts to create a currency order at given market price</emphasis>
+                
+<para>$quantity = 1; $order = $api-&gt;marketSell(&quot;BNBBTC&quot;, $quantity);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array addtional options for order type </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a572ddd85dd67b768a59e9d84bcdc1dfb">
+                <title>Binance\API::marketSellTest ($symbol, $quantity, $flags=[])</title> <emphasis>marketSellTest attempts to create a TEST currency order at given market price</emphasis>
+                
+<para><formalpara><title>See Also: </title>
+
+<para>marketSellTest()</para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>the quantity required </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>array addtional options for order type </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ad77198b60157ef3f4c7acd684ed64ed5">
+                <title>Binance\API::cancel ($symbol, $orderid)</title> <emphasis>cancel attempts to cancel a currency order</emphasis>
+                
+<para>$orderid = &quot;123456789&quot;; $order = $api-&gt;cancel(&quot;BNBBTC&quot;, $orderid);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$orderid</entry>
+                                <entry>
+<para>the orderid to cancel </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1adc33d167e8c8fa8aba1831de948b1558">
+                <title>Binance\API::orderStatus ($symbol, $orderid)</title> <emphasis>orderStatus attempts to get orders status</emphasis>
+                
+<para>$orderid = &quot;123456789&quot;; $order = $api-&gt;orderStatus(&quot;BNBBTC&quot;, $orderid);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$orderid</entry>
+                                <entry>
+<para>the orderid to cancel </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aaf2a8365d8f8a4a336c422183cddd0bf">
+                <title>Binance\API::openOrders ($symbol=null)</title> <emphasis>openOrders attempts to get open orders for all currencies or a specific currency</emphasis>
+                
+<para>$allOpenOrders = $api-&gt;openOrders(); $allBNBOrders = $api-&gt;openOrders( &quot;BNBBTC&quot; );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or the order details </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a7d7f83f4843ad13d1ee812a9ca08facb">
+                <title>Binance\API::orders ($symbol, $limit=500, $fromOrderId=1)</title> <emphasis>orders attempts to get the orders for all or a specific currency</emphasis>
+                
+<para>$allBNBOrders = $api-&gt;orders( &quot;BNBBTC&quot; );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$limit</entry>
+                                <entry>
+<para>the amount of orders returned </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$fromOrderId</entry>
+                                <entry>
+<para>return the orders from this order onwards </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array of orderDetails array </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a597ed694e6371dfd44acc1787d34b33b">
+                <title>Binance\API::history ($symbol, $limit=500, $fromTradeId=1)</title> <emphasis>history Get the complete account trade history for all or a specific currency</emphasis>
+                
+<para>$allHistory = $api-&gt;history(); $BNBHistory = $api-&gt;history(&quot;BNBBTC&quot;); $limitBNBHistory = $api-&gt;history(&quot;BNBBTC&quot;,5); $limitBNBHistoryFromId = $api-&gt;history(&quot;BNBBTC&quot;,5,3);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the currency symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$limit</entry>
+                                <entry>
+<para>the amount of orders returned </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$fromTradeId</entry>
+                                <entry>
+<para>return the orders from this order onwards </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array of orderDetails array </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f">
+                <title>Binance\API::useServerTime ()</title> <emphasis>useServerTime adds the &apos;useServerTime&apos;=&gt;true to the API request to avoid time errors</emphasis>
+                
+<para>$api-&gt;useServerTime();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b">
+                <title>Binance\API::time ()</title> <emphasis>time Gets the server time</emphasis>
+                
+<para>$time = $api-&gt;time();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>array with error message or array with server time key </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a">
+                <title>Binance\API::exchangeInfo ()</title> <emphasis>exchangeInfo Gets the complete exchange info, including limits, currency options etc.</emphasis>
+                
+<para>$info = $api-&gt;exchangeInfo();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>array with error message or exchange info array </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1adcfbb41f48480958d59f547c61308acc">
+                <title>Binance\API::withdraw ($asset, $address, $amount, $addressTag=false)</title> <emphasis>withdraw requests a asset be withdrawn from binance to another wallet</emphasis>
+                
+<para>$asset = &quot;BTC&quot;; $address = &quot;1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa&quot;; $amount = 0.2; $response = $api-&gt;withdraw($asset, $address, $amount);</para>
+
+<para>$address = &quot;44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn&quot;; $addressTag = &quot;0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1&quot;; $amount = 0.1; $response = $api-&gt;withdraw($asset, $address, $amount, $addressTag);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$asset</entry>
+                                <entry>
+<para>the currency such as BTC </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$address</entry>
+                                <entry>
+<para>the addressed to whihc the asset should be deposited </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$amount</entry>
+                                <entry>
+<para>the amount of the asset to transfer </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$addressTag</entry>
+                                <entry>
+<para>adtional transactionid required by some assets </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array transaction </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ac3869aafdca5696b65b6102a13de1491">
+                <title>Binance\API::depositAddress ($asset)</title> <emphasis>depositAddress get the deposit address for an asset</emphasis>
+                
+<para>$depositAddress = $api-&gt;depositAddress(&quot;VEN&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$asset</entry>
+                                <entry>
+<para>the currency such as BTC </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array deposit address information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a11dd19cfaa85a0bcbc6b74f68eac68fd">
+                <title>Binance\API::depositHistory ($asset=false)</title> <emphasis>depositAddress get the deposit history for an asset</emphasis>
+                
+<para>$depositHistory = $api-&gt;depositHistory();</para>
+
+<para>$depositHistory = $api-&gt;depositHistory( &quot;BTC&quot; );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$asset</entry>
+                                <entry>
+<para>empty or the currency such as BTC </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array deposit history information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a28af87f4769cdc6be3328b4f1b4e1ca4">
+                <title>Binance\API::withdrawHistory ($asset=false)</title> <emphasis>withdrawHistory get the withdrawal history for an asset</emphasis>
+                
+<para>$withdrawHistory = $api-&gt;withdrawHistory();</para>
+
+<para>$withdrawHistory = $api-&gt;withdrawHistory( &quot;BTC&quot; );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$asset</entry>
+                                <entry>
+<para>empty or the currency such as BTC </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array deposit history information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698">
+                <title>Binance\API::prices ()</title> <emphasis>prices get all the current prices</emphasis>
+                
+<para>$ticker = $api-&gt;prices();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>array with error message or array of all the currencies prices </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97">
+                <title>Binance\API::bookPrices ()</title> <emphasis>bookPrices get all bid/asks prices</emphasis>
+                
+<para>$ticker = $api-&gt;bookPrices();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>array with error message or array of all the book prices </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5">
+                <title>Binance\API::account ()</title> <emphasis>account get all information about the api account</emphasis>
+                
+<para>$account = $api-&gt;account();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>array with error message or array of all the account information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aeb54dfcbcbbd971bd3393491c99da5b0">
+                <title>Binance\API::prevDay ($symbol)</title> <emphasis>prevDay get 24hr ticker price change statistics for a symbol</emphasis>
+                
+<para>$prevDay = $api-&gt;prevDay(&quot;BNBBTC&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the symbol to get the previous day change for </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array of prevDay change </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a028d3ff42cd67abab4c745851eedb901">
+                <title>Binance\API::aggTrades ($symbol)</title> <emphasis>aggTrades get Market History / Aggregate Trades</emphasis>
+                
+<para>$trades = $api-&gt;aggTrades(&quot;BNBBTC&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the symbol to get the trade information for </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array of market history </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a3a0c0a9284bf3447f4905cc71b975fd4">
+                <title>Binance\API::depth ($symbol)</title> <emphasis>depth get Market depth</emphasis>
+                
+<para>$depth = $api-&gt;depth(&quot;ETHBTC&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>the symbol to get the depth information for </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array of market depth </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1afe968feb47f5b68853dae571cb75800c">
+                <title>Binance\API::balances ($priceData=false)</title> <emphasis>balances get balances for the account assets</emphasis>
+                
+<para>$balances = $api-&gt;balances($ticker);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$priceData</entry>
+                                <entry>
+<para>array of the symbols balances are required for </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array of balances </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1af1d41534a9f67bc74a6133efa2df4df7">
+                <title>Binance\API::getProxyUriString ()</title> <emphasis>getProxyUriString get Uniform Resource Identifier string assocaited with proxy config</emphasis>
+                
+<para>$balances = $api-&gt;getProxyUriString();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>string uri </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aaeffb0ae4ae4b57030b5e586af9796c7">
+                <title>Binance\API::setProxy ($proxyconf)</title> <emphasis>setProxy set proxy config by passing in an array of the proxy configuration</emphasis>
+                
+<para>$proxyConf = [ &apos;proto&apos; =&gt; &apos;tcp&apos;, &apos;address&apos; =&gt; &apos;192.168.1.1&apos;, &apos;port&apos; =&gt; &apos;8080&apos;, &apos;user&apos; =&gt; &apos;dude&apos;, &apos;pass&apos; =&gt; &apos;d00d&apos; ];</para>
+
+<para>$api-&gt;setProxy( $proxyconf );</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a672f348fa579428bc57e7f3673214c0c">
+                <title>Binance\API::order ($side, $symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[], $test=false)</title> <emphasis>order formats the orders before sending them to the curl wrapper function
+You can call this function directly or use the helper functions</emphasis>
+                
+<para><formalpara><title>See Also: </title>
+
+<para>buy </para>
+<simplesect/>
+<para>sell </para>
+<simplesect/>
+<para>marketBuy </para>
+<simplesect/>
+<para>marketSell</para>
+</formalpara>
+$this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$side</entry>
+                                <entry>
+<para>typically &quot;BUY&quot; or &quot;SELL&quot; </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>to buy or sell </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$quantity</entry>
+                                <entry>
+<para>in the order </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$price</entry>
+                                <entry>
+<para>for the order </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$type</entry>
+                                <entry>
+<para>is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc. </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$flags</entry>
+                                <entry>
+<para>additional transaction options </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$test</entry>
+                                <entry>
+<para>whether to test or not, test only validates the query </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array containing the response </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1af0cefd5aec5137cb94a07d9bcfba13c6">
+                <title>Binance\API::candlesticks ($symbol, $interval=&quot;5m&quot;, $limit=null, $startTime=null, $endTime=null)</title> <emphasis>candlesticks get the cancles for the given intervals
+1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M</emphasis>
+                
+<para>$candles = $api-&gt;candlesticks(&quot;BNBBTC&quot;, &quot;5m&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>to query </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$interval</entry>
+                                <entry>
+<para>to request </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$limit</entry>
+                                <entry>
+<para>limit the amount of candles </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$startTime</entry>
+                                <entry>
+<para>request candle information starting from here </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$endTime</entry>
+                                <entry>
+<para>request candle information ending here </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array containing the response </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aa6439ce0ad7eff968a70c441c3a5b444">
+                <title>Binance\API::cumulative ($depth)</title> <emphasis>cumulative Converts depth cache into a cumulative array</emphasis>
+                
+<para>$cumulative = $api-&gt;cumulative($depth);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$depth</entry>
+                                <entry>
+<para>cache array </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array cumulative depth cache </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a9afbbfbd53c700745bba158493cfb541">
+                <title>Binance\API::highstock ($chart, $include_volume=false)</title> <emphasis>highstock Converts Chart Data into array for highstock &amp; kline charts</emphasis>
+                
+<para>$highstock = $api-&gt;highstock($chart, $include_volume);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$chart</entry>
+                                <entry>
+<para>array </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$include_volume</entry>
+                                <entry>
+<para>bool for inclusion of volume </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array highchart data </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ab941e8a3238d029ba5dc168cc1b5c20b">
+                <title>Binance\API::first ($array)</title> <emphasis>first Gets first key of an array</emphasis>
+                
+<para>$first = $api-&gt;first($array);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$array</entry>
+                                <entry>
+<para>array </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>string key or null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ad3c68f4e2c1e05f08e147083e9abd5d4">
+                <title>Binance\API::last ($array)</title> <emphasis>last Gets last key of an array</emphasis>
+                
+<para>$last = $api-&gt;last($array);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$array</entry>
+                                <entry>
+<para>array </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>string key or null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a344e647311d050adf2ac30acc293da28">
+                <title>Binance\API::displayDepth ($array)</title> <emphasis>displayDepth Formats nicely for console output</emphasis>
+                
+<para>$outputString = $api-&gt;displayDepth($array);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$array</entry>
+                                <entry>
+<para>array </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>string of the depth information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">
+                <title>Binance\API::sortDepth ($symbol, $limit=11)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a45372f030cfca92206638f69f114216a">
+                <title>Binance\API::depthCache ($symbols, $callback)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661">
+                <title>Binance\API::trades ($symbols, $callback)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d">
+                <title>Binance\API::ticker ($symbol, $callback)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2">
+                <title>Binance\API::chart ($symbols, $interval=&quot;30m&quot;, $callback)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312">
+                <title>Binance\API::keepAlive ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd">
+                <title>Binance\API::userData (&amp;$balance_callback, &amp;$execution_callback=false)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">
+                <title>Binance\API::miniTicker ($callback)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a">
+                <title>Binance\API::getTransfered ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c">
+                <title>Binance\API::getRequestCount ()</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85">
+                <title>Binance\API::setupApiConfigFromFile ()</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt
+to load the api_key and api_secret from the users home directory in the file
+~/jaggedsoft/php-binance-api.json.</emphasis>
+                
+<para><formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165">
+                <title>Binance\API::setupProxyConfigFromFile ()</title> <emphasis>If no paramaters are supplied in the constructor ofr the proxy confguration,
+this function will attempt to load the proxy  info from the users home directory
+~/jaggedsoft/php-binance-api.json.</emphasis>
+                
+<para><formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a697f5b28ecf517a7a7ddcdaaf93bc2ad">
+                <title>Binance\API::httpRequest ($url, $method=&quot;GET&quot;, $params=[], $signed=false)</title> <emphasis>httpRequest curl wrapper for all http api requests.</emphasis>
+                
+<para>You can&apos;t call this function directly, use the helper functions <formalpara><title>See Also: </title>
+
+<para>buy </para>
+<simplesect/>
+<para>sell </para>
+<simplesect/>
+<para>marketBuy </para>
+<simplesect/>
+<para>marketSell</para>
+</formalpara>
+$this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$url</entry>
+                                <entry>
+<para>the endpoint to query, typically includes query string </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$method</entry>
+                                <entry>
+<para>this should be typically GET, POST or DELETE </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$params</entry>
+                                <entry>
+<para>array addtional options for the request </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$signed</entry>
+                                <entry>
+<para>bool true or false sign the request with api secret </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array containing the response </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1abaed7f9d835c8ea6200fa43e3f47e3a0">
+                <title>Binance\API::balanceData ($array, $priceData=false)</title> <emphasis>balanceData Converts all your balances into a nice array
+If priceData is passed from $api-&gt;prices() it will add btcValue &amp; btcTotal to each symbol
+This function sets $btc_value which is your estimated BTC value of all assets combined and $btc_total which includes amount on order</emphasis>
+                
+<para>$candles = $api-&gt;candlesticks(&quot;BNBBTC&quot;, &quot;5m&quot;);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$array</entry>
+                                <entry>
+<para>of your balances </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$priceData</entry>
+                                <entry>
+<para>array of prices </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array containing the response </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a231cf707f991a15f34e6d1148602c1af">
+                <title>Binance\API::balanceHandler ($json)</title> <emphasis>balanceHandler Convert balance WebSocket data into array</emphasis>
+                
+<para>$data = $this-&gt;balanceHandler( $json );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$json</entry>
+                                <entry>
+<para>data to convert </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a032befc6598403b6b2cd33016dc3a114">
+                <title>Binance\API::tickerStreamHandler ($json)</title> <emphasis>tickerStreamHandler Convert WebSocket ticker data into array</emphasis>
+                
+<para>$data = $this-&gt;tickerStreamHandler( $json );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$json</entry>
+                                <entry>
+<para>data to convert </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ae0eff555cf95cfc65e0c44b78cbcf8d9">
+                <title>Binance\API::executionHandler ($json)</title> <emphasis>tickerStreamHandler Convert WebSocket trade execution into array</emphasis>
+                
+<para>$data = $this-&gt;executionHandler( $json );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$json</entry>
+                                <entry>
+<para>data to convert </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1adfc552373fd3c1d1741e4838aa312cc8">
+                <title>Binance\API::chartData ($symbol, $interval, $ticks)</title> <emphasis>chartData Convert kline data into object</emphasis>
+                
+<para>$object = $this-&gt;chartData($symbol, $interval, $ticks);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>of your currency </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$interval</entry>
+                                <entry>
+<para>the time interval </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$ticks</entry>
+                                <entry>
+<para>the canbles array </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array object of the chartdata </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a31c51812e766866a7b6ddfcddf11fbe5">
+                <title>Binance\API::tradesData ($trades)</title> <emphasis>tradesData Convert aggTrades data into easier format</emphasis>
+                
+<para>$tradesData = $this-&gt;tradesData($trades);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$trades</entry>
+                                <entry>
+<para>array of trade information </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array easier format for trade information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a20a8fbf026233ef08370a6116cb79609">
+                <title>Binance\API::bookPriceData ($array)</title> <emphasis>bookPriceData Consolidates Book Prices into an easy to use object</emphasis>
+                
+<para>$bookPriceData = $this-&gt;bookPriceData($array);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$array</entry>
+                                <entry>
+<para>book prices </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array easier format for book prices information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a800848d5a50512be2bb5a5180d953f7b">
+                <title>Binance\API::priceData ($array)</title> <emphasis>priceData Converts Price Data into an easy key/value array</emphasis>
+                
+<para>$array = $this-&gt;priceData($array);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$array</entry>
+                                <entry>
+<para>of prices </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array of key/value pairs </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aa98398afa4cebbfff5e3459c62c332b6">
+                <title>Binance\API::depthData ($symbol, $json)</title> <emphasis>depthData Formats depth data for nice display</emphasis>
+                
+<para>$array = $this-&gt;depthData($symbol, $json);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>to display </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$json</entry>
+                                <entry>
+<para>array of the depth infomration </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array of the depth information </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ad364a2fb92952f00dd5ecc55f38694d9">
+                <title>Binance\API::depthHandler ($json)</title> <emphasis></emphasis>
+                
+            </section>
+            <section xml:id="classBinance_1_1API_1a1d8f77cb5fbc8d6096d567e072d5137f">
+                <title>Binance\API::chartHandler ($symbol, $interval, $json)</title> <emphasis></emphasis>
+                
+            </section>
+</section>

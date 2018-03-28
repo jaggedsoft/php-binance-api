@@ -1,0 +1,53 @@
+[OPTIONS]
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=PHP Binance Api
+
+[WINDOWS]
+main="PHP Binance Api","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+php-binance-api_8php_source.html
+namespaceBinance.html
+classBinance_1_1API.html
+classBinance_1_1API-members.html
+index.html
+annotated.html
+classes.html
+functions.html
+functions_func.html
+functions_vars.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
+ftv2blank.png
+ftv2doc.png
+ftv2folderclosed.png
+ftv2folderopen.png
+ftv2ns.png
+ftv2mo.png
+ftv2cl.png
+ftv2lastnode.png
+ftv2link.png
+ftv2mlastnode.png
+ftv2mnode.png
+ftv2node.png
+ftv2plastnode.png
+ftv2pnode.png
+ftv2vertline.png
+ftv2splitbar.png
