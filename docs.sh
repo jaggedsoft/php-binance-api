@@ -1,6 +1,6 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
-function doxy()
+function doxy
 {
    echo 'Setting up the script...'=
    set -e
