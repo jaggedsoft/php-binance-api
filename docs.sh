@@ -67,6 +67,7 @@ rm -rf *
 # to NO, which it is by default. So creating the file just in case.
 echo "" > .nojekyll
 
+mkdir -vp doc
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
 echo 'Generating Doxygen code documentation...'
@@ -81,7 +82,8 @@ doxygen $DOXYFILE 2>&1 | tee doxygen.log
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "doc/html" ] && [ -f "doc/html/index.html" ]; then
 
-    mv "doc/html/*" .
+    mv doc/html/* .
+    rm -rvf ./doc
 
 cat <<EOF > README.md
 # php-binance-api
