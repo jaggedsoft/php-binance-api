@@ -82,7 +82,7 @@ doxygen $DOXYFILE 2>&1 | tee doxygen.log
 # both exist. This is a good indication that Doxygen did it's work.
 if [ -d "doc/html" ] && [ -f "doc/html/index.html" ]; then
 
-    mv doc/html/* .
+    mv doc/html/ .
     rm -rvf ./doc
 
 cat <<EOF > README.md
