@@ -5,7 +5,8 @@
             <directory>./</directory>
             <exclude>
                 <directory>./examples</directory>
-                <directory>./vendor</directory>
+		<directory>./vendor</directory>
+		<exclude>php-binance-api-test.php</exclude>
             </exclude>
         </whitelist>
     </filter>
