@@ -1044,7 +1044,6 @@ class API {
 	 * @param $json array of the depth infomration
 	 * @return array of the depth information
 	 */
-	//
 	private function depthData($symbol, $json) {
 		$bids = $asks = [];
 		foreach ( $json['bids'] as $obj ) {
@@ -1055,11 +1054,69 @@ class API {
 		}
 		return $this->depthCache[$symbol] = ["bids"=>$bids, "asks"=>$asks];
 	}
-	
-	////////////////////////////////////
-	// WebSockets
-	////////////////////////////////////
-	// For WebSocket Depth Cache
+
+	/**
+	 * getTransfered gets the total transfered in b,Kb,Mb,Gb
+	 *
+	 * $transfered = $api->getTransfered();
+	 *
+	 * @return string showing the total transfered
+	 */
+	public function getTransfered() {
+		$base = log($this->transfered, 1024);
+		$suffixes = array('', 'K', 'M', 'G', 'T');
+		return round(pow(1024, $base - floor($base)), 2) .' '. $suffixes[floor($base)];
+	}
+
+	/**
+	 * getRequestCount gets the total number of API calls
+	 *
+	 * $apiCount = $api->getRequestCount();
+	 *
+	 * @return int get the total number of api calls
+	 */
+	public function getRequestCount() {
+		return $this->requestCount;
+	}
+
+	/**
+	 * getRequestCount gets the total number of API calls
+	 *
+	 * $apiCount = $api->getRequestCount();
+	 *
+	 * @return int get the total number of api calls
+	 */
+	public function getRequestCount() {
+		return $this->requestCount;
+	}
+
+	/**
+	 * addToTransfered add interger bytes to the total transfered
+	 * also incrementes the api counter
+	 *
+	 * $apiCount = $api->addToTransfered( $int );
+	 *
+	 * @return nothing
+	 */
+	public function addToTransfered( $int ) {
+		$this->transfered += $int;
+		$this->requestCount++;
+	}
+
+	/*
+	* WebSockets
+	*/
+
+	/**
+	 * depthHandler For WebSocket Depth Cache
+	 *
+	 * $this->depthHandler($json);
+	 *
+	 * @param $symbol to sort
+	 * @param $interval time
+	 * @param $json time
+	 * @return nothing
+	 */
 	private function depthHandler($json) {
 		$symbol = $json['s'];
 		if ( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
@@ -1072,7 +1129,17 @@ class API {
 			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
 		}
 	}
-	// For WebSocket Chart Cache
+
+	/**
+	 * chartHandler For WebSocket Chart Cache
+	 *
+	 * $this->chartHandler($symbol, $interval, $json);
+	 *
+	 * @param $symbol to sort
+	 * @param $interval time
+	 * @param $json time
+	 * @return nothing
+	 */
 	private function chartHandler($symbol, $interval, $json) {
 		if ( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
 			$this->chartQueue[$symbol][$interval][] = $json;
@@ -1090,7 +1157,16 @@ class API {
 		$volume = $chart->q; //+trades buyVolume assetVolume makerVolume
 		$this->charts[$symbol][$interval][$tick] = ["open"=>$open, "high"=>$high, "low"=>$low, "close"=>$close, "volume"=>$volume];
 	}
-	// Sorts depth data for display & getting highest bid and lowest ask
+
+	/**
+	 * sortDepth Sorts depth data for display & getting highest bid and lowest ask
+	 *
+	 * $sorted = $api->sortDepth($symbol, $limit);
+	 *
+	 * @param $symbol to sort
+	 * @param $limit depth
+	 * @return nothing
+	 */
 	public function sortDepth($symbol, $limit = 11) {
 		$bids = $this->depthCache[$symbol]['bids'];
 		$asks = $this->depthCache[$symbol]['asks'];
@@ -1098,8 +1174,27 @@ class API {
 		ksort($asks);
 		return ["asks"=> array_slice($asks, 0, $limit, true), "bids"=> array_slice($bids, 0, $limit, true)];
 	}
-	// Pulls /depth data and subscribes to @depth WebSocket endpoint
-	// Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()
+
+	/**
+	 * depthCache Pulls /depth data and subscribes to @depth WebSocket endpoint
+	 * Maintains a local Depth Cache in sync via lastUpdateId. See depth() and depthHandler()
+	 *
+	 * $api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
+	 * 	echo "{$symbol} depth cache update".PHP_EOL;
+	 * 	//print_r($depth); // Print all depth data
+	 * 	$limit = 11; // Show only the closest asks/bids
+	 * 	$sorted = $api->sortDepth($symbol, $limit);
+	 * 	$bid = $api->first($sorted['bids']);
+	 * 	$ask = $api->first($sorted['asks']);
+	 * 	echo $api->displayDepth($sorted);
+	 * 	echo "ask: {$ask}".PHP_EOL;
+	 * 	echo "bid: {$bid}".PHP_EOL;
+	 * });
+	 *
+	 * @param $symbol optional array of symbols
+	 * @param $callback closure
+	 * @return nothing
+	 */
 	public function depthCache($symbols, $callback) {
 		if ( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
@@ -1138,7 +1233,19 @@ class API {
 		}
 		$loop->run();
 	}
-	// Trades WebSocket Endpoint
+
+	/**
+	 * trades Trades WebSocket Endpoint
+	 *
+	 * $api->trades(["BNBBTC"], function($api, $symbol, $trades) {
+	 *     echo "{$symbol} trades update".PHP_EOL;
+	 *     print_r($trades);
+	 * });
+	 *
+	 * @param $symbol optional symbol
+	 * @param $callback closure
+	 * @return nothing
+	 */
 	public function trades($symbols, $callback) {
 		if ( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
@@ -1170,7 +1277,18 @@ class API {
 		}
 		$loop->run();
 	}
-	// Pulls 24h price change statistics via WebSocket
+
+	/**
+	 * ticker pulls 24h price change statistics via WebSocket
+	 *
+	 * $api->ticker(false, function($api, $symbol, $ticker) {
+	 * 	print_r($ticker);
+	 * });
+	 *
+	 * @param $symbol optional symbol or false
+	 * @param $callback closure
+	 * @return nothing
+	 */
 	public function ticker($symbol, $callback) {
 		$endpoint = $symbol ? strtolower($symbol).'@ticker' : '!ticker@arr';
 		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$endpoint)->then(function($ws) use($callback, $symbol) {
@@ -1193,7 +1311,20 @@ class API {
 			echo "ticker: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
 	}
-	// Pulls /kline data and subscribes to @klines WebSocket endpoint
+
+	/**
+	 * chart Pulls /kline data and subscribes to @klines WebSocket endpoint
+	 *
+	 * $api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+	 *     echo "{$symbol} chart update\n";
+	 *     print_r($chart);
+	 * });
+	 *
+	 * @param $symbols required symbols
+	 * @param $interval time inteval
+	 * @param $callback closure
+	 * @return nothing
+	 */
 	public function chart($symbols, $interval = "30m", $callback) {
 		if ( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
@@ -1236,7 +1367,14 @@ class API {
 		}
 		$loop->run();
 	}
-	// Keep-alive function for userDataStream
+
+	/**
+	 * keepAlive Keep-alive function for userDataStream
+	 *
+	 * $api->keepAlive();
+	 *
+	 * @return nothing
+	 */
 	public function keepAlive() {
 		$loop = \React\EventLoop\Factory::create();
 		$loop->addPeriodicTimer(30, function() {
@@ -1245,7 +1383,44 @@ class API {
 		});
 		$loop->run();
 	}
-	// Issues userDataStream token and keepalive, subscribes to userData WebSocket
+
+	/**
+	 * userData Issues userDataStream token and keepalive, subscribes to userData WebSocket
+	 *
+	 * $balance_update = function($api, $balances) {
+	 *  	print_r($balances);
+	 *  	echo "Balance update".PHP_EOL;
+	 * };
+
+	 * $order_update = function($api, $report) {
+	 *  echo "Order update".PHP_EOL;
+	 *  print_r($report);
+	 *  $price = $report['price'];
+	 *  $quantity = $report['quantity'];
+	 *  $symbol = $report['symbol'];
+	 *  $side = $report['side'];
+	 *  $orderType = $report['orderType'];
+	 *  $orderId = $report['orderId'];
+	 *  $orderStatus = $report['orderStatus'];
+	 *  $executionType = $report['orderStatus'];
+	 *  if ( $executionType == "NEW" ) {
+	 *    if ( $executionType == "REJECTED" ) {
+	 *    	echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
+	 * 	}
+	 * 	echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
+	 * 	echo "..price: {$price}, quantity: {$quantity}".PHP_EOL;
+	 *    return;
+	 *  }
+	 *
+	 *  //NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
+	 *  echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
+	 * };
+	 * $api->userData($balance_update, $order_update);
+	 *
+	 * @param $balance_callback function
+	 * @param $execution_callback function
+	 * @return nothing
+	 */
 	public function userData(&$balance_callback, &$execution_callback = false) {
 		$response = $this->httpRequest("v1/userDataStream", "POST", []);
 		$listenKey = $this->options['listenKey'] = $response['listenKey'];
@@ -1272,6 +1447,16 @@ class API {
 			echo "userData: Could not connect: {$e->getMessage()}".PHP_EOL;
 		});
 	}
+
+	/**
+	 * miniTicker Get miniTicker for all symbols
+	 *
+	 * $api->miniTicker(function($api, $ticker) {
+	 *   print_r($ticker);
+    * });
+	 * @param $callback function closer that takes 2 arguments, $pai and $ticker data
+	 * @return nothing
+	 */
 	public function miniTicker($callback) {
 		\Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms')
 			->then(function($ws) use($callback) {
@@ -1298,13 +1483,5 @@ class API {
 			}, function($e) {
 			    echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
 			});
-	}
-	public function getTransfered() {
-		$base = log($this->transfered, 1024);
-		$suffixes = array('', 'K', 'M', 'G', 'T');
-		return round(pow(1024, $base - floor($base)), 2) .' '. $suffixes[floor($base)];
-	}
-	public function getRequestCount() {
-		return $this->requestCount;
 	}
 }
