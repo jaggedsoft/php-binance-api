@@ -48,11 +48,11 @@ class API {
 	 * @param $proxyConf array config
 	 * @return nothing
 	 */
-	public function __construct($api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null) {
+	public function __construct( $api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null ) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 		$this->proxyConf = $proxyConf;
-		if(isset($options['useServerTime']) && $options['useServerTime']) {
+		if( isset( $options['useServerTime'] ) && $options['useServerTime'] ) {
 			$this->useServerTime();
 		}
 		$this->setupApiConfigFromFile();
@@ -372,7 +372,12 @@ class API {
 	 */
 	public function withdraw($asset, $address, $amount, $addressTag = false) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
-		if ( $addressTag ) $options['addressTag'] = $addressTag;
+		if( is_string( $addressTag ) ) {
+			$options['addressTag'] = $addressTag;
+		}
+		else {
+			echo "addressTag: expected string, " . gettype( $addressTag ) . " given" . PHP_EOL;
+		}
 		return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
 	}
 
@@ -401,8 +406,11 @@ class API {
 	 */
 	public function depositHistory($asset = false) {
 		$params = ["wapi"=>true];
-		if ( is_string( $asset ) == true ) {
+		if( is_string( $asset ) == true ) {
 			$params['asset'] = $asset;
+		}
+		else if ( is_bool( $asset ) == false ) {
+			echo "asset: expected bool false, " . gettype( $asset ) . " given" . PHP_EOL;
 		}
 		return $this->httpRequest("v3/depositHistory.html", "GET", $params, true);
 	}
@@ -419,8 +427,11 @@ class API {
 	 */
 	public function withdrawHistory($asset = false) {
 		$params = ["wapi"=>true];
-		if ( is_string( $asset ) == true ) {
+		if( is_string( $asset ) == true ) {
 			$params['asset'] = $asset;
+		}
+		else if ( is_bool( $asset ) == false ) {
+			echo "asset: expected bool false, " . gettype( $asset ) . " given" . PHP_EOL;
 		}
 		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
 	}
@@ -491,8 +502,13 @@ class API {
 	 * @return array with error message or array of market depth
 	 */
 	public function depth($symbol) {
+		if( isset( $symbol ) == false || is_string( $symbol ) == false ) {
+			echo "asset: expected bool false, " . gettype( $asset ) . " given" . PHP_EOL;
+		}
 		$json = $this->httpRequest("v1/depth", "GET", ["symbol"=>$symbol]);
-		if(!isset($this->info[$symbol])) $this->info[$symbol] = [];
+		if( isset( $this->info[$symbol] ) == false ) {
+			$this->info[$symbol] = [];
+		}
 		$this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
 		return $this->depthData($symbol, $json);
 	}
@@ -521,15 +537,25 @@ class API {
 		$uri = isset( $this->proxyConf['proto'] ) ? $this->proxyConf['proto'] : "http";
 		// https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html
 		$supportedProxyProtocols = array('http', 'https', 'socks4', 'socks4a', 'socks5', 'socks5h');
-		if(in_array($uri, $supportedProxyProtocols) == false) {
-			die("Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ",$supportedProxyProtocols)  . "\n");
+
+		if( in_array($uri, $supportedProxyProtocols) == false ) {
+			echo "Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ",$supportedProxyProtocols) . PHP_EOL;
 		}
+
 		$uri .= "://";
 		$uri .= isset( $this->proxyConf['address'] ) ? $this->proxyConf['address'] : "localhost";
-		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy address not set defaulting to localhost\n";
+
+		if( isset( $this->proxyConf['address'] ) == false ) {
+			 echo "warning: proxy address not set defaulting to localhost"  . PHP_EOL;
+		}
+
 		$uri .= ":";
 		$uri .= isset( $this->proxyConf['port'] ) ? $this->proxyConf['port'] : "1080";
-		if( isset( $this->proxyConf['address'] ) == false ) echo "warning: proxy port not set defaulting to 1080\n";
+
+		if( isset( $this->proxyConf['address'] ) == false ) {
+			echo "warning: proxy port not set defaulting to 1080" . PHP_EOL;
+		}
+
 		return $uri;
 	}
 
@@ -569,21 +595,39 @@ class API {
 	 * @return array containing the response
 	 */
 	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
-		// is cURL installed yet?
-		if (!function_exists('curl_init')) {
-			die('Sorry cURL is not installed!');
+
+		if( function_exists('curl_init') == false ) {
+			die( "Sorry cURL is not installed!" );
 		}
+
+		if( is_string( $url ) == false ) {
+			echo "warning: url expected string got " . gettype( $url ) . PHP_EOL;
+		}
+
+		if( is_string( $method ) == false ) {
+			echo "warning: method expected string got " . gettype( $method ) . PHP_EOL;
+		}
+
+		if( is_array( $params ) == false ) {
+			echo "warning: params expected array got " . gettype( $params ) . PHP_EOL;
+		}
+
+		if( is_bool( $signed ) == false ) {
+			echo "warning: signed expected bool got " . gettype( $signed ) . PHP_EOL;
+		}
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_VERBOSE, $this->httpDebug);
 		$query = http_build_query($params, '', '&');
+
 		// signed with params
-		if($signed == true) {
+		if( $signed == true ) {
 			if(empty($this->api_key) ) die("signedRequest error: API Key not set!");
 			if(empty($this->api_secret) ) die("signedRequest error: API Secret not set!");
 			$base = $this->base;
 			$ts = (microtime(true)*1000) + $this->info['timeOffset'];
 			$params['timestamp'] = number_format($ts,0,'.','');
-			if(isset($params['wapi'])) {
+			if( isset($params['wapi']) ) {
 				unset($params['wapi']);
 				$base = $this->wapi;
 			}
@@ -594,7 +638,7 @@ class API {
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-MBX-APIKEY: ' . $this->api_key));
 		}
 		// params so buildquery string and append to url
-		else if(count($params)>0){
+		else if( count($params) > 0 ) {
 			curl_setopt($ch, CURLOPT_URL, $this->base.$url.'?'.$query);
 		}
 		// no params so just the base url
@@ -604,7 +648,7 @@ class API {
 		}
 		curl_setopt($ch, CURLOPT_USERAGENT, "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)");
 		// Post and postfields
-		if($method == "POST") {
+		if( $method == "POST" ) {
 			curl_setopt($ch, CURLOPT_POST, true);
 			//curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		}
@@ -669,17 +713,17 @@ class API {
 		];
 		// someone has preformated there 8 decimal point double already
 		// dont do anything, leave them do whatever they want
-		if ( gettype( $price ) != "string" ) {
+		if( gettype( $price ) != "string" ) {
 			// for every other type, lets format it appropriately
 			$price = number_format($price, 8, '.', '');
 		}
-		if ( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
+		if( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
 		}
-		if ( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
-		if ( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
-		if ( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
+		if( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
+		if( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
+		if( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
 		$qstring = ( $test == false ) ? "v3/order" : "v3/order/test";
 		return $this->httpRequest($qstring, "POST", $opt, true);
 	}
@@ -698,14 +742,14 @@ class API {
 	 * @return array containing the response
 	 */
 	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
-		if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
+		if( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
 		$opt = [
 		    "symbol" => $symbol,
 		    "interval" => $interval
 		];
-		if ($limit) $opt["limit"] = $limit;
-		if ($startTime) $opt["startTime"] = $startTime;
-		if ($endTime) $opt["endTime"] = $endTime;
+		if($limit) $opt["limit"] = $limit;
+		if($startTime) $opt["startTime"] = $startTime;
+		if($endTime) $opt["endTime"] = $endTime;
 		$response = $this->httpRequest("v1/klines", "GET", $opt);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
@@ -724,18 +768,18 @@ class API {
 	 * @return array containing the response
 	 */
 	private function balanceData($array, $priceData = false) {
-		if ( $priceData ) $btc_value = $btc_total = 0.00;
+		if( $priceData ) $btc_value = $btc_total = 0.00;
 		$balances = [];
-		if ( empty($array) || empty($array['balances']) ) {
+		if( empty($array) || empty($array['balances']) ) {
 			echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option.".PHP_EOL;
 			return [];
 		}
 		foreach ( $array['balances'] as $obj ) {
 			$asset = $obj['asset'];
 			$balances[$asset] = ["available"=>$obj['free'], "onOrder"=>$obj['locked'], "btcValue"=>0.00000000, "btcTotal"=>0.00000000];
-			if ( $priceData ) {
-				if ( $obj['free'] + $obj['locked'] < 0.00000001 ) continue;
-				if ( $asset == 'BTC' ) {
+			if( $priceData ) {
+				if( $obj['free'] + $obj['locked'] < 0.00000001 ) continue;
+				if( $asset == 'BTC' ) {
 					$balances[$asset]['btcValue'] = $obj['free'];
 					$balances[$asset]['btcTotal'] = $obj['free'] + $obj['locked'];
 					$btc_value+= $obj['free'];
@@ -743,10 +787,10 @@ class API {
 					continue;
 				}
 				$symbol = $asset.'BTC';
-				if ( $symbol == 'USDTBTC' ) {
+				if( $symbol == 'USDTBTC' ) {
 					$btcValue = number_format($obj['free'] / $priceData['BTCUSDT'],8,'.','');
 					$btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'],8,'.','');
-				} elseif ( !isset($priceData[$symbol]) ) {
+				} elseif( !isset($priceData[$symbol]) ) {
 					$btcValue = $btcTotal = 0;
 				} else {
 					$btcValue = number_format($obj['free'] * $priceData[$symbol],8,'.','');
@@ -758,7 +802,7 @@ class API {
 				$btc_total+= $btcTotal;
 			}
 		}
-		if ( $priceData ) {
+		if( $priceData ) {
 			uasort($balances, function($a, $b) { return $a['btcValue'] < $b['btcValue']; });
 			$this->btc_value = $btc_value;
 			$this->btc_total = $btc_total;
@@ -857,8 +901,8 @@ class API {
 	 * @return array object of the chartdata
 	 */
 	private function chartData($symbol, $interval, $ticks) {
-		if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
-		if ( !isset($this->info[$symbol][$interval]) ) $this->info[$symbol][$interval] = [];
+		if( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
+		if( !isset($this->info[$symbol][$interval]) ) $this->info[$symbol][$interval] = [];
 		$output = [];
 		foreach ( $ticks as $tick ) {
 			list($openTime, $open, $high, $low, $close, $assetVolume, $closeTime, $baseVolume, $trades, $assetBuyVolume, $takerBuyVolume, $ignored) = $tick;
@@ -975,7 +1019,7 @@ class API {
 				floatval($obj['low']),
 				floatval($obj['close'])
 			];
-			if ( $include_volume ) $line[] = floatval($obj['volume']);
+			if( $include_volume ) $line[] = floatval($obj['volume']);
 			$array[] = $line;
 		}
 		return $array;
@@ -1023,7 +1067,7 @@ class API {
 		$output = '';
 		foreach ( ['asks', 'bids'] as $type ) {
 			$entries = $array[$type];
-			if ( $type == 'asks' ) $entries = array_reverse($entries);
+			if( $type == 'asks' ) $entries = array_reverse($entries);
 			$output.= "{$type}:".PHP_EOL;
 			foreach ( $entries as $price => $quantity ) {
 				$total = number_format($price * $quantity,8,'.','');
@@ -1080,17 +1124,6 @@ class API {
 	}
 
 	/**
-	 * getRequestCount gets the total number of API calls
-	 *
-	 * $apiCount = $api->getRequestCount();
-	 *
-	 * @return int get the total number of api calls
-	 */
-	public function getRequestCount() {
-		return $this->requestCount;
-	}
-
-	/**
 	 * addToTransfered add interger bytes to the total transfered
 	 * also incrementes the api counter
 	 *
@@ -1119,14 +1152,14 @@ class API {
 	 */
 	private function depthHandler($json) {
 		$symbol = $json['s'];
-		if ( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
+		if( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
 		foreach ( $json['b'] as $bid ) {
 			$this->depthCache[$symbol]['bids'][$bid[0]] = $bid[1];
-			if ( $bid[1] == "0.00000000" ) unset($this->depthCache[$symbol]['bids'][$bid[0]]);
+			if( $bid[1] == "0.00000000" ) unset($this->depthCache[$symbol]['bids'][$bid[0]]);
 		}
 		foreach ( $json['a'] as $ask ) {
 			$this->depthCache[$symbol]['asks'][$ask[0]] = $ask[1];
-			if ( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
+			if( $ask[1] == "0.00000000" ) unset($this->depthCache[$symbol]['asks'][$ask[0]]);
 		}
 	}
 
@@ -1141,7 +1174,7 @@ class API {
 	 * @return nothing
 	 */
 	private function chartHandler($symbol, $interval, $json) {
-		if ( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
+		if( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
 			$this->chartQueue[$symbol][$interval][] = $json;
 			return;
 		}
@@ -1149,7 +1182,7 @@ class API {
 		$symbol = $json->s;
 		$interval = $chart->i;
 		$tick = $chart->t;
-		if ( $tick < $this->info[$symbol][$interval]['firstOpen'] ) return; // Filter out of sync data
+		if( $tick < $this->info[$symbol][$interval]['firstOpen'] ) return; // Filter out of sync data
 		$open = $chart->o;
 		$high = $chart->h;
 		$low = $chart->l;
@@ -1196,20 +1229,20 @@ class API {
 	 * @return nothing
 	 */
 	public function depthCache($symbols, $callback) {
-		if ( !is_array($symbols) ) $symbols = [$symbols];
+		if( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
 		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
-			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
-			if ( !isset($this->depthQueue[$symbol]) ) $this->depthQueue[$symbol] = [];
-			if ( !isset($this->depthCache[$symbol]) ) $this->depthCache[$symbol] = ["bids" => [], "asks" => []];
+			if( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
+			if( !isset($this->depthQueue[$symbol]) ) $this->depthQueue[$symbol] = [];
+			if( !isset($this->depthCache[$symbol]) ) $this->depthCache[$symbol] = ["bids" => [], "asks" => []];
 			$this->info[$symbol]['firstUpdate'] = 0;
 			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@depth')->then(function($ws) use($callback, $symbol, $loop) {
 				$ws->on('message', function($data) use($ws, $callback) {
 					$json = json_decode($data, true);
 					$symbol = $json['s'];
-					if ( $this->info[$symbol]['firstUpdate'] == 0 ) {
+					if( $this->info[$symbol]['firstUpdate'] == 0 ) {
 						$this->depthQueue[$symbol][] = $json;
 						return;
 					}
@@ -1247,12 +1280,12 @@ class API {
 	 * @return nothing
 	 */
 	public function trades($symbols, $callback) {
-		if ( !is_array($symbols) ) $symbols = [$symbols];
+		if( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
 		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
-			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
+			if( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
 			//$this->info[$symbol]['tradesCallback'] = $callback;
 			$connector('wss://stream.binance.com:9443/ws/'.strtolower($symbol).'@aggTrade')->then(function($ws) use($callback, $symbol, $loop) {
 				$ws->on('message', function($data) use($ws, $callback) {
@@ -1294,7 +1327,7 @@ class API {
 		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$endpoint)->then(function($ws) use($callback, $symbol) {
 			$ws->on('message', function($data) use($ws, $callback, $symbol) {
 				$json = json_decode($data);
-				if ( $symbol ) {
+				if( $symbol ) {
 					call_user_func($callback, $this, $symbol, $this->tickerStreamHandler($json));
 				} else {
 					foreach ( $json as $obj ) {
@@ -1326,16 +1359,16 @@ class API {
 	 * @return nothing
 	 */
 	public function chart($symbols, $interval = "30m", $callback) {
-		if ( !is_array($symbols) ) $symbols = [$symbols];
+		if( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
 		$connector = new \Ratchet\Client\Connector($loop, $react);
 		foreach ( $symbols as $symbol ) {
-			if ( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
+			if( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
 			$this->charts[$symbol][$interval] = [];
-			if ( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
-			if ( !isset($this->info[$symbol][$interval]) ) $this->info[$symbol][$interval] = [];
-			if ( !isset($this->chartQueue[$symbol]) ) $this->chartQueue[$symbol] = [];
+			if( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
+			if( !isset($this->info[$symbol][$interval]) ) $this->info[$symbol][$interval] = [];
+			if( !isset($this->chartQueue[$symbol]) ) $this->chartQueue[$symbol] = [];
 			$this->chartQueue[$symbol][$interval] = [];
 			$this->info[$symbol][$interval]['firstOpen'] = 0;
 			//$this->info[$symbol]['chartCallback'.$interval] = $callback;
@@ -1403,8 +1436,8 @@ class API {
 	 *  $orderId = $report['orderId'];
 	 *  $orderStatus = $report['orderStatus'];
 	 *  $executionType = $report['orderStatus'];
-	 *  if ( $executionType == "NEW" ) {
-	 *    if ( $executionType == "REJECTED" ) {
+	 *  if( $executionType == "NEW" ) {
+	 *    if( $executionType == "REJECTED" ) {
 	 *    	echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
 	 * 	}
 	 * 	echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
@@ -1430,12 +1463,12 @@ class API {
 			$ws->on('message', function($data) use($ws) {
 				$json = json_decode($data);
 				$type = $json->e;
-				if ( $type == "outboundAccountInfo") {
+				if( $type == "outboundAccountInfo") {
 					$balances = $this->balanceHandler($json->B);
 					$this->info['balanceCallback']($this, $balances);
-				} elseif ( $type == "executionReport" ) {
+				} elseif( $type == "executionReport" ) {
 					$report = $this->executionHandler($json);
-					if ( $this->info['executionCallback'] ) {
+					if( $this->info['executionCallback'] ) {
 						$this->info['executionCallback']($this, $report);
 					}
 				}
