@@ -54,6 +54,9 @@
     <member refid="classBinance_1_1API_1ab941e8a3238d029ba5dc168cc1b5c20b" kind="function"><name>first</name></member>
     <member refid="classBinance_1_1API_1ad3c68f4e2c1e05f08e147083e9abd5d4" kind="function"><name>last</name></member>
     <member refid="classBinance_1_1API_1a344e647311d050adf2ac30acc293da28" kind="function"><name>displayDepth</name></member>
+    <member refid="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a" kind="function"><name>getTransfered</name></member>
+    <member refid="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c" kind="function"><name>getRequestCount</name></member>
+    <member refid="classBinance_1_1API_1a9af0e8d4bfa7f323772446db31c659bc" kind="function"><name>addToTransfered</name></member>
     <member refid="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e" kind="function"><name>sortDepth</name></member>
     <member refid="classBinance_1_1API_1a45372f030cfca92206638f69f114216a" kind="function"><name>depthCache</name></member>
     <member refid="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661" kind="function"><name>trades</name></member>
@@ -62,8 +65,6 @@
     <member refid="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" kind="function"><name>keepAlive</name></member>
     <member refid="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" kind="function"><name>userData</name></member>
     <member refid="classBinance_1_1API_1a8598ca4e53938db8998d143563044377" kind="function"><name>miniTicker</name></member>
-    <member refid="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a" kind="function"><name>getTransfered</name></member>
-    <member refid="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c" kind="function"><name>getRequestCount</name></member>
     <member refid="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85" kind="function"><name>setupApiConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165" kind="function"><name>setupProxyConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a697f5b28ecf517a7a7ddcdaaf93bc2ad" kind="function"><name>httpRequest</name></member>

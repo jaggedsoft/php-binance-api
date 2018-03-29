@@ -161,35 +161,49 @@ Main Binance class\&.
 .br
 .RI "\fIdisplayDepth Formats nicely for console output \fP"
 .ti -1c
-.RI "\fBsortDepth\fP ($symbol, $limit=11)"
-.br
-.ti -1c
-.RI "\fBdepthCache\fP ($symbols, $callback)"
-.br
-.ti -1c
-.RI "\fBtrades\fP ($symbols, $callback)"
-.br
-.ti -1c
-.RI "\fBticker\fP ($symbol, $callback)"
-.br
-.ti -1c
-.RI "\fBchart\fP ($symbols, $interval='30m', $callback)"
-.br
-.ti -1c
-.RI "\fBkeepAlive\fP ()"
-.br
-.ti -1c
-.RI "\fBuserData\fP (&$balance_callback, &$execution_callback=false)"
-.br
-.ti -1c
-.RI "\fBminiTicker\fP ($callback)"
-.br
-.ti -1c
 .RI "\fBgetTransfered\fP ()"
 .br
+.RI "\fIgetTransfered gets the total transfered in b,Kb,Mb,Gb \fP"
 .ti -1c
 .RI "\fBgetRequestCount\fP ()"
 .br
+.RI "\fIgetRequestCount gets the total number of API calls \fP"
+.ti -1c
+.RI "\fBaddToTransfered\fP ($int)"
+.br
+.RI "\fIaddToTransfered add interger bytes to the total transfered also incrementes the api counter \fP"
+.ti -1c
+.RI "\fBsortDepth\fP ($symbol, $limit=11)"
+.br
+.RI "\fIsortDepth Sorts depth data for display & getting highest bid and lowest ask \fP"
+.ti -1c
+.RI "\fBdepthCache\fP ($symbols, $callback)"
+.br
+.RI "\fIdepthCache Pulls /depth data and subscribes to  WebSocket endpoint Maintains a local Depth Cache in sync via lastUpdateId\&. \fP"
+.ti -1c
+.RI "\fBtrades\fP ($symbols, $callback)"
+.br
+.RI "\fItrades Trades WebSocket Endpoint \fP"
+.ti -1c
+.RI "\fBticker\fP ($symbol, $callback)"
+.br
+.RI "\fIticker pulls 24h price change statistics via WebSocket \fP"
+.ti -1c
+.RI "\fBchart\fP ($symbols, $interval='30m', $callback)"
+.br
+.RI "\fIchart Pulls /kline data and subscribes to  WebSocket endpoint \fP"
+.ti -1c
+.RI "\fBkeepAlive\fP ()"
+.br
+.RI "\fIkeepAlive Keep-alive function for userDataStream \fP"
+.ti -1c
+.RI "\fBuserData\fP (&$balance_callback, &$execution_callback=false)"
+.br
+.RI "\fIuserData Issues userDataStream token and keepalive, subscribes to userData WebSocket \fP"
+.ti -1c
+.RI "\fBminiTicker\fP ($callback)"
+.br
+.RI "\fIminiTicker Get miniTicker for all symbols \fP"
 .in -1c
 .SS "Public Attributes"
 
@@ -320,7 +334,20 @@ array with error message or array of all the account information
 .PP
 
 .PP
-Definition at line 457 of file php-binance-api\&.php\&.
+Definition at line 468 of file php-binance-api\&.php\&.
+.SS "Binance\\API::addToTransfered ($int)"
+
+.PP
+addToTransfered add interger bytes to the total transfered also incrementes the api counter $apiCount = $api->addToTransfered( $int );
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1134 of file php-binance-api\&.php\&.
 .SS "Binance\\API::aggTrades ($symbol)"
 
 .PP
@@ -338,7 +365,7 @@ array with error message or array of market history
 .PP
 
 .PP
-Definition at line 481 of file php-binance-api\&.php\&.
+Definition at line 492 of file php-binance-api\&.php\&.
 .SS "Binance\\API::balances ($priceData = \fCfalse\fP)"
 
 .PP
@@ -356,7 +383,7 @@ array with error message or array of balances
 .PP
 
 .PP
-Definition at line 508 of file php-binance-api\&.php\&.
+Definition at line 524 of file php-binance-api\&.php\&.
 .SS "Binance\\API::bookPrices ()"
 
 .PP
@@ -369,7 +396,7 @@ array with error message or array of all the book prices
 .PP
 
 .PP
-Definition at line 446 of file php-binance-api\&.php\&.
+Definition at line 457 of file php-binance-api\&.php\&.
 .SS "Binance\\API::buy ($symbol, $quantity, $price, $type = \fC'LIMIT'\fP, $flags = \fC[]\fP)"
 
 .PP
@@ -479,11 +506,29 @@ array containing the response
 .PP
 
 .PP
-Definition at line 700 of file php-binance-api\&.php\&.
+Definition at line 744 of file php-binance-api\&.php\&.
 .SS "Binance\\API::chart ($symbols, $interval = \fC'30m'\fP, $callback)"
 
 .PP
-Definition at line 1197 of file php-binance-api\&.php\&.
+chart Pulls /kline data and subscribes to  WebSocket endpoint $api->chart(['BNBBTC'], '15m', function($api, $symbol, $chart) { echo '{$symbol} chart update\\n'; print_r($chart); });
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$symbols\fP required symbols 
+.br
+\fI$interval\fP time inteval 
+.br
+\fI$callback\fP closure 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1361 of file php-binance-api\&.php\&.
 .SS "Binance\\API::cumulative ($depth)"
 
 .PP
@@ -501,7 +546,7 @@ array cumulative depth cache
 .PP
 
 .PP
-Definition at line 944 of file php-binance-api\&.php\&.
+Definition at line 988 of file php-binance-api\&.php\&.
 .SS "Binance\\API::depositAddress ($asset)"
 
 .PP
@@ -519,7 +564,7 @@ array with error message or array deposit address information
 .PP
 
 .PP
-Definition at line 387 of file php-binance-api\&.php\&.
+Definition at line 392 of file php-binance-api\&.php\&.
 .SS "Binance\\API::depositHistory ($asset = \fCfalse\fP)"
 
 .PP
@@ -539,7 +584,7 @@ array with error message or array deposit history information
 .PP
 
 .PP
-Definition at line 402 of file php-binance-api\&.php\&.
+Definition at line 407 of file php-binance-api\&.php\&.
 .SS "Binance\\API::depth ($symbol)"
 
 .PP
@@ -557,11 +602,29 @@ array with error message or array of market depth
 .PP
 
 .PP
-Definition at line 493 of file php-binance-api\&.php\&.
+Definition at line 504 of file php-binance-api\&.php\&.
 .SS "Binance\\API::depthCache ($symbols, $callback)"
 
 .PP
-Definition at line 1103 of file php-binance-api\&.php\&.
+depthCache Pulls /depth data and subscribes to  WebSocket endpoint Maintains a local Depth Cache in sync via lastUpdateId\&. See depth() and depthHandler()
+.PP
+$api->depthCache(['BNBBTC'], function($api, $symbol, $depth) { echo '{$symbol} depth cache update'\&.PHP_EOL; //print_r($depth); // Print all depth data $limit = 11; // Show only the closest asks/bids $sorted = $api->sortDepth($symbol, $limit); $bid = $api->first($sorted['bids']); $ask = $api->first($sorted['asks']); echo $api->displayDepth($sorted); echo 'ask: {$ask}'\&.PHP_EOL; echo 'bid: {$bid}'\&.PHP_EOL; });
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$symbol\fP optional array of symbols 
+.br
+\fI$callback\fP closure 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1231 of file php-binance-api\&.php\&.
 .SS "Binance\\API::displayDepth ($array)"
 
 .PP
@@ -579,7 +642,7 @@ string of the depth information
 .PP
 
 .PP
-Definition at line 1022 of file php-binance-api\&.php\&.
+Definition at line 1066 of file php-binance-api\&.php\&.
 .SS "Binance\\API::exchangeInfo ()"
 
 .PP
@@ -610,7 +673,7 @@ string key or null
 .PP
 
 .PP
-Definition at line 992 of file php-binance-api\&.php\&.
+Definition at line 1036 of file php-binance-api\&.php\&.
 .SS "Binance\\API::getProxyUriString ()"
 
 .PP
@@ -623,15 +686,33 @@ string uri
 .PP
 
 .PP
-Definition at line 519 of file php-binance-api\&.php\&.
+Definition at line 535 of file php-binance-api\&.php\&.
 .SS "Binance\\API::getRequestCount ()"
 
 .PP
-Definition at line 1307 of file php-binance-api\&.php\&.
+getRequestCount gets the total number of API calls $apiCount = $api->getRequestCount();
+.PP
+\fBReturns:\fP
+.RS 4
+int get the total number of api calls 
+.RE
+.PP
+
+.PP
+Definition at line 1122 of file php-binance-api\&.php\&.
 .SS "Binance\\API::getTransfered ()"
 
 .PP
-Definition at line 1302 of file php-binance-api\&.php\&.
+getTransfered gets the total transfered in b,Kb,Mb,Gb $transfered = $api->getTransfered();
+.PP
+\fBReturns:\fP
+.RS 4
+string showing the total transfered 
+.RE
+.PP
+
+.PP
+Definition at line 1109 of file php-binance-api\&.php\&.
 .SS "Binance\\API::highstock ($chart, $include_volume = \fCfalse\fP)"
 
 .PP
@@ -651,7 +732,7 @@ array highchart data
 .PP
 
 .PP
-Definition at line 968 of file php-binance-api\&.php\&.
+Definition at line 1012 of file php-binance-api\&.php\&.
 .SS "Binance\\API::history ($symbol, $limit = \fC500\fP, $fromTradeId = \fC1\fP)"
 
 .PP
@@ -677,7 +758,16 @@ Definition at line 316 of file php-binance-api\&.php\&.
 .SS "Binance\\API::keepAlive ()"
 
 .PP
-Definition at line 1240 of file php-binance-api\&.php\&.
+keepAlive Keep-alive function for userDataStream $api->keepAlive();
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1411 of file php-binance-api\&.php\&.
 .SS "Binance\\API::last ($array)"
 
 .PP
@@ -695,7 +785,7 @@ string key or null
 .PP
 
 .PP
-Definition at line 1007 of file php-binance-api\&.php\&.
+Definition at line 1051 of file php-binance-api\&.php\&.
 .SS "Binance\\API::marketBuy ($symbol, $quantity, $flags = \fC[]\fP)"
 
 .PP
@@ -797,7 +887,21 @@ Definition at line 240 of file php-binance-api\&.php\&.
 .SS "Binance\\API::miniTicker ($callback)"
 
 .PP
-Definition at line 1275 of file php-binance-api\&.php\&.
+miniTicker Get miniTicker for all symbols $api->miniTicker(function($api, $ticker) { print_r($ticker); }); 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$callback\fP function closer that takes 2 arguments, $pai and $ticker data 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1493 of file php-binance-api\&.php\&.
 .SS "Binance\\API::openOrders ($symbol = \fCnull\fP)"
 
 .PP
@@ -858,7 +962,7 @@ array containing the response
 .PP
 
 .PP
-Definition at line 662 of file php-binance-api\&.php\&.
+Definition at line 706 of file php-binance-api\&.php\&.
 .SS "Binance\\API::orders ($symbol, $limit = \fC500\fP, $fromOrderId = \fC1\fP)"
 
 .PP
@@ -918,7 +1022,7 @@ array with error message or array of prevDay change
 .PP
 
 .PP
-Definition at line 469 of file php-binance-api\&.php\&.
+Definition at line 480 of file php-binance-api\&.php\&.
 .SS "Binance\\API::prices ()"
 
 .PP
@@ -931,7 +1035,7 @@ array with error message or array of all the currencies prices
 .PP
 
 .PP
-Definition at line 435 of file php-binance-api\&.php\&.
+Definition at line 446 of file php-binance-api\&.php\&.
 .SS "Binance\\API::sell ($symbol, $quantity, $price, $type = \fC'LIMIT'\fP, $flags = \fC[]\fP)"
 
 .PP
@@ -1010,15 +1114,47 @@ nothing
 .PP
 
 .PP
-Definition at line 551 of file php-binance-api\&.php\&.
+Definition at line 577 of file php-binance-api\&.php\&.
 .SS "Binance\\API::sortDepth ($symbol, $limit = \fC11\fP)"
 
 .PP
-Definition at line 1094 of file php-binance-api\&.php\&.
+sortDepth Sorts depth data for display & getting highest bid and lowest ask $sorted = $api->sortDepth($symbol, $limit);
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$symbol\fP to sort 
+.br
+\fI$limit\fP depth 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1203 of file php-binance-api\&.php\&.
 .SS "Binance\\API::ticker ($symbol, $callback)"
 
 .PP
-Definition at line 1174 of file php-binance-api\&.php\&.
+ticker pulls 24h price change statistics via WebSocket $api->ticker(false, function($api, $symbol, $ticker) { print_r($ticker); });
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$symbol\fP optional symbol or false 
+.br
+\fI$callback\fP closure 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1325 of file php-binance-api\&.php\&.
 .SS "Binance\\API::time ()"
 
 .PP
@@ -1035,11 +1171,47 @@ Definition at line 339 of file php-binance-api\&.php\&.
 .SS "Binance\\API::trades ($symbols, $callback)"
 
 .PP
-Definition at line 1142 of file php-binance-api\&.php\&.
+trades Trades WebSocket Endpoint $api->trades(['BNBBTC'], function($api, $symbol, $trades) { echo '{$symbol} trades update'\&.PHP_EOL; print_r($trades); });
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$symbol\fP optional symbol 
+.br
+\fI$callback\fP closure 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1282 of file php-binance-api\&.php\&.
 .SS "Binance\\API::userData (&$balance_callback, &$execution_callback = \fCfalse\fP)"
 
 .PP
-Definition at line 1249 of file php-binance-api\&.php\&.
+userData Issues userDataStream token and keepalive, subscribes to userData WebSocket $balance_update = function($api, $balances) { print_r($balances); echo 'Balance update'\&.PHP_EOL; };
+.PP
+$order_update = function($api, $report) { echo 'Order update'\&.PHP_EOL; print_r($report); $price = $report['price']; $quantity = $report['quantity']; $symbol = $report['symbol']; $side = $report['side']; $orderType = $report['orderType']; $orderId = $report['orderId']; $orderStatus = $report['orderStatus']; $executionType = $report['orderStatus']; if( $executionType == 'NEW' ) { if( $executionType == 'REJECTED' ) { echo 'Order Failed! Reason: {$report['rejectReason']}'\&.PHP_EOL; } echo '{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})'\&.PHP_EOL; echo '\&.\&.price: {$price}, quantity: {$quantity}'\&.PHP_EOL; return; }
+.PP
+//NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED echo '{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}'\&.PHP_EOL; }; $api->userData($balance_update, $order_update);
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$balance_callback\fP function 
+.br
+\fI$execution_callback\fP function 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nothing 
+.RE
+.PP
+
+.PP
+Definition at line 1457 of file php-binance-api\&.php\&.
 .SS "Binance\\API::useServerTime ()"
 
 .PP
@@ -1098,7 +1270,7 @@ array with error message or array deposit history information
 .PP
 
 .PP
-Definition at line 420 of file php-binance-api\&.php\&.
+Definition at line 428 of file php-binance-api\&.php\&.
 .SH "Member Data Documentation"
 .PP 
 .SS "Binance\\API::$api_key\fC [protected]\fP"

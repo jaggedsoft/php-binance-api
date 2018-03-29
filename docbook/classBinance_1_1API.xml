@@ -420,6 +420,30 @@
             <para>
                 <itemizedlist>
                     <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a">getTransfered</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c">getRequestCount</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a9af0e8d4bfa7f323772446db31c659bc">addToTransfered</link> (
+ $int)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
                         <para> <link linkend="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">sortDepth</link> (
  $symbol,  $limit)</para>
                     </listitem>
@@ -478,22 +502,6 @@
                     <listitem>
                         <para> <link linkend="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">miniTicker</link> (
  $callback)</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a">getTransfered</link> (
-)</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        <para> <link linkend="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c">getRequestCount</link> (
-)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -1907,45 +1915,304 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">
-                <title>Binance\API::sortDepth ($symbol, $limit=11)</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1a45372f030cfca92206638f69f114216a">
-                <title>Binance\API::depthCache ($symbols, $callback)</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661">
-                <title>Binance\API::trades ($symbols, $callback)</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d">
-                <title>Binance\API::ticker ($symbol, $callback)</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2">
-                <title>Binance\API::chart ($symbols, $interval=&quot;30m&quot;, $callback)</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312">
-                <title>Binance\API::keepAlive ()</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd">
-                <title>Binance\API::userData (&amp;$balance_callback, &amp;$execution_callback=false)</title> <emphasis></emphasis>
-                
-            </section>
-            <section xml:id="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">
-                <title>Binance\API::miniTicker ($callback)</title> <emphasis></emphasis>
-                
-            </section>
             <section xml:id="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a">
-                <title>Binance\API::getTransfered ()</title> <emphasis></emphasis>
+                <title>Binance\API::getTransfered ()</title> <emphasis>getTransfered gets the total transfered in b,Kb,Mb,Gb</emphasis>
                 
+<para>$transfered = $api-&gt;getTransfered();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>string showing the total transfered </para>
+</formalpara>
+</para>
+
             </section>
             <section xml:id="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c">
-                <title>Binance\API::getRequestCount ()</title> <emphasis></emphasis>
+                <title>Binance\API::getRequestCount ()</title> <emphasis>getRequestCount gets the total number of API calls</emphasis>
                 
+<para>$apiCount = $api-&gt;getRequestCount();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>int get the total number of api calls </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a9af0e8d4bfa7f323772446db31c659bc">
+                <title>Binance\API::addToTransfered ($int)</title> <emphasis>addToTransfered add interger bytes to the total transfered
+also incrementes the api counter</emphasis>
+                
+<para>$apiCount = $api-&gt;addToTransfered( $int );</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">
+                <title>Binance\API::sortDepth ($symbol, $limit=11)</title> <emphasis>sortDepth Sorts depth data for display &amp; getting highest bid and lowest ask</emphasis>
+                
+<para>$sorted = $api-&gt;sortDepth($symbol, $limit);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>to sort </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$limit</entry>
+                                <entry>
+<para>depth </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a45372f030cfca92206638f69f114216a">
+                <title>Binance\API::depthCache ($symbols, $callback)</title> <emphasis>depthCache Pulls /depth data and subscribes to @depth WebSocket endpoint
+Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
+                
+<para>See depth() and depthHandler()</para>
+
+<para>$api-&gt;depthCache([&quot;BNBBTC&quot;], function($api, $symbol, $depth) { echo &quot;{$symbol} depth cache update&quot;.PHP_EOL; //print_r($depth); // Print all depth data $limit = 11; // Show only the closest asks/bids $sorted = $api-&gt;sortDepth($symbol, $limit); $bid = $api-&gt;first($sorted[&apos;bids&apos;]); $ask = $api-&gt;first($sorted[&apos;asks&apos;]); echo $api-&gt;displayDepth($sorted); echo &quot;ask: {$ask}&quot;.PHP_EOL; echo &quot;bid: {$bid}&quot;.PHP_EOL; });</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>optional array of symbols </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$callback</entry>
+                                <entry>
+<para>closure </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661">
+                <title>Binance\API::trades ($symbols, $callback)</title> <emphasis>trades Trades WebSocket Endpoint</emphasis>
+                
+<para>$api-&gt;trades([&quot;BNBBTC&quot;], function($api, $symbol, $trades) { echo &quot;{$symbol} trades update&quot;.PHP_EOL; print_r($trades); });</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>optional symbol </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$callback</entry>
+                                <entry>
+<para>closure </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d">
+                <title>Binance\API::ticker ($symbol, $callback)</title> <emphasis>ticker pulls 24h price change statistics via WebSocket</emphasis>
+                
+<para>$api-&gt;ticker(false, function($api, $symbol, $ticker) { print_r($ticker); });</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>optional symbol or false </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$callback</entry>
+                                <entry>
+<para>closure </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2">
+                <title>Binance\API::chart ($symbols, $interval=&quot;30m&quot;, $callback)</title> <emphasis>chart Pulls /kline data and subscribes to @klines WebSocket endpoint</emphasis>
+                
+<para>$api-&gt;chart([&quot;BNBBTC&quot;], &quot;15m&quot;, function($api, $symbol, $chart) { echo &quot;{$symbol} chart update\n&quot;; print_r($chart); });</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbols</entry>
+                                <entry>
+<para>required symbols </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$interval</entry>
+                                <entry>
+<para>time inteval </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$callback</entry>
+                                <entry>
+<para>closure </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312">
+                <title>Binance\API::keepAlive ()</title> <emphasis>keepAlive Keep-alive function for userDataStream</emphasis>
+                
+<para>$api-&gt;keepAlive();</para>
+
+<para><formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd">
+                <title>Binance\API::userData (&amp;$balance_callback, &amp;$execution_callback=false)</title> <emphasis>userData Issues userDataStream token and keepalive, subscribes to userData WebSocket</emphasis>
+                
+<para>$balance_update = function($api, $balances) { print_r($balances); echo &quot;Balance update&quot;.PHP_EOL; };</para>
+
+<para>$order_update = function($api, $report) { echo &quot;Order update&quot;.PHP_EOL; print_r($report); $price = $report[&apos;price&apos;]; $quantity = $report[&apos;quantity&apos;]; $symbol = $report[&apos;symbol&apos;]; $side = $report[&apos;side&apos;]; $orderType = $report[&apos;orderType&apos;]; $orderId = $report[&apos;orderId&apos;]; $orderStatus = $report[&apos;orderStatus&apos;]; $executionType = $report[&apos;orderStatus&apos;]; if( $executionType == &quot;NEW&quot; ) { if( $executionType == &quot;REJECTED&quot; ) { echo &quot;Order Failed! Reason: {$report[&apos;rejectReason&apos;]}&quot;.PHP_EOL; } echo &quot;{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})&quot;.PHP_EOL; echo &quot;..price: {$price}, quantity: {$quantity}&quot;.PHP_EOL; return; }</para>
+
+<para>//NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED echo &quot;{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}&quot;.PHP_EOL; }; $api-&gt;userData($balance_update, $order_update);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$balance_callback</entry>
+                                <entry>
+<para>function </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$execution_callback</entry>
+                                <entry>
+<para>function </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">
+                <title>Binance\API::miniTicker ($callback)</title> <emphasis>miniTicker Get miniTicker for all symbols</emphasis>
+                
+<para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); }); 
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$callback</entry>
+                                <entry>
+<para>function closer that takes 2 arguments, $pai and $ticker data </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
             </section>
             <section xml:id="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85">
                 <title>Binance\API::setupApiConfigFromFile ()</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt
@@ -2316,11 +2583,85 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 
             </section>
             <section xml:id="classBinance_1_1API_1ad364a2fb92952f00dd5ecc55f38694d9">
-                <title>Binance\API::depthHandler ($json)</title> <emphasis></emphasis>
+                <title>Binance\API::depthHandler ($json)</title> <emphasis>depthHandler For WebSocket Depth Cache</emphasis>
                 
+<para>$this-&gt;depthHandler($json);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>to sort </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$interval</entry>
+                                <entry>
+<para>time </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$json</entry>
+                                <entry>
+<para>time </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
             </section>
             <section xml:id="classBinance_1_1API_1a1d8f77cb5fbc8d6096d567e072d5137f">
-                <title>Binance\API::chartHandler ($symbol, $interval, $json)</title> <emphasis></emphasis>
+                <title>Binance\API::chartHandler ($symbol, $interval, $json)</title> <emphasis>chartHandler For WebSocket Chart Cache</emphasis>
                 
+<para>$this-&gt;chartHandler($symbol, $interval, $json);</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbol</entry>
+                                <entry>
+<para>to sort </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$interval</entry>
+                                <entry>
+<para>time </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$json</entry>
+                                <entry>
+<para>time </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>nothing </para>
+</formalpara>
+</para>
+
             </section>
 </section>

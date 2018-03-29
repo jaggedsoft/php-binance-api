@@ -22,6 +22,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a52a5376574ff759fb1df6c8efe24cb7f"><param name="Name" value="$wapi"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#adbd7fdb4457492d7b6bad7b120492770"><param name="Name" value="__construct"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a14272f6a80009bc8fd742b5f35fee9a5"><param name="Name" value="account"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a9af0e8d4bfa7f323772446db31c659bc"><param name="Name" value="addToTransfered"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a028d3ff42cd67abab4c745851eedb901"><param name="Name" value="aggTrades"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#afe968feb47f5b68853dae571cb75800c"><param name="Name" value="balances"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="namespaceBinance.html"><param name="Name" value="Binance"></OBJECT>
@@ -45,6 +46,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a52a5376574ff759fb1df6c8efe24cb7f"><param name="Name" value="$wapi"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#adbd7fdb4457492d7b6bad7b120492770"><param name="Name" value="__construct"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a14272f6a80009bc8fd742b5f35fee9a5"><param name="Name" value="account"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a9af0e8d4bfa7f323772446db31c659bc"><param name="Name" value="addToTransfered"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a028d3ff42cd67abab4c745851eedb901"><param name="Name" value="aggTrades"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#afe968feb47f5b68853dae571cb75800c"><param name="Name" value="balances"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#aa1e851e6a5fe2e01f7c5493fa9b90c97"><param name="Name" value="bookPrices"></OBJECT>
