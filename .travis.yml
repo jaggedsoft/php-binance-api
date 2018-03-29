@@ -13,7 +13,7 @@ before_script:
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/phpunit.xml -O phpunit.xml
   - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
   - travis_retry wget https://codecov.io/bash -O codecov.sh
-  - travis_retry COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
+  - COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
   - chmod -v +x codecov.sh
   - chmod -v +x docs.sh
   - chmod -v +x coveralls.phar
