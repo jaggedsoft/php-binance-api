@@ -21,7 +21,9 @@ script:
 
 after_success:
  - travis_retry php coveralls.phar -v
- - bash <(curl -s https://codecov.io/bash)
+ - wget -c -nc --retry-connrefused --tries=0 https://codecov.io/bash -O codecov.sh
+ - chmod +x codecov.sh
+ - ./codecov.sh -f "!$TRAVIS_BUILD_DIR/php-binance-api-test.php"
  - cd $TRAVIS_BUILD_DIR
  - chmod +x docs.sh
  - ./docs.sh
