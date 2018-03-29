@@ -622,12 +622,12 @@ class API {
 
 		// signed with params
 		if( $signed == true ) {
-			if(empty($this->api_key) ) die("signedRequest error: API Key not set!");
-			if(empty($this->api_secret) ) die("signedRequest error: API Secret not set!");
+			if( empty($this->api_key ) ) die("signedRequest error: API Key not set!");
+			if( empty($this->api_secret ) ) die("signedRequest error: API Secret not set!");
 			$base = $this->base;
 			$ts = (microtime(true)*1000) + $this->info['timeOffset'];
 			$params['timestamp'] = number_format($ts,0,'.','');
-			if( isset($params['wapi']) ) {
+			if( isset( $params['wapi'] ) ) {
 				unset($params['wapi']);
 				$base = $this->wapi;
 			}
@@ -653,13 +653,13 @@ class API {
 			//curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
 		}
 		// Delete Method
-		if($method == "DELETE") {
+		if( $method == "DELETE" ) {
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 		}
 		// proxy settings
-		if(is_array($this->proxyConf)) {
+		if( is_array($this->proxyConf) ) {
 			curl_setopt($ch, CURLOPT_PROXY, $this->getProxyUriString());
-			if(isset($this->proxyConf['user']) && isset($this->proxyConf['pass'])) {
+			if( isset($this->proxyConf['user']) && isset($this->proxyConf['pass']) ) {
 				curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
 			}
 		}
@@ -670,13 +670,13 @@ class API {
 		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 		$output = curl_exec($ch);
 		// Check if any error occurred
-		if(curl_errno($ch) > 0)	{
+		if( curl_errno($ch) > 0 )	{
 			echo 'Curl error: ' . curl_error($ch) . "\n";
 			return [];
 		}
 		curl_close($ch);
 		$json = json_decode($output, true);
-		if(isset($json['msg'])) {
+		if( isset($json['msg']) ) {
 			echo "signedRequest error: {$output}".PHP_EOL;
 		}
 		$this->transfered += strlen( $output );
@@ -711,19 +711,59 @@ class API {
 			"quantity" => $quantity,
 			"recvWindow" => 60000
 		];
+
 		// someone has preformated there 8 decimal point double already
 		// dont do anything, leave them do whatever they want
 		if( gettype( $price ) != "string" ) {
 			// for every other type, lets format it appropriately
 			$price = number_format($price, 8, '.', '');
 		}
+
+		if( is_string( $side ) == false ) {
+			echo "warning: side expected string got " . gettype( $side ) . PHP_EOL;
+		}
+
+		if( is_string( $symbol ) == false ) {
+			echo "warning: symbol expected string got " . gettype( $symbol ) . PHP_EOL;
+		}
+
+		if( is_numeric( $quantity ) == false ) {
+			echo "warning: quantity expected numeric got " . gettype( $quantity ) . PHP_EOL;
+		}
+
+		if( is_string( $price ) == false ) {
+			echo "warning: price expected string got " . gettype( $price ) . PHP_EOL;
+		}
+
+		if( is_string( $type ) == false ) {
+			echo "warning: type expected string got " . gettype( $type ) . PHP_EOL;
+		}
+
+		if( is_array( $flags ) == false ) {
+			echo "warning: flags expected array got " . gettype( $flags ) . PHP_EOL;
+		}
+
+		if( is_bool( $test ) == false ) {
+			echo "warning: test expected bool got " . gettype( $test ) . PHP_EOL;
+		}
+
 		if( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
 			$opt["price"] = $price;
 			$opt["timeInForce"] = "GTC";
 		}
-		if( isset($flags['stopPrice']) ) $opt['stopPrice'] = $flags['stopPrice'];
-		if( isset($flags['icebergQty']) ) $opt['icebergQty'] = $flags['icebergQty'];
-		if( isset($flags['newOrderRespType']) ) $opt['newOrderRespType'] = $flags['newOrderRespType'];
+
+		if( isset($flags['stopPrice']) ) {
+			$opt['stopPrice'] = $flags['stopPrice'];
+		}
+
+		if( isset($flags['icebergQty']) ) {
+			$opt['icebergQty'] = $flags['icebergQty'];
+		}
+
+		if( isset($flags['newOrderRespType']) ) {
+			$opt['newOrderRespType'] = $flags['newOrderRespType'];
+		}
+
 		$qstring = ( $test == false ) ? "v3/order" : "v3/order/test";
 		return $this->httpRequest($qstring, "POST", $opt, true);
 	}
@@ -742,14 +782,26 @@ class API {
 	 * @return array containing the response
 	 */
 	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
-		if( !isset($this->charts[$symbol]) ) $this->charts[$symbol] = [];
+		if( is_string( $symbol ) == false ) {
+			echo "warning: symbol expected string got " . gettype( $symbol ) . PHP_EOL;
+		}
+
+		if( is_string( $interval ) == false ) {
+			echo "warning: interval expected string got " . gettype( $interval ) . PHP_EOL;
+		}
+
+		if( !isset($this->charts[$symbol]) ) {
+			$this->charts[$symbol] = [];
+		}
+
 		$opt = [
 		    "symbol" => $symbol,
 		    "interval" => $interval
 		];
-		if($limit) $opt["limit"] = $limit;
-		if($startTime) $opt["startTime"] = $startTime;
-		if($endTime) $opt["endTime"] = $endTime;
+
+		if( $limit ) $opt["limit"] = $limit;
+		if( $startTime ) $opt["startTime"] = $startTime;
+		if( $endTime ) $opt["endTime"] = $endTime;
 		$response = $this->httpRequest("v1/klines", "GET", $opt);
 		$ticks = $this->chartData($symbol, $interval, $response);
 		$this->charts[$symbol][$interval] = $ticks;
@@ -768,7 +820,12 @@ class API {
 	 * @return array containing the response
 	 */
 	private function balanceData($array, $priceData = false) {
-		if( $priceData ) $btc_value = $btc_total = 0.00;
+		if( is_array( $priceData ) ) {
+			$btc_value = $btc_total = 0.00;
+		}
+		else {
+			echo "warning: priceData expected array got " . gettype( $priceData ) . PHP_EOL;
+		}
 		$balances = [];
 		if( empty($array) || empty($array['balances']) ) {
 			echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option.".PHP_EOL;
