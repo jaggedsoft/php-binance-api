@@ -6,6 +6,11 @@ php:
 before_script:
   - mkdir -vp ~/.config/jaggedsoft/
   - mkdir -vp build/logs
+  - wget -c -nc --retry-connrefused --tries=0 https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/composer-test.json -O composer-test.json
+  - wget -c -nc --retry-connrefused --tries=0 https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/docs.sh -O docs.sh
+  - wget -c -nc --retry-connrefused --tries=0 https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/doxy.gen -O doxy.gen
+  - wget -c -nc --retry-connrefused --tries=0 https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/php-binance-api-test.php -O php-binance-api-test.php
+  - wget -c -nc --retry-connrefused --tries=0 https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/phpunit.xml -O phpunit.xml
   - COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
   - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
   - chmod +x coveralls.phar
