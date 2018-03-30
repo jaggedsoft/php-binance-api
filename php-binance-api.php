@@ -38,9 +38,7 @@ class API {
    public $httpDebug = false; // /< If you enable this, curl will output debugging information
    public $balances = []; // /< binace balances from the last run
    public $btc_value = 0.00; // /< value of available assets
-   public $btc_total = 0.00;
-
-   // /< value of available + onOrder assets
+   public $btc_total = 0.00; // /< value of available onOrder assets
    
    /**
     * Constructor for the class, There are 4 ways to contruct the class:
@@ -49,14 +47,10 @@ class API {
     * - new Binance\\API( $api_key, $api_secret, $options);
     * - new Binance\\API( $api_key, $api_secret, $options, $proxyConf);
     *
-    * @param $api_key string
-    *           api key
-    * @param $api_secret string
-    *           api secret
-    * @param $options array
-    *           addtional coniguration options
-    * @param $proxyConf array
-    *           config
+    * @param $api_key string api key
+    * @param $api_secret string api secret
+    * @param $options array addtional coniguration options
+    * @param $proxyConf array config
     * @return null
     */
    public function __construct( string $api_key = '', string $api_secret = '', array $options = ["useServerTime"=>false], array $proxyConf = null ) {
@@ -135,16 +129,11 @@ class API {
     * $price = 0.0005;
     * $order = $api->buy("BNBBTC", $quantity, $price);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $price string
-    *           price per unit you want to spend
-    * @param $type string
-    *           type of order
-    * @param $flags array
-    *           addtional options for order type
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $price string price per unit you want to spend
+    * @param $type string type of order
+    * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
    public function buy( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
@@ -156,16 +145,11 @@ class API {
     *
     * @see buy()
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $price string
-    *           price per unit you want to spend
-    * @param $type array
-    *           config
-    * @param $flags array
-    *           config
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $price string price per unit you want to spend
+    * @param $type array config
+    * @param $flags array config
     * @return array with error message or empty or the order details
     */
    public function buyTest( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
@@ -190,16 +174,11 @@ class API {
     * $price = 0.0005;
     * $order = $api->sell("BNBBTC", $quantity, $price);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $price string
-    *           price per unit you want to spend
-    * @param $type string
-    *           type of order
-    * @param $flags array
-    *           addtional options for order type
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $price string price per unit you want to spend
+    * @param $type string type of order
+    * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
    public function sell( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
@@ -211,16 +190,11 @@ class API {
     *
     * @see sell()
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $price string
-    *           price per unit you want to spend
-    * @param $type array
-    *           config
-    * @param $flags array
-    *           config
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $price string price per unit you want to spend
+    * @param $type array config
+    * @param $flags array config
     * @return array with error message or empty or the order details
     */
    public function sellTest( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
@@ -233,12 +207,9 @@ class API {
     * $quantity = 1;
     * $order = $api->marketBuy("BNBBTC", $quantity);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $flags array
-    *           addtional options for order type
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
    public function marketBuy( string $symbol, $quantity, array $flags = [] ) {
@@ -250,12 +221,9 @@ class API {
     *
     * @see marketBuy()
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $flags array
-    *           addtional options for order type
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
    public function marketBuyTest( string $symbol, $quantity, array $flags = [] ) {
@@ -268,12 +236,9 @@ class API {
     * $quantity = 1;
     * $order = $api->marketSell("BNBBTC", $quantity);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $flags array
-    *           addtional options for order type
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
    public function marketSell( string $symbol, $quantity, array $flags = [] ) {
@@ -285,12 +250,9 @@ class API {
     *
     * @see marketSellTest()
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $quantity string
-    *           the quantity required
-    * @param $flags array
-    *           addtional options for order type
+    * @param $symbol string the currency symbol
+    * @param $quantity string the quantity required
+    * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
    public function marketSellTest( string $symbol, $quantity, array $flags = [] ) {
@@ -303,10 +265,8 @@ class API {
     * $orderid = "123456789";
     * $order = $api->cancel("BNBBTC", $orderid);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $orderid string
-    *           the orderid to cancel
+    * @param $symbol string the currency symbol
+    * @param $orderid string the orderid to cancel
     * @return array with error message or the order details
     */
    public function cancel( string $symbol, $orderid ) {
@@ -322,10 +282,8 @@ class API {
     * $orderid = "123456789";
     * $order = $api->orderStatus("BNBBTC", $orderid);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $orderid string
-    *           the orderid to cancel
+    * @param $symbol string the currency symbol
+    * @param $orderid string the orderid to cancel
     * @return array with error message or the order details
     */
    public function orderStatus( string $symbol, $orderid ) {
@@ -341,8 +299,7 @@ class API {
     * $allOpenOrders = $api->openOrders();
     * $allBNBOrders = $api->openOrders( "BNBBTC" );
     *
-    * @param $symbol string
-    *           the currency symbol
+    * @param $symbol string the currency symbol
     * @return array with error message or the order details
     */
    public function openOrders( string $symbol = null ) {
@@ -360,12 +317,9 @@ class API {
     *
     * $allBNBOrders = $api->orders( "BNBBTC" );
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $limit int
-    *           the amount of orders returned
-    * @param $fromOrderId string
-    *           return the orders from this order onwards
+    * @param $symbol string the currency symbol
+    * @param $limit int the amount of orders returned
+    * @param $fromOrderId string return the orders from this order onwards
     * @return array with error message or array of orderDetails array
     */
    public function orders( string $symbol, int $limit = 500, int $fromOrderId = 1 ) {
@@ -384,12 +338,9 @@ class API {
     * $limitBNBHistory = $api->history("BNBBTC",5);
     * $limitBNBHistoryFromId = $api->history("BNBBTC",5,3);
     *
-    * @param $symbol string
-    *           the currency symbol
-    * @param $limit int
-    *           the amount of orders returned
-    * @param $fromTradeId int
-    *           return the orders from this order onwards
+    * @param $symbol string the currency symbol
+    * @param $limit int the amount of orders returned
+    * @param $fromTradeId int return the orders from this order onwards
     * @return array with error message or array of orderDetails array
     */
    public function history( string $symbol, int $limit = 500, int $fromTradeId = 1 ) {
@@ -447,14 +398,10 @@ class API {
     * $amount = 0.1;
     * $response = $api->withdraw($asset, $address, $amount, $addressTag);
     *
-    * @param $asset string
-    *           the currency such as BTC
-    * @param $address string
-    *           the addressed to whihc the asset should be deposited
-    * @param $amount double
-    *           the amount of the asset to transfer
-    * @param $addressTag string
-    *           adtional transactionid required by some assets
+    * @param $asset string the currency such as BTC
+    * @param $address string the addressed to whihc the asset should be deposited
+    * @param $amount double the amount of the asset to transfer
+    * @param $addressTag string adtional transactionid required by some assets
     * @return array with error message or array transaction
     */
    public function withdraw( string $asset, string $address, $amount, $addressTag = null ) {
@@ -476,8 +423,7 @@ class API {
     *
     * $depositAddress = $api->depositAddress("VEN");
     *
-    * @param $asset string
-    *           the currency such as BTC
+    * @param $asset string the currency such as BTC
     * @return array with error message or array deposit address information
     */
    public function depositAddress( string $asset ) {
@@ -495,8 +441,7 @@ class API {
     *
     * $depositHistory = $api->depositHistory( "BTC" );
     *
-    * @param $asset string
-    *           empty or the currency such as BTC
+    * @param $asset string empty or the currency such as BTC
     * @return array with error message or array deposit history information
     */
    public function depositHistory( string $asset = null ) {
@@ -516,8 +461,7 @@ class API {
     *
     * $withdrawHistory = $api->withdrawHistory( "BTC" );
     *
-    * @param $asset string
-    *           empty or the currency such as BTC
+    * @param $asset string empty or the currency such as BTC
     * @return array with error message or array deposit history information
     */
    public function withdrawHistory( string $asset = null ) {
@@ -568,8 +512,7 @@ class API {
     *
     * $prevDay = $api->prevDay("BNBBTC");
     *
-    * @param $symbol (optional)
-    *           symbol to get the previous day change for
+    * @param $symbol (optional) symbol to get the previous day change for
     * @return array with error message or array of prevDay change
     */
    public function prevDay( string $symbol ) {
@@ -587,8 +530,7 @@ class API {
     *
     * $trades = $api->aggTrades("BNBBTC");
     *
-    * @param $symbol string
-    *           the symbol to get the trade information for
+    * @param $symbol string the symbol to get the trade information for
     * @return array with error message or array of market history
     */
    public function aggTrades( string $symbol ) {
@@ -602,8 +544,7 @@ class API {
     *
     * $depth = $api->depth("ETHBTC");
     *
-    * @param $symbol string
-    *           the symbol to get the depth information for
+    * @param $symbol string the symbol to get the depth information for
     * @return array with error message or array of market depth
     */
    public function depth( string $symbol ) {
@@ -625,8 +566,7 @@ class API {
     *
     * $balances = $api->balances($ticker);
     *
-    * @param $priceData array
-    *           of the symbols balances are required for
+    * @param $priceData array of the symbols balances are required for
     * @return array with error message or array of balances
     */
    public function balances( $priceData = false ) {
@@ -703,14 +643,10 @@ class API {
     * @see marketBuy()
     * @see marketSell() $this->httpRequest( "https://api.binance.com/api/v1/ticker/24hr");
     *     
-    * @param $url string
-    *           the endpoint to query, typically includes query string
-    * @param $method string
-    *           this should be typically GET, POST or DELETE
-    * @param $params array
-    *           addtional options for the request
-    * @param $signed bool
-    *           true or false sign the request with api secret
+    * @param $url string the endpoint to query, typically includes query string
+    * @param $method string this should be typically GET, POST or DELETE
+    * @param $params array addtional options for the request
+    * @param $signed bool true or false sign the request with api secret
     * @return array containing the response
     */
    private function httpRequest( string $url, string $method = "GET", array $params = [], bool $signed = false ) {
@@ -817,20 +753,13 @@ class API {
     * @see marketBuy()
     * @see marketSell() $this->httpRequest( "https://api.binance.com/api/v1/ticker/24hr");
     *     
-    * @param $side string
-    *           typically "BUY" or "SELL"
-    * @param $symbol string
-    *           to buy or sell
-    * @param $quantity string
-    *           in the order
-    * @param $price string
-    *           for the order
-    * @param $type string
-    *           is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc.
-    * @param $flags array
-    *           additional transaction options
-    * @param $test bool
-    *           whether to test or not, test only validates the query
+    * @param $side string typically "BUY" or "SELL"
+    * @param $symbol string to buy or sell
+    * @param $quantity string in the order
+    * @param $price string for the order
+    * @param $type string is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc.
+    * @param $flags array additional transaction options
+    * @param $test bool whether to test or not, test only validates the query
     * @return array containing the response
     */
    public function order( string $side, string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [], bool $test = false ) {
@@ -904,16 +833,11 @@ class API {
     *
     * $candles = $api->candlesticks("BNBBTC", "5m");
     *
-    * @param $symbol string
-    *           to query
-    * @param $interval string
-    *           to request
-    * @param $limit int
-    *           limit the amount of candles
-    * @param $startTime string
-    *           request candle information starting from here
-    * @param $endTime string
-    *           request candle information ending here
+    * @param $symbol string to query
+    * @param $interval string to request
+    * @param $limit int limit the amount of candles
+    * @param $startTime string request candle information starting from here
+    * @param $endTime string request candle information ending here
     * @return array containing the response
     */
    public function candlesticks( string $symbol, string $interval = "5m", int $limit = null, $startTime = null, $endTime = null ) {
@@ -953,10 +877,8 @@ class API {
     *
     * $candles = $api->candlesticks("BNBBTC", "5m");
     *
-    * @param $array array
-    *           of your balances
-    * @param $priceData array
-    *           of prices
+    * @param $array array of your balances
+    * @param $priceData array of prices
     * @return array containing the response
     */
    private function balanceData( array $array, $priceData ) {
@@ -1019,8 +941,7 @@ class API {
     *
     * $data = $this->balanceHandler( $json );
     *
-    * @param $json array
-    *           data to convert
+    * @param $json array data to convert
     * @return array
     */
    private function balanceHandler( array $json ) {
@@ -1042,8 +963,7 @@ class API {
     *
     * $data = $this->tickerStreamHandler( $json );
     *
-    * @param $json object
-    *           data to convert
+    * @param $json object data to convert
     * @return array
     */
    private function tickerStreamHandler( object $json ) {
@@ -1079,8 +999,7 @@ class API {
     *
     * $data = $this->executionHandler( $json );
     *
-    * @param $json object
-    *           data to convert
+    * @param $json object data to convert
     * @return array
     */
    private function executionHandler( object $json ) {
@@ -1105,12 +1024,9 @@ class API {
     *
     * $object = $this->chartData($symbol, $interval, $ticks);
     *
-    * @param $symbol string
-    *           of your currency
-    * @param $interval string
-    *           the time interval
-    * @param $ticks array
-    *           of the canbles array
+    * @param $symbol string of your currency
+    * @param $interval string the time interval
+    * @param $ticks array of the canbles array
     * @return array object of the chartdata
     */
    private function chartData( string $symbol, string $interval, array $ticks ) {
@@ -1140,8 +1056,7 @@ class API {
     *
     * $tradesData = $this->tradesData($trades);
     *
-    * @param $trades array
-    *           of trade information
+    * @param $trades array of trade information
     * @return array easier format for trade information
     */
    private function tradesData( array $trades ) {
@@ -1166,8 +1081,7 @@ class API {
     *
     * $bookPriceData = $this->bookPriceData($array);
     *
-    * @param $array array
-    *           book prices
+    * @param $array array book prices
     * @return array easier format for book prices information
     */
    private function bookPriceData( array $array ) {
@@ -1188,8 +1102,7 @@ class API {
     *
     * $array = $this->priceData($array);
     *
-    * @param $array array
-    *           of prices
+    * @param $array array of prices
     * @return array of key/value pairs
     */
    private function priceData( array $array ) {
@@ -1205,8 +1118,7 @@ class API {
     *
     * $cumulative = $api->cumulative($depth);
     *
-    * @param $depth array
-    *           cache array
+    * @param $depth array cache array
     * @return array cumulative depth cache
     */
    public function cumulative( array $depth ) {
@@ -1240,8 +1152,7 @@ class API {
     * $highstock = $api->highstock($chart, $include_volume);
     *
     * @param $chart array
-    * @param $include_volume bool
-    *           for inclusion of volume
+    * @param $include_volume bool for inclusion of volume
     * @return array highchart data
     */
    public function highstock( array $chart, bool $include_volume = false ) {
@@ -1324,10 +1235,8 @@ class API {
     *
     * $array = $this->depthData($symbol, $json);
     *
-    * @param $symbol string
-    *           to display
-    * @param $json array
-    *           of the depth infomration
+    * @param $symbol string to display
+    * @param $json array of the depth infomration
     * @return array of the depth information
     */
    private function depthData( string $symbol, array $json ) {
@@ -1396,12 +1305,9 @@ class API {
     *
     * $this->depthHandler($json);
     *
-    * @param $symbol string
-    *           to sort
-    * @param $interval string
-    *           time
-    * @param $json array
-    *           of depth bids and asks
+    * @param $symbol string to sort
+    * @param $interval string time
+    * @param $json array of depth bids and asks
     * @return null
     */
    private function depthHandler( array $json ) {
@@ -1425,12 +1331,9 @@ class API {
     *
     * $this->chartHandler($symbol, $interval, $json);
     *
-    * @param $symbol string
-    *           to sort
-    * @param $interval string
-    *           time
-    * @param $json object
-    *           time
+    * @param $symbol string to sort
+    * @param $interval string time
+    * @param $json object time
     * @return null
     */
    private function chartHandler( string $symbol, string $interval, object $json ) {
@@ -1463,10 +1366,8 @@ class API {
     *
     * $sorted = $api->sortDepth($symbol, $limit);
     *
-    * @param $symbol string
-    *           to sort
-    * @param $limit int
-    *           depth
+    * @param $symbol string to sort
+    * @param $limit int depth
     * @return null
     */
    public function sortDepth( string $symbol, int $limit = 11 ) {
@@ -1497,10 +1398,8 @@ class API {
     * echo "bid: {$bid}".PHP_EOL;
     * });
     *
-    * @param $symbol string
-    *           optional array of symbols
-    * @param $callback callable
-    *           closure
+    * @param $symbol string optional array of symbols
+    * @param $callback callable closure
     * @return null
     */
    public function depthCache( $symbols, Callable $callback ) {
@@ -1559,10 +1458,8 @@ class API {
     * print_r($trades);
     * });
     *
-    * @param $symbol string
-    *           optional symbol
-    * @param $callback callable
-    *           closure
+    * @param $symbol string optional symbol
+    * @param $callback callable closure
     * @return null
     */
    public function trades( $symbols, Callable $callback ) {
@@ -1613,10 +1510,8 @@ class API {
     * print_r($ticker);
     * });
     *
-    * @param $symbol string
-    *           optional symbol or false
-    * @param $callback callable
-    *           closure
+    * @param $symbol string optional symbol or false
+    * @param $callback callable closure
     * @return null
     */
    public function ticker( $symbol, Callable $callback ) {
@@ -1651,12 +1546,9 @@ class API {
     * print_r($chart);
     * });
     *
-    * @param $symbols string
-    *           required symbols
-    * @param $interval string
-    *           time inteval
-    * @param $callback callable
-    *           closure
+    * @param $symbols string required symbols
+    * @param $interval string time inteval
+    * @param $callback callable closure
     * @return null
     */
    public function chart( $symbols, string $interval = "30m", Callable $callback ) {
@@ -1758,10 +1650,8 @@ class API {
     * };
     * $api->userData($balance_update, $order_update);
     *
-    * @param $balance_callback callable
-    *           function
-    * @param $execution_callback callable
-    *           function
+    * @param $balance_callback callable function
+    * @param $execution_callback callable function
     * @return null
     */
    public function userData( &$balance_callback, &$execution_callback = false ) {
@@ -1799,8 +1689,7 @@ class API {
     * print_r($ticker);
     * });
     *
-    * @param $callback callable
-    *           function closer that takes 2 arguments, $pai and $ticker data
+    * @param $callback callable function closer that takes 2 arguments, $pai and $ticker data
     * @return null
     */
    public function miniTicker( Callable $callback ) {
