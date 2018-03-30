@@ -516,7 +516,7 @@ class API {
 	 * @param $priceData array of the symbols balances are required for
 	 * @return array with error message or array of balances
 	 */
-	public function balances( array $priceData ) {
+	public function balances( $priceData ) {
 		if( is_array( $priceData ) == false ) $priceData = false;
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
@@ -816,7 +816,7 @@ class API {
 	 * @return array containing the response
 	 */
 	private function balanceData( array $array, array $priceData ) {
-		if( is_null( $priceData ) ) {
+		if( is_array( $priceData ) ) {
 			$btc_value = $btc_total = 0.00;
 		}
 		$balances = [];
@@ -852,7 +852,7 @@ class API {
 				$btc_total+= $btcTotal;
 			}
 		}
-		if( $priceData ) {
+		if( is_array( $priceData ) ) {
 			uasort($balances, function($a, $b) { return $a['btcValue'] < $b['btcValue']; });
 			$this->btc_value = $btc_value;
 			$this->btc_total = $btc_total;
