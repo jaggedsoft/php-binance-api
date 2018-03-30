@@ -48,7 +48,7 @@ class API {
 	 * @param $proxyConf array config
 	 * @return nothing
 	 */
-	public function __construct( $api_key = '', $api_secret = '', $options = ["useServerTime"=>false], $proxyConf = null ) {
+	public function __construct( string $api_key = '', string $api_secret = '', array $options = ["useServerTime"=>false], array $proxyConf = null ) {
 		$this->api_key = $api_key;
 		$this->api_secret = $api_secret;
 		$this->proxyConf = $proxyConf;
@@ -122,7 +122,7 @@ class API {
 	 * @param $flags array addtional options for order type
 	 * @return array with error message or the order details
 	 */
-	public function buy($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+	public function buy( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
 	}
 
@@ -137,7 +137,7 @@ class API {
 	 * @param $flags array config
 	 * @return array with error message or empty or the order details
 	 */
-	public function buyTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+	public function buyTest( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, $price, $type, $flags, true);
 	}
 
@@ -166,7 +166,7 @@ class API {
 	 * @param $flags array addtional options for order type
 	 * @return array with error message or the order details
 	 */
-	public function sell($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+	public function sell( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
 	}
 
@@ -181,7 +181,7 @@ class API {
 	 * @param $flags array config
 	 * @return array with error message or empty or the order details
 	 */
-	public function sellTest($symbol, $quantity, $price, $type = "LIMIT", $flags = []) {
+	public function sellTest( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, $price, $type, $flags, true);
 	}
 
@@ -196,7 +196,7 @@ class API {
 	 * @param $flags array addtional options for order type
 	 * @return array with error message or the order details
 	 */
-	public function marketBuy($symbol, $quantity, $flags = []) {
+	public function marketBuy( string $symbol, $quantity, array $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 
@@ -209,7 +209,7 @@ class API {
 	 * @param $flags array addtional options for order type
 	 * @return array with error message or the order details
 	 */
-	public function marketBuyTest($symbol, $quantity, $flags = []) {
+	public function marketBuyTest( string $symbol, $quantity, array $flags = []) {
 		return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
 	}
 
@@ -224,7 +224,7 @@ class API {
 	 * @param $flags array addtional options for order type
 	 * @return array with error message or the order details
 	 */
-	public function marketSell($symbol, $quantity, $flags = []) {
+	public function marketSell( string $symbol, $quantity, array $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
 	}
 
@@ -237,7 +237,7 @@ class API {
 	 * @param $flags array addtional options for order type
 	 * @return array with error message or the order details
 	 */
-	public function marketSellTest($symbol, $quantity, $flags = []) {
+	public function marketSellTest( string $symbol, $quantity, array $flags = []) {
 		return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags, true);
 	}
 
@@ -251,7 +251,7 @@ class API {
 	 * @param $orderid the orderid to cancel
 	 * @return array with error message or the order details
 	 */
-	public function cancel($symbol, $orderid) {
+	public function cancel( string $symbol, $orderid) {
 		return $this->httpRequest("v3/order", "DELETE", ["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 
@@ -265,7 +265,7 @@ class API {
 	 * @param $orderid the orderid to cancel
 	 * @return array with error message or the order details
 	 */
-	public function orderStatus($symbol, $orderid) {
+	public function orderStatus( string $symbol, $orderid) {
 		return $this->httpRequest("v3/order", "GET" ,["symbol"=>$symbol, "orderId"=>$orderid], true);
 	}
 
@@ -278,7 +278,7 @@ class API {
 	 * @param $symbol the currency symbol
 	 * @return array with error message or the order details
 	 */
-	public function openOrders($symbol = null) {
+	public function openOrders( string $symbol = null) {
 		$params = [];
 		if( is_null( $symbol ) != true ) {
 		    $params = ["symbol"=>$symbol];
@@ -296,7 +296,7 @@ class API {
 	 * @param $fromOrderId return the orders from this order onwards
 	 * @return array with error message or array of orderDetails array
 	 */
-	public function orders($symbol, $limit = 500, $fromOrderId = 1) {
+	public function orders( string $symbol, int $limit = 500, int $fromOrderId = 1) {
 		return $this->httpRequest("v3/allOrders", "GET", ["symbol"=>$symbol, "limit"=>$limit, "orderId"=>$fromOrderId], true);
 	}
 
@@ -313,7 +313,7 @@ class API {
 	 * @param $fromTradeId return the orders from this order onwards
 	 * @return array with error message or array of orderDetails array
 	 */
-	public function history($symbol, $limit = 500, $fromTradeId = 1) {
+	public function history( string $symbol, int $limit = 500, int $fromTradeId = 1) {
 		return $this->httpRequest("v3/myTrades", "GET", ["symbol"=>$symbol, "limit"=>$limit, "fromId"=>$fromTradeId], true);
 	}
 
@@ -370,13 +370,10 @@ class API {
 	 * @param $addressTag adtional transactionid required by some assets
 	 * @return array with error message or array transaction
 	 */
-	public function withdraw($asset, $address, $amount, $addressTag = false) {
+	public function withdraw( string $asset, string $address, $amount, string $addressTag ) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
-		if( is_string( $addressTag ) ) {
+		if( is_null( $addressTag ) == false ) {
 			$options['addressTag'] = $addressTag;
-		}
-		else {
-			echo "addressTag: expected string, " . gettype( $addressTag ) . " given" . PHP_EOL;
 		}
 		return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
 	}
@@ -389,7 +386,7 @@ class API {
 	 * @param $asset the currency such as BTC
 	 * @return array with error message or array deposit address information
 	 */
-	public function depositAddress($asset) {
+	public function depositAddress( string $asset ) {
 		$params = ["wapi"=>true, "asset"=>$asset];
 		return $this->httpRequest("v3/depositAddress.html", "GET", $params, true);
 	}
@@ -404,13 +401,10 @@ class API {
 	 * @param $asset empty or the currency such as BTC
 	 * @return array with error message or array deposit history information
 	 */
-	public function depositHistory($asset = false) {
+	public function depositHistory( string $asset = null ) {
 		$params = ["wapi"=>true];
-		if( is_string( $asset ) == true ) {
+		if( is_null( $asset ) == false ) {
 			$params['asset'] = $asset;
-		}
-		else if ( is_bool( $asset ) == false ) {
-			echo "asset: expected bool false, " . gettype( $asset ) . " given" . PHP_EOL;
 		}
 		return $this->httpRequest("v3/depositHistory.html", "GET", $params, true);
 	}
@@ -425,13 +419,10 @@ class API {
 	 * @param $asset empty or the currency such as BTC
 	 * @return array with error message or array deposit history information
 	 */
-	public function withdrawHistory($asset = false) {
+	public function withdrawHistory( string $asset = null ) {
 		$params = ["wapi"=>true];
-		if( is_string( $asset ) == true ) {
+		if( is_null( $asset ) == false ) {
 			$params['asset'] = $asset;
-		}
-		else if ( is_bool( $asset ) == false ) {
-			echo "asset: expected bool false, " . gettype( $asset ) . " given" . PHP_EOL;
 		}
 		return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
 	}
@@ -477,9 +468,9 @@ class API {
 	 * @param $symbol (optional) symbol to get the previous day change for
 	 * @return array with error message or array of prevDay change
 	 */
-	public function prevDay($symbol = '') {
+	public function prevDay( string $symbol ) {
 		$additionalData = [];
-		if(!empty($symbol)){
+		if( is_null($symbol) == false ){
 			$additionalData = ['symbol' => $symbol];
 		}
 		return $this->httpRequest("v1/ticker/24hr", "GET", $additionalData);
@@ -493,7 +484,7 @@ class API {
 	 * @param $symbol the symbol to get the trade information for
 	 * @return array with error message or array of market history
 	 */
-	public function aggTrades($symbol) {
+	public function aggTrades( string $symbol ) {
 		return $this->tradesData($this->httpRequest("v1/aggTrades", "GET", ["symbol"=>$symbol]));
 	}
 
@@ -505,7 +496,7 @@ class API {
 	 * @param $symbol the symbol to get the depth information for
 	 * @return array with error message or array of market depth
 	 */
-	public function depth($symbol) {
+	public function depth( string $symbol ) {
 		if( isset( $symbol ) == false || is_string( $symbol ) == false ) {
 			echo "asset: expected bool false, " . gettype( $asset ) . " given" . PHP_EOL;
 		}
@@ -525,7 +516,8 @@ class API {
 	 * @param $priceData array of the symbols balances are required for
 	 * @return array with error message or array of balances
 	 */
-	public function balances($priceData = false) {
+	public function balances( array $priceData ) {
+		if( is_array( $priceData ) == false ) $priceData = false;
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
 
@@ -578,7 +570,7 @@ class API {
 	 *
 	 * @return nothing
 	 */
-	public function setProxy( $proxyconf ) {
+	public function setProxy( array $proxyconf ) {
 		$this->proxyConf = $proxyconf;
 	}
 
@@ -598,7 +590,7 @@ class API {
 	 * @param $signed bool true or false sign the request with api secret
 	 * @return array containing the response
 	 */
-	private function httpRequest($url, $method = "GET", $params = [], $signed = false) {
+	private function httpRequest( string $url, string $method = "GET", array $params = [], bool $signed = false) {
 
 		if( function_exists('curl_init') == false ) {
 			die( "Sorry cURL is not installed!" );
@@ -707,7 +699,7 @@ class API {
 	 * @param $test whether to test or not, test only validates the query
 	 * @return array containing the response
 	 */
-	public function order($side, $symbol, $quantity, $price, $type = "LIMIT", $flags = [], $test = false) {
+	public function order( string $side, string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [], bool $test = false) {
 		$opt = [
 			"symbol" => $symbol,
 			"side" => $side,
@@ -785,7 +777,7 @@ class API {
 	 * @param $endTime request candle information ending here
 	 * @return array containing the response
 	 */
-	public function candlesticks($symbol, $interval = "5m", $limit = null, $startTime= null, $endTime = null) {
+	public function candlesticks( string $symbol, string $interval = "5m", int $limit = null, $startTime = null, $endTime = null) {
 		if( is_string( $symbol ) == false ) {
 			echo "warning: symbol expected string got " . gettype( $symbol ) . PHP_EOL;
 		}
@@ -823,12 +815,9 @@ class API {
 	 * @param $priceData array of prices
 	 * @return array containing the response
 	 */
-	private function balanceData($array, $priceData = false) {
-		if( is_array( $priceData ) ) {
+	private function balanceData( array $array, array $priceData ) {
+		if( is_null( $priceData ) ) {
 			$btc_value = $btc_total = 0.00;
-		}
-		else {
-			echo "warning: priceData expected array got " . gettype( $priceData ) . PHP_EOL;
 		}
 		$balances = [];
 		if( empty($array) || empty($array['balances']) ) {
@@ -879,7 +868,7 @@ class API {
 	 * @param $json data to convert
 	 * @return array
 	 */
-	private function balanceHandler($json) {
+	private function balanceHandler( array $json ) {
 		$balances = [];
 		foreach ( $json as $item ) {
 			$asset = $item->a;
@@ -898,7 +887,7 @@ class API {
 	 * @param $json data to convert
 	 * @return array
 	 */
-	private function tickerStreamHandler($json) {
+	private function tickerStreamHandler( object $json) {
 		return [
 			"eventType" => $json->e,
 			"eventTime" => $json->E,
@@ -934,7 +923,7 @@ class API {
 	 * @param $json data to convert
 	 * @return array
 	 */
-	private function executionHandler($json) {
+	private function executionHandler( object $json) {
 		return [
 			"symbol" => $json->s,
 			"side" => $json->S,
@@ -961,7 +950,7 @@ class API {
 	 * @param $ticks the canbles array
 	 * @return array object of the chartdata
 	 */
-	private function chartData($symbol, $interval, $ticks) {
+	private function chartData( string $symbol, string $interval, array $ticks) {
 		if( !isset($this->info[$symbol]) ) $this->info[$symbol] = [];
 		if( !isset($this->info[$symbol][$interval]) ) $this->info[$symbol][$interval] = [];
 		$output = [];
@@ -989,7 +978,7 @@ class API {
 	 * @param $trades array of trade information
 	 * @return array easier format for trade information
 	 */
-	private function tradesData($trades) {
+	private function tradesData( array $trades ) {
 		$output = [];
 		foreach ( $trades as $trade ) {
 			$price = $trade['p'];
@@ -1009,7 +998,7 @@ class API {
 	 * @param $array book prices
 	 * @return array easier format for book prices information
 	 */
-	private function bookPriceData($array) {
+	private function bookPriceData( array $array) {
 		$bookprices = [];
 		foreach ( $array as $obj ) {
 			$bookprices[$obj['symbol']] = [
@@ -1030,7 +1019,7 @@ class API {
 	 * @param $array of prices
 	 * @return array of key/value pairs
 	 */
-	private function priceData($array) {
+	private function priceData( array $array) {
 		$prices = [];
 		foreach ( $array as $obj ) {
 			$prices[$obj['symbol']] = $obj['price'];
@@ -1046,7 +1035,7 @@ class API {
 	 * @param $depth cache array
 	 * @return array cumulative depth cache
 	 */
-	public function cumulative($depth) {
+	public function cumulative( array $depth) {
 		$bids = []; $asks = [];
 		$cumulative = 0;
 		foreach ( $depth['bids'] as $price => $quantity ) {
@@ -1070,7 +1059,7 @@ class API {
 	 * @param $include_volume bool for inclusion of volume
 	 * @return array highchart data
 	 */
-	public function highstock($chart, $include_volume = false) {
+	public function highstock( array $chart, bool $include_volume = false) {
 		$array = [];
 		foreach ( $chart as $timestamp => $obj ) {
 			$line = [
@@ -1094,7 +1083,7 @@ class API {
 	 * @param $array array
 	 * @return string key or null
 	 */
-	public function first($array) {
+	public function first( array $array) {
 		if(count($array)>0)	{
 			return array_keys($array)[0];
 		}
@@ -1109,7 +1098,7 @@ class API {
 	 * @param $array array
 	 * @return string key or null
 	 */
-	public function last($array) {
+	public function last( array $array) {
 		if(count($array)>0)	{
 			return array_keys(array_slice($array, -1))[0];
 		}
@@ -1124,7 +1113,7 @@ class API {
 	 * @param $array array
 	 * @return string of the depth information
 	 */
-	public function displayDepth($array) {
+	public function displayDepth( array $array) {
 		$output = '';
 		foreach ( ['asks', 'bids'] as $type ) {
 			$entries = $array[$type];
@@ -1149,7 +1138,7 @@ class API {
 	 * @param $json array of the depth infomration
 	 * @return array of the depth information
 	 */
-	private function depthData($symbol, $json) {
+	private function depthData( string $symbol, array $json) {
 		$bids = $asks = [];
 		foreach ( $json['bids'] as $obj ) {
 			$bids[$obj[0]] = $obj[1];
@@ -1192,7 +1181,7 @@ class API {
 	 *
 	 * @return nothing
 	 */
-	public function addToTransfered( $int ) {
+	public function addToTransfered( int $int ) {
 		$this->transfered += $int;
 		$this->requestCount++;
 	}
@@ -1211,7 +1200,7 @@ class API {
 	 * @param $json time
 	 * @return nothing
 	 */
-	private function depthHandler($json) {
+	private function depthHandler( array $json) {
 		$symbol = $json['s'];
 		if( $json['u'] <= $this->info[$symbol]['firstUpdate'] ) return;
 		foreach ( $json['b'] as $bid ) {
@@ -1234,7 +1223,7 @@ class API {
 	 * @param $json time
 	 * @return nothing
 	 */
-	private function chartHandler($symbol, $interval, $json) {
+	private function chartHandler( string $symbol, string $interval, object $json) {
 		if( !$this->info[$symbol][$interval]['firstOpen'] ) { // Wait for /kline to finish loading
 			$this->chartQueue[$symbol][$interval][] = $json;
 			return;
@@ -1261,7 +1250,7 @@ class API {
 	 * @param $limit depth
 	 * @return nothing
 	 */
-	public function sortDepth($symbol, $limit = 11) {
+	public function sortDepth( string $symbol, int $limit = 11) {
 		$bids = $this->depthCache[$symbol]['bids'];
 		$asks = $this->depthCache[$symbol]['asks'];
 		krsort($bids);
@@ -1289,7 +1278,7 @@ class API {
 	 * @param $callback closure
 	 * @return nothing
 	 */
-	public function depthCache($symbols, $callback) {
+	public function depthCache($symbols, Callable $callback) {
 		if( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
@@ -1340,7 +1329,7 @@ class API {
 	 * @param $callback closure
 	 * @return nothing
 	 */
-	public function trades($symbols, $callback) {
+	public function trades($symbols, Callable $callback) {
 		if( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
@@ -1383,7 +1372,7 @@ class API {
 	 * @param $callback closure
 	 * @return nothing
 	 */
-	public function ticker($symbol, $callback) {
+	public function ticker($symbol, Callable $callback) {
 		$endpoint = $symbol ? strtolower($symbol).'@ticker' : '!ticker@arr';
 		\Ratchet\Client\connect('wss://stream.binance.com:9443/ws/'.$endpoint)->then(function($ws) use($callback, $symbol) {
 			$ws->on('message', function($data) use($ws, $callback, $symbol) {
@@ -1419,7 +1408,7 @@ class API {
 	 * @param $callback closure
 	 * @return nothing
 	 */
-	public function chart($symbols, $interval = "30m", $callback) {
+	public function chart($symbols, string $interval = "30m", Callable $callback) {
 		if( !is_array($symbols) ) $symbols = [$symbols];
 		$loop = \React\EventLoop\Factory::create();
 		$react = new \React\Socket\Connector($loop);
@@ -1551,7 +1540,7 @@ class API {
 	 * @param $callback function closer that takes 2 arguments, $pai and $ticker data
 	 * @return nothing
 	 */
-	public function miniTicker($callback) {
+	public function miniTicker( Callable $callback ) {
 		\Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms')
 			->then(function($ws) use($callback) {
 			    $ws->on('message', function($data) use($ws, $callback) {
