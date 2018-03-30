@@ -271,7 +271,7 @@ final class BinanceTest extends TestCase
       $asset = "BTC";
       $address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
       $amount = 0.2;
-      $result = $this->_testable->withdraw($asset, $address, $amount, false);
+      $result = $this->_testable->withdraw($asset, $address, $amount);
       $this->assertTrue( true );
       if( isset( $result['code'] ) ) {
          self::debug( 0, __METHOD__, "withdraw error: " . $result['code'] . ":" . $result['msg']);
