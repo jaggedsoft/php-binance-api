@@ -516,7 +516,7 @@ class API {
 	 * @param $priceData array of the symbols balances are required for
 	 * @return array with error message or array of balances
 	 */
-	public function balances( $priceData ) {
+	public function balances( $priceData = false ) {
 		if( is_array( $priceData ) == false ) $priceData = false;
 		return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
 	}
