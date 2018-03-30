@@ -470,15 +470,19 @@ class API {
 	}
 
 	/**
-	 * prevDay get 24hr ticker price change statistics for a symbol
+	 * prevDay get 24hr ticker price change statistics for symbols
 	 *
 	 * $prevDay = $api->prevDay("BNBBTC");
 	 *
-	 * @param $symbol the symbol to get the previous day change for
+	 * @param $symbol (optional) symbol to get the previous day change for
 	 * @return array with error message or array of prevDay change
 	 */
-	public function prevDay($symbol) {
-		return $this->httpRequest("v1/ticker/24hr", "GET", ["symbol"=>$symbol]);
+	public function prevDay($symbol = '') {
+		$additionalData = [];
+		if(!empty($symbol)){
+			$additionalData = ['symbol' => $symbol];
+		}
+		return $this->httpRequest("v1/ticker/24hr", "GET", $additionalData);
 	}
 
 	/**
