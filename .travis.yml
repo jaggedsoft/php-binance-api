@@ -6,20 +6,25 @@ php:
 before_script:
   - mkdir -vp ~/.config/jaggedsoft/
   - mkdir -vp build/logs
+  - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/composer-test.json -O composer-test.json
+  - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/docs.sh -O docs.sh
+  - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/doxy.gen -O doxy.gen
+  - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/php-binance-api-test.php -O php-binance-api-test.php
+  - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/phpunit.xml -O phpunit.xml
+  - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+  - travis_retry wget https://codecov.io/bash -O codecov.sh
   - COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
-  - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
-  - chmod +x coveralls.phar
-  - php coveralls.phar --version
+  - chmod -v +x codecov.sh
+  - chmod -v +x docs.sh
+  - chmod -v +x coveralls.phar
 
 script:
   - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test
 
 after_success:
  - travis_retry php coveralls.phar -v
- - bash <(curl -s https://codecov.io/bash)
- - cd $TRAVIS_BUILD_DIR
- - chmod +x docs.sh
- - ./docs.sh
+ - travis_retry bash -x ./codecov.sh -f "!$TRAVIS_BUILD_DIR/php-binance-api-test.php"
+ - travis_retry bash -x ./docs.sh
 
 branches:
   only: master
