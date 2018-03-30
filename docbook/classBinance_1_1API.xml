@@ -316,7 +316,7 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1aeb54dfcbcbbd971bd3393491c99da5b0">prevDay</link> (
+                        <para> <link linkend="classBinance_1_1API_1a018a1002f7346fe83f37325174cefe2d">prevDay</link> (
  $symbol)</para>
                     </listitem>
                 </itemizedlist>
@@ -1492,8 +1492,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1aeb54dfcbcbbd971bd3393491c99da5b0">
-                <title>Binance\API::prevDay ($symbol)</title> <emphasis>prevDay get 24hr ticker price change statistics for a symbol</emphasis>
+            <section xml:id="classBinance_1_1API_1a018a1002f7346fe83f37325174cefe2d">
+                <title>Binance\API::prevDay ($symbol= &apos;&apos;)</title> <emphasis>prevDay get 24hr ticker price change statistics for symbols</emphasis>
                 
 <para>$prevDay = $api-&gt;prevDay(&quot;BNBBTC&quot;);</para>
 
@@ -1507,7 +1507,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the symbol to get the previous day change for </para>
+<para>(optional) symbol to get the previous day change for </para>
 </entry>
                             </row>
                         </tbody>
