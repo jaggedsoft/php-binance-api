@@ -815,7 +815,7 @@ class API {
 	 * @param $priceData array of prices
 	 * @return array containing the response
 	 */
-	private function balanceData( array $array, array $priceData ) {
+	private function balanceData( array $array, $priceData ) {
 		if( is_array( $priceData ) ) {
 			$btc_value = $btc_total = 0.00;
 		}
