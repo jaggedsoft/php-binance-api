@@ -370,9 +370,9 @@ class API {
 	 * @param $addressTag adtional transactionid required by some assets
 	 * @return array with error message or array transaction
 	 */
-	public function withdraw( string $asset, string $address, $amount, string $addressTag ) {
+	public function withdraw( string $asset, string $address, $amount, $addressTag = null ) {
 		$options = ["asset"=>$asset, "address"=>$address, "amount"=>$amount, "wapi"=>true, "name"=>"API Withdraw"];
-		if( is_null( $addressTag ) == false ) {
+		if( is_null( $addressTag ) == false && is_empty( $addressTag ) == false ) {
 			$options['addressTag'] = $addressTag;
 		}
 		return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
