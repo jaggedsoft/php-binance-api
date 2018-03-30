@@ -6,33 +6,33 @@
 \contentsline {section}{\numberline {3.1}Binance Namespace Reference}{5}{section.3.1}
 \contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}
 \contentsline {section}{\numberline {4.1}Binance\textbackslash {}A\discretionary {-}{}{}P\discretionary {-}{}{}I Class Reference}{7}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{10}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{9}{subsection.4.1.1}
 \contentsline {subsection}{\numberline {4.1.2}Constructor \& Destructor Documentation}{10}{subsection.4.1.2}
 \contentsline {subsubsection}{\numberline {4.1.2.1}\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}construct}{10}{subsubsection.4.1.2.1}
 \contentsline {subsection}{\numberline {4.1.3}Member Function Documentation}{10}{subsection.4.1.3}
 \contentsline {subsubsection}{\numberline {4.1.3.1}account}{10}{subsubsection.4.1.3.1}
-\contentsline {subsubsection}{\numberline {4.1.3.2}add\discretionary {-}{}{}To\discretionary {-}{}{}Transfered}{11}{subsubsection.4.1.3.2}
-\contentsline {subsubsection}{\numberline {4.1.3.3}agg\discretionary {-}{}{}Trades}{11}{subsubsection.4.1.3.3}
+\contentsline {subsubsection}{\numberline {4.1.3.2}add\discretionary {-}{}{}To\discretionary {-}{}{}Transfered}{10}{subsubsection.4.1.3.2}
+\contentsline {subsubsection}{\numberline {4.1.3.3}agg\discretionary {-}{}{}Trades}{10}{subsubsection.4.1.3.3}
 \contentsline {subsubsection}{\numberline {4.1.3.4}balances}{11}{subsubsection.4.1.3.4}
 \contentsline {subsubsection}{\numberline {4.1.3.5}book\discretionary {-}{}{}Prices}{11}{subsubsection.4.1.3.5}
-\contentsline {subsubsection}{\numberline {4.1.3.6}buy}{12}{subsubsection.4.1.3.6}
+\contentsline {subsubsection}{\numberline {4.1.3.6}buy}{11}{subsubsection.4.1.3.6}
 \contentsline {subsubsection}{\numberline {4.1.3.7}buy\discretionary {-}{}{}Test}{12}{subsubsection.4.1.3.7}
 \contentsline {subsubsection}{\numberline {4.1.3.8}cancel}{12}{subsubsection.4.1.3.8}
-\contentsline {subsubsection}{\numberline {4.1.3.9}candlesticks}{13}{subsubsection.4.1.3.9}
+\contentsline {subsubsection}{\numberline {4.1.3.9}candlesticks}{12}{subsubsection.4.1.3.9}
 \contentsline {subsubsection}{\numberline {4.1.3.10}chart}{13}{subsubsection.4.1.3.10}
 \contentsline {subsubsection}{\numberline {4.1.3.11}cumulative}{13}{subsubsection.4.1.3.11}
-\contentsline {subsubsection}{\numberline {4.1.3.12}deposit\discretionary {-}{}{}Address}{14}{subsubsection.4.1.3.12}
+\contentsline {subsubsection}{\numberline {4.1.3.12}deposit\discretionary {-}{}{}Address}{13}{subsubsection.4.1.3.12}
 \contentsline {subsubsection}{\numberline {4.1.3.13}deposit\discretionary {-}{}{}History}{14}{subsubsection.4.1.3.13}
 \contentsline {subsubsection}{\numberline {4.1.3.14}depth}{14}{subsubsection.4.1.3.14}
-\contentsline {subsubsection}{\numberline {4.1.3.15}depth\discretionary {-}{}{}Cache}{15}{subsubsection.4.1.3.15}
+\contentsline {subsubsection}{\numberline {4.1.3.15}depth\discretionary {-}{}{}Cache}{14}{subsubsection.4.1.3.15}
 \contentsline {subsubsection}{\numberline {4.1.3.16}display\discretionary {-}{}{}Depth}{15}{subsubsection.4.1.3.16}
 \contentsline {subsubsection}{\numberline {4.1.3.17}exchange\discretionary {-}{}{}Info}{15}{subsubsection.4.1.3.17}
 \contentsline {subsubsection}{\numberline {4.1.3.18}first}{15}{subsubsection.4.1.3.18}
-\contentsline {subsubsection}{\numberline {4.1.3.19}get\discretionary {-}{}{}Proxy\discretionary {-}{}{}Uri\discretionary {-}{}{}String}{16}{subsubsection.4.1.3.19}
+\contentsline {subsubsection}{\numberline {4.1.3.19}get\discretionary {-}{}{}Proxy\discretionary {-}{}{}Uri\discretionary {-}{}{}String}{15}{subsubsection.4.1.3.19}
 \contentsline {subsubsection}{\numberline {4.1.3.20}get\discretionary {-}{}{}Request\discretionary {-}{}{}Count}{16}{subsubsection.4.1.3.20}
 \contentsline {subsubsection}{\numberline {4.1.3.21}get\discretionary {-}{}{}Transfered}{16}{subsubsection.4.1.3.21}
 \contentsline {subsubsection}{\numberline {4.1.3.22}highstock}{16}{subsubsection.4.1.3.22}
-\contentsline {subsubsection}{\numberline {4.1.3.23}history}{17}{subsubsection.4.1.3.23}
+\contentsline {subsubsection}{\numberline {4.1.3.23}history}{16}{subsubsection.4.1.3.23}
 \contentsline {subsubsection}{\numberline {4.1.3.24}keep\discretionary {-}{}{}Alive}{17}{subsubsection.4.1.3.24}
 \contentsline {subsubsection}{\numberline {4.1.3.25}last}{17}{subsubsection.4.1.3.25}
 \contentsline {subsubsection}{\numberline {4.1.3.26}market\discretionary {-}{}{}Buy}{17}{subsubsection.4.1.3.26}
@@ -40,34 +40,34 @@
 \contentsline {subsubsection}{\numberline {4.1.3.28}market\discretionary {-}{}{}Sell}{18}{subsubsection.4.1.3.28}
 \contentsline {subsubsection}{\numberline {4.1.3.29}market\discretionary {-}{}{}Sell\discretionary {-}{}{}Test}{18}{subsubsection.4.1.3.29}
 \contentsline {subsubsection}{\numberline {4.1.3.30}mini\discretionary {-}{}{}Ticker}{19}{subsubsection.4.1.3.30}
-\contentsline {subsubsection}{\numberline {4.1.3.31}open\discretionary {-}{}{}Orders}{19}{subsubsection.4.1.3.31}
-\contentsline {subsubsection}{\numberline {4.1.3.32}order}{19}{subsubsection.4.1.3.32}
+\contentsline {subsubsection}{\numberline {4.1.3.31}open\discretionary {-}{}{}Orders}{20}{subsubsection.4.1.3.31}
+\contentsline {subsubsection}{\numberline {4.1.3.32}order}{20}{subsubsection.4.1.3.32}
 \contentsline {subsubsection}{\numberline {4.1.3.33}orders}{20}{subsubsection.4.1.3.33}
-\contentsline {subsubsection}{\numberline {4.1.3.34}order\discretionary {-}{}{}Status}{20}{subsubsection.4.1.3.34}
-\contentsline {subsubsection}{\numberline {4.1.3.35}prev\discretionary {-}{}{}Day}{20}{subsubsection.4.1.3.35}
+\contentsline {subsubsection}{\numberline {4.1.3.34}order\discretionary {-}{}{}Status}{21}{subsubsection.4.1.3.34}
+\contentsline {subsubsection}{\numberline {4.1.3.35}prev\discretionary {-}{}{}Day}{21}{subsubsection.4.1.3.35}
 \contentsline {subsubsection}{\numberline {4.1.3.36}prices}{21}{subsubsection.4.1.3.36}
-\contentsline {subsubsection}{\numberline {4.1.3.37}sell}{21}{subsubsection.4.1.3.37}
-\contentsline {subsubsection}{\numberline {4.1.3.38}sell\discretionary {-}{}{}Test}{21}{subsubsection.4.1.3.38}
+\contentsline {subsubsection}{\numberline {4.1.3.37}sell}{22}{subsubsection.4.1.3.37}
+\contentsline {subsubsection}{\numberline {4.1.3.38}sell\discretionary {-}{}{}Test}{22}{subsubsection.4.1.3.38}
 \contentsline {subsubsection}{\numberline {4.1.3.39}set\discretionary {-}{}{}Proxy}{22}{subsubsection.4.1.3.39}
-\contentsline {subsubsection}{\numberline {4.1.3.40}sort\discretionary {-}{}{}Depth}{22}{subsubsection.4.1.3.40}
-\contentsline {subsubsection}{\numberline {4.1.3.41}ticker}{22}{subsubsection.4.1.3.41}
+\contentsline {subsubsection}{\numberline {4.1.3.40}sort\discretionary {-}{}{}Depth}{23}{subsubsection.4.1.3.40}
+\contentsline {subsubsection}{\numberline {4.1.3.41}ticker}{23}{subsubsection.4.1.3.41}
 \contentsline {subsubsection}{\numberline {4.1.3.42}time}{23}{subsubsection.4.1.3.42}
 \contentsline {subsubsection}{\numberline {4.1.3.43}trades}{23}{subsubsection.4.1.3.43}
-\contentsline {subsubsection}{\numberline {4.1.3.44}user\discretionary {-}{}{}Data}{23}{subsubsection.4.1.3.44}
+\contentsline {subsubsection}{\numberline {4.1.3.44}user\discretionary {-}{}{}Data}{24}{subsubsection.4.1.3.44}
 \contentsline {subsubsection}{\numberline {4.1.3.45}use\discretionary {-}{}{}Server\discretionary {-}{}{}Time}{24}{subsubsection.4.1.3.45}
 \contentsline {subsubsection}{\numberline {4.1.3.46}withdraw}{24}{subsubsection.4.1.3.46}
-\contentsline {subsubsection}{\numberline {4.1.3.47}withdraw\discretionary {-}{}{}History}{24}{subsubsection.4.1.3.47}
-\contentsline {subsection}{\numberline {4.1.4}Member Data Documentation}{24}{subsection.4.1.4}
-\contentsline {subsubsection}{\numberline {4.1.4.1}\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}{24}{subsubsection.4.1.4.1}
+\contentsline {subsubsection}{\numberline {4.1.3.47}withdraw\discretionary {-}{}{}History}{25}{subsubsection.4.1.3.47}
+\contentsline {subsection}{\numberline {4.1.4}Member Data Documentation}{25}{subsection.4.1.4}
+\contentsline {subsubsection}{\numberline {4.1.4.1}\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}{25}{subsubsection.4.1.4.1}
 \contentsline {subsubsection}{\numberline {4.1.4.2}\$api\discretionary {-}{}{}\_\discretionary {-}{}{}secret}{25}{subsubsection.4.1.4.2}
 \contentsline {subsubsection}{\numberline {4.1.4.3}\$balances}{25}{subsubsection.4.1.4.3}
 \contentsline {subsubsection}{\numberline {4.1.4.4}\$base}{25}{subsubsection.4.1.4.4}
 \contentsline {subsubsection}{\numberline {4.1.4.5}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}total}{25}{subsubsection.4.1.4.5}
 \contentsline {subsubsection}{\numberline {4.1.4.6}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}value}{25}{subsubsection.4.1.4.6}
-\contentsline {subsubsection}{\numberline {4.1.4.7}\$chart\discretionary {-}{}{}Queue}{25}{subsubsection.4.1.4.7}
-\contentsline {subsubsection}{\numberline {4.1.4.8}\$charts}{25}{subsubsection.4.1.4.8}
-\contentsline {subsubsection}{\numberline {4.1.4.9}\$depth\discretionary {-}{}{}Cache}{25}{subsubsection.4.1.4.9}
-\contentsline {subsubsection}{\numberline {4.1.4.10}\$depth\discretionary {-}{}{}Queue}{25}{subsubsection.4.1.4.10}
+\contentsline {subsubsection}{\numberline {4.1.4.7}\$chart\discretionary {-}{}{}Queue}{26}{subsubsection.4.1.4.7}
+\contentsline {subsubsection}{\numberline {4.1.4.8}\$charts}{26}{subsubsection.4.1.4.8}
+\contentsline {subsubsection}{\numberline {4.1.4.9}\$depth\discretionary {-}{}{}Cache}{26}{subsubsection.4.1.4.9}
+\contentsline {subsubsection}{\numberline {4.1.4.10}\$depth\discretionary {-}{}{}Queue}{26}{subsubsection.4.1.4.10}
 \contentsline {subsubsection}{\numberline {4.1.4.11}\$http\discretionary {-}{}{}Debug}{26}{subsubsection.4.1.4.11}
 \contentsline {subsubsection}{\numberline {4.1.4.12}\$info}{26}{subsubsection.4.1.4.12}
 \contentsline {subsubsection}{\numberline {4.1.4.13}\$proxy\discretionary {-}{}{}Conf}{26}{subsubsection.4.1.4.13}

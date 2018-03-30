@@ -10,12 +10,12 @@
         <name>$base</name>
         <initializer>= &quot;https://api.binance.com/api/&quot;</initializer>
         <briefdescription>
-<para>REST endpoint for the currency exchange. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="21" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="21" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="24" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a52a5376574ff759fb1df6c8efe24cb7f" prot="protected" static="no" mutable="no">
         <type></type>
@@ -24,12 +24,12 @@
         <name>$wapi</name>
         <initializer>= &quot;https://api.binance.com/wapi/&quot;</initializer>
         <briefdescription>
-<para>REST endpoint for the withdrawals. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="22" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="22" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="25" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a4b70fc1796d52440e44423da2cbafca5" prot="protected" static="no" mutable="no">
         <type></type>
@@ -37,12 +37,12 @@
         <argsstring></argsstring>
         <name>$api_key</name>
         <briefdescription>
-<para>API key that you created in the binance website member area. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="23" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="23" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="26" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a5612f3068ec5843031812893537e7677" prot="protected" static="no" mutable="no">
         <type></type>
@@ -50,12 +50,12 @@
         <argsstring></argsstring>
         <name>$api_secret</name>
         <briefdescription>
-<para>API secret that was given to you when you created the api key. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="24" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="24" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="27" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a69d62e886266a59b0a314cb4f5f164ca" prot="protected" static="no" mutable="no">
         <type></type>
@@ -64,12 +64,12 @@
         <name>$depthCache</name>
         <initializer>= []</initializer>
         <briefdescription>
-<para>Websockets depth cache. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="25" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="25" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="28" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1ab04600479e07a4af0ead9ba84772bde1" prot="protected" static="no" mutable="no">
         <type></type>
@@ -78,12 +78,12 @@
         <name>$depthQueue</name>
         <initializer>= []</initializer>
         <briefdescription>
-<para>Websockets depth queue. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="26" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="26" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="29" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1aaa75d873054290eecf1dd2876237a279" prot="protected" static="no" mutable="no">
         <type></type>
@@ -92,12 +92,12 @@
         <name>$chartQueue</name>
         <initializer>= []</initializer>
         <briefdescription>
-<para>Websockets chart queue. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="27" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="27" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="30" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a0c2d0cd199527b3b275143c49d91702e" prot="protected" static="no" mutable="no">
         <type></type>
@@ -106,26 +106,28 @@
         <name>$charts</name>
         <initializer>= []</initializer>
         <briefdescription>
-<para>Websockets chart data. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="28" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="28" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="31" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a8d15ac7cb74ac52f8f008e61aa7cab89" prot="protected" static="no" mutable="no">
         <type></type>
         <definition>Binance\API::$info</definition>
         <argsstring></argsstring>
         <name>$info</name>
-        <initializer>= [&quot;timeOffset&quot;=&gt;0]</initializer>
+        <initializer>= [ 
+         &quot;timeOffset&quot; =&gt; 0 
+   ]</initializer>
         <briefdescription>
-<para>Additional connection options. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="29" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="29" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="32" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a1415587257942c2b5af22c642ff58005" prot="protected" static="no" mutable="no">
         <type></type>
@@ -134,12 +136,12 @@
         <name>$proxyConf</name>
         <initializer>= null</initializer>
         <briefdescription>
-<para>Used for story the proxy configuration. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="30" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="30" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="35" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1ac40776b871ae1591348c96162e872789" prot="protected" static="no" mutable="no">
         <type></type>
@@ -148,12 +150,12 @@
         <name>$transfered</name>
         <initializer>= 0</initializer>
         <briefdescription>
-<para>This stores the amount of bytes transfered. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="31" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="31" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="36" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a69a4bfc5a6773dff1d01166dfbb402a2" prot="protected" static="no" mutable="no">
         <type></type>
@@ -162,12 +164,12 @@
         <name>$requestCount</name>
         <initializer>= 0</initializer>
         <briefdescription>
-<para>This stores the amount of API requests. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="32" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="32" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="37" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="37" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -178,12 +180,12 @@
         <name>$httpDebug</name>
         <initializer>= false</initializer>
         <briefdescription>
-<para>If you enable this, curl will output debugging information. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="33" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="33" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="38" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a706b2458b10d731ea4918714c333a845" prot="public" static="no" mutable="no">
         <type></type>
@@ -192,12 +194,12 @@
         <name>$balances</name>
         <initializer>= []</initializer>
         <briefdescription>
-<para>binace balances from the last run </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="34" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="34" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="39" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1af80ef162a101ffa0963d977126d6811d" prot="public" static="no" mutable="no">
         <type></type>
@@ -206,12 +208,12 @@
         <name>$btc_value</name>
         <initializer>= 0.00</initializer>
         <briefdescription>
-<para>value of available assets </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="35" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="35" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="40" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classBinance_1_1API_1a80f67dda302da9465596ad5e0bd86ce2" prot="public" static="no" mutable="no">
         <type></type>
@@ -220,12 +222,12 @@
         <name>$btc_total</name>
         <initializer>= 0.00</initializer>
         <briefdescription>
-<para>value of available + onOrder assets </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="36" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="36" bodyend="-1"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="41" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="41" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -261,7 +263,8 @@
 <para>Constructor for the class, There are 4 ways to contruct the class: </para>        </briefdescription>
         <detaileddescription>
 <para><itemizedlist>
-<listitem><para>You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor</para></listitem><listitem><para>new Binance\API( $api_key, $api_secret);</para></listitem><listitem><para>new Binance\API( $api_key, $api_secret, $options);</para></listitem><listitem><para>new Binance\API( $api_key, $api_secret, $options, $proxyConf);</para><para><parameterlist kind="param"><parameteritem>
+<listitem><para>You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor</para></listitem><listitem><para>new Binance\API( $api_key, $api_secret);</para></listitem><listitem><para>new Binance\API( $api_key, $api_secret, $options);</para></listitem><listitem><para>new Binance\API( $api_key, $api_secret, $options, $proxyConf);</para></listitem></itemizedlist>
+</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>$api_key</parametername>
 </parameternamelist>
@@ -290,12 +293,11 @@
 <para>array config </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
-</para></listitem></itemizedlist>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="51" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="51" bodyend="60"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="62" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="62" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a98bf564a5ff752a2393bc626b222905e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -331,21 +333,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$price</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>price per unit you want to spend </para></parameterdescription>
+<para>string price per unit you want to spend </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -366,7 +368,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="125" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="125" bodyend="127"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="150" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="150" bodyend="152"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a9e199a90097fbee4e89e2777534599b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -402,21 +404,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$price</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>price per unit you want to spend </para></parameterdescription>
+<para>string price per unit you want to spend </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -437,7 +439,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="140" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="140" bodyend="142"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="171" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="171" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -473,21 +475,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$price</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>price per unit you want to spend </para></parameterdescription>
+<para>string price per unit you want to spend </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -508,7 +510,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="169" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="169" bodyend="171"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="205" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="205" bodyend="207"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a67841995467768588781cde190e59235" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -544,21 +546,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$price</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>price per unit you want to spend </para></parameterdescription>
+<para>string price per unit you want to spend </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -579,7 +581,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="184" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="184" bodyend="186"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="226" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="226" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa6156e4c8d03bbdd8c16bbb18ea75646" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -606,14 +608,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -627,7 +629,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="199" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="199" bodyend="201"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="244" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="244" bodyend="246"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ad11565e34ba1c715ac2478ee7f9aab6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -655,14 +657,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -676,7 +678,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="212" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="212" bodyend="214"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="261" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="261" bodyend="263"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a72d07ceea281b273d65a487efc02e31e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -703,14 +705,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -724,7 +726,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="227" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="227" bodyend="229"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="279" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="279" bodyend="281"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a77eaa982d0ca78fbce80d6203213af28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -752,14 +754,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the quantity required </para></parameterdescription>
+<para>string the quantity required </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -773,7 +775,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="240" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="240" bodyend="242"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="296" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="296" bodyend="298"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac49c3595190e193510eb368c0fa92992" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -795,21 +797,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$orderid</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the orderid to cancel </para></parameterdescription>
+<para>string the orderid to cancel </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or the order details </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="254" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="254" bodyend="256"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="312" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="312" bodyend="317"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -831,21 +833,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$orderid</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the orderid to cancel </para></parameterdescription>
+<para>string the orderid to cancel </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or the order details </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="268" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="268" bodyend="270"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="331" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="331" bodyend="336"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -865,14 +867,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or the order details </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="281" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="281" bodyend="287"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="348" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="348" bodyend="356"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -901,28 +903,28 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$limit</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the amount of orders returned </para></parameterdescription>
+<para>int the amount of orders returned </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$fromOrderId</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>return the orders from this order onwards </para></parameterdescription>
+<para>string return the orders from this order onwards </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array of orderDetails array </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="299" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="299" bodyend="301"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="371" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="371" bodyend="377"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -951,28 +953,28 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency symbol </para></parameterdescription>
+<para>string the currency symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$limit</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the amount of orders returned </para></parameterdescription>
+<para>int the amount of orders returned </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$fromTradeId</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>return the orders from this order onwards </para></parameterdescription>
+<para>int return the orders from this order onwards </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array of orderDetails array </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="316" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="316" bodyend="318"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="395" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="395" bodyend="401"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -982,11 +984,11 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         <briefdescription>
 <para>useServerTime adds the &apos;useServerTime&apos;=&gt;true to the API request to avoid time errors </para>        </briefdescription>
         <detaileddescription>
-<para>$api-&gt;useServerTime();</para><para><simplesect kind="return"><para>nothing </para></simplesect>
+<para>$api-&gt;useServerTime();</para><para><simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="327" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="327" bodyend="330"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="410" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="410" bodyend="413"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1000,7 +1002,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="339" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="339" bodyend="341"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="422" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="422" bodyend="424"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1014,7 +1016,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="350" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="350" bodyend="352"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="433" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="433" bodyend="435"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1044,35 +1046,35 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$asset</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency such as BTC </para></parameterdescription>
+<para>string the currency such as BTC </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$address</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the addressed to whihc the asset should be deposited </para></parameterdescription>
+<para>string the addressed to whihc the asset should be deposited </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$amount</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the amount of the asset to transfer </para></parameterdescription>
+<para>double the amount of the asset to transfer </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$addressTag</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>adtional transactionid required by some assets </para></parameterdescription>
+<para>string adtional transactionid required by some assets </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array transaction </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="373" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="373" bodyend="379"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="460" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="460" bodyend="472"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1091,14 +1093,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$asset</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the currency such as BTC </para></parameterdescription>
+<para>string the currency such as BTC </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array deposit address information </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="389" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="389" bodyend="392"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="483" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="483" bodyend="489"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1118,14 +1120,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$asset</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>empty or the currency such as BTC </para></parameterdescription>
+<para>string empty or the currency such as BTC </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array deposit history information </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="404" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="404" bodyend="410"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="502" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="502" bodyend="510"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1145,14 +1147,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$asset</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>empty or the currency such as BTC </para></parameterdescription>
+<para>string empty or the currency such as BTC </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array deposit history information </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="422" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="422" bodyend="428"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="523" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="523" bodyend="531"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1166,7 +1168,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="437" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="437" bodyend="439"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="540" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="540" bodyend="542"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1180,7 +1182,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="448" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="448" bodyend="450"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="551" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="551" bodyend="553"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1194,7 +1196,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="459" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="459" bodyend="461"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="562" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="562" bodyend="564"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a3568ed724dfba2eaf6dcfd91b936dc6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1220,7 +1222,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="471" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="471" bodyend="477"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="575" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="575" bodyend="583"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af047ce7afeff0729b62fb28b2697ad9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1239,14 +1241,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the symbol to get the trade information for </para></parameterdescription>
+<para>string the symbol to get the trade information for </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array of market history </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="487" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="487" bodyend="489"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="594" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="594" bodyend="598"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac36901dbea220b2401786a6d1bc4d051" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1265,14 +1267,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the symbol to get the depth information for </para></parameterdescription>
+<para>string the symbol to get the depth information for </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array with error message or array of market depth </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="499" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="499" bodyend="509"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="609" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="609" bodyend="621"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1afe968feb47f5b68853dae571cb75800c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1298,7 +1300,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="519" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="519" bodyend="522"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="632" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="632" bodyend="636"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af1d41534a9f67bc74a6133efa2df4df7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1312,7 +1314,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="531" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="531" bodyend="556"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="645" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="645" bodyend="676"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a3647415e517c745a35d2d54bb27575fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1326,11 +1328,11 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         <briefdescription>
 <para>setProxy set proxy config by passing in an array of the proxy configuration </para>        </briefdescription>
         <detaileddescription>
-<para>$proxyConf = [ &apos;proto&apos; =&gt; &apos;tcp&apos;, &apos;address&apos; =&gt; &apos;192.168.1.1&apos;, &apos;port&apos; =&gt; &apos;8080&apos;, &apos;user&apos; =&gt; &apos;dude&apos;, &apos;pass&apos; =&gt; &apos;d00d&apos; ];</para><para>$api-&gt;setProxy( $proxyconf );</para><para><simplesect kind="return"><para>nothing </para></simplesect>
+<para>$proxyConf = [ &apos;proto&apos; =&gt; &apos;tcp&apos;, &apos;address&apos; =&gt; &apos;192.168.1.1&apos;, &apos;port&apos; =&gt; &apos;8080&apos;, &apos;user&apos; =&gt; &apos;dude&apos;, &apos;pass&apos; =&gt; &apos;d00d&apos; ];</para><para>$api-&gt;setProxy( $proxyconf );</para><para><simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="573" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="573" bodyend="575"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="693" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="693" bodyend="695"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a40e8ddf7280b33b1899f59d0f16e5fa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1369,62 +1371,62 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         <briefdescription>
 <para>order formats the orders before sending them to the curl wrapper function You can call this function directly or use the helper functions </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="see"><para>buy </para><simplesectsep/><para>sell </para><simplesectsep/><para>marketBuy </para><simplesectsep/><para>marketSell</para></simplesect>
-$this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para><para><parameterlist kind="param"><parameteritem>
+<para><simplesect kind="see"><para>buy() </para><simplesectsep/><para>sell() </para><simplesectsep/><para>marketBuy() </para><simplesectsep/><para>marketSell() $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para></simplesect>
+<parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>$side</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>typically &quot;BUY&quot; or &quot;SELL&quot; </para></parameterdescription>
+<para>string typically &quot;BUY&quot; or &quot;SELL&quot; </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to buy or sell </para></parameterdescription>
+<para>string to buy or sell </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$quantity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>in the order </para></parameterdescription>
+<para>string in the order </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$price</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>for the order </para></parameterdescription>
+<para>string for the order </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc. </para></parameterdescription>
+<para>string is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc. </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$flags</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>additional transaction options </para></parameterdescription>
+<para>array additional transaction options </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$test</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>whether to test or not, test only validates the query </para></parameterdescription>
+<para>bool whether to test or not, test only validates the query </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array containing the response </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="702" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="702" bodyend="765"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="836" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="836" bodyend="899"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1461,42 +1463,42 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to query </para></parameterdescription>
+<para>string to query </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$interval</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to request </para></parameterdescription>
+<para>string to request </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$limit</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>limit the amount of candles </para></parameterdescription>
+<para>int limit the amount of candles </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$startTime</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>request candle information starting from here </para></parameterdescription>
+<para>string request candle information starting from here </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$endTime</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>request candle information ending here </para></parameterdescription>
+<para>string request candle information ending here </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array containing the response </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="780" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="780" bodyend="805"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="919" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="919" bodyend="947"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1515,14 +1517,14 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$depth</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>cache array </para></parameterdescription>
+<para>array cache array </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array cumulative depth cache </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1038" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1038" bodyend="1051"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1212" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1212" bodyend="1235"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a5eaa9d36db8181fc4605a3841f1106ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1560,7 +1562,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1062" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1062" bodyend="1076"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1247" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1247" bodyend="1262"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a53fcf31d85faa8445653f581fdbdb72c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1586,7 +1588,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1086" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1086" bodyend="1091"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1272" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1272" bodyend="1277"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a468092e1edfd35f79954236714c825c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1612,7 +1614,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1101" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1101" bodyend="1106"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1287" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1287" bodyend="1292"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a184430be210c8e5cb7be80c9e239619f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1638,7 +1640,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1116" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1116" bodyend="1130"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1302" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1302" bodyend="1320"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1652,7 +1654,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1159" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1159" bodyend="1163"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1354" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1354" bodyend="1364"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1666,7 +1668,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1172" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1172" bodyend="1174"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1373" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1373" bodyend="1375"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a90daef87526a753473580139c04d311b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1680,11 +1682,11 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
         <briefdescription>
 <para>addToTransfered add interger bytes to the total transfered also incrementes the api counter </para>        </briefdescription>
         <detaileddescription>
-<para>$apiCount = $api-&gt;addToTransfered( $int );</para><para><simplesect kind="return"><para>nothing </para></simplesect>
+<para>$apiCount = $api-&gt;addToTransfered( $int );</para><para><simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1184" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1184" bodyend="1187"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1385" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1385" bodyend="1388"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a61742a5bdff7fc2119ab8b797c0cef4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1708,21 +1710,21 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to sort </para></parameterdescription>
+<para>string to sort </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$limit</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>depth </para></parameterdescription>
+<para>int depth </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1253" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1253" bodyend="1259"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1472" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1472" bodyend="1481"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1744,21 +1746,21 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>optional array of symbols </para></parameterdescription>
+<para>string optional array of symbols </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>closure </para></parameterdescription>
+<para>callable closure </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1281" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1281" bodyend="1318"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1506" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1506" bodyend="1552"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1780,21 +1782,21 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>optional symbol </para></parameterdescription>
+<para>string optional symbol </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>closure </para></parameterdescription>
+<para>callable closure </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1332" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1332" bodyend="1362"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1568" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1568" bodyend="1607"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1816,21 +1818,21 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>optional symbol or false </para></parameterdescription>
+<para>string optional symbol or false </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>closure </para></parameterdescription>
+<para>callable closure </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1375" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1375" bodyend="1396"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1622" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1622" bodyend="1644"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1857,28 +1859,28 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbols</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>required symbols </para></parameterdescription>
+<para>string required symbols </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$interval</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>time inteval </para></parameterdescription>
+<para>string time inteval </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>closure </para></parameterdescription>
+<para>callable closure </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1411" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1411" bodyend="1452"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1662" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1662" bodyend="1710"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1888,11 +1890,11 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
         <briefdescription>
 <para>keepAlive Keep-alive function for userDataStream </para>        </briefdescription>
         <detaileddescription>
-<para>$api-&gt;keepAlive();</para><para><simplesect kind="return"><para>nothing </para></simplesect>
+<para>$api-&gt;keepAlive();</para><para><simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1461" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1461" bodyend="1468"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1719" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1719" bodyend="1726"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1916,21 +1918,21 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$balance_callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>function </para></parameterdescription>
+<para>callable function </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$execution_callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>function </para></parameterdescription>
+<para>callable function </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1507" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1507" bodyend="1532"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1767" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1767" bodyend="1793"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1944,19 +1946,19 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
         <briefdescription>
 <para>miniTicker Get miniTicker for all symbols </para>        </briefdescription>
         <detaileddescription>
-<para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); }); <parameterlist kind="param"><parameteritem>
+<para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); });</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>$callback</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>function closer that takes 2 arguments, $pai and $ticker data </para></parameterdescription>
+<para>callable function closer that takes 2 arguments, $pai and $ticker data </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1543" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1543" bodyend="1569"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1806" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1806" bodyend="1831"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -1968,11 +1970,11 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
         <briefdescription>
 <para>If no paramaters are supplied in the constructor, this function will attempt to load the api_key and api_secret from the users home directory in the file ~/jaggedsoft/php-binance-api.json. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>nothing </para></simplesect>
+<para><simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="68" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="68" bodyend="74"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="80" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="80" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1982,11 +1984,11 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
         <briefdescription>
 <para>If no paramaters are supplied in the constructor ofr the proxy confguration, this function will attempt to load the proxy info from the users home directory ~/jaggedsoft/php-binance-api.json. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>nothing </para></simplesect>
+<para><simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="82" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="82" bodyend="98"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="97" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="97" bodyend="118"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2015,20 +2017,20 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
         <briefdescription>
 <para>httpRequest curl wrapper for all http api requests. </para>        </briefdescription>
         <detaileddescription>
-<para>You can&apos;t call this function directly, use the helper functions <simplesect kind="see"><para>buy </para><simplesectsep/><para>sell </para><simplesectsep/><para>marketBuy </para><simplesectsep/><para>marketSell</para></simplesect>
-$this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para><para><parameterlist kind="param"><parameteritem>
+<para>You can&apos;t call this function directly, use the helper functions</para><para><simplesect kind="see"><para>buy() </para><simplesectsep/><para>sell() </para><simplesectsep/><para>marketBuy() </para><simplesectsep/><para>marketSell() $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para></simplesect>
+<parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>$url</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the endpoint to query, typically includes query string </para></parameterdescription>
+<para>string the endpoint to query, typically includes query string </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$method</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>this should be typically GET, POST or DELETE </para></parameterdescription>
+<para>string this should be typically GET, POST or DELETE </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -2049,7 +2051,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="593" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="593" bodyend="681"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="716" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="716" bodyend="809"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2071,7 +2073,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$array</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>of your balances </para></parameterdescription>
+<para>array of your balances </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -2085,7 +2087,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="818" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="818" bodyend="861"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="962" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="962" bodyend="1015"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ad2eb0a86fd2e6ddfec7ebe93fc74e2c8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2104,14 +2106,14 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$json</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>data to convert </para></parameterdescription>
+<para>array data to convert </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="871" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="871" bodyend="880"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1026" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1026" bodyend="1038"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a4553cf19c4a984633be47fc4b4208a9d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2130,14 +2132,14 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$json</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>data to convert </para></parameterdescription>
+<para>object data to convert </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="890" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="890" bodyend="916"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1049" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1049" bodyend="1075"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2156,14 +2158,14 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$json</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>data to convert </para></parameterdescription>
+<para>object data to convert </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="926" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="926" bodyend="941"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1086" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1086" bodyend="1101"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2190,28 +2192,28 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>of your currency </para></parameterdescription>
+<para>string of your currency </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$interval</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the time interval </para></parameterdescription>
+<para>string the time interval </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$ticks</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the canbles array </para></parameterdescription>
+<para>array of the canbles array </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array object of the chartdata </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="953" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="953" bodyend="971"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1116" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1116" bodyend="1136"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a89985a26a01e91bf449bc4ccad2eef29" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2237,7 +2239,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="981" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="981" bodyend="991"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1147" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1147" bodyend="1162"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a65e35c5cdc897acaa25e9aeee0bb2bea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2256,14 +2258,14 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$array</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>book prices </para></parameterdescription>
+<para>array book prices </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array easier format for book prices information </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1001" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1001" bodyend="1012"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1173" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1173" bodyend="1184"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2282,14 +2284,14 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$array</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>of prices </para></parameterdescription>
+<para>array of prices </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>array of key/value pairs </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1022" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1022" bodyend="1028"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1195" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1195" bodyend="1201"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac58a4a51592fce18cb300cf331201548" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2312,7 +2314,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to display </para></parameterdescription>
+<para>string to display </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
@@ -2326,7 +2328,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1141" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1141" bodyend="1150"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1333" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1333" bodyend="1345"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a2a27388362d21462e9152f0cd0c54127" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2345,28 +2347,28 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to sort </para></parameterdescription>
+<para>string to sort </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$interval</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>time </para></parameterdescription>
+<para>string time </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$json</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>time </para></parameterdescription>
+<para>array of depth bids and asks </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1203" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1203" bodyend="1214"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1407" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1407" bodyend="1421"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2393,35 +2395,35 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 <parametername>$symbol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>to sort </para></parameterdescription>
+<para>string to sort </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$interval</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>time </para></parameterdescription>
+<para>string time </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>$json</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>time </para></parameterdescription>
+<para>object time </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>nothing </para></simplesect>
+<simplesect kind="return"><para>null </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1226" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1226" bodyend="1242"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1436" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1436" bodyend="1459"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Main Binance class. </para>    </briefdescription>
     <detaileddescription>
 <para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>    </detaileddescription>
-    <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="20" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="20" bodyend="1570"/>
+    <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="23" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="23" bodyend="1833"/>
     <listofallmembers>
       <member refid="classBinance_1_1API_1a4b70fc1796d52440e44423da2cbafca5" prot="protected" virt="non-virtual"><scope>Binance::API</scope><name>$api_key</name></member>
       <member refid="classBinance_1_1API_1a5612f3068ec5843031812893537e7677" prot="protected" virt="non-virtual"><scope>Binance::API</scope><name>$api_secret</name></member>

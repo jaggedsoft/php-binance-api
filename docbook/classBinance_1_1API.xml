@@ -6,84 +6,84 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$base<para><emphasis>REST endpoint for the currency exchange.</emphasis></para></para>
+                        <para>$base</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$wapi<para><emphasis>REST endpoint for the withdrawals.</emphasis></para></para>
+                        <para>$wapi</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$api_key<para><emphasis>API key that you created in the binance website member area.</emphasis></para></para>
+                        <para>$api_key</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$api_secret<para><emphasis>API secret that was given to you when you created the api key.</emphasis></para></para>
+                        <para>$api_secret</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$depthCache<para><emphasis>Websockets depth cache.</emphasis></para></para>
+                        <para>$depthCache</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$depthQueue<para><emphasis>Websockets depth queue.</emphasis></para></para>
+                        <para>$depthQueue</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$chartQueue<para><emphasis>Websockets chart queue.</emphasis></para></para>
+                        <para>$chartQueue</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$charts<para><emphasis>Websockets chart data.</emphasis></para></para>
+                        <para>$charts</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$info<para><emphasis>Additional connection options.</emphasis></para></para>
+                        <para>$info</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$proxyConf<para><emphasis>Used for story the proxy configuration.</emphasis></para></para>
+                        <para>$proxyConf</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$transfered<para><emphasis>This stores the amount of bytes transfered.</emphasis></para></para>
+                        <para>$transfered</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$requestCount<para><emphasis>This stores the amount of API requests.</emphasis></para></para>
+                        <para>$requestCount</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -93,28 +93,28 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$httpDebug<para><emphasis>If you enable this, curl will output debugging information.</emphasis></para></para>
+                        <para>$httpDebug</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$balances<para><emphasis>binace balances from the last run</emphasis></para></para>
+                        <para>$balances</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$btc_value<para><emphasis>value of available assets</emphasis></para></para>
+                        <para>$btc_value</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$btc_total<para><emphasis>value of available + onOrder assets</emphasis></para></para>
+                        <para>$btc_total</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -630,7 +630,7 @@ string $symbol, string $interval, object $json)</para>
             <title>Detailed Description</title>
 
 <para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>
-                <para>Definition at line 20 of file php-binance-api.php</para>
+                <para>Definition at line 23 of file php-binance-api.php</para>
                 <para>The Documentation for this struct was generated from the following file: </para>
                 <para><itemizedlist><listitem><para>php-binance-api.php</para></listitem></itemizedlist></para>
         </simplesect>
@@ -646,6 +646,8 @@ string $symbol, string $interval, object $json)</para>
 <para>new Binance\API( $api_key, $api_secret, $options);</para>
 </listitem><listitem>
 <para>new Binance\API( $api_key, $api_secret, $options, $proxyConf);</para>
+</listitem></itemizedlist>
+</para>
 
 <para>
                 <formalpara>
@@ -684,10 +686,8 @@ string $symbol, string $interval, object $json)</para>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
-</para>
-</listitem></itemizedlist>
 </para>
 
             </section>
@@ -718,19 +718,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$price</entry>
                                 <entry>
-<para>price per unit you want to spend </para>
+<para>string price per unit you want to spend </para>
 </entry>
                             </row>
                             <row>
@@ -773,19 +773,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$price</entry>
                                 <entry>
-<para>price per unit you want to spend </para>
+<para>string price per unit you want to spend </para>
 </entry>
                             </row>
                             <row>
@@ -838,19 +838,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$price</entry>
                                 <entry>
-<para>price per unit you want to spend </para>
+<para>string price per unit you want to spend </para>
 </entry>
                             </row>
                             <row>
@@ -893,19 +893,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$price</entry>
                                 <entry>
-<para>price per unit you want to spend </para>
+<para>string price per unit you want to spend </para>
 </entry>
                             </row>
                             <row>
@@ -946,13 +946,13 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
@@ -989,13 +989,13 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
@@ -1030,13 +1030,13 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
@@ -1073,13 +1073,13 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>the quantity required </para>
+<para>string the quantity required </para>
 </entry>
                             </row>
                             <row>
@@ -1114,13 +1114,13 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$orderid</entry>
                                 <entry>
-<para>the orderid to cancel </para>
+<para>string the orderid to cancel </para>
 </entry>
                             </row>
                         </tbody>
@@ -1149,13 +1149,13 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$orderid</entry>
                                 <entry>
-<para>the orderid to cancel </para>
+<para>string the orderid to cancel </para>
 </entry>
                             </row>
                         </tbody>
@@ -1184,7 +1184,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                         </tbody>
@@ -1213,19 +1213,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$limit</entry>
                                 <entry>
-<para>the amount of orders returned </para>
+<para>int the amount of orders returned </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$fromOrderId</entry>
                                 <entry>
-<para>return the orders from this order onwards </para>
+<para>string return the orders from this order onwards </para>
 </entry>
                             </row>
                         </tbody>
@@ -1254,19 +1254,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the currency symbol </para>
+<para>string the currency symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$limit</entry>
                                 <entry>
-<para>the amount of orders returned </para>
+<para>int the amount of orders returned </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$fromTradeId</entry>
                                 <entry>
-<para>return the orders from this order onwards </para>
+<para>int return the orders from this order onwards </para>
 </entry>
                             </row>
                         </tbody>
@@ -1287,7 +1287,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para><formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -1333,25 +1333,25 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$asset</entry>
                                 <entry>
-<para>the currency such as BTC </para>
+<para>string the currency such as BTC </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$address</entry>
                                 <entry>
-<para>the addressed to whihc the asset should be deposited </para>
+<para>string the addressed to whihc the asset should be deposited </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$amount</entry>
                                 <entry>
-<para>the amount of the asset to transfer </para>
+<para>double the amount of the asset to transfer </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$addressTag</entry>
                                 <entry>
-<para>adtional transactionid required by some assets </para>
+<para>string adtional transactionid required by some assets </para>
 </entry>
                             </row>
                         </tbody>
@@ -1380,7 +1380,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$asset</entry>
                                 <entry>
-<para>the currency such as BTC </para>
+<para>string the currency such as BTC </para>
 </entry>
                             </row>
                         </tbody>
@@ -1411,7 +1411,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$asset</entry>
                                 <entry>
-<para>empty or the currency such as BTC </para>
+<para>string empty or the currency such as BTC </para>
 </entry>
                             </row>
                         </tbody>
@@ -1442,7 +1442,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$asset</entry>
                                 <entry>
-<para>empty or the currency such as BTC </para>
+<para>string empty or the currency such as BTC </para>
 </entry>
                             </row>
                         </tbody>
@@ -1536,7 +1536,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the symbol to get the trade information for </para>
+<para>string the symbol to get the trade information for </para>
 </entry>
                             </row>
                         </tbody>
@@ -1565,7 +1565,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>the symbol to get the depth information for </para>
+<para>string the symbol to get the depth information for </para>
 </entry>
                             </row>
                         </tbody>
@@ -1629,7 +1629,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para><formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -1640,17 +1640,15 @@ You can call this function directly or use the helper functions</emphasis>
                 
 <para><formalpara><title>See Also: </title>
 
-<para>buy </para>
+<para>buy() </para>
 <simplesect/>
-<para>sell </para>
+<para>sell() </para>
 <simplesect/>
-<para>marketBuy </para>
+<para>marketBuy() </para>
 <simplesect/>
-<para>marketSell</para>
+<para>marketSell() $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para>
 </formalpara>
-$this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para>
 
-<para>
                 <formalpara>
                     <title/>
                     <table frame="all">
@@ -1660,43 +1658,43 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
                             <row>
                                 <entry>$side</entry>
                                 <entry>
-<para>typically &quot;BUY&quot; or &quot;SELL&quot; </para>
+<para>string typically &quot;BUY&quot; or &quot;SELL&quot; </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>to buy or sell </para>
+<para>string to buy or sell </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$quantity</entry>
                                 <entry>
-<para>in the order </para>
+<para>string in the order </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$price</entry>
                                 <entry>
-<para>for the order </para>
+<para>string for the order </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$type</entry>
                                 <entry>
-<para>is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc. </para>
+<para>string is determined by the symbol bu typicall LIMIT, STOP_LOSS_LIMIT etc. </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$flags</entry>
                                 <entry>
-<para>additional transaction options </para>
+<para>array additional transaction options </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$test</entry>
                                 <entry>
-<para>whether to test or not, test only validates the query </para>
+<para>bool whether to test or not, test only validates the query </para>
 </entry>
                             </row>
                         </tbody>
@@ -1726,31 +1724,31 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>to query </para>
+<para>string to query </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$interval</entry>
                                 <entry>
-<para>to request </para>
+<para>string to request </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$limit</entry>
                                 <entry>
-<para>limit the amount of candles </para>
+<para>int limit the amount of candles </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$startTime</entry>
                                 <entry>
-<para>request candle information starting from here </para>
+<para>string request candle information starting from here </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$endTime</entry>
                                 <entry>
-<para>request candle information ending here </para>
+<para>string request candle information ending here </para>
 </entry>
                             </row>
                         </tbody>
@@ -1779,7 +1777,7 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
                             <row>
                                 <entry>$depth</entry>
                                 <entry>
-<para>cache array </para>
+<para>array cache array </para>
 </entry>
                             </row>
                         </tbody>
@@ -1947,7 +1945,7 @@ also incrementes the api counter</emphasis>
 
 <para><formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -1967,13 +1965,13 @@ also incrementes the api counter</emphasis>
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>to sort </para>
+<para>string to sort </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$limit</entry>
                                 <entry>
-<para>depth </para>
+<para>int depth </para>
 </entry>
                             </row>
                         </tbody>
@@ -1982,7 +1980,7 @@ also incrementes the api counter</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2005,13 +2003,13 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>optional array of symbols </para>
+<para>string optional array of symbols </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$callback</entry>
                                 <entry>
-<para>closure </para>
+<para>callable closure </para>
 </entry>
                             </row>
                         </tbody>
@@ -2020,7 +2018,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2040,13 +2038,13 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>optional symbol </para>
+<para>string optional symbol </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$callback</entry>
                                 <entry>
-<para>closure </para>
+<para>callable closure </para>
 </entry>
                             </row>
                         </tbody>
@@ -2055,7 +2053,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2075,13 +2073,13 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>optional symbol or false </para>
+<para>string optional symbol or false </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$callback</entry>
                                 <entry>
-<para>closure </para>
+<para>callable closure </para>
 </entry>
                             </row>
                         </tbody>
@@ -2090,7 +2088,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2110,19 +2108,19 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                             <row>
                                 <entry>$symbols</entry>
                                 <entry>
-<para>required symbols </para>
+<para>string required symbols </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$interval</entry>
                                 <entry>
-<para>time inteval </para>
+<para>string time inteval </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$callback</entry>
                                 <entry>
-<para>closure </para>
+<para>callable closure </para>
 </entry>
                             </row>
                         </tbody>
@@ -2131,7 +2129,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2143,7 +2141,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 
 <para><formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2167,13 +2165,13 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                             <row>
                                 <entry>$balance_callback</entry>
                                 <entry>
-<para>function </para>
+<para>callable function </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$execution_callback</entry>
                                 <entry>
-<para>function </para>
+<para>callable function </para>
 </entry>
                             </row>
                         </tbody>
@@ -2182,7 +2180,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2190,7 +2188,9 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
             <section xml:id="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2">
                 <title>Binance\API::miniTicker (Callable $callback)</title> <emphasis>miniTicker Get miniTicker for all symbols</emphasis>
                 
-<para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); }); 
+<para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); });</para>
+
+<para>
                 <formalpara>
                     <title/>
                     <table frame="all">
@@ -2200,7 +2200,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                             <row>
                                 <entry>$callback</entry>
                                 <entry>
-<para>function closer that takes 2 arguments, $pai and $ticker data </para>
+<para>callable function closer that takes 2 arguments, $pai and $ticker data </para>
 </entry>
                             </row>
                         </tbody>
@@ -2209,7 +2209,7 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2221,19 +2221,19 @@ to load the api_key and api_secret from the users home directory in the file
                 
 <para><formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165">
                 <title>Binance\API::setupProxyConfigFromFile ()</title> <emphasis>If no paramaters are supplied in the constructor ofr the proxy confguration,
-this function will attempt to load the proxy  info from the users home directory
+this function will attempt to load the proxy info from the users home directory
 ~/jaggedsoft/php-binance-api.json.</emphasis>
                 
 <para><formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2241,19 +2241,19 @@ this function will attempt to load the proxy  info from the users home directory
             <section xml:id="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590">
                 <title>Binance\API::httpRequest (string $url, string $method=&quot;GET&quot;, array $params=[], bool $signed=false)</title> <emphasis>httpRequest curl wrapper for all http api requests.</emphasis>
                 
-<para>You can&apos;t call this function directly, use the helper functions <formalpara><title>See Also: </title>
+<para>You can&apos;t call this function directly, use the helper functions</para>
 
-<para>buy </para>
+<para><formalpara><title>See Also: </title>
+
+<para>buy() </para>
 <simplesect/>
-<para>sell </para>
+<para>sell() </para>
 <simplesect/>
-<para>marketBuy </para>
+<para>marketBuy() </para>
 <simplesect/>
-<para>marketSell</para>
+<para>marketSell() $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para>
 </formalpara>
-$this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);</para>
 
-<para>
                 <formalpara>
                     <title/>
                     <table frame="all">
@@ -2263,13 +2263,13 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
                             <row>
                                 <entry>$url</entry>
                                 <entry>
-<para>the endpoint to query, typically includes query string </para>
+<para>string the endpoint to query, typically includes query string </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$method</entry>
                                 <entry>
-<para>this should be typically GET, POST or DELETE </para>
+<para>string this should be typically GET, POST or DELETE </para>
 </entry>
                             </row>
                             <row>
@@ -2312,7 +2312,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$array</entry>
                                 <entry>
-<para>of your balances </para>
+<para>array of your balances </para>
 </entry>
                             </row>
                             <row>
@@ -2347,7 +2347,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$json</entry>
                                 <entry>
-<para>data to convert </para>
+<para>array data to convert </para>
 </entry>
                             </row>
                         </tbody>
@@ -2376,7 +2376,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$json</entry>
                                 <entry>
-<para>data to convert </para>
+<para>object data to convert </para>
 </entry>
                             </row>
                         </tbody>
@@ -2405,7 +2405,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$json</entry>
                                 <entry>
-<para>data to convert </para>
+<para>object data to convert </para>
 </entry>
                             </row>
                         </tbody>
@@ -2434,19 +2434,19 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>of your currency </para>
+<para>string of your currency </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$interval</entry>
                                 <entry>
-<para>the time interval </para>
+<para>string the time interval </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$ticks</entry>
                                 <entry>
-<para>the canbles array </para>
+<para>array of the canbles array </para>
 </entry>
                             </row>
                         </tbody>
@@ -2504,7 +2504,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$array</entry>
                                 <entry>
-<para>book prices </para>
+<para>array book prices </para>
 </entry>
                             </row>
                         </tbody>
@@ -2533,7 +2533,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$array</entry>
                                 <entry>
-<para>of prices </para>
+<para>array of prices </para>
 </entry>
                             </row>
                         </tbody>
@@ -2562,7 +2562,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>to display </para>
+<para>string to display </para>
 </entry>
                             </row>
                             <row>
@@ -2597,19 +2597,19 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>to sort </para>
+<para>string to sort </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$interval</entry>
                                 <entry>
-<para>time </para>
+<para>string time </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$json</entry>
                                 <entry>
-<para>time </para>
+<para>array of depth bids and asks </para>
 </entry>
                             </row>
                         </tbody>
@@ -2618,7 +2618,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
@@ -2638,19 +2638,19 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                             <row>
                                 <entry>$symbol</entry>
                                 <entry>
-<para>to sort </para>
+<para>string to sort </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$interval</entry>
                                 <entry>
-<para>time </para>
+<para>string time </para>
 </entry>
                             </row>
                             <row>
                                 <entry>$json</entry>
                                 <entry>
-<para>time </para>
+<para>object time </para>
 </entry>
                             </row>
                         </tbody>
@@ -2659,7 +2659,7 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                 </formalpara>
                 <formalpara><title>Returns: </title>
 
-<para>nothing </para>
+<para>null </para>
 </formalpara>
 </para>
 
