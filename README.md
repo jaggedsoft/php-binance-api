@@ -6,4 +6,4 @@ This project is designed to help you make your own projects that interact with t
 > Special thank you to all contributors: **dmzoneill, dxjones,** and others!! *This package needs help from the community.* Maintaining [node-binance-api](https://github.com/jaggedsoft/node-binance-api) is taking up the majority of my time. Improvements contributed to this project are encouraged, and you will be given full credit for changes. All pull requests welcome.
 
 #### Getting Started Documentation
-[Complete User Guide](https://github.com/jaggedsoft/php-binance-api/wiki)
+> [Complete User Guide](https://github.com/jaggedsoft/php-binance-api/wiki)
