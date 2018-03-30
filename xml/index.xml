@@ -17,68 +17,68 @@
     <member refid="classBinance_1_1API_1a706b2458b10d731ea4918714c333a845" kind="variable"><name>$balances</name></member>
     <member refid="classBinance_1_1API_1af80ef162a101ffa0963d977126d6811d" kind="variable"><name>$btc_value</name></member>
     <member refid="classBinance_1_1API_1a80f67dda302da9465596ad5e0bd86ce2" kind="variable"><name>$btc_total</name></member>
-    <member refid="classBinance_1_1API_1adbd7fdb4457492d7b6bad7b120492770" kind="function"><name>__construct</name></member>
-    <member refid="classBinance_1_1API_1a8debc23a73d11fc6ed2b19365de17fdf" kind="function"><name>buy</name></member>
-    <member refid="classBinance_1_1API_1ad45ea86647eb309bbff25c2760ff44c6" kind="function"><name>buyTest</name></member>
-    <member refid="classBinance_1_1API_1aebb5a164303af16e66c2b9281f45a315" kind="function"><name>sell</name></member>
-    <member refid="classBinance_1_1API_1a34b5e813092766a1dd546eedf77cbde5" kind="function"><name>sellTest</name></member>
-    <member refid="classBinance_1_1API_1a0fa240adf5da87c6b39ce8ba9c9925be" kind="function"><name>marketBuy</name></member>
-    <member refid="classBinance_1_1API_1ab97b393885bf23255396c26351c3bae0" kind="function"><name>marketBuyTest</name></member>
-    <member refid="classBinance_1_1API_1a372c642283c163b018bc5c0cbebfccfd" kind="function"><name>marketSell</name></member>
-    <member refid="classBinance_1_1API_1a572ddd85dd67b768a59e9d84bcdc1dfb" kind="function"><name>marketSellTest</name></member>
-    <member refid="classBinance_1_1API_1ad77198b60157ef3f4c7acd684ed64ed5" kind="function"><name>cancel</name></member>
-    <member refid="classBinance_1_1API_1adc33d167e8c8fa8aba1831de948b1558" kind="function"><name>orderStatus</name></member>
-    <member refid="classBinance_1_1API_1aaf2a8365d8f8a4a336c422183cddd0bf" kind="function"><name>openOrders</name></member>
-    <member refid="classBinance_1_1API_1a7d7f83f4843ad13d1ee812a9ca08facb" kind="function"><name>orders</name></member>
-    <member refid="classBinance_1_1API_1a597ed694e6371dfd44acc1787d34b33b" kind="function"><name>history</name></member>
+    <member refid="classBinance_1_1API_1a97cadb5a2170a1b34114592fb9b6912c" kind="function"><name>__construct</name></member>
+    <member refid="classBinance_1_1API_1a98bf564a5ff752a2393bc626b222905e" kind="function"><name>buy</name></member>
+    <member refid="classBinance_1_1API_1a9e199a90097fbee4e89e2777534599b7" kind="function"><name>buyTest</name></member>
+    <member refid="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e" kind="function"><name>sell</name></member>
+    <member refid="classBinance_1_1API_1a67841995467768588781cde190e59235" kind="function"><name>sellTest</name></member>
+    <member refid="classBinance_1_1API_1aa6156e4c8d03bbdd8c16bbb18ea75646" kind="function"><name>marketBuy</name></member>
+    <member refid="classBinance_1_1API_1ad11565e34ba1c715ac2478ee7f9aab6e" kind="function"><name>marketBuyTest</name></member>
+    <member refid="classBinance_1_1API_1a72d07ceea281b273d65a487efc02e31e" kind="function"><name>marketSell</name></member>
+    <member refid="classBinance_1_1API_1a77eaa982d0ca78fbce80d6203213af28" kind="function"><name>marketSellTest</name></member>
+    <member refid="classBinance_1_1API_1ac49c3595190e193510eb368c0fa92992" kind="function"><name>cancel</name></member>
+    <member refid="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4" kind="function"><name>orderStatus</name></member>
+    <member refid="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335" kind="function"><name>openOrders</name></member>
+    <member refid="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8" kind="function"><name>orders</name></member>
+    <member refid="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8" kind="function"><name>history</name></member>
     <member refid="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f" kind="function"><name>useServerTime</name></member>
     <member refid="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b" kind="function"><name>time</name></member>
     <member refid="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a" kind="function"><name>exchangeInfo</name></member>
-    <member refid="classBinance_1_1API_1adcfbb41f48480958d59f547c61308acc" kind="function"><name>withdraw</name></member>
-    <member refid="classBinance_1_1API_1ac3869aafdca5696b65b6102a13de1491" kind="function"><name>depositAddress</name></member>
-    <member refid="classBinance_1_1API_1a11dd19cfaa85a0bcbc6b74f68eac68fd" kind="function"><name>depositHistory</name></member>
-    <member refid="classBinance_1_1API_1a28af87f4769cdc6be3328b4f1b4e1ca4" kind="function"><name>withdrawHistory</name></member>
+    <member refid="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e" kind="function"><name>withdraw</name></member>
+    <member refid="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061" kind="function"><name>depositAddress</name></member>
+    <member refid="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b" kind="function"><name>depositHistory</name></member>
+    <member refid="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0" kind="function"><name>withdrawHistory</name></member>
     <member refid="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698" kind="function"><name>prices</name></member>
     <member refid="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97" kind="function"><name>bookPrices</name></member>
     <member refid="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5" kind="function"><name>account</name></member>
-    <member refid="classBinance_1_1API_1a018a1002f7346fe83f37325174cefe2d" kind="function"><name>prevDay</name></member>
-    <member refid="classBinance_1_1API_1a028d3ff42cd67abab4c745851eedb901" kind="function"><name>aggTrades</name></member>
-    <member refid="classBinance_1_1API_1a3a0c0a9284bf3447f4905cc71b975fd4" kind="function"><name>depth</name></member>
+    <member refid="classBinance_1_1API_1a3568ed724dfba2eaf6dcfd91b936dc6f" kind="function"><name>prevDay</name></member>
+    <member refid="classBinance_1_1API_1af047ce7afeff0729b62fb28b2697ad9f" kind="function"><name>aggTrades</name></member>
+    <member refid="classBinance_1_1API_1ac36901dbea220b2401786a6d1bc4d051" kind="function"><name>depth</name></member>
     <member refid="classBinance_1_1API_1afe968feb47f5b68853dae571cb75800c" kind="function"><name>balances</name></member>
     <member refid="classBinance_1_1API_1af1d41534a9f67bc74a6133efa2df4df7" kind="function"><name>getProxyUriString</name></member>
-    <member refid="classBinance_1_1API_1aaeffb0ae4ae4b57030b5e586af9796c7" kind="function"><name>setProxy</name></member>
-    <member refid="classBinance_1_1API_1a672f348fa579428bc57e7f3673214c0c" kind="function"><name>order</name></member>
-    <member refid="classBinance_1_1API_1af0cefd5aec5137cb94a07d9bcfba13c6" kind="function"><name>candlesticks</name></member>
-    <member refid="classBinance_1_1API_1aa6439ce0ad7eff968a70c441c3a5b444" kind="function"><name>cumulative</name></member>
-    <member refid="classBinance_1_1API_1a9afbbfbd53c700745bba158493cfb541" kind="function"><name>highstock</name></member>
-    <member refid="classBinance_1_1API_1ab941e8a3238d029ba5dc168cc1b5c20b" kind="function"><name>first</name></member>
-    <member refid="classBinance_1_1API_1ad3c68f4e2c1e05f08e147083e9abd5d4" kind="function"><name>last</name></member>
-    <member refid="classBinance_1_1API_1a344e647311d050adf2ac30acc293da28" kind="function"><name>displayDepth</name></member>
+    <member refid="classBinance_1_1API_1a3647415e517c745a35d2d54bb27575fe" kind="function"><name>setProxy</name></member>
+    <member refid="classBinance_1_1API_1a40e8ddf7280b33b1899f59d0f16e5fa0" kind="function"><name>order</name></member>
+    <member refid="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa" kind="function"><name>candlesticks</name></member>
+    <member refid="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d" kind="function"><name>cumulative</name></member>
+    <member refid="classBinance_1_1API_1a5eaa9d36db8181fc4605a3841f1106ac" kind="function"><name>highstock</name></member>
+    <member refid="classBinance_1_1API_1a53fcf31d85faa8445653f581fdbdb72c" kind="function"><name>first</name></member>
+    <member refid="classBinance_1_1API_1a468092e1edfd35f79954236714c825c6" kind="function"><name>last</name></member>
+    <member refid="classBinance_1_1API_1a184430be210c8e5cb7be80c9e239619f" kind="function"><name>displayDepth</name></member>
     <member refid="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a" kind="function"><name>getTransfered</name></member>
     <member refid="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c" kind="function"><name>getRequestCount</name></member>
-    <member refid="classBinance_1_1API_1a9af0e8d4bfa7f323772446db31c659bc" kind="function"><name>addToTransfered</name></member>
-    <member refid="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e" kind="function"><name>sortDepth</name></member>
-    <member refid="classBinance_1_1API_1a45372f030cfca92206638f69f114216a" kind="function"><name>depthCache</name></member>
-    <member refid="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661" kind="function"><name>trades</name></member>
-    <member refid="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d" kind="function"><name>ticker</name></member>
-    <member refid="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2" kind="function"><name>chart</name></member>
+    <member refid="classBinance_1_1API_1a90daef87526a753473580139c04d311b" kind="function"><name>addToTransfered</name></member>
+    <member refid="classBinance_1_1API_1a61742a5bdff7fc2119ab8b797c0cef4e" kind="function"><name>sortDepth</name></member>
+    <member refid="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060" kind="function"><name>depthCache</name></member>
+    <member refid="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67" kind="function"><name>trades</name></member>
+    <member refid="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28" kind="function"><name>ticker</name></member>
+    <member refid="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c" kind="function"><name>chart</name></member>
     <member refid="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" kind="function"><name>keepAlive</name></member>
     <member refid="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" kind="function"><name>userData</name></member>
-    <member refid="classBinance_1_1API_1a8598ca4e53938db8998d143563044377" kind="function"><name>miniTicker</name></member>
+    <member refid="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2" kind="function"><name>miniTicker</name></member>
     <member refid="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85" kind="function"><name>setupApiConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165" kind="function"><name>setupProxyConfigFromFile</name></member>
-    <member refid="classBinance_1_1API_1a697f5b28ecf517a7a7ddcdaaf93bc2ad" kind="function"><name>httpRequest</name></member>
-    <member refid="classBinance_1_1API_1abaed7f9d835c8ea6200fa43e3f47e3a0" kind="function"><name>balanceData</name></member>
-    <member refid="classBinance_1_1API_1a231cf707f991a15f34e6d1148602c1af" kind="function"><name>balanceHandler</name></member>
-    <member refid="classBinance_1_1API_1a032befc6598403b6b2cd33016dc3a114" kind="function"><name>tickerStreamHandler</name></member>
-    <member refid="classBinance_1_1API_1ae0eff555cf95cfc65e0c44b78cbcf8d9" kind="function"><name>executionHandler</name></member>
-    <member refid="classBinance_1_1API_1adfc552373fd3c1d1741e4838aa312cc8" kind="function"><name>chartData</name></member>
-    <member refid="classBinance_1_1API_1a31c51812e766866a7b6ddfcddf11fbe5" kind="function"><name>tradesData</name></member>
-    <member refid="classBinance_1_1API_1a20a8fbf026233ef08370a6116cb79609" kind="function"><name>bookPriceData</name></member>
-    <member refid="classBinance_1_1API_1a800848d5a50512be2bb5a5180d953f7b" kind="function"><name>priceData</name></member>
-    <member refid="classBinance_1_1API_1aa98398afa4cebbfff5e3459c62c332b6" kind="function"><name>depthData</name></member>
-    <member refid="classBinance_1_1API_1ad364a2fb92952f00dd5ecc55f38694d9" kind="function"><name>depthHandler</name></member>
-    <member refid="classBinance_1_1API_1a1d8f77cb5fbc8d6096d567e072d5137f" kind="function"><name>chartHandler</name></member>
+    <member refid="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590" kind="function"><name>httpRequest</name></member>
+    <member refid="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159" kind="function"><name>balanceData</name></member>
+    <member refid="classBinance_1_1API_1ad2eb0a86fd2e6ddfec7ebe93fc74e2c8" kind="function"><name>balanceHandler</name></member>
+    <member refid="classBinance_1_1API_1a4553cf19c4a984633be47fc4b4208a9d" kind="function"><name>tickerStreamHandler</name></member>
+    <member refid="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c" kind="function"><name>executionHandler</name></member>
+    <member refid="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e" kind="function"><name>chartData</name></member>
+    <member refid="classBinance_1_1API_1a89985a26a01e91bf449bc4ccad2eef29" kind="function"><name>tradesData</name></member>
+    <member refid="classBinance_1_1API_1a65e35c5cdc897acaa25e9aeee0bb2bea" kind="function"><name>bookPriceData</name></member>
+    <member refid="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd" kind="function"><name>priceData</name></member>
+    <member refid="classBinance_1_1API_1ac58a4a51592fce18cb300cf331201548" kind="function"><name>depthData</name></member>
+    <member refid="classBinance_1_1API_1a2a27388362d21462e9152f0cd0c54127" kind="function"><name>depthHandler</name></member>
+    <member refid="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0" kind="function"><name>chartHandler</name></member>
   </compound>
   <compound refid="namespaceBinance" kind="namespace"><name>Binance</name>
   </compound>

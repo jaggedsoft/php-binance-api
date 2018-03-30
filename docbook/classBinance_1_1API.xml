@@ -124,112 +124,112 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1adbd7fdb4457492d7b6bad7b120492770">__construct</link> (
- $api_key,  $api_secret,  $options, false] ,  $proxyConf)</para>
+                        <para> <link linkend="classBinance_1_1API_1a97cadb5a2170a1b34114592fb9b6912c">__construct</link> (
+string $api_key, string $api_secret, array $options, false] , array $proxyConf)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a8debc23a73d11fc6ed2b19365de17fdf">buy</link> (
- $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1a98bf564a5ff752a2393bc626b222905e">buy</link> (
+string $symbol,  $quantity,  $price, string $type, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ad45ea86647eb309bbff25c2760ff44c6">buyTest</link> (
- $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1a9e199a90097fbee4e89e2777534599b7">buyTest</link> (
+string $symbol,  $quantity,  $price, string $type, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1aebb5a164303af16e66c2b9281f45a315">sell</link> (
- $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e">sell</link> (
+string $symbol,  $quantity,  $price, string $type, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a34b5e813092766a1dd546eedf77cbde5">sellTest</link> (
- $symbol,  $quantity,  $price,  $type,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1a67841995467768588781cde190e59235">sellTest</link> (
+string $symbol,  $quantity,  $price, string $type, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a0fa240adf5da87c6b39ce8ba9c9925be">marketBuy</link> (
- $symbol,  $quantity,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1aa6156e4c8d03bbdd8c16bbb18ea75646">marketBuy</link> (
+string $symbol,  $quantity, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ab97b393885bf23255396c26351c3bae0">marketBuyTest</link> (
- $symbol,  $quantity,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1ad11565e34ba1c715ac2478ee7f9aab6e">marketBuyTest</link> (
+string $symbol,  $quantity, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a372c642283c163b018bc5c0cbebfccfd">marketSell</link> (
- $symbol,  $quantity,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1a72d07ceea281b273d65a487efc02e31e">marketSell</link> (
+string $symbol,  $quantity, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a572ddd85dd67b768a59e9d84bcdc1dfb">marketSellTest</link> (
- $symbol,  $quantity,  $flags)</para>
+                        <para> <link linkend="classBinance_1_1API_1a77eaa982d0ca78fbce80d6203213af28">marketSellTest</link> (
+string $symbol,  $quantity, array $flags)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ad77198b60157ef3f4c7acd684ed64ed5">cancel</link> (
- $symbol,  $orderid)</para>
+                        <para> <link linkend="classBinance_1_1API_1ac49c3595190e193510eb368c0fa92992">cancel</link> (
+string $symbol,  $orderid)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1adc33d167e8c8fa8aba1831de948b1558">orderStatus</link> (
- $symbol,  $orderid)</para>
+                        <para> <link linkend="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4">orderStatus</link> (
+string $symbol,  $orderid)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1aaf2a8365d8f8a4a336c422183cddd0bf">openOrders</link> (
- $symbol)</para>
+                        <para> <link linkend="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335">openOrders</link> (
+string $symbol)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a7d7f83f4843ad13d1ee812a9ca08facb">orders</link> (
- $symbol,  $limit,  $fromOrderId)</para>
+                        <para> <link linkend="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8">orders</link> (
+string $symbol, int $limit, int $fromOrderId)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a597ed694e6371dfd44acc1787d34b33b">history</link> (
- $symbol,  $limit,  $fromTradeId)</para>
+                        <para> <link linkend="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8">history</link> (
+string $symbol, int $limit, int $fromTradeId)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -260,32 +260,32 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1adcfbb41f48480958d59f547c61308acc">withdraw</link> (
- $asset,  $address,  $amount,  $addressTag)</para>
+                        <para> <link linkend="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e">withdraw</link> (
+string $asset, string $address,  $amount,  $addressTag)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ac3869aafdca5696b65b6102a13de1491">depositAddress</link> (
- $asset)</para>
+                        <para> <link linkend="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061">depositAddress</link> (
+string $asset)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a11dd19cfaa85a0bcbc6b74f68eac68fd">depositHistory</link> (
- $asset)</para>
+                        <para> <link linkend="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b">depositHistory</link> (
+string $asset)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a28af87f4769cdc6be3328b4f1b4e1ca4">withdrawHistory</link> (
- $asset)</para>
+                        <para> <link linkend="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0">withdrawHistory</link> (
+string $asset)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -316,24 +316,24 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a018a1002f7346fe83f37325174cefe2d">prevDay</link> (
- $symbol)</para>
+                        <para> <link linkend="classBinance_1_1API_1a3568ed724dfba2eaf6dcfd91b936dc6f">prevDay</link> (
+string $symbol)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a028d3ff42cd67abab4c745851eedb901">aggTrades</link> (
- $symbol)</para>
+                        <para> <link linkend="classBinance_1_1API_1af047ce7afeff0729b62fb28b2697ad9f">aggTrades</link> (
+string $symbol)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a3a0c0a9284bf3447f4905cc71b975fd4">depth</link> (
- $symbol)</para>
+                        <para> <link linkend="classBinance_1_1API_1ac36901dbea220b2401786a6d1bc4d051">depth</link> (
+string $symbol)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -356,64 +356,64 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1aaeffb0ae4ae4b57030b5e586af9796c7">setProxy</link> (
- $proxyconf)</para>
+                        <para> <link linkend="classBinance_1_1API_1a3647415e517c745a35d2d54bb27575fe">setProxy</link> (
+array $proxyconf)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a672f348fa579428bc57e7f3673214c0c">order</link> (
- $side,  $symbol,  $quantity,  $price,  $type,  $flags,  $test)</para>
+                        <para> <link linkend="classBinance_1_1API_1a40e8ddf7280b33b1899f59d0f16e5fa0">order</link> (
+string $side, string $symbol,  $quantity,  $price, string $type, array $flags, bool $test)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1af0cefd5aec5137cb94a07d9bcfba13c6">candlesticks</link> (
- $symbol,  $interval,  $limit,  $startTime,  $endTime)</para>
+                        <para> <link linkend="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa">candlesticks</link> (
+string $symbol, string $interval, int $limit,  $startTime,  $endTime)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1aa6439ce0ad7eff968a70c441c3a5b444">cumulative</link> (
- $depth)</para>
+                        <para> <link linkend="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d">cumulative</link> (
+array $depth)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a9afbbfbd53c700745bba158493cfb541">highstock</link> (
- $chart,  $include_volume)</para>
+                        <para> <link linkend="classBinance_1_1API_1a5eaa9d36db8181fc4605a3841f1106ac">highstock</link> (
+array $chart, bool $include_volume)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ab941e8a3238d029ba5dc168cc1b5c20b">first</link> (
- $array)</para>
+                        <para> <link linkend="classBinance_1_1API_1a53fcf31d85faa8445653f581fdbdb72c">first</link> (
+array $array)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ad3c68f4e2c1e05f08e147083e9abd5d4">last</link> (
- $array)</para>
+                        <para> <link linkend="classBinance_1_1API_1a468092e1edfd35f79954236714c825c6">last</link> (
+array $array)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a344e647311d050adf2ac30acc293da28">displayDepth</link> (
- $array)</para>
+                        <para> <link linkend="classBinance_1_1API_1a184430be210c8e5cb7be80c9e239619f">displayDepth</link> (
+array $array)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -436,48 +436,48 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a9af0e8d4bfa7f323772446db31c659bc">addToTransfered</link> (
- $int)</para>
+                        <para> <link linkend="classBinance_1_1API_1a90daef87526a753473580139c04d311b">addToTransfered</link> (
+int $int)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">sortDepth</link> (
- $symbol,  $limit)</para>
+                        <para> <link linkend="classBinance_1_1API_1a61742a5bdff7fc2119ab8b797c0cef4e">sortDepth</link> (
+string $symbol, int $limit)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a45372f030cfca92206638f69f114216a">depthCache</link> (
- $symbols,  $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060">depthCache</link> (
+ $symbols, Callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661">trades</link> (
- $symbols,  $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67">trades</link> (
+ $symbols, Callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d">ticker</link> (
- $symbol,  $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28">ticker</link> (
+ $symbol, Callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2">chart</link> (
- $symbols,  $interval,  $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c">chart</link> (
+ $symbols, string $interval, Callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -500,8 +500,8 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">miniTicker</link> (
- $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2">miniTicker</link> (
+Callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -527,96 +527,96 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a697f5b28ecf517a7a7ddcdaaf93bc2ad">httpRequest</link> (
- $url,  $method,  $params,  $signed)</para>
+                        <para> <link linkend="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590">httpRequest</link> (
+string $url, string $method, array $params, bool $signed)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1abaed7f9d835c8ea6200fa43e3f47e3a0">balanceData</link> (
- $array,  $priceData)</para>
+                        <para> <link linkend="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159">balanceData</link> (
+array $array,  $priceData)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a231cf707f991a15f34e6d1148602c1af">balanceHandler</link> (
- $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1ad2eb0a86fd2e6ddfec7ebe93fc74e2c8">balanceHandler</link> (
+array $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a032befc6598403b6b2cd33016dc3a114">tickerStreamHandler</link> (
- $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1a4553cf19c4a984633be47fc4b4208a9d">tickerStreamHandler</link> (
+object $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ae0eff555cf95cfc65e0c44b78cbcf8d9">executionHandler</link> (
- $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c">executionHandler</link> (
+object $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1adfc552373fd3c1d1741e4838aa312cc8">chartData</link> (
- $symbol,  $interval,  $ticks)</para>
+                        <para> <link linkend="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e">chartData</link> (
+string $symbol, string $interval, array $ticks)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a31c51812e766866a7b6ddfcddf11fbe5">tradesData</link> (
- $trades)</para>
+                        <para> <link linkend="classBinance_1_1API_1a89985a26a01e91bf449bc4ccad2eef29">tradesData</link> (
+array $trades)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a20a8fbf026233ef08370a6116cb79609">bookPriceData</link> (
- $array)</para>
+                        <para> <link linkend="classBinance_1_1API_1a65e35c5cdc897acaa25e9aeee0bb2bea">bookPriceData</link> (
+array $array)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a800848d5a50512be2bb5a5180d953f7b">priceData</link> (
- $array)</para>
+                        <para> <link linkend="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd">priceData</link> (
+array $array)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1aa98398afa4cebbfff5e3459c62c332b6">depthData</link> (
- $symbol,  $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1ac58a4a51592fce18cb300cf331201548">depthData</link> (
+string $symbol, array $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ad364a2fb92952f00dd5ecc55f38694d9">depthHandler</link> (
- $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1a2a27388362d21462e9152f0cd0c54127">depthHandler</link> (
+array $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a1d8f77cb5fbc8d6096d567e072d5137f">chartHandler</link> (
- $symbol,  $interval,  $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0">chartHandler</link> (
+string $symbol, string $interval, object $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -634,8 +634,8 @@
                 <para>The Documentation for this struct was generated from the following file: </para>
                 <para><itemizedlist><listitem><para>php-binance-api.php</para></listitem></itemizedlist></para>
         </simplesect>
-            <section xml:id="classBinance_1_1API_1adbd7fdb4457492d7b6bad7b120492770">
-                <title>Binance\API::__construct ($api_key= &apos;&apos;, $api_secret= &apos;&apos;, $options=[&quot;useServerTime&quot;=&gt;false], $proxyConf=null)</title> <emphasis>Constructor for the class, There are 4 ways to contruct the class:</emphasis>
+            <section xml:id="classBinance_1_1API_1a97cadb5a2170a1b34114592fb9b6912c">
+                <title>Binance\API::__construct (string $api_key= &apos;&apos;, string $api_secret= &apos;&apos;, array $options=[&quot;useServerTime&quot;=&gt;false], array $proxyConf=null)</title> <emphasis>Constructor for the class, There are 4 ways to contruct the class:</emphasis>
                 
 <para><itemizedlist>
 <listitem>
@@ -691,8 +691,8 @@
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a8debc23a73d11fc6ed2b19365de17fdf">
-                <title>Binance\API::buy ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>buy attempts to create a currency order
+            <section xml:id="classBinance_1_1API_1a98bf564a5ff752a2393bc626b222905e">
+                <title>Binance\API::buy (string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[])</title> <emphasis>buy attempts to create a currency order
 each currency supports a number of order types, such as
 -LIMIT
 -MARKET
@@ -756,8 +756,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ad45ea86647eb309bbff25c2760ff44c6">
-                <title>Binance\API::buyTest ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>buyTest attempts to create a TEST currency order</emphasis>
+            <section xml:id="classBinance_1_1API_1a9e199a90097fbee4e89e2777534599b7">
+                <title>Binance\API::buyTest (string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[])</title> <emphasis>buyTest attempts to create a TEST currency order</emphasis>
                 
 <para><formalpara><title>See Also: </title>
 
@@ -811,8 +811,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1aebb5a164303af16e66c2b9281f45a315">
-                <title>Binance\API::sell ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>sell attempts to create a currency order
+            <section xml:id="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e">
+                <title>Binance\API::sell (string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[])</title> <emphasis>sell attempts to create a currency order
 each currency supports a number of order types, such as
 -LIMIT
 -MARKET
@@ -876,8 +876,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a34b5e813092766a1dd546eedf77cbde5">
-                <title>Binance\API::sellTest ($symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[])</title> <emphasis>sellTest attempts to create a TEST currency order</emphasis>
+            <section xml:id="classBinance_1_1API_1a67841995467768588781cde190e59235">
+                <title>Binance\API::sellTest (string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[])</title> <emphasis>sellTest attempts to create a TEST currency order</emphasis>
                 
 <para><formalpara><title>See Also: </title>
 
@@ -931,8 +931,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a0fa240adf5da87c6b39ce8ba9c9925be">
-                <title>Binance\API::marketBuy ($symbol, $quantity, $flags=[])</title> <emphasis>marketBuy attempts to create a currency order at given market price</emphasis>
+            <section xml:id="classBinance_1_1API_1aa6156e4c8d03bbdd8c16bbb18ea75646">
+                <title>Binance\API::marketBuy (string $symbol, $quantity, array $flags=[])</title> <emphasis>marketBuy attempts to create a currency order at given market price</emphasis>
                 
 <para>$quantity = 1; $order = $api-&gt;marketBuy(&quot;BNBBTC&quot;, $quantity);</para>
 
@@ -972,8 +972,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ab97b393885bf23255396c26351c3bae0">
-                <title>Binance\API::marketBuyTest ($symbol, $quantity, $flags=[])</title> <emphasis>marketBuyTest attempts to create a TEST currency order at given market price</emphasis>
+            <section xml:id="classBinance_1_1API_1ad11565e34ba1c715ac2478ee7f9aab6e">
+                <title>Binance\API::marketBuyTest (string $symbol, $quantity, array $flags=[])</title> <emphasis>marketBuyTest attempts to create a TEST currency order at given market price</emphasis>
                 
 <para><formalpara><title>See Also: </title>
 
@@ -1015,8 +1015,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a372c642283c163b018bc5c0cbebfccfd">
-                <title>Binance\API::marketSell ($symbol, $quantity, $flags=[])</title> <emphasis>marketSell attempts to create a currency order at given market price</emphasis>
+            <section xml:id="classBinance_1_1API_1a72d07ceea281b273d65a487efc02e31e">
+                <title>Binance\API::marketSell (string $symbol, $quantity, array $flags=[])</title> <emphasis>marketSell attempts to create a currency order at given market price</emphasis>
                 
 <para>$quantity = 1; $order = $api-&gt;marketSell(&quot;BNBBTC&quot;, $quantity);</para>
 
@@ -1056,8 +1056,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a572ddd85dd67b768a59e9d84bcdc1dfb">
-                <title>Binance\API::marketSellTest ($symbol, $quantity, $flags=[])</title> <emphasis>marketSellTest attempts to create a TEST currency order at given market price</emphasis>
+            <section xml:id="classBinance_1_1API_1a77eaa982d0ca78fbce80d6203213af28">
+                <title>Binance\API::marketSellTest (string $symbol, $quantity, array $flags=[])</title> <emphasis>marketSellTest attempts to create a TEST currency order at given market price</emphasis>
                 
 <para><formalpara><title>See Also: </title>
 
@@ -1099,8 +1099,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ad77198b60157ef3f4c7acd684ed64ed5">
-                <title>Binance\API::cancel ($symbol, $orderid)</title> <emphasis>cancel attempts to cancel a currency order</emphasis>
+            <section xml:id="classBinance_1_1API_1ac49c3595190e193510eb368c0fa92992">
+                <title>Binance\API::cancel (string $symbol, $orderid)</title> <emphasis>cancel attempts to cancel a currency order</emphasis>
                 
 <para>$orderid = &quot;123456789&quot;; $order = $api-&gt;cancel(&quot;BNBBTC&quot;, $orderid);</para>
 
@@ -1134,8 +1134,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1adc33d167e8c8fa8aba1831de948b1558">
-                <title>Binance\API::orderStatus ($symbol, $orderid)</title> <emphasis>orderStatus attempts to get orders status</emphasis>
+            <section xml:id="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4">
+                <title>Binance\API::orderStatus (string $symbol, $orderid)</title> <emphasis>orderStatus attempts to get orders status</emphasis>
                 
 <para>$orderid = &quot;123456789&quot;; $order = $api-&gt;orderStatus(&quot;BNBBTC&quot;, $orderid);</para>
 
@@ -1169,8 +1169,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1aaf2a8365d8f8a4a336c422183cddd0bf">
-                <title>Binance\API::openOrders ($symbol=null)</title> <emphasis>openOrders attempts to get open orders for all currencies or a specific currency</emphasis>
+            <section xml:id="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335">
+                <title>Binance\API::openOrders (string $symbol=null)</title> <emphasis>openOrders attempts to get open orders for all currencies or a specific currency</emphasis>
                 
 <para>$allOpenOrders = $api-&gt;openOrders(); $allBNBOrders = $api-&gt;openOrders( &quot;BNBBTC&quot; );</para>
 
@@ -1198,8 +1198,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a7d7f83f4843ad13d1ee812a9ca08facb">
-                <title>Binance\API::orders ($symbol, $limit=500, $fromOrderId=1)</title> <emphasis>orders attempts to get the orders for all or a specific currency</emphasis>
+            <section xml:id="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8">
+                <title>Binance\API::orders (string $symbol, int $limit=500, int $fromOrderId=1)</title> <emphasis>orders attempts to get the orders for all or a specific currency</emphasis>
                 
 <para>$allBNBOrders = $api-&gt;orders( &quot;BNBBTC&quot; );</para>
 
@@ -1239,8 +1239,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a597ed694e6371dfd44acc1787d34b33b">
-                <title>Binance\API::history ($symbol, $limit=500, $fromTradeId=1)</title> <emphasis>history Get the complete account trade history for all or a specific currency</emphasis>
+            <section xml:id="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8">
+                <title>Binance\API::history (string $symbol, int $limit=500, int $fromTradeId=1)</title> <emphasis>history Get the complete account trade history for all or a specific currency</emphasis>
                 
 <para>$allHistory = $api-&gt;history(); $BNBHistory = $api-&gt;history(&quot;BNBBTC&quot;); $limitBNBHistory = $api-&gt;history(&quot;BNBBTC&quot;,5); $limitBNBHistoryFromId = $api-&gt;history(&quot;BNBBTC&quot;,5,3);</para>
 
@@ -1316,8 +1316,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1adcfbb41f48480958d59f547c61308acc">
-                <title>Binance\API::withdraw ($asset, $address, $amount, $addressTag=false)</title> <emphasis>withdraw requests a asset be withdrawn from binance to another wallet</emphasis>
+            <section xml:id="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e">
+                <title>Binance\API::withdraw (string $asset, string $address, $amount, $addressTag=null)</title> <emphasis>withdraw requests a asset be withdrawn from binance to another wallet</emphasis>
                 
 <para>$asset = &quot;BTC&quot;; $address = &quot;1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa&quot;; $amount = 0.2; $response = $api-&gt;withdraw($asset, $address, $amount);</para>
 
@@ -1365,8 +1365,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ac3869aafdca5696b65b6102a13de1491">
-                <title>Binance\API::depositAddress ($asset)</title> <emphasis>depositAddress get the deposit address for an asset</emphasis>
+            <section xml:id="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061">
+                <title>Binance\API::depositAddress (string $asset)</title> <emphasis>depositAddress get the deposit address for an asset</emphasis>
                 
 <para>$depositAddress = $api-&gt;depositAddress(&quot;VEN&quot;);</para>
 
@@ -1394,8 +1394,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a11dd19cfaa85a0bcbc6b74f68eac68fd">
-                <title>Binance\API::depositHistory ($asset=false)</title> <emphasis>depositAddress get the deposit history for an asset</emphasis>
+            <section xml:id="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b">
+                <title>Binance\API::depositHistory (string $asset=null)</title> <emphasis>depositAddress get the deposit history for an asset</emphasis>
                 
 <para>$depositHistory = $api-&gt;depositHistory();</para>
 
@@ -1425,8 +1425,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a28af87f4769cdc6be3328b4f1b4e1ca4">
-                <title>Binance\API::withdrawHistory ($asset=false)</title> <emphasis>withdrawHistory get the withdrawal history for an asset</emphasis>
+            <section xml:id="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0">
+                <title>Binance\API::withdrawHistory (string $asset=null)</title> <emphasis>withdrawHistory get the withdrawal history for an asset</emphasis>
                 
 <para>$withdrawHistory = $api-&gt;withdrawHistory();</para>
 
@@ -1492,8 +1492,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a018a1002f7346fe83f37325174cefe2d">
-                <title>Binance\API::prevDay ($symbol= &apos;&apos;)</title> <emphasis>prevDay get 24hr ticker price change statistics for symbols</emphasis>
+            <section xml:id="classBinance_1_1API_1a3568ed724dfba2eaf6dcfd91b936dc6f">
+                <title>Binance\API::prevDay (string $symbol)</title> <emphasis>prevDay get 24hr ticker price change statistics for symbols</emphasis>
                 
 <para>$prevDay = $api-&gt;prevDay(&quot;BNBBTC&quot;);</para>
 
@@ -1521,8 +1521,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a028d3ff42cd67abab4c745851eedb901">
-                <title>Binance\API::aggTrades ($symbol)</title> <emphasis>aggTrades get Market History / Aggregate Trades</emphasis>
+            <section xml:id="classBinance_1_1API_1af047ce7afeff0729b62fb28b2697ad9f">
+                <title>Binance\API::aggTrades (string $symbol)</title> <emphasis>aggTrades get Market History / Aggregate Trades</emphasis>
                 
 <para>$trades = $api-&gt;aggTrades(&quot;BNBBTC&quot;);</para>
 
@@ -1550,8 +1550,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a3a0c0a9284bf3447f4905cc71b975fd4">
-                <title>Binance\API::depth ($symbol)</title> <emphasis>depth get Market depth</emphasis>
+            <section xml:id="classBinance_1_1API_1ac36901dbea220b2401786a6d1bc4d051">
+                <title>Binance\API::depth (string $symbol)</title> <emphasis>depth get Market depth</emphasis>
                 
 <para>$depth = $api-&gt;depth(&quot;ETHBTC&quot;);</para>
 
@@ -1620,8 +1620,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1aaeffb0ae4ae4b57030b5e586af9796c7">
-                <title>Binance\API::setProxy ($proxyconf)</title> <emphasis>setProxy set proxy config by passing in an array of the proxy configuration</emphasis>
+            <section xml:id="classBinance_1_1API_1a3647415e517c745a35d2d54bb27575fe">
+                <title>Binance\API::setProxy (array $proxyconf)</title> <emphasis>setProxy set proxy config by passing in an array of the proxy configuration</emphasis>
                 
 <para>$proxyConf = [ &apos;proto&apos; =&gt; &apos;tcp&apos;, &apos;address&apos; =&gt; &apos;192.168.1.1&apos;, &apos;port&apos; =&gt; &apos;8080&apos;, &apos;user&apos; =&gt; &apos;dude&apos;, &apos;pass&apos; =&gt; &apos;d00d&apos; ];</para>
 
@@ -1634,8 +1634,8 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a672f348fa579428bc57e7f3673214c0c">
-                <title>Binance\API::order ($side, $symbol, $quantity, $price, $type=&quot;LIMIT&quot;, $flags=[], $test=false)</title> <emphasis>order formats the orders before sending them to the curl wrapper function
+            <section xml:id="classBinance_1_1API_1a40e8ddf7280b33b1899f59d0f16e5fa0">
+                <title>Binance\API::order (string $side, string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[], bool $test=false)</title> <emphasis>order formats the orders before sending them to the curl wrapper function
 You can call this function directly or use the helper functions</emphasis>
                 
 <para><formalpara><title>See Also: </title>
@@ -1710,8 +1710,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1af0cefd5aec5137cb94a07d9bcfba13c6">
-                <title>Binance\API::candlesticks ($symbol, $interval=&quot;5m&quot;, $limit=null, $startTime=null, $endTime=null)</title> <emphasis>candlesticks get the cancles for the given intervals
+            <section xml:id="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa">
+                <title>Binance\API::candlesticks (string $symbol, string $interval=&quot;5m&quot;, int $limit=null, $startTime=null, $endTime=null)</title> <emphasis>candlesticks get the cancles for the given intervals
 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M</emphasis>
                 
 <para>$candles = $api-&gt;candlesticks(&quot;BNBBTC&quot;, &quot;5m&quot;);</para>
@@ -1764,8 +1764,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1aa6439ce0ad7eff968a70c441c3a5b444">
-                <title>Binance\API::cumulative ($depth)</title> <emphasis>cumulative Converts depth cache into a cumulative array</emphasis>
+            <section xml:id="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d">
+                <title>Binance\API::cumulative (array $depth)</title> <emphasis>cumulative Converts depth cache into a cumulative array</emphasis>
                 
 <para>$cumulative = $api-&gt;cumulative($depth);</para>
 
@@ -1793,8 +1793,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a9afbbfbd53c700745bba158493cfb541">
-                <title>Binance\API::highstock ($chart, $include_volume=false)</title> <emphasis>highstock Converts Chart Data into array for highstock &amp; kline charts</emphasis>
+            <section xml:id="classBinance_1_1API_1a5eaa9d36db8181fc4605a3841f1106ac">
+                <title>Binance\API::highstock (array $chart, bool $include_volume=false)</title> <emphasis>highstock Converts Chart Data into array for highstock &amp; kline charts</emphasis>
                 
 <para>$highstock = $api-&gt;highstock($chart, $include_volume);</para>
 
@@ -1828,8 +1828,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ab941e8a3238d029ba5dc168cc1b5c20b">
-                <title>Binance\API::first ($array)</title> <emphasis>first Gets first key of an array</emphasis>
+            <section xml:id="classBinance_1_1API_1a53fcf31d85faa8445653f581fdbdb72c">
+                <title>Binance\API::first (array $array)</title> <emphasis>first Gets first key of an array</emphasis>
                 
 <para>$first = $api-&gt;first($array);</para>
 
@@ -1857,8 +1857,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ad3c68f4e2c1e05f08e147083e9abd5d4">
-                <title>Binance\API::last ($array)</title> <emphasis>last Gets last key of an array</emphasis>
+            <section xml:id="classBinance_1_1API_1a468092e1edfd35f79954236714c825c6">
+                <title>Binance\API::last (array $array)</title> <emphasis>last Gets last key of an array</emphasis>
                 
 <para>$last = $api-&gt;last($array);</para>
 
@@ -1886,8 +1886,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a344e647311d050adf2ac30acc293da28">
-                <title>Binance\API::displayDepth ($array)</title> <emphasis>displayDepth Formats nicely for console output</emphasis>
+            <section xml:id="classBinance_1_1API_1a184430be210c8e5cb7be80c9e239619f">
+                <title>Binance\API::displayDepth (array $array)</title> <emphasis>displayDepth Formats nicely for console output</emphasis>
                 
 <para>$outputString = $api-&gt;displayDepth($array);</para>
 
@@ -1939,8 +1939,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a9af0e8d4bfa7f323772446db31c659bc">
-                <title>Binance\API::addToTransfered ($int)</title> <emphasis>addToTransfered add interger bytes to the total transfered
+            <section xml:id="classBinance_1_1API_1a90daef87526a753473580139c04d311b">
+                <title>Binance\API::addToTransfered (int $int)</title> <emphasis>addToTransfered add interger bytes to the total transfered
 also incrementes the api counter</emphasis>
                 
 <para>$apiCount = $api-&gt;addToTransfered( $int );</para>
@@ -1952,8 +1952,8 @@ also incrementes the api counter</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a01035d97174324ba1575440e28bbc02e">
-                <title>Binance\API::sortDepth ($symbol, $limit=11)</title> <emphasis>sortDepth Sorts depth data for display &amp; getting highest bid and lowest ask</emphasis>
+            <section xml:id="classBinance_1_1API_1a61742a5bdff7fc2119ab8b797c0cef4e">
+                <title>Binance\API::sortDepth (string $symbol, int $limit=11)</title> <emphasis>sortDepth Sorts depth data for display &amp; getting highest bid and lowest ask</emphasis>
                 
 <para>$sorted = $api-&gt;sortDepth($symbol, $limit);</para>
 
@@ -1987,8 +1987,8 @@ also incrementes the api counter</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a45372f030cfca92206638f69f114216a">
-                <title>Binance\API::depthCache ($symbols, $callback)</title> <emphasis>depthCache Pulls /depth data and subscribes to @depth WebSocket endpoint
+            <section xml:id="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060">
+                <title>Binance\API::depthCache ($symbols, Callable $callback)</title> <emphasis>depthCache Pulls /depth data and subscribes to @depth WebSocket endpoint
 Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 
 <para>See depth() and depthHandler()</para>
@@ -2025,8 +2025,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ae760a0c3d8d95dcef8acad5639f5b661">
-                <title>Binance\API::trades ($symbols, $callback)</title> <emphasis>trades Trades WebSocket Endpoint</emphasis>
+            <section xml:id="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67">
+                <title>Binance\API::trades ($symbols, Callable $callback)</title> <emphasis>trades Trades WebSocket Endpoint</emphasis>
                 
 <para>$api-&gt;trades([&quot;BNBBTC&quot;], function($api, $symbol, $trades) { echo &quot;{$symbol} trades update&quot;.PHP_EOL; print_r($trades); });</para>
 
@@ -2060,8 +2060,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a86ce0b32d5df8c23a88364f56b1d9e2d">
-                <title>Binance\API::ticker ($symbol, $callback)</title> <emphasis>ticker pulls 24h price change statistics via WebSocket</emphasis>
+            <section xml:id="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28">
+                <title>Binance\API::ticker ($symbol, Callable $callback)</title> <emphasis>ticker pulls 24h price change statistics via WebSocket</emphasis>
                 
 <para>$api-&gt;ticker(false, function($api, $symbol, $ticker) { print_r($ticker); });</para>
 
@@ -2095,8 +2095,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a4fa537df4d7eda8f26817ef350d330c2">
-                <title>Binance\API::chart ($symbols, $interval=&quot;30m&quot;, $callback)</title> <emphasis>chart Pulls /kline data and subscribes to @klines WebSocket endpoint</emphasis>
+            <section xml:id="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c">
+                <title>Binance\API::chart ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</title> <emphasis>chart Pulls /kline data and subscribes to @klines WebSocket endpoint</emphasis>
                 
 <para>$api-&gt;chart([&quot;BNBBTC&quot;], &quot;15m&quot;, function($api, $symbol, $chart) { echo &quot;{$symbol} chart update\n&quot;; print_r($chart); });</para>
 
@@ -2187,8 +2187,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a8598ca4e53938db8998d143563044377">
-                <title>Binance\API::miniTicker ($callback)</title> <emphasis>miniTicker Get miniTicker for all symbols</emphasis>
+            <section xml:id="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2">
+                <title>Binance\API::miniTicker (Callable $callback)</title> <emphasis>miniTicker Get miniTicker for all symbols</emphasis>
                 
 <para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); }); 
                 <formalpara>
@@ -2238,8 +2238,8 @@ this function will attempt to load the proxy  info from the users home directory
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a697f5b28ecf517a7a7ddcdaaf93bc2ad">
-                <title>Binance\API::httpRequest ($url, $method=&quot;GET&quot;, $params=[], $signed=false)</title> <emphasis>httpRequest curl wrapper for all http api requests.</emphasis>
+            <section xml:id="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590">
+                <title>Binance\API::httpRequest (string $url, string $method=&quot;GET&quot;, array $params=[], bool $signed=false)</title> <emphasis>httpRequest curl wrapper for all http api requests.</emphasis>
                 
 <para>You can&apos;t call this function directly, use the helper functions <formalpara><title>See Also: </title>
 
@@ -2295,8 +2295,8 @@ $this-&gt;httpRequest( &quot;https://api.binance.com/api/v1/ticker/24hr&quot;);<
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1abaed7f9d835c8ea6200fa43e3f47e3a0">
-                <title>Binance\API::balanceData ($array, $priceData=false)</title> <emphasis>balanceData Converts all your balances into a nice array
+            <section xml:id="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159">
+                <title>Binance\API::balanceData (array $array, $priceData)</title> <emphasis>balanceData Converts all your balances into a nice array
 If priceData is passed from $api-&gt;prices() it will add btcValue &amp; btcTotal to each symbol
 This function sets $btc_value which is your estimated BTC value of all assets combined and $btc_total which includes amount on order</emphasis>
                 
@@ -2332,8 +2332,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a231cf707f991a15f34e6d1148602c1af">
-                <title>Binance\API::balanceHandler ($json)</title> <emphasis>balanceHandler Convert balance WebSocket data into array</emphasis>
+            <section xml:id="classBinance_1_1API_1ad2eb0a86fd2e6ddfec7ebe93fc74e2c8">
+                <title>Binance\API::balanceHandler (array $json)</title> <emphasis>balanceHandler Convert balance WebSocket data into array</emphasis>
                 
 <para>$data = $this-&gt;balanceHandler( $json );</para>
 
@@ -2361,8 +2361,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a032befc6598403b6b2cd33016dc3a114">
-                <title>Binance\API::tickerStreamHandler ($json)</title> <emphasis>tickerStreamHandler Convert WebSocket ticker data into array</emphasis>
+            <section xml:id="classBinance_1_1API_1a4553cf19c4a984633be47fc4b4208a9d">
+                <title>Binance\API::tickerStreamHandler (object $json)</title> <emphasis>tickerStreamHandler Convert WebSocket ticker data into array</emphasis>
                 
 <para>$data = $this-&gt;tickerStreamHandler( $json );</para>
 
@@ -2390,8 +2390,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ae0eff555cf95cfc65e0c44b78cbcf8d9">
-                <title>Binance\API::executionHandler ($json)</title> <emphasis>tickerStreamHandler Convert WebSocket trade execution into array</emphasis>
+            <section xml:id="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c">
+                <title>Binance\API::executionHandler (object $json)</title> <emphasis>tickerStreamHandler Convert WebSocket trade execution into array</emphasis>
                 
 <para>$data = $this-&gt;executionHandler( $json );</para>
 
@@ -2419,8 +2419,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1adfc552373fd3c1d1741e4838aa312cc8">
-                <title>Binance\API::chartData ($symbol, $interval, $ticks)</title> <emphasis>chartData Convert kline data into object</emphasis>
+            <section xml:id="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e">
+                <title>Binance\API::chartData (string $symbol, string $interval, array $ticks)</title> <emphasis>chartData Convert kline data into object</emphasis>
                 
 <para>$object = $this-&gt;chartData($symbol, $interval, $ticks);</para>
 
@@ -2460,8 +2460,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a31c51812e766866a7b6ddfcddf11fbe5">
-                <title>Binance\API::tradesData ($trades)</title> <emphasis>tradesData Convert aggTrades data into easier format</emphasis>
+            <section xml:id="classBinance_1_1API_1a89985a26a01e91bf449bc4ccad2eef29">
+                <title>Binance\API::tradesData (array $trades)</title> <emphasis>tradesData Convert aggTrades data into easier format</emphasis>
                 
 <para>$tradesData = $this-&gt;tradesData($trades);</para>
 
@@ -2489,8 +2489,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a20a8fbf026233ef08370a6116cb79609">
-                <title>Binance\API::bookPriceData ($array)</title> <emphasis>bookPriceData Consolidates Book Prices into an easy to use object</emphasis>
+            <section xml:id="classBinance_1_1API_1a65e35c5cdc897acaa25e9aeee0bb2bea">
+                <title>Binance\API::bookPriceData (array $array)</title> <emphasis>bookPriceData Consolidates Book Prices into an easy to use object</emphasis>
                 
 <para>$bookPriceData = $this-&gt;bookPriceData($array);</para>
 
@@ -2518,8 +2518,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a800848d5a50512be2bb5a5180d953f7b">
-                <title>Binance\API::priceData ($array)</title> <emphasis>priceData Converts Price Data into an easy key/value array</emphasis>
+            <section xml:id="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd">
+                <title>Binance\API::priceData (array $array)</title> <emphasis>priceData Converts Price Data into an easy key/value array</emphasis>
                 
 <para>$array = $this-&gt;priceData($array);</para>
 
@@ -2547,8 +2547,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1aa98398afa4cebbfff5e3459c62c332b6">
-                <title>Binance\API::depthData ($symbol, $json)</title> <emphasis>depthData Formats depth data for nice display</emphasis>
+            <section xml:id="classBinance_1_1API_1ac58a4a51592fce18cb300cf331201548">
+                <title>Binance\API::depthData (string $symbol, array $json)</title> <emphasis>depthData Formats depth data for nice display</emphasis>
                 
 <para>$array = $this-&gt;depthData($symbol, $json);</para>
 
@@ -2582,8 +2582,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ad364a2fb92952f00dd5ecc55f38694d9">
-                <title>Binance\API::depthHandler ($json)</title> <emphasis>depthHandler For WebSocket Depth Cache</emphasis>
+            <section xml:id="classBinance_1_1API_1a2a27388362d21462e9152f0cd0c54127">
+                <title>Binance\API::depthHandler (array $json)</title> <emphasis>depthHandler For WebSocket Depth Cache</emphasis>
                 
 <para>$this-&gt;depthHandler($json);</para>
 
@@ -2623,8 +2623,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a1d8f77cb5fbc8d6096d567e072d5137f">
-                <title>Binance\API::chartHandler ($symbol, $interval, $json)</title> <emphasis>chartHandler For WebSocket Chart Cache</emphasis>
+            <section xml:id="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0">
+                <title>Binance\API::chartHandler (string $symbol, string $interval, object $json)</title> <emphasis>chartHandler For WebSocket Chart Cache</emphasis>
                 
 <para>$this-&gt;chartHandler($symbol, $interval, $json);</para>
 
