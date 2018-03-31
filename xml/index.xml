@@ -3,6 +3,7 @@
   <compound refid="classBinance_1_1API" kind="class"><name>Binance::API</name>
     <member refid="classBinance_1_1API_1ac863e52396757997d84e6783b5336828" kind="variable"><name>$base</name></member>
     <member refid="classBinance_1_1API_1a52a5376574ff759fb1df6c8efe24cb7f" kind="variable"><name>$wapi</name></member>
+    <member refid="classBinance_1_1API_1a0ce2df2282110071b78061c3043200af" kind="variable"><name>$stream</name></member>
     <member refid="classBinance_1_1API_1a4b70fc1796d52440e44423da2cbafca5" kind="variable"><name>$api_key</name></member>
     <member refid="classBinance_1_1API_1a5612f3068ec5843031812893537e7677" kind="variable"><name>$api_secret</name></member>
     <member refid="classBinance_1_1API_1a69d62e886266a59b0a314cb4f5f164ca" kind="variable"><name>$depthCache</name></member>
@@ -14,6 +15,7 @@
     <member refid="classBinance_1_1API_1ac40776b871ae1591348c96162e872789" kind="variable"><name>$transfered</name></member>
     <member refid="classBinance_1_1API_1a69a4bfc5a6773dff1d01166dfbb402a2" kind="variable"><name>$requestCount</name></member>
     <member refid="classBinance_1_1API_1aaaf9a901342001f8734bfab6ba505205" kind="variable"><name>$httpDebug</name></member>
+    <member refid="classBinance_1_1API_1a858ac2cec1de7719779b6c517adcb0bf" kind="variable"><name>$subscriptions</name></member>
     <member refid="classBinance_1_1API_1a706b2458b10d731ea4918714c333a845" kind="variable"><name>$balances</name></member>
     <member refid="classBinance_1_1API_1af80ef162a101ffa0963d977126d6811d" kind="variable"><name>$btc_value</name></member>
     <member refid="classBinance_1_1API_1a80f67dda302da9465596ad5e0bd86ce2" kind="variable"><name>$btc_total</name></member>
@@ -62,6 +64,7 @@
     <member refid="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67" kind="function"><name>trades</name></member>
     <member refid="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28" kind="function"><name>ticker</name></member>
     <member refid="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c" kind="function"><name>chart</name></member>
+    <member refid="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14" kind="function"><name>terminate</name></member>
     <member refid="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" kind="function"><name>keepAlive</name></member>
     <member refid="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" kind="function"><name>userData</name></member>
     <member refid="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2" kind="function"><name>miniTicker</name></member>

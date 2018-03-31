@@ -60,6 +60,7 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="sellTest"><param name="Local" value="classBinance_1_1API.html#a67841995467768588781cde190e59235"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="setProxy"><param name="Local" value="classBinance_1_1API.html#a3647415e517c745a35d2d54bb27575fe"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="sortDepth"><param name="Local" value="classBinance_1_1API.html#a61742a5bdff7fc2119ab8b797c0cef4e"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="terminate"><param name="Local" value="classBinance_1_1API.html#a67ed560d60527ad64f16253069cb1b14"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="ticker"><param name="Local" value="classBinance_1_1API.html#a0ef50663f1cca6d48620d458fd26ee28"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="time"><param name="Local" value="classBinance_1_1API.html#afd72d19a5504b1a0a694ca9a8af1047b"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="trades"><param name="Local" value="classBinance_1_1API.html#a338fb6baf24bf3723bcb1fe19fb4ff67"><param name="ImageNumber" value="11"></OBJECT>
@@ -81,6 +82,8 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$info"><param name="Local" value="classBinance_1_1API.html#a8d15ac7cb74ac52f8f008e61aa7cab89"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$proxyConf"><param name="Local" value="classBinance_1_1API.html#a1415587257942c2b5af22c642ff58005"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$requestCount"><param name="Local" value="classBinance_1_1API.html#a69a4bfc5a6773dff1d01166dfbb402a2"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="$stream"><param name="Local" value="classBinance_1_1API.html#a0ce2df2282110071b78061c3043200af"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="$subscriptions"><param name="Local" value="classBinance_1_1API.html#a858ac2cec1de7719779b6c517adcb0bf"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$transfered"><param name="Local" value="classBinance_1_1API.html#ac40776b871ae1591348c96162e872789"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$wapi"><param name="Local" value="classBinance_1_1API.html#a52a5376574ff759fb1df6c8efe24cb7f"><param name="ImageNumber" value="11"></OBJECT>
         </UL>

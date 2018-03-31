@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.3.30)  30 MAR 2018 22:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2018.3.31)  31 MAR 2018 21:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1111,262 +1111,262 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 41.
  [7] [8]
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 168.
+(Font)              scaled to size 8.99994pt on input line 174.
+ [9]
 LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <10> not available
-(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 168.
+(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 174.
 LaTeX Font Info:    Font shape `T1/phv/bc/sl' will be
-(Font)              scaled to size 8.99994pt on input line 168.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 168.
+(Font)              scaled to size 8.99994pt on input line 174.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 174.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 
 LaTeX Font Warning: Font shape `T1/pcr/bc/it' undefined
-(Font)              using `T1/pcr/m/n' instead on input line 168.
+(Font)              using `T1/pcr/m/n' instead on input line 174.
 
-[9]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 183.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 189.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.99994pt on input line 183.
+(Font)              scaled to size 8.99994pt on input line 189.
 
-Underfull \hbox (badness 10000) detected at line 192
+Underfull \hbox (badness 10000) detected at line 198
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 215
+Underfull \hbox (badness 10000) detected at line 221
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 235
+Underfull \hbox (badness 10000) detected at line 241
 [][][]
  []
 
 [10]
-Underfull \hbox (badness 10000) detected at line 260
+Underfull \hbox (badness 10000) detected at line 266
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 285
+Underfull \hbox (badness 10000) detected at line 291
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 305
+Underfull \hbox (badness 10000) detected at line 311
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 327
+Underfull \hbox (badness 10000) detected at line 333
 [][][]
  []
 
 [11]
-Underfull \hbox (badness 10000) detected at line 345
+Underfull \hbox (badness 10000) detected at line 351
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 367
+Underfull \hbox (badness 10000) detected at line 373
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 383
+Underfull \hbox (badness 10000) detected at line 389
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 411
+Underfull \hbox (badness 10000) detected at line 417
 [][][]
  []
 
 [12]
-Underfull \hbox (badness 10000) detected at line 448
+Underfull \hbox (badness 10000) detected at line 454
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 479
+Underfull \hbox (badness 10000) detected at line 485
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 504
+Underfull \hbox (badness 10000) detected at line 510
 [][][]
  []
 
 [13]
-Underfull \hbox (badness 10000) detected at line 529
+Underfull \hbox (badness 10000) detected at line 535
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 556
+Underfull \hbox (badness 10000) detected at line 562
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 581
+Underfull \hbox (badness 10000) detected at line 587
 [][][]
  []
 
 [14]
-Underfull \hbox (badness 10000) detected at line 611
+Underfull \hbox (badness 10000) detected at line 617
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 636
+Underfull \hbox (badness 10000) detected at line 642
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 656
+Underfull \hbox (badness 10000) detected at line 662
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 681
+Underfull \hbox (badness 10000) detected at line 687
 [][][]
  []
 
 [15]
-Underfull \hbox (badness 10000) detected at line 701
+Underfull \hbox (badness 10000) detected at line 707
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 721
+Underfull \hbox (badness 10000) detected at line 727
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 741
+Underfull \hbox (badness 10000) detected at line 747
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 769
+Underfull \hbox (badness 10000) detected at line 775
 [][][]
  []
 
 [16]
-Underfull \hbox (badness 10000) detected at line 800
+Underfull \hbox (badness 10000) detected at line 806
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 820
+Underfull \hbox (badness 10000) detected at line 826
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 845
+Underfull \hbox (badness 10000) detected at line 851
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 876
+Underfull \hbox (badness 10000) detected at line 882
 [][][]
  []
 
 [17]
-Underfull \hbox (badness 10000) detected at line 896
+Underfull \hbox (badness 10000) detected at line 902
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 908
+Underfull \hbox (badness 10000) detected at line 914
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 939
+Underfull \hbox (badness 10000) detected at line 945
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 959
+Underfull \hbox (badness 10000) detected at line 965
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 971
+Underfull \hbox (badness 10000) detected at line 977
 [][][]
  []
 
 [18] [19]
-Underfull \hbox (badness 10000) detected at line 996
+Underfull \hbox (badness 10000) detected at line 1002
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1021
+Underfull \hbox (badness 10000) detected at line 1027
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1045
+Underfull \hbox (badness 10000) detected at line 1051
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1071
+Underfull \hbox (badness 10000) detected at line 1077
 [][][]
  []
 
 [20]
-Underfull \hbox (badness 10000) detected at line 1102
+Underfull \hbox (badness 10000) detected at line 1108
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1130
+Underfull \hbox (badness 10000) detected at line 1136
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1155
+Underfull \hbox (badness 10000) detected at line 1161
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1175
+Underfull \hbox (badness 10000) detected at line 1181
 [][][]
  []
 
 [21]
-Underfull \hbox (badness 10000) detected at line 1197
+Underfull \hbox (badness 10000) detected at line 1203
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1215
+Underfull \hbox (badness 10000) detected at line 1221
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1237
+Underfull \hbox (badness 10000) detected at line 1243
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1253
+Underfull \hbox (badness 10000) detected at line 1259
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1275
+Underfull \hbox (badness 10000) detected at line 1281
 [][][]
  []
 
 [22]
-Underfull \hbox (badness 10000) detected at line 1303
+Underfull \hbox (badness 10000) detected at line 1309
 [][][]
  []
 
@@ -1376,58 +1376,63 @@ Underfull \hbox (badness 10000) detected at line 1331
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1351
+Underfull \hbox (badness 10000) detected at line 1359
 [][][]
  []
 
-[23]
+
 Underfull \hbox (badness 10000) detected at line 1379
 [][][]
  []
 
-
-Underfull \hbox (badness 10000) detected at line 1411
+[23]
+Underfull \hbox (badness 10000) detected at line 1407
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1431
+Underfull \hbox (badness 10000) detected at line 1439
 [][][]
  []
 
 
-Overfull \hbox (30.94527pt too wide) in paragraph at lines 1454--1455
+Underfull \hbox (badness 10000) detected at line 1459
+[][][]
+ []
+
+[24]
+Overfull \hbox (30.94527pt too wide) in paragraph at lines 1482--1483
 \T1/phv/m/n/10 Ahi-Xo-Rsce-G-J-C-R-S3-Jxkn"; $address-Tag = "0e5e38a01058dbf64e
 53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1";
  []
 
-[24]
-Underfull \hbox (badness 10000) detected at line 1467
+
+Underfull \hbox (badness 10000) detected at line 1495
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1494
+Underfull \hbox (badness 10000) detected at line 1522
 [][][]
  []
 
 
 LaTeX Font Warning: Font shape `T1/pcr/bc/n' undefined
-(Font)              using `T1/pcr/m/n' instead on input line 1506.
+(Font)              using `T1/pcr/m/n' instead on input line 1534.
 
 [25]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 1585.
-) [26] (./refman.ind [27
+(Font)              scaled to size 6.29996pt on input line 1613.
+ [26]) [27] (./refman.ind [28
 
-] [28])
+] [29])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
  (./refman.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 149.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 7CDA64D1A8C08F9FAAE3E8F5E070544D;9704.
+(rerunfilecheck)             Checksum: 48F42A79624F2E8C6F81EFD3620A0749;10079.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1435,10 +1440,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
  ) 
 Here is how much of TeX's memory you used:
- 12503 strings out of 495028
- 178093 string characters out of 6181497
- 255468 words of memory out of 5000000
- 15328 multiletter control sequences out of 15000+600000
+ 12516 strings out of 495028
+ 178562 string characters out of 6181497
+ 255630 words of memory out of 5000000
+ 15334 multiletter control sequences out of 15000+600000
  80912 words of font info for 111 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  48i,13n,43p,1113b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1450,10 +1455,10 @@ urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic
 /uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8ac.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (34 pages, 144511 bytes).
+Output written on refman.pdf (35 pages, 146460 bytes).
 PDF statistics:
- 879 PDF objects out of 1000 (max. 8388607)
- 826 compressed objects within 9 object streams
- 177 named destinations out of 1000 (max. 500000)
- 617 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 912 PDF objects out of 1000 (max. 8388607)
+ 858 compressed objects within 9 object streams
+ 184 named destinations out of 1000 (max. 500000)
+ 641 words of extra memory for PDF output out of 10000 (max. 10000000)
 

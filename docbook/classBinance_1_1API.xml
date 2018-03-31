@@ -20,6 +20,13 @@
             <para>
                 <itemizedlist>
                     <listitem>
+                        <para>$stream</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
                         <para>$api_key</para>
                     </listitem>
                 </itemizedlist>
@@ -94,6 +101,13 @@
                 <itemizedlist>
                     <listitem>
                         <para>$httpDebug</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>$subscriptions</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -478,6 +492,14 @@ string $symbol, int $limit)</para>
                     <listitem>
                         <para> <link linkend="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c">chart</link> (
  $symbols, string $interval, Callable $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14">terminate</link> (
+ $endpoint)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -2128,6 +2150,20 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                     </table>
                 </formalpara>
                 <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14">
+                <title>Binance\API::terminate ($endpoint)</title> <emphasis>terminate Terminates websocket endpoints.</emphasis>
+                
+<para>View endpoints first: print_r($api-&gt;subscriptions)</para>
+
+<para>$api-&gt;terminate(&apos;ethbtc_kline@5m&apos;);</para>
+
+<para><formalpara><title>Returns: </title>
 
 <para>null </para>
 </formalpara>

@@ -50,20 +50,21 @@
 \contentsline {subsubsection}{\numberline {4.1.3.38}sell\discretionary {-}{}{}Test}{22}{subsubsection.4.1.3.38}
 \contentsline {subsubsection}{\numberline {4.1.3.39}set\discretionary {-}{}{}Proxy}{22}{subsubsection.4.1.3.39}
 \contentsline {subsubsection}{\numberline {4.1.3.40}sort\discretionary {-}{}{}Depth}{23}{subsubsection.4.1.3.40}
-\contentsline {subsubsection}{\numberline {4.1.3.41}ticker}{23}{subsubsection.4.1.3.41}
-\contentsline {subsubsection}{\numberline {4.1.3.42}time}{23}{subsubsection.4.1.3.42}
-\contentsline {subsubsection}{\numberline {4.1.3.43}trades}{23}{subsubsection.4.1.3.43}
-\contentsline {subsubsection}{\numberline {4.1.3.44}user\discretionary {-}{}{}Data}{24}{subsubsection.4.1.3.44}
-\contentsline {subsubsection}{\numberline {4.1.3.45}use\discretionary {-}{}{}Server\discretionary {-}{}{}Time}{24}{subsubsection.4.1.3.45}
-\contentsline {subsubsection}{\numberline {4.1.3.46}withdraw}{24}{subsubsection.4.1.3.46}
-\contentsline {subsubsection}{\numberline {4.1.3.47}withdraw\discretionary {-}{}{}History}{25}{subsubsection.4.1.3.47}
+\contentsline {subsubsection}{\numberline {4.1.3.41}terminate}{23}{subsubsection.4.1.3.41}
+\contentsline {subsubsection}{\numberline {4.1.3.42}ticker}{23}{subsubsection.4.1.3.42}
+\contentsline {subsubsection}{\numberline {4.1.3.43}time}{23}{subsubsection.4.1.3.43}
+\contentsline {subsubsection}{\numberline {4.1.3.44}trades}{24}{subsubsection.4.1.3.44}
+\contentsline {subsubsection}{\numberline {4.1.3.45}user\discretionary {-}{}{}Data}{24}{subsubsection.4.1.3.45}
+\contentsline {subsubsection}{\numberline {4.1.3.46}use\discretionary {-}{}{}Server\discretionary {-}{}{}Time}{24}{subsubsection.4.1.3.46}
+\contentsline {subsubsection}{\numberline {4.1.3.47}withdraw}{25}{subsubsection.4.1.3.47}
+\contentsline {subsubsection}{\numberline {4.1.3.48}withdraw\discretionary {-}{}{}History}{25}{subsubsection.4.1.3.48}
 \contentsline {subsection}{\numberline {4.1.4}Member Data Documentation}{25}{subsection.4.1.4}
 \contentsline {subsubsection}{\numberline {4.1.4.1}\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}{25}{subsubsection.4.1.4.1}
 \contentsline {subsubsection}{\numberline {4.1.4.2}\$api\discretionary {-}{}{}\_\discretionary {-}{}{}secret}{25}{subsubsection.4.1.4.2}
 \contentsline {subsubsection}{\numberline {4.1.4.3}\$balances}{25}{subsubsection.4.1.4.3}
 \contentsline {subsubsection}{\numberline {4.1.4.4}\$base}{25}{subsubsection.4.1.4.4}
-\contentsline {subsubsection}{\numberline {4.1.4.5}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}total}{25}{subsubsection.4.1.4.5}
-\contentsline {subsubsection}{\numberline {4.1.4.6}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}value}{25}{subsubsection.4.1.4.6}
+\contentsline {subsubsection}{\numberline {4.1.4.5}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}total}{26}{subsubsection.4.1.4.5}
+\contentsline {subsubsection}{\numberline {4.1.4.6}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}value}{26}{subsubsection.4.1.4.6}
 \contentsline {subsubsection}{\numberline {4.1.4.7}\$chart\discretionary {-}{}{}Queue}{26}{subsubsection.4.1.4.7}
 \contentsline {subsubsection}{\numberline {4.1.4.8}\$charts}{26}{subsubsection.4.1.4.8}
 \contentsline {subsubsection}{\numberline {4.1.4.9}\$depth\discretionary {-}{}{}Cache}{26}{subsubsection.4.1.4.9}
@@ -72,6 +73,8 @@
 \contentsline {subsubsection}{\numberline {4.1.4.12}\$info}{26}{subsubsection.4.1.4.12}
 \contentsline {subsubsection}{\numberline {4.1.4.13}\$proxy\discretionary {-}{}{}Conf}{26}{subsubsection.4.1.4.13}
 \contentsline {subsubsection}{\numberline {4.1.4.14}\$request\discretionary {-}{}{}Count}{26}{subsubsection.4.1.4.14}
-\contentsline {subsubsection}{\numberline {4.1.4.15}\$transfered}{26}{subsubsection.4.1.4.15}
-\contentsline {subsubsection}{\numberline {4.1.4.16}\$wapi}{26}{subsubsection.4.1.4.16}
-\contentsline {chapter}{Index}{27}{section*.6}
+\contentsline {subsubsection}{\numberline {4.1.4.15}\$stream}{26}{subsubsection.4.1.4.15}
+\contentsline {subsubsection}{\numberline {4.1.4.16}\$subscriptions}{27}{subsubsection.4.1.4.16}
+\contentsline {subsubsection}{\numberline {4.1.4.17}\$transfered}{27}{subsubsection.4.1.4.17}
+\contentsline {subsubsection}{\numberline {4.1.4.18}\$wapi}{27}{subsubsection.4.1.4.18}
+\contentsline {chapter}{Index}{28}{section*.6}
