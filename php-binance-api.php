@@ -21,8 +21,9 @@ namespace Binance;
  * $api = new Binance\\API();
  */
 class API {
-   protected $base = "https://api.binance.com/api/"; // /< REST endpoint for the currency exchange
-   protected $wapi = "https://api.binance.com/wapi/"; // /< REST endpoint for the withdrawals
+   protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
+   protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
+	 protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
    protected $api_key; // /< API key that you created in the binance website member area
    protected $api_secret; // /< API secret that was given to you when you created the api key
    protected $depthCache = []; // /< Websockets depth cache
@@ -36,6 +37,7 @@ class API {
    protected $transfered = 0; // /< This stores the amount of bytes transfered
    protected $requestCount = 0; // /< This stores the amount of API requests
    public $httpDebug = false; // /< If you enable this, curl will output debugging information
+   public $subscriptions = []; // /< View all websocket subscriptions
    public $balances = []; // /< binace balances from the last run
    public $btc_value = 0.00; // /< value of available assets
    public $btc_total = 0.00; // /< value of available onOrder assets
@@ -1421,7 +1423,7 @@ class API {
                   "asks" => [] 
             ];
          $this->info[ $symbol ][ 'firstUpdate' ] = 0;
-         $connector( 'wss://stream.binance.com:9443/ws/' . strtolower( $symbol ) . '@depth' )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
+         $connector( $this->stream . strtolower( $symbol ) . '@depth' )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
             $ws->on( 'message', function ( $data ) use ($ws, $callback ) {
                $json = json_decode( $data, true );
                $symbol = $json[ 's' ];
@@ -1474,7 +1476,7 @@ class API {
          if( !isset( $this->info[ $symbol ] ) )
             $this->info[ $symbol ] = [];
          // $this->info[$symbol]['tradesCallback'] = $callback;
-         $connector( 'wss://stream.binance.com:9443/ws/' . strtolower( $symbol ) . '@aggTrade' )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
+         $connector( $this->stream . strtolower( $symbol ) . '@aggTrade' )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
             $ws->on( 'message', function ( $data ) use ($ws, $callback ) {
                $json = json_decode( $data, true );
                $symbol = $json[ 's' ];
@@ -1516,7 +1518,7 @@ class API {
     */
    public function ticker( $symbol, Callable $callback ) {
       $endpoint = $symbol ? strtolower( $symbol ) . '@ticker' : '!ticker@arr';
-      \Ratchet\Client\connect( 'wss://stream.binance.com:9443/ws/' . $endpoint )->then( function ( $ws ) use ($callback, $symbol ) {
+      \Ratchet\Client\connect( $this->stream . $endpoint )->then( function ( $ws ) use ($callback, $symbol ) {
          $ws->on( 'message', function ( $data ) use ($ws, $callback, $symbol ) {
             $json = json_decode( $data );
             if( $symbol ) {
@@ -1572,21 +1574,26 @@ class API {
          $this->chartQueue[ $symbol ][ $interval ] = [];
          $this->info[ $symbol ][ $interval ][ 'firstOpen' ] = 0;
          // $this->info[$symbol]['chartCallback'.$interval] = $callback;
-         $connector( 'wss://stream.binance.com:9443/ws/' . strtolower( $symbol ) . '@kline_' . $interval )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
-            $ws->on( 'message', function ( $data ) use ($ws, $callback ) {
+         $endpoint = strtolower( $symbol ) . '@kline_' . $interval;
+         $this->subscriptions[$endpoint] = true;
+         $connector( $this->stream . $endpoint )->then( function ( $ws ) use ( $callback, $symbol, $loop, $endpoint ) {
+            $ws->on( 'message', function ( $data ) use ( $ws, $loop, $callback, $endpoint ) {
+               if ( $this->subscriptions[$endpoint] === false ) {
+                  //$this->subscriptions[$endpoint] = null;
+                  return;//return $ws->close();
+               }
                $json = json_decode( $data );
                $chart = $json->k;
                $symbol = $json->s;
                $interval = $chart->i;
                $this->chartHandler( $symbol, $interval, $json );
-               // $this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
                call_user_func( $callback, $this, $symbol, $this->charts[ $symbol ][ $interval ] );
             } );
-            $ws->on( 'close', function ( $code = null, $reason = null ) use ($symbol, $loop ) {
+            $ws->on( 'close', function ( $code = null, $reason = null ) use ( $symbol, $loop ) {
                echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                $loop->stop();
             } );
-         }, function ( $e ) use ($loop ) {
+         }, function ( $e ) use ( $loop, $symbol, $interval ) {
             echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
             $loop->stop();
          } );
@@ -1600,6 +1607,20 @@ class API {
       }
       $loop->run();
    }
+
+
+   /**
+    * terminate Terminates websocket endpoints. View endpoints first: print_r($api->subscriptions)
+    *
+    * $api->terminate('ethbtc_kline@5m');
+    *
+    * @return null
+    */
+   public function terminate($endpoint) {
+      // check if $this->subscriptions[$endpoint] is true otherwise error
+      $this->subscriptions[$endpoint] = false;
+   }
+
 
    /**
     * keepAlive Keep-alive function for userDataStream
@@ -1659,7 +1680,7 @@ class API {
       $listenKey = $this->options[ 'listenKey' ] = $response[ 'listenKey' ];
       $this->info[ 'balanceCallback' ] = $balance_callback;
       $this->info[ 'executionCallback' ] = $execution_callback;
-      \Ratchet\Client\connect( 'wss://stream.binance.com:9443/ws/' . $listenKey )->then( function ( $ws ) {
+      \Ratchet\Client\connect( $this->stream . $listenKey )->then( function ( $ws ) {
          $ws->on( 'message', function ( $data ) use ($ws ) {
             $json = json_decode( $data );
             $type = $json->e;
