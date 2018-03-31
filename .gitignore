@@ -1,3 +1,6 @@
-tests/composer.lock
-tests/LICENCE
-tests/vendor**
+composer.lock
+vendor**
+.buildpath
+.project
+.settings/**
+
