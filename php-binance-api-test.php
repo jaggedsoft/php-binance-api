@@ -556,13 +556,15 @@ final class BinanceTest extends TestCase {
    public function testDepthCache() {
       self::debug( 0, __METHOD__, "" );
       
-      $this->_testable->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
+      $this->_testable->depthCache( [ 
+            "BNBBTC" 
+      ], function ( $api, $symbol, $depth ) {
          echo "{$symbol} depth cache update\n";
          $limit = 11; // Show only the closest asks/bids
-         $sorted = $api->sortDepth($symbol, $limit);
+         $sorted = $api->sortDepth( $symbol, $limit );
          //$bid = $api->first($sorted['bids']);
          //$ask = $api->first($sorted['asks']);
-         $api->displayDepth($sorted);
+         $api->displayDepth( $sorted );
          //echo "ask: {$ask}\n";
          //echo "bid: {$bid}\n";
          $endpoint = strtolower( $symbol ) . '@depthCache';
@@ -570,20 +572,22 @@ final class BinanceTest extends TestCase {
          
          $this->assertTrue( $symbol == "BNBBTC" );
          $this->assertTrue( is_array( $depth ) );
-         $this->assertTrue( isset( $depth['bids'] ) );
-         $this->assertTrue( isset( $depth['asks'] ) );
-         $this->assertTrue( is_array( $depth['bids'] ) );
-         $this->assertTrue( is_array( $depth['asks'] ) );
-         $this->assertTrue( count( $depth['bids'] ) > 0 );
-         $this->assertTrue( count( $depth['asks'] ) > 0 );
-      });
+         $this->assertTrue( isset( $depth[ 'bids' ] ) );
+         $this->assertTrue( isset( $depth[ 'asks' ] ) );
+         $this->assertTrue( is_array( $depth[ 'bids' ] ) );
+         $this->assertTrue( is_array( $depth[ 'asks' ] ) );
+         $this->assertTrue( count( $depth[ 'bids' ] ) > 0 );
+         $this->assertTrue( count( $depth[ 'asks' ] ) > 0 );
+      } );
    }
-   
+
    public function testTrades() {
       self::debug( 0, __METHOD__, "" );
       
-      $this->_testable->trades(["BNBBTC"], function($api, $symbol, $trades) {
-         echo "{$symbol} trades update".PHP_EOL;
+      $this->_testable->trades( [ 
+            "BNBBTC" 
+      ], function ( $api, $symbol, $trades ) {
+         echo "{$symbol} trades update" . PHP_EOL;
          //print_r($trades);
          $endpoint = strtolower( $symbol ) . '@trades';
          $api->terminate( $endpoint );
@@ -591,25 +595,27 @@ final class BinanceTest extends TestCase {
          $this->assertTrue( $symbol == "BNBBTC" );
          $this->assertTrue( is_array( $trades ) );
          $this->assertTrue( count( $trades ) > 0 );
-      });
+      } );
    }
 
    public function testMiniTicker() {
       self::debug( 0, __METHOD__, "" );
       
-      $this->_testable->miniTicker(function($api, $ticker) {
-         print_r($ticker);
+      $this->_testable->miniTicker( function ( $api, $ticker ) {
+         print_r( $ticker );
          $endpoint = '@miniticker';
          $api->terminate( $endpoint );
          $this->assertTrue( is_array( $ticker ) );
          $this->assertTrue( count( $ticker ) > 0 );
-      });
+      } );
    }
 
    public function testChart() {
       self::debug( 0, __METHOD__, "" );
       
-      $this->_testable->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+      $this->_testable->chart( [ 
+            "BNBBTC" 
+      ], "15m", function ( $api, $symbol, $chart ) {
          echo "{$symbol} chart update\n";
          //print_r($chart);
          $endpoint = strtolower( $symbol ) . '@kline_' . "15m";
@@ -618,40 +624,40 @@ final class BinanceTest extends TestCase {
          $this->assertTrue( $symbol == "BNBBTC" );
          $this->assertTrue( is_array( $chart ) );
          $this->assertTrue( count( $chart ) > 0 );
-      });      
+      } );
    }
-   
+
    public function testUserdata() {
       self::debug( 0, __METHOD__, "" );
       
-      $balance_update = function($api, $balances) {
-         print_r($balances);
-         echo "Balance update".PHP_EOL;
+      $balance_update = function ( $api, $balances ) {
+         print_r( $balances );
+         echo "Balance update" . PHP_EOL;
       };
       
-      $order_update = function($api, $report) {
-         echo "Order update".PHP_EOL;
-         print_r($report);
-         $price = $report['price'];
-         $quantity = $report['quantity'];
-         $symbol = $report['symbol'];
-         $side = $report['side'];
-         $orderType = $report['orderType'];
-         $orderId = $report['orderId'];
-         $orderStatus = $report['orderStatus'];
-         $executionType = $report['orderStatus'];
-         if ( $executionType == "NEW" ) {
-            if ( $executionType == "REJECTED" ) {
-               echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
+      $order_update = function ( $api, $report ) {
+         echo "Order update" . PHP_EOL;
+         print_r( $report );
+         $price = $report[ 'price' ];
+         $quantity = $report[ 'quantity' ];
+         $symbol = $report[ 'symbol' ];
+         $side = $report[ 'side' ];
+         $orderType = $report[ 'orderType' ];
+         $orderId = $report[ 'orderId' ];
+         $orderStatus = $report[ 'orderStatus' ];
+         $executionType = $report[ 'orderStatus' ];
+         if( $executionType == "NEW" ) {
+            if( $executionType == "REJECTED" ) {
+               echo "Order Failed! Reason: {$report['rejectReason']}" . PHP_EOL;
             }
-            echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
-            echo "..price: {$price}, quantity: {$quantity}".PHP_EOL;
+            echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})" . PHP_EOL;
+            echo "..price: {$price}, quantity: {$quantity}" . PHP_EOL;
             return;
          }
          //NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
-         echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
+         echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}" . PHP_EOL;
       };
-      $this->_testable->userData($balance_update, $order_update);
+      $this->_testable->userData( $balance_update, $order_update );
    }
 
    public function testKeepAlive() {
