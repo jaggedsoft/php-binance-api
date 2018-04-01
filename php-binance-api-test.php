@@ -594,9 +594,16 @@ final class BinanceTest extends TestCase {
       });
    }
 
-   public function testTicker() {
+   public function testMiniTicker() {
       self::debug( 0, __METHOD__, "" );
-      $this->assertTrue( true );
+      
+      $api->miniTicker(function($api, $ticker) {
+         print_r($ticker);
+         $endpoint = '@miniticker';
+         $api->terminate( $endpoint );
+         $this->assertTrue( is_array( $ticker ) );
+         $this->assertTrue( count( $ticker ) > 0 );
+      });
    }
 
    public function testChart() {
@@ -612,6 +619,39 @@ final class BinanceTest extends TestCase {
          $this->assertTrue( is_array( $chart ) );
          $this->assertTrue( count( $chart ) > 0 );
       });      
+   }
+   
+   public function testUserdata() {
+      self::debug( 0, __METHOD__, "" );
+      
+      balance_update = function($api, $balances) {
+         print_r($balances);
+         echo "Balance update".PHP_EOL;
+      };
+      
+      $order_update = function($api, $report) {
+         echo "Order update".PHP_EOL;
+         print_r($report);
+         $price = $report['price'];
+         $quantity = $report['quantity'];
+         $symbol = $report['symbol'];
+         $side = $report['side'];
+         $orderType = $report['orderType'];
+         $orderId = $report['orderId'];
+         $orderStatus = $report['orderStatus'];
+         $executionType = $report['orderStatus'];
+         if ( $executionType == "NEW" ) {
+            if ( $executionType == "REJECTED" ) {
+               echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
+            }
+            echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
+            echo "..price: {$price}, quantity: {$quantity}".PHP_EOL;
+            return;
+         }
+         //NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
+         echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
+      };
+      $api->userData($balance_update, $order_update);
    }
 
    public function testKeepAlive() {
