@@ -1698,6 +1698,7 @@ class API {
       $listenKey = $this->options[ 'listenKey' ] = $response[ 'listenKey' ];
       $this->info[ 'balanceCallback' ] = $balance_callback;
       $this->info[ 'executionCallback' ] = $execution_callback;
+      
       \Ratchet\Client\connect( $this->stream . $listenKey )->then( function ( $ws ) {
          $ws->on( 'message', function ( $data ) use ($ws ) {
             $json = json_decode( $data );
@@ -1732,8 +1733,17 @@ class API {
     * @return null
     */
    public function miniTicker( Callable $callback ) {
-      \Ratchet\Client\connect( 'wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms' )->then( function ( $ws ) use ($callback ) {
-         $ws->on( 'message', function ( $data ) use ($ws, $callback ) {
+      
+      $endpoint = '@miniticker';
+      $this->subscriptions[ $endpoint ] = true;
+      
+      \Ratchet\Client\connect( 'wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms' )->then( function ( $ws ) use ($callback, $endpoint ) {
+         $ws->on( 'message', function ( $data ) use ($ws, $callback, $endpoint ) {
+            if( $this->subscriptions[ $endpoint ] === false ) {
+               //$this->subscriptions[$endpoint] = null;
+               $ws->close();
+               return; //return $ws->close();
+            }
             $json = json_decode( $data, true );
             $markets = [];
             foreach( $json as $obj ) {
@@ -1757,5 +1767,4 @@ class API {
          echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
       } );
    }
-   
 }
