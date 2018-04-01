@@ -558,13 +558,13 @@ final class BinanceTest extends TestCase {
       
       $this->_testable->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
          echo "{$symbol} depth cache update\n";
-         $limit = 11; // Show only the closest asks/bids
-         $sorted = $api->sortDepth($symbol, $limit);
-         $bid = $api->first($sorted['bids']);
-         $ask = $api->first($sorted['asks']);
-         echo $api->displayDepth($sorted);
-         echo "ask: {$ask}\n";
-         echo "bid: {$bid}\n";
+         //$limit = 11; // Show only the closest asks/bids
+         $api->sortDepth($symbol, $limit);
+         //$bid = $api->first($sorted['bids']);
+         //$ask = $api->first($sorted['asks']);
+         $api->displayDepth($sorted);
+         //echo "ask: {$ask}\n";
+         //echo "bid: {$bid}\n";
          $endpoint = strtolower( $symbol ) . '@depthCache';
          $api->terminate( $endpoint );
          
@@ -584,7 +584,7 @@ final class BinanceTest extends TestCase {
       
       $this->_testable->trades(["BNBBTC"], function($api, $symbol, $trades) {
          echo "{$symbol} trades update".PHP_EOL;
-         print_r($trades);
+         //print_r($trades);
          $endpoint = strtolower( $symbol ) . '@trades';
          $api->terminate( $endpoint );
          $this->assertTrue( $symbol == "BNBBTC" );
@@ -603,7 +603,7 @@ final class BinanceTest extends TestCase {
       
       $this->_testable->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
          echo "{$symbol} chart update\n";
-         print_r($chart);
+         //print_r($chart);
          $endpoint = strtolower( $symbol ) . '@kline_' . "15m";
          $api->terminate( $endpoint );
          $this->assertTrue( $symbol == "BNBBTC" );
