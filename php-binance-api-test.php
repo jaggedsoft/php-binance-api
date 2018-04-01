@@ -624,7 +624,7 @@ final class BinanceTest extends TestCase {
    public function testUserdata() {
       self::debug( 0, __METHOD__, "" );
       
-      balance_update = function($api, $balances) {
+      $balance_update = function($api, $balances) {
          print_r($balances);
          echo "Balance update".PHP_EOL;
       };
