@@ -559,7 +559,7 @@ final class BinanceTest extends TestCase {
       $this->_testable->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
          echo "{$symbol} depth cache update\n";
          $limit = 11; // Show only the closest asks/bids
-         $api->sortDepth($symbol, $limit);
+         $sorted = $api->sortDepth($symbol, $limit);
          //$bid = $api->first($sorted['bids']);
          //$ask = $api->first($sorted['asks']);
          $api->displayDepth($sorted);
