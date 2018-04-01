@@ -602,7 +602,7 @@ final class BinanceTest extends TestCase {
       self::debug( 0, __METHOD__, "" );
       
       $this->_testable->miniTicker( function ( $api, $ticker ) {
-         print_r( $ticker );
+         //print_r( $ticker );
          $endpoint = '@miniticker';
          $api->terminate( $endpoint );
          $this->assertTrue( is_array( $ticker ) );
