@@ -558,7 +558,7 @@ final class BinanceTest extends TestCase {
       
       $this->_testable->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
          echo "{$symbol} depth cache update\n";
-         //$limit = 11; // Show only the closest asks/bids
+         $limit = 11; // Show only the closest asks/bids
          $api->sortDepth($symbol, $limit);
          //$bid = $api->first($sorted['bids']);
          //$ask = $api->first($sorted['asks']);
@@ -587,6 +587,7 @@ final class BinanceTest extends TestCase {
          //print_r($trades);
          $endpoint = strtolower( $symbol ) . '@trades';
          $api->terminate( $endpoint );
+         
          $this->assertTrue( $symbol == "BNBBTC" );
          $this->assertTrue( is_array( $trades ) );
          $this->assertTrue( count( $trades ) > 0 );
@@ -606,6 +607,7 @@ final class BinanceTest extends TestCase {
          //print_r($chart);
          $endpoint = strtolower( $symbol ) . '@kline_' . "15m";
          $api->terminate( $endpoint );
+         
          $this->assertTrue( $symbol == "BNBBTC" );
          $this->assertTrue( is_array( $chart ) );
          $this->assertTrue( count( $chart ) > 0 );
