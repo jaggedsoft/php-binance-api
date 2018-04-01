@@ -659,11 +659,6 @@ final class BinanceTest extends TestCase {
       $this->assertTrue( true );
    }
 
-   public function testMiniTicker() {
-      self::debug( 0, __METHOD__, "" );
-      $this->assertTrue( true );
-   }
-
    public function testGetTransfered() {
       self::debug( 0, __METHOD__, "" );
       $result = $this->_testable->getTransfered();
