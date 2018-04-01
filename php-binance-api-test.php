@@ -597,7 +597,7 @@ final class BinanceTest extends TestCase {
    public function testMiniTicker() {
       self::debug( 0, __METHOD__, "" );
       
-      $api->miniTicker(function($api, $ticker) {
+      $this->_testable->miniTicker(function($api, $ticker) {
          print_r($ticker);
          $endpoint = '@miniticker';
          $api->terminate( $endpoint );
@@ -651,7 +651,7 @@ final class BinanceTest extends TestCase {
          //NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
          echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
       };
-      $api->userData($balance_update, $order_update);
+      $this->_testable->userData($balance_update, $order_update);
    }
 
    public function testKeepAlive() {
