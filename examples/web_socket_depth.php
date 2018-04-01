@@ -1,6 +1,7 @@
 <?php
 
-require '../php-binance-api.php';
+require 'php-binance-api.php';
+require 'vendor/autoload.php';
 
 // @see home_directory_config.php
 // use config from ~/.confg/jaggedsoft/php-binance-api.json
@@ -15,4 +16,6 @@ $api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
     echo $api->displayDepth($sorted);
     echo "ask: {$ask}\n";
     echo "bid: {$bid}\n";
+    $endpoint = strtolower( $symbol ) . '@depthCache';
+    $api->terminate( $endpoint );
 });

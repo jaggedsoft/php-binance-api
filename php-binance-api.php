@@ -23,7 +23,7 @@ namespace Binance;
 class API {
    protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
    protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
-	 protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
+   protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
    protected $api_key; // /< API key that you created in the binance website member area
    protected $api_secret; // /< API secret that was given to you when you created the api key
    protected $depthCache = []; // /< Websockets depth cache
@@ -40,7 +40,9 @@ class API {
    public $subscriptions = []; // /< View all websocket subscriptions
    public $balances = []; // /< binace balances from the last run
    public $btc_value = 0.00; // /< value of available assets
-   public $btc_total = 0.00; // /< value of available onOrder assets
+   public $btc_total = 0.00;
+
+   // /< value of available onOrder assets
    
    /**
     * Constructor for the class, There are 4 ways to contruct the class:
@@ -1423,8 +1425,16 @@ class API {
                   "asks" => [] 
             ];
          $this->info[ $symbol ][ 'firstUpdate' ] = 0;
-         $connector( $this->stream . strtolower( $symbol ) . '@depth' )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
-            $ws->on( 'message', function ( $data ) use ($ws, $callback ) {
+         $endpoint = strtolower( $symbol ) . '@depthCache';
+         $this->subscriptions[ $endpoint ] = true;
+         
+         $connector( $this->stream . strtolower( $symbol ) . '@depth' )->then( function ( $ws ) use ($callback, $symbol, $loop, $endpoint ) {
+            $ws->on( 'message', function ( $data ) use ($ws, $callback, $loop, $endpoint ) {
+               if( $this->subscriptions[ $endpoint ] === false ) {
+                  //$this->subscriptions[$endpoint] = null;
+                  $loop->stop();
+                  return; //return $ws->close();
+               }
                $json = json_decode( $data, true );
                $symbol = $json[ 's' ];
                if( $this->info[ $symbol ][ 'firstUpdate' ] == 0 ) {
@@ -1476,8 +1486,17 @@ class API {
          if( !isset( $this->info[ $symbol ] ) )
             $this->info[ $symbol ] = [];
          // $this->info[$symbol]['tradesCallback'] = $callback;
-         $connector( $this->stream . strtolower( $symbol ) . '@aggTrade' )->then( function ( $ws ) use ($callback, $symbol, $loop ) {
-            $ws->on( 'message', function ( $data ) use ($ws, $callback ) {
+         
+         $endpoint = strtolower( $symbol ) . '@trades';
+         $this->subscriptions[ $endpoint ] = true;
+         
+         $connector( $this->stream . strtolower( $symbol ) . '@aggTrade' )->then( function ( $ws ) use ($callback, $symbol, $loop, $endpoint ) {
+            $ws->on( 'message', function ( $data ) use ($ws, $callback, $loop, $endpoint ) {
+               if( $this->subscriptions[ $endpoint ] === false ) {
+                  //$this->subscriptions[$endpoint] = null;
+                  $loop->stop();
+                  return; //return $ws->close();
+               }
                $json = json_decode( $data, true );
                $symbol = $json[ 's' ];
                $price = $json[ 'p' ];
@@ -1575,12 +1594,13 @@ class API {
          $this->info[ $symbol ][ $interval ][ 'firstOpen' ] = 0;
          // $this->info[$symbol]['chartCallback'.$interval] = $callback;
          $endpoint = strtolower( $symbol ) . '@kline_' . $interval;
-         $this->subscriptions[$endpoint] = true;
-         $connector( $this->stream . $endpoint )->then( function ( $ws ) use ( $callback, $symbol, $loop, $endpoint ) {
-            $ws->on( 'message', function ( $data ) use ( $ws, $loop, $callback, $endpoint ) {
-               if ( $this->subscriptions[$endpoint] === false ) {
+         $this->subscriptions[ $endpoint ] = true;
+         $connector( $this->stream . $endpoint )->then( function ( $ws ) use ($callback, $symbol, $loop, $endpoint ) {
+            $ws->on( 'message', function ( $data ) use ($ws, $loop, $callback, $endpoint ) {
+               if( $this->subscriptions[ $endpoint ] === false ) {
                   //$this->subscriptions[$endpoint] = null;
-                  return;//return $ws->close();
+                  $loop->stop();
+                  return; //return $ws->close();
                }
                $json = json_decode( $data );
                $chart = $json->k;
@@ -1589,11 +1609,11 @@ class API {
                $this->chartHandler( $symbol, $interval, $json );
                call_user_func( $callback, $this, $symbol, $this->charts[ $symbol ][ $interval ] );
             } );
-            $ws->on( 'close', function ( $code = null, $reason = null ) use ( $symbol, $loop ) {
+            $ws->on( 'close', function ( $code = null, $reason = null ) use ($symbol, $loop ) {
                echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                $loop->stop();
             } );
-         }, function ( $e ) use ( $loop, $symbol, $interval ) {
+         }, function ( $e ) use ($loop, $symbol, $interval ) {
             echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
             $loop->stop();
          } );
@@ -1608,7 +1628,6 @@ class API {
       $loop->run();
    }
 
-
    /**
     * terminate Terminates websocket endpoints. View endpoints first: print_r($api->subscriptions)
     *
@@ -1616,11 +1635,10 @@ class API {
     *
     * @return null
     */
-   public function terminate($endpoint) {
+   public function terminate( $endpoint ) {
       // check if $this->subscriptions[$endpoint] is true otherwise error
-      $this->subscriptions[$endpoint] = false;
+      $this->subscriptions[ $endpoint ] = false;
    }
-
 
    /**
     * keepAlive Keep-alive function for userDataStream
