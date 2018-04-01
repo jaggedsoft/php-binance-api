@@ -1733,7 +1733,6 @@ class API {
     * @return null
     */
    public function miniTicker( Callable $callback ) {
-      
       $endpoint = '@miniticker';
       $this->subscriptions[ $endpoint ] = true;
       
@@ -1767,4 +1766,5 @@ class API {
          echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
       } );
    }
+   
 }
