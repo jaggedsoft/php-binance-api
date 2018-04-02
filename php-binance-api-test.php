@@ -489,7 +489,7 @@ final class BinanceTest extends TestCase {
    public function testBalanceHandler() {
       self::debug( 0, __METHOD__, "" );
       
-      $jsonobj = jason_decode( json_encode( array(
+      $jsonobj = json_decode( json_encode( array(
             "a" => 1,
             "f" => 2,
             "l" => 3
