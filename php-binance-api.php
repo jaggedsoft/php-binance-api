@@ -655,7 +655,7 @@ class API {
     */
    private function httpRequest( string $url, string $method = "GET", array $params = [], bool $signed = false ) {
       if( function_exists( 'curl_init' ) == false ) {
-         die( "Sorry cURL is not installed!" );
+         throw new \Exception( "Sorry cURL is not installed!" );
       }
       
       $ch = curl_init();
@@ -665,9 +665,9 @@ class API {
       // signed with params
       if( $signed == true ) {
          if( empty( $this->api_key ) )
-            die( "signedRequest error: API Key not set!" );
+            throw new \Exception( "signedRequest error: API Key not set!" );
          if( empty( $this->api_secret ) )
-            die( "signedRequest error: API Secret not set!" );
+            throw new \Exception( "signedRequest error: API Secret not set!" );
          $base = $this->base;
          $ts = ( microtime( true ) * 1000 ) + $this->info[ 'timeOffset' ];
          $params[ 'timestamp' ] = number_format( $ts, 0, '.', '' );
