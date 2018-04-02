@@ -488,12 +488,86 @@ final class BinanceTest extends TestCase {
 
    public function testBalanceHandler() {
       self::debug( 0, __METHOD__, "" );
-      $this->assertTrue( true );
+      
+      $jsonobj = json_encode( array( 
+            "a" => 1,
+            "f" => 2,
+            "l" => 3 
+      ) );
+      
+      $arr = array();
+      $arr[] = $jsonobj;
+      $arr[] = $jsonobj;
+      
+      $newArr = $this->invokeMethod( $this->_testable, 'balanceHandler', array( $arr ) );
+      
+      $this->assertTrue( is_array( $newArr ) );
    }
 
    public function testTickerStreamHandler() {
       self::debug( 0, __METHOD__, "" );
-      $this->assertTrue( true );
+      
+      $arr = array( 
+            "e" => 1,
+            "E" => 2,
+            "s" => 3,
+            "p" => 4,
+            "P" => 5,
+            "w" => 6,
+            "x" => 7,
+            "c" => 8,
+            "Q" => 9,
+            "b" => 10,
+            "B" => 11,
+            "a" => 12,
+            "A" => 13,
+            "o" => 14,
+            "h" => 15,
+            "l" => 16,
+            "v" => 17,
+            "q" => 18,
+            "O" => 19,
+            "C" => 20,
+            "F" => 21,
+            "L" => 22,
+            "n" => 23 
+      );
+      
+      $newArr = $this->invokeMethod( $this->_testable, 'tickerStreamHandler', array( 
+            json_decode( json_encode( $arr ) ) 
+      ) );
+      
+      $this->assertTrue( is_array( $newArr ) );
+      
+      $indexs = array( 
+            "eventType",
+            "eventTime",
+            "symbol",
+            "priceChange",
+            "percentChange",
+            "averagePrice",
+            "prevClose",
+            "close",
+            "closeQty",
+            "bestBid",
+            "bestBidQty",
+            "bestAsk",
+            "bestAskQty",
+            "open",
+            "high",
+            "low",
+            "volume",
+            "quoteVolume",
+            "openTime",
+            "closeTime",
+            "firstTradeId",
+            "lastTradeId",
+            "numTrades" 
+      );
+      
+      foreach( $indexs as $index ) {
+         $this->assertTrue( isset( $newArr[ $index ] ) );
+      }
    }
 
    public function testExecutionHandler() {
