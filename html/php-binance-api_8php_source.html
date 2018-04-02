@@ -1070,57 +1070,66 @@
 <div class="line"><a name="l01698"></a><span class="lineno"> 1698</span>&#160;      $listenKey = $this-&gt;options[ <span class="stringliteral">&#39;listenKey&#39;</span> ] = $response[ <span class="stringliteral">&#39;listenKey&#39;</span> ];</div>
 <div class="line"><a name="l01699"></a><span class="lineno"> 1699</span>&#160;      $this-&gt;info[ <span class="stringliteral">&#39;balanceCallback&#39;</span> ] = $balance_callback;</div>
 <div class="line"><a name="l01700"></a><span class="lineno"> 1700</span>&#160;      $this-&gt;info[ <span class="stringliteral">&#39;executionCallback&#39;</span> ] = $execution_callback;</div>
-<div class="line"><a name="l01701"></a><span class="lineno"> 1701</span>&#160;      \Ratchet\Client\connect( $this-&gt;stream . $listenKey )-&gt;then( <span class="keyword">function</span> ( $ws ) {</div>
-<div class="line"><a name="l01702"></a><span class="lineno"> 1702</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;message&#39;</span>, <span class="keyword">function</span> ( $data ) use ($ws ) {</div>
-<div class="line"><a name="l01703"></a><span class="lineno"> 1703</span>&#160;            $json = json_decode( $data );</div>
-<div class="line"><a name="l01704"></a><span class="lineno"> 1704</span>&#160;            $type = $json-&gt;e;</div>
-<div class="line"><a name="l01705"></a><span class="lineno"> 1705</span>&#160;            <span class="keywordflow">if</span>( $type == <span class="stringliteral">&quot;outboundAccountInfo&quot;</span> ) {</div>
-<div class="line"><a name="l01706"></a><span class="lineno"> 1706</span>&#160;               $balances = $this-&gt;balanceHandler( $json-&gt;B );</div>
-<div class="line"><a name="l01707"></a><span class="lineno"> 1707</span>&#160;               $this-&gt;info[ <span class="stringliteral">&#39;balanceCallback&#39;</span> ]( $this, $balances );</div>
-<div class="line"><a name="l01708"></a><span class="lineno"> 1708</span>&#160;            }</div>
-<div class="line"><a name="l01709"></a><span class="lineno"> 1709</span>&#160;            elseif( $type == <span class="stringliteral">&quot;executionReport&quot;</span> ) {</div>
-<div class="line"><a name="l01710"></a><span class="lineno"> 1710</span>&#160;               $report = $this-&gt;executionHandler( $json );</div>
-<div class="line"><a name="l01711"></a><span class="lineno"> 1711</span>&#160;               <span class="keywordflow">if</span>( $this-&gt;info[ <span class="stringliteral">&#39;executionCallback&#39;</span> ] ) {</div>
-<div class="line"><a name="l01712"></a><span class="lineno"> 1712</span>&#160;                  $this-&gt;info[ <span class="stringliteral">&#39;executionCallback&#39;</span> ]( $this, $report );</div>
-<div class="line"><a name="l01713"></a><span class="lineno"> 1713</span>&#160;               }</div>
-<div class="line"><a name="l01714"></a><span class="lineno"> 1714</span>&#160;            }</div>
-<div class="line"><a name="l01715"></a><span class="lineno"> 1715</span>&#160;         } );</div>
-<div class="line"><a name="l01716"></a><span class="lineno"> 1716</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;close&#39;</span>, <span class="keyword">function</span> ( $code = null, $reason = null ) {</div>
-<div class="line"><a name="l01717"></a><span class="lineno"> 1717</span>&#160;            echo <span class="stringliteral">&quot;userData: WebSocket Connection closed! ({$code} - {$reason})&quot;</span> . PHP_EOL;</div>
-<div class="line"><a name="l01718"></a><span class="lineno"> 1718</span>&#160;         } );</div>
-<div class="line"><a name="l01719"></a><span class="lineno"> 1719</span>&#160;      }, <span class="keyword">function</span> ( $e ) {</div>
-<div class="line"><a name="l01720"></a><span class="lineno"> 1720</span>&#160;         echo <span class="stringliteral">&quot;userData: Could not connect: {$e-&gt;getMessage()}&quot;</span> . PHP_EOL;</div>
-<div class="line"><a name="l01721"></a><span class="lineno"> 1721</span>&#160;      } );</div>
-<div class="line"><a name="l01722"></a><span class="lineno"> 1722</span>&#160;   }</div>
-<div class="line"><a name="l01723"></a><span class="lineno"> 1723</span>&#160;</div>
-<div class="line"><a name="l01734"></a><span class="lineno"><a class="line" href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2"> 1734</a></span>&#160;   <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2">miniTicker</a>( Callable $callback ) {</div>
-<div class="line"><a name="l01735"></a><span class="lineno"> 1735</span>&#160;      \Ratchet\Client\connect( <span class="stringliteral">&#39;wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms&#39;</span> )-&gt;then( <span class="keyword">function</span> ( $ws ) use ($callback ) {</div>
-<div class="line"><a name="l01736"></a><span class="lineno"> 1736</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;message&#39;</span>, <span class="keyword">function</span> ( $data ) use ($ws, $callback ) {</div>
-<div class="line"><a name="l01737"></a><span class="lineno"> 1737</span>&#160;            $json = json_decode( $data, <span class="keyword">true</span> );</div>
-<div class="line"><a name="l01738"></a><span class="lineno"> 1738</span>&#160;            $markets = [];</div>
-<div class="line"><a name="l01739"></a><span class="lineno"> 1739</span>&#160;            <span class="keywordflow">foreach</span>( $json as $obj ) {</div>
-<div class="line"><a name="l01740"></a><span class="lineno"> 1740</span>&#160;               $markets[] = [ </div>
-<div class="line"><a name="l01741"></a><span class="lineno"> 1741</span>&#160;                     <span class="stringliteral">&quot;symbol&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;s&#39;</span> ],</div>
-<div class="line"><a name="l01742"></a><span class="lineno"> 1742</span>&#160;                     <span class="stringliteral">&quot;close&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;c&#39;</span> ],</div>
-<div class="line"><a name="l01743"></a><span class="lineno"> 1743</span>&#160;                     <span class="stringliteral">&quot;open&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;o&#39;</span> ],</div>
-<div class="line"><a name="l01744"></a><span class="lineno"> 1744</span>&#160;                     <span class="stringliteral">&quot;high&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;h&#39;</span> ],</div>
-<div class="line"><a name="l01745"></a><span class="lineno"> 1745</span>&#160;                     <span class="stringliteral">&quot;low&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;l&#39;</span> ],</div>
-<div class="line"><a name="l01746"></a><span class="lineno"> 1746</span>&#160;                     <span class="stringliteral">&quot;volume&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;v&#39;</span> ],</div>
-<div class="line"><a name="l01747"></a><span class="lineno"> 1747</span>&#160;                     <span class="stringliteral">&quot;quoteVolume&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;q&#39;</span> ],</div>
-<div class="line"><a name="l01748"></a><span class="lineno"> 1748</span>&#160;                     <span class="stringliteral">&quot;eventTime&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;E&#39;</span> ] </div>
-<div class="line"><a name="l01749"></a><span class="lineno"> 1749</span>&#160;               ];</div>
-<div class="line"><a name="l01750"></a><span class="lineno"> 1750</span>&#160;            }</div>
-<div class="line"><a name="l01751"></a><span class="lineno"> 1751</span>&#160;            call_user_func( $callback, $this, $markets );</div>
-<div class="line"><a name="l01752"></a><span class="lineno"> 1752</span>&#160;         } );</div>
-<div class="line"><a name="l01753"></a><span class="lineno"> 1753</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;close&#39;</span>, <span class="keyword">function</span> ( $code = null, $reason = null ) {</div>
-<div class="line"><a name="l01754"></a><span class="lineno"> 1754</span>&#160;            echo <span class="stringliteral">&quot;miniticker: WebSocket Connection closed! ({$code} - {$reason})&quot;</span> . PHP_EOL;</div>
-<div class="line"><a name="l01755"></a><span class="lineno"> 1755</span>&#160;         } );</div>
-<div class="line"><a name="l01756"></a><span class="lineno"> 1756</span>&#160;      }, <span class="keyword">function</span> ( $e ) {</div>
-<div class="line"><a name="l01757"></a><span class="lineno"> 1757</span>&#160;         echo <span class="stringliteral">&quot;miniticker: Could not connect: {$e-&gt;getMessage()}&quot;</span> . PHP_EOL;</div>
-<div class="line"><a name="l01758"></a><span class="lineno"> 1758</span>&#160;      } );</div>
-<div class="line"><a name="l01759"></a><span class="lineno"> 1759</span>&#160;   }</div>
-<div class="line"><a name="l01760"></a><span class="lineno"> 1760</span>&#160;   </div>
-<div class="line"><a name="l01761"></a><span class="lineno"> 1761</span>&#160;}</div>
+<div class="line"><a name="l01701"></a><span class="lineno"> 1701</span>&#160;      </div>
+<div class="line"><a name="l01702"></a><span class="lineno"> 1702</span>&#160;      \Ratchet\Client\connect( $this-&gt;stream . $listenKey )-&gt;then( <span class="keyword">function</span> ( $ws ) {</div>
+<div class="line"><a name="l01703"></a><span class="lineno"> 1703</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;message&#39;</span>, <span class="keyword">function</span> ( $data ) use ($ws ) {</div>
+<div class="line"><a name="l01704"></a><span class="lineno"> 1704</span>&#160;            $json = json_decode( $data );</div>
+<div class="line"><a name="l01705"></a><span class="lineno"> 1705</span>&#160;            $type = $json-&gt;e;</div>
+<div class="line"><a name="l01706"></a><span class="lineno"> 1706</span>&#160;            <span class="keywordflow">if</span>( $type == <span class="stringliteral">&quot;outboundAccountInfo&quot;</span> ) {</div>
+<div class="line"><a name="l01707"></a><span class="lineno"> 1707</span>&#160;               $balances = $this-&gt;balanceHandler( $json-&gt;B );</div>
+<div class="line"><a name="l01708"></a><span class="lineno"> 1708</span>&#160;               $this-&gt;info[ <span class="stringliteral">&#39;balanceCallback&#39;</span> ]( $this, $balances );</div>
+<div class="line"><a name="l01709"></a><span class="lineno"> 1709</span>&#160;            }</div>
+<div class="line"><a name="l01710"></a><span class="lineno"> 1710</span>&#160;            elseif( $type == <span class="stringliteral">&quot;executionReport&quot;</span> ) {</div>
+<div class="line"><a name="l01711"></a><span class="lineno"> 1711</span>&#160;               $report = $this-&gt;executionHandler( $json );</div>
+<div class="line"><a name="l01712"></a><span class="lineno"> 1712</span>&#160;               <span class="keywordflow">if</span>( $this-&gt;info[ <span class="stringliteral">&#39;executionCallback&#39;</span> ] ) {</div>
+<div class="line"><a name="l01713"></a><span class="lineno"> 1713</span>&#160;                  $this-&gt;info[ <span class="stringliteral">&#39;executionCallback&#39;</span> ]( $this, $report );</div>
+<div class="line"><a name="l01714"></a><span class="lineno"> 1714</span>&#160;               }</div>
+<div class="line"><a name="l01715"></a><span class="lineno"> 1715</span>&#160;            }</div>
+<div class="line"><a name="l01716"></a><span class="lineno"> 1716</span>&#160;         } );</div>
+<div class="line"><a name="l01717"></a><span class="lineno"> 1717</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;close&#39;</span>, <span class="keyword">function</span> ( $code = null, $reason = null ) {</div>
+<div class="line"><a name="l01718"></a><span class="lineno"> 1718</span>&#160;            echo <span class="stringliteral">&quot;userData: WebSocket Connection closed! ({$code} - {$reason})&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l01719"></a><span class="lineno"> 1719</span>&#160;         } );</div>
+<div class="line"><a name="l01720"></a><span class="lineno"> 1720</span>&#160;      }, <span class="keyword">function</span> ( $e ) {</div>
+<div class="line"><a name="l01721"></a><span class="lineno"> 1721</span>&#160;         echo <span class="stringliteral">&quot;userData: Could not connect: {$e-&gt;getMessage()}&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l01722"></a><span class="lineno"> 1722</span>&#160;      } );</div>
+<div class="line"><a name="l01723"></a><span class="lineno"> 1723</span>&#160;   }</div>
+<div class="line"><a name="l01724"></a><span class="lineno"> 1724</span>&#160;</div>
+<div class="line"><a name="l01735"></a><span class="lineno"><a class="line" href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2"> 1735</a></span>&#160;   <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2">miniTicker</a>( Callable $callback ) {</div>
+<div class="line"><a name="l01736"></a><span class="lineno"> 1736</span>&#160;      $endpoint = <span class="stringliteral">&#39;@miniticker&#39;</span>;</div>
+<div class="line"><a name="l01737"></a><span class="lineno"> 1737</span>&#160;      $this-&gt;subscriptions[ $endpoint ] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l01738"></a><span class="lineno"> 1738</span>&#160;      </div>
+<div class="line"><a name="l01739"></a><span class="lineno"> 1739</span>&#160;      \Ratchet\Client\connect( <span class="stringliteral">&#39;wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms&#39;</span> )-&gt;then( <span class="keyword">function</span> ( $ws ) use ($callback, $endpoint ) {</div>
+<div class="line"><a name="l01740"></a><span class="lineno"> 1740</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;message&#39;</span>, <span class="keyword">function</span> ( $data ) use ($ws, $callback, $endpoint ) {</div>
+<div class="line"><a name="l01741"></a><span class="lineno"> 1741</span>&#160;            <span class="keywordflow">if</span>( $this-&gt;subscriptions[ $endpoint ] === <span class="keyword">false</span> ) {</div>
+<div class="line"><a name="l01742"></a><span class="lineno"> 1742</span>&#160;               <span class="comment">//$this-&gt;subscriptions[$endpoint] = null;</span></div>
+<div class="line"><a name="l01743"></a><span class="lineno"> 1743</span>&#160;               $ws-&gt;close();</div>
+<div class="line"><a name="l01744"></a><span class="lineno"> 1744</span>&#160;               <span class="keywordflow">return</span>; <span class="comment">//return $ws-&gt;close();</span></div>
+<div class="line"><a name="l01745"></a><span class="lineno"> 1745</span>&#160;            }</div>
+<div class="line"><a name="l01746"></a><span class="lineno"> 1746</span>&#160;            $json = json_decode( $data, <span class="keyword">true</span> );</div>
+<div class="line"><a name="l01747"></a><span class="lineno"> 1747</span>&#160;            $markets = [];</div>
+<div class="line"><a name="l01748"></a><span class="lineno"> 1748</span>&#160;            <span class="keywordflow">foreach</span>( $json as $obj ) {</div>
+<div class="line"><a name="l01749"></a><span class="lineno"> 1749</span>&#160;               $markets[] = [ </div>
+<div class="line"><a name="l01750"></a><span class="lineno"> 1750</span>&#160;                     <span class="stringliteral">&quot;symbol&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;s&#39;</span> ],</div>
+<div class="line"><a name="l01751"></a><span class="lineno"> 1751</span>&#160;                     <span class="stringliteral">&quot;close&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;c&#39;</span> ],</div>
+<div class="line"><a name="l01752"></a><span class="lineno"> 1752</span>&#160;                     <span class="stringliteral">&quot;open&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;o&#39;</span> ],</div>
+<div class="line"><a name="l01753"></a><span class="lineno"> 1753</span>&#160;                     <span class="stringliteral">&quot;high&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;h&#39;</span> ],</div>
+<div class="line"><a name="l01754"></a><span class="lineno"> 1754</span>&#160;                     <span class="stringliteral">&quot;low&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;l&#39;</span> ],</div>
+<div class="line"><a name="l01755"></a><span class="lineno"> 1755</span>&#160;                     <span class="stringliteral">&quot;volume&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;v&#39;</span> ],</div>
+<div class="line"><a name="l01756"></a><span class="lineno"> 1756</span>&#160;                     <span class="stringliteral">&quot;quoteVolume&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;q&#39;</span> ],</div>
+<div class="line"><a name="l01757"></a><span class="lineno"> 1757</span>&#160;                     <span class="stringliteral">&quot;eventTime&quot;</span> =&gt; $obj[ <span class="charliteral">&#39;E&#39;</span> ] </div>
+<div class="line"><a name="l01758"></a><span class="lineno"> 1758</span>&#160;               ];</div>
+<div class="line"><a name="l01759"></a><span class="lineno"> 1759</span>&#160;            }</div>
+<div class="line"><a name="l01760"></a><span class="lineno"> 1760</span>&#160;            call_user_func( $callback, $this, $markets );</div>
+<div class="line"><a name="l01761"></a><span class="lineno"> 1761</span>&#160;         } );</div>
+<div class="line"><a name="l01762"></a><span class="lineno"> 1762</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;close&#39;</span>, <span class="keyword">function</span> ( $code = null, $reason = null ) {</div>
+<div class="line"><a name="l01763"></a><span class="lineno"> 1763</span>&#160;            echo <span class="stringliteral">&quot;miniticker: WebSocket Connection closed! ({$code} - {$reason})&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l01764"></a><span class="lineno"> 1764</span>&#160;         } );</div>
+<div class="line"><a name="l01765"></a><span class="lineno"> 1765</span>&#160;      }, <span class="keyword">function</span> ( $e ) {</div>
+<div class="line"><a name="l01766"></a><span class="lineno"> 1766</span>&#160;         echo <span class="stringliteral">&quot;miniticker: Could not connect: {$e-&gt;getMessage()}&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l01767"></a><span class="lineno"> 1767</span>&#160;      } );</div>
+<div class="line"><a name="l01768"></a><span class="lineno"> 1768</span>&#160;   }</div>
+<div class="line"><a name="l01769"></a><span class="lineno"> 1769</span>&#160;   </div>
+<div class="line"><a name="l01770"></a><span class="lineno"> 1770</span>&#160;}</div>
 <div class="ttc" id="classBinance_1_1API_html_a61742a5bdff7fc2119ab8b797c0cef4e"><div class="ttname"><a href="classBinance_1_1API.html#a61742a5bdff7fc2119ab8b797c0cef4e">Binance\API\sortDepth</a></div><div class="ttdeci">sortDepth(string $symbol, int $limit=11)</div><div class="ttdoc">sortDepth Sorts depth data for display &amp; getting highest bid and lowest ask </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01377">php-binance-api.php:1377</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_abcc2a5c9ca76dd659db43aec7a0a9a5f"><div class="ttname"><a href="classBinance_1_1API.html#abcc2a5c9ca76dd659db43aec7a0a9a5f">Binance\API\useServerTime</a></div><div class="ttdeci">useServerTime()</div><div class="ttdoc">useServerTime adds the &#39;useServerTime&#39;=&gt;true to the API request to avoid time errors ...</div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00365">php-binance-api.php:365</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_afe968feb47f5b68853dae571cb75800c"><div class="ttname"><a href="classBinance_1_1API.html#afe968feb47f5b68853dae571cb75800c">Binance\API\balances</a></div><div class="ttdeci">balances($priceData=false)</div><div class="ttdoc">balances get balances for the account assets </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00576">php-binance-api.php:576</a></div></div>
@@ -1133,7 +1142,7 @@
 <div class="ttc" id="classBinance_1_1API_html_a9e199a90097fbee4e89e2777534599b7"><div class="ttname"><a href="classBinance_1_1API.html#a9e199a90097fbee4e89e2777534599b7">Binance\API\buyTest</a></div><div class="ttdeci">buyTest(string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[])</div><div class="ttdoc">buyTest attempts to create a TEST currency order </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00159">php-binance-api.php:159</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a8273c4cc5c3226aa46e5aee6a69a58aa"><div class="ttname"><a href="classBinance_1_1API.html#a8273c4cc5c3226aa46e5aee6a69a58aa">Binance\API\candlesticks</a></div><div class="ttdeci">candlesticks(string $symbol, string $interval=&quot;5m&quot;, int $limit=null, $startTime=null, $endTime=null)</div><div class="ttdoc">candlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00847">php-binance-api.php:847</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a0d353a3fe6f6fd28aa2177fc170d9f8b"><div class="ttname"><a href="classBinance_1_1API.html#a0d353a3fe6f6fd28aa2177fc170d9f8b">Binance\API\depositHistory</a></div><div class="ttdeci">depositHistory(string $asset=null)</div><div class="ttdoc">depositAddress get the deposit history for an asset </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00451">php-binance-api.php:451</a></div></div>
-<div class="ttc" id="classBinance_1_1API_html_a9790abae353fbde93bc42069c672f3e2"><div class="ttname"><a href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2">Binance\API\miniTicker</a></div><div class="ttdeci">miniTicker(Callable $callback)</div><div class="ttdoc">miniTicker Get miniTicker for all symbols </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01734">php-binance-api.php:1734</a></div></div>
+<div class="ttc" id="classBinance_1_1API_html_a9790abae353fbde93bc42069c672f3e2"><div class="ttname"><a href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2">Binance\API\miniTicker</a></div><div class="ttdeci">miniTicker(Callable $callback)</div><div class="ttdoc">miniTicker Get miniTicker for all symbols </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01735">php-binance-api.php:1735</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_ac36901dbea220b2401786a6d1bc4d051"><div class="ttname"><a href="classBinance_1_1API.html#ac36901dbea220b2401786a6d1bc4d051">Binance\API\depth</a></div><div class="ttdeci">depth(string $symbol)</div><div class="ttdoc">depth get Market depth </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00554">php-binance-api.php:554</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a67841995467768588781cde190e59235"><div class="ttname"><a href="classBinance_1_1API.html#a67841995467768588781cde190e59235">Binance\API\sellTest</a></div><div class="ttdeci">sellTest(string $symbol, $quantity, $price, string $type=&quot;LIMIT&quot;, array $flags=[])</div><div class="ttdoc">sellTest attempts to create a TEST currency order </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00204">php-binance-api.php:204</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a1e0a2985b3ff7e4e9c1155a8e46caa5c"><div class="ttname"><a href="classBinance_1_1API.html#a1e0a2985b3ff7e4e9c1155a8e46caa5c">Binance\API\chart</a></div><div class="ttdeci">chart($symbols, string $interval=&quot;30m&quot;, Callable $callback)</div><div class="ttdoc">chart Pulls /kline data and subscribes to  WebSocket endpoint </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01575">php-binance-api.php:1575</a></div></div>
@@ -1176,7 +1185,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 1 2018 13:31:05 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 2 2018 00:13:11 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

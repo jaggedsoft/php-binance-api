@@ -1,8 +1,8 @@
 Error: When enabling GENERATE_HTMLHELP the tree view (GENERATE_TREEVIEW) should be disabled. I'll do it for you.
 Error: When enabling GENERATE_HTMLHELP the search engine (SEARCHENGINE) should be disabled. I'll do it for you.
-error: fatal: at line 1762 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
-error: fatal: at line 1762 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
-error: fatal: at line 1762 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 1771 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
+error: fatal: at line 1771 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 1771 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
 fatal: /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: '/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php' is outside repository
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1562: warning: Found unknown command `\klines'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1388: warning: Found unknown command `\depth'
