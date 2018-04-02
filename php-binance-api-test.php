@@ -499,7 +499,7 @@ final class BinanceTest extends TestCase {
    public function testExecutionHandler() {
       self::debug( 0, __METHOD__, "" );
       
-      $arr = array(
+      $arr = array( 
             "s" => 1,
             "S" => 2,
             "o" => 3,
@@ -511,14 +511,16 @@ final class BinanceTest extends TestCase {
             "i" => 9,
             "c" => 10,
             "T" => 11,
-            "E" => 12
+            "E" => 12 
       );
       
-      $newArr = $this->invokeMethod( $this->_testable, 'executionHandler', array( json_encode( $arr ) ) );
+      $newArr = $this->invokeMethod( $this->_testable, 'executionHandler', array( 
+            json_encode( $arr ) 
+      ) );
       
       $this->assertTrue( is_array( $newArr ) );
-            
-      $indexs = array(
+      
+      $indexs = array( 
             "symbol",
             "side",
             "orderType",
@@ -530,10 +532,10 @@ final class BinanceTest extends TestCase {
             "orderId",
             "clientOrderId",
             "orderTime",
-            "eventTime"
+            "eventTime" 
       );
       
-      foreach( $indexs as $index) {
+      foreach( $indexs as $index ) {
          $this->assertTrue( isset( $newArr[ $index ] ) );
       }
    }
@@ -803,6 +805,14 @@ final class BinanceTest extends TestCase {
       $this->assertTrue( is_int( $count1 ) );
       $this->assertTrue( ( $count + 1 ) == $count1 );
       $this->assertTrue( strcmp( $trans, $trans1 ) != 0 );
+   }
+
+   public function invokeMethod( &$object, $methodName, array $parameters = array() ) {
+      $reflection = new \ReflectionClass( get_class( $object ) );
+      $method = $reflection->getMethod( $methodName );
+      $method->setAccessible( true );
+      
+      return $method->invokeArgs( $object, $parameters );
    }
    
 }
