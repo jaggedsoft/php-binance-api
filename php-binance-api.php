@@ -1006,7 +1006,7 @@ class API {
     * @param $json object data to convert
     * @return array
     */
-   private function executionHandler( object $json ) {
+   private function executionHandler( \stdClass $json ) {
       return [ 
             "symbol" => $json->s,
             "side" => $json->S,
