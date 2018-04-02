@@ -498,7 +498,44 @@ final class BinanceTest extends TestCase {
 
    public function testExecutionHandler() {
       self::debug( 0, __METHOD__, "" );
-      $this->assertTrue( true );
+      
+      $arr = array(
+            "s" => 1,
+            "S" => 2,
+            "o" => 3,
+            "q" => 4,
+            "p" => 5,
+            "x" => 6,
+            "X" => 7,
+            "r" => 8,
+            "i" => 9,
+            "c" => 10,
+            "T" => 11,
+            "E" => 12
+      );
+      
+      $newArr = $this->invokeMethod( $this->_testable, 'executionHandler', array( json_encode( $arr ) ) );
+      
+      $this->assertTrue( is_array( $newArr ) );
+            
+      $indexs = array(
+            "symbol",
+            "side",
+            "orderType",
+            "quantity",
+            "price",
+            "executionType",
+            "orderStatus",
+            "rejectReason",
+            "orderId",
+            "clientOrderId",
+            "orderTime",
+            "eventTime"
+      );
+      
+      foreach( $indexs as $index) {
+         $this->assertTrue( isset( $newArr[ $index ] ) );
+      }
    }
 
    public function testChartData() {
