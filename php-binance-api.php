@@ -1750,7 +1750,7 @@ class API {
       $endpoint = '@miniticker';
       $this->subscriptions[ $endpoint ] = true;
       
-      \Ratchet\Client\connect( 'wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms' )->then( function ( $ws ) use ($callback, $endpoint ) {
+      $connect = \Ratchet\Client\connect( 'wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms' )->then( function ( $ws ) use ($callback, $endpoint ) {
          $ws->on( 'message', function ( $data ) use ($ws, $callback, $endpoint ) {
             if( $this->subscriptions[ $endpoint ] === false ) {
                //$this->subscriptions[$endpoint] = null;
