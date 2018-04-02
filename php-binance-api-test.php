@@ -515,7 +515,7 @@ final class BinanceTest extends TestCase {
       );
       
       $newArr = $this->invokeMethod( $this->_testable, 'executionHandler', array( 
-            json_encode( $arr ) 
+            json_decode( json_encode( $arr ) ) 
       ) );
       
       $this->assertTrue( is_array( $newArr ) );
