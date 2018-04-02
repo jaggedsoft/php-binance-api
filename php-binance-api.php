@@ -658,22 +658,6 @@ class API {
          die( "Sorry cURL is not installed!" );
       }
       
-      if( is_string( $url ) == false ) {
-         echo "warning: url expected string got " . gettype( $url ) . PHP_EOL;
-      }
-      
-      if( is_string( $method ) == false ) {
-         echo "warning: method expected string got " . gettype( $method ) . PHP_EOL;
-      }
-      
-      if( is_array( $params ) == false ) {
-         echo "warning: params expected array got " . gettype( $params ) . PHP_EOL;
-      }
-      
-      if( is_bool( $signed ) == false ) {
-         echo "warning: signed expected bool got " . gettype( $signed ) . PHP_EOL;
-      }
-      
       $ch = curl_init();
       curl_setopt( $ch, CURLOPT_VERBOSE, $this->httpDebug );
       $query = http_build_query( $params, '', '&' );
@@ -782,32 +766,12 @@ class API {
          $price = number_format( $price, 8, '.', '' );
       }
       
-      if( is_string( $side ) == false ) {
-         echo "warning: side expected string got " . gettype( $side ) . PHP_EOL;
-      }
-      
-      if( is_string( $symbol ) == false ) {
-         echo "warning: symbol expected string got " . gettype( $symbol ) . PHP_EOL;
-      }
-      
       if( is_numeric( $quantity ) == false ) {
          echo "warning: quantity expected numeric got " . gettype( $quantity ) . PHP_EOL;
       }
       
       if( is_string( $price ) == false ) {
          echo "warning: price expected string got " . gettype( $price ) . PHP_EOL;
-      }
-      
-      if( is_string( $type ) == false ) {
-         echo "warning: type expected string got " . gettype( $type ) . PHP_EOL;
-      }
-      
-      if( is_array( $flags ) == false ) {
-         echo "warning: flags expected array got " . gettype( $flags ) . PHP_EOL;
-      }
-      
-      if( is_bool( $test ) == false ) {
-         echo "warning: test expected bool got " . gettype( $test ) . PHP_EOL;
       }
       
       if( $type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT" ) {
@@ -845,14 +809,7 @@ class API {
     * @return array containing the response
     */
    public function candlesticks( string $symbol, string $interval = "5m", int $limit = null, $startTime = null, $endTime = null ) {
-      if( is_string( $symbol ) == false ) {
-         echo "warning: symbol expected string got " . gettype( $symbol ) . PHP_EOL;
-      }
-      
-      if( is_string( $interval ) == false ) {
-         echo "warning: interval expected string got " . gettype( $interval ) . PHP_EOL;
-      }
-      
+            
       if( !isset( $this->charts[ $symbol ] ) ) {
          $this->charts[ $symbol ] = [];
       }
