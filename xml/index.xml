@@ -74,7 +74,7 @@
     <member refid="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159" kind="function"><name>balanceData</name></member>
     <member refid="classBinance_1_1API_1ad2eb0a86fd2e6ddfec7ebe93fc74e2c8" kind="function"><name>balanceHandler</name></member>
     <member refid="classBinance_1_1API_1a6ff65dd6e6b498671740c718f0421aec" kind="function"><name>tickerStreamHandler</name></member>
-    <member refid="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c" kind="function"><name>executionHandler</name></member>
+    <member refid="classBinance_1_1API_1aba2c700e43a03db162fc9fb9fc80eb11" kind="function"><name>executionHandler</name></member>
     <member refid="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e" kind="function"><name>chartData</name></member>
     <member refid="classBinance_1_1API_1a89985a26a01e91bf449bc4ccad2eef29" kind="function"><name>tradesData</name></member>
     <member refid="classBinance_1_1API_1a65e35c5cdc897acaa25e9aeee0bb2bea" kind="function"><name>bookPriceData</name></member>

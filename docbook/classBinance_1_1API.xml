@@ -581,8 +581,8 @@ array $json)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c">executionHandler</link> (
-object $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1aba2c700e43a03db162fc9fb9fc80eb11">executionHandler</link> (
+\stdClass $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -2426,8 +2426,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1afc765e011486602a726f336cfb6d0c6c">
-                <title>Binance\API::executionHandler (object $json)</title> <emphasis>tickerStreamHandler Convert WebSocket trade execution into array</emphasis>
+            <section xml:id="classBinance_1_1API_1aba2c700e43a03db162fc9fb9fc80eb11">
+                <title>Binance\API::executionHandler (\stdClass $json)</title> <emphasis>tickerStreamHandler Convert WebSocket trade execution into array</emphasis>
                 
 <para>$data = $this-&gt;executionHandler( $json );</para>
 

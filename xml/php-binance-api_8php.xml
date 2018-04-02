@@ -591,7 +591,7 @@
 <codeline lineno="998"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>];</highlight></codeline>
 <codeline lineno="999"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1000"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1009"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>executionHandler(<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>$json<sp/>)<sp/>{</highlight></codeline>
+<codeline lineno="1009"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>executionHandler(<sp/>\stdClass<sp/>$json<sp/>)<sp/>{</highlight></codeline>
 <codeline lineno="1010"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>[<sp/></highlight></codeline>
 <codeline lineno="1011"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;symbol&quot;</highlight><highlight class="normal"><sp/>=&gt;<sp/>$json-&gt;s,</highlight></codeline>
 <codeline lineno="1012"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;side&quot;</highlight><highlight class="normal"><sp/>=&gt;<sp/>$json-&gt;S,</highlight></codeline>
