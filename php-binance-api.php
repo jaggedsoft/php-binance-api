@@ -1539,6 +1539,8 @@ class API {
       $endpoint = $symbol ? strtolower( $symbol ) . '@ticker' : '!ticker@arr';
       $this->subscriptions[ $endpoint ] = true;
       
+      // @codeCoverageIgnoreStart
+      // phpunit can't cover async function      
       \Ratchet\Client\connect( $this->stream . $endpoint )->then( function ( $ws ) use ($callback, $symbol, $endpoint ) {
          $ws->on( 'message', function ( $data ) use ($ws, $callback, $symbol, $endpoint ) {
             if( $this->subscriptions[ $endpoint ] === false ) {
@@ -1564,6 +1566,7 @@ class API {
       }, function ( $e ) {
          echo "ticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
       } );
+         // @codeCoverageIgnoreEnd
    }
 
    /**
@@ -1708,6 +1711,8 @@ class API {
       
       $this->subscriptions[ '@userdata' ] = true;
       
+      // @codeCoverageIgnoreStart
+      // phpunit can't cover async function
       \Ratchet\Client\connect( $this->stream . $listenKey )->then( function ( $ws ) {
          $ws->on( 'message', function ( $data ) use ($ws ) {
             if( $this->subscriptions[ '@userdata' ] === false ) {
@@ -1734,6 +1739,7 @@ class API {
       }, function ( $e ) {
          echo "userData: Could not connect: {$e->getMessage()}" . PHP_EOL;
       } );
+         // @codeCoverageIgnoreEnd
    }
 
    /**
@@ -1750,6 +1756,8 @@ class API {
       $endpoint = '@miniticker';
       $this->subscriptions[ $endpoint ] = true;
       
+      // @codeCoverageIgnoreStart
+      // phpunit can't cover async function
       \Ratchet\Client\connect( 'wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms' )->then( function ( $ws ) use ($callback, $endpoint ) {
          $ws->on( 'message', function ( $data ) use ($ws, $callback, $endpoint ) {
             if( $this->subscriptions[ $endpoint ] === false ) {
@@ -1779,6 +1787,7 @@ class API {
       }, function ( $e ) {
          echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
       } );
+         // @codeCoverageIgnoreEnd
    }
    
 }
