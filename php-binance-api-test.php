@@ -67,15 +67,6 @@ final class BinanceTest extends TestCase {
       $this->assertInstanceOf( 'Binance\API', $this->_testable );
    }
    
-   public static function setUpBeforeClass() {
-      self::debug( 0, __METHOD__, "" );
-      self::writeConfig();
-      if( file_exists( self::$config_file ) == false ) {
-         self::debug( 0, __METHOD__, self::$config_file . " not found" );
-         exit();
-      }
-   }
-   
    public function testInstantiate() {
       self::debug( 0, __METHOD__, "" );
       $this->_testable = new Binance\API();
