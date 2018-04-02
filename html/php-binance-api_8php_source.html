@@ -336,7 +336,7 @@
 <div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;</div>
 <div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;   <span class="keyword">private</span> <span class="keyword">function</span> httpRequest( <span class="keywordtype">string</span> $url, <span class="keywordtype">string</span> $method = <span class="stringliteral">&quot;GET&quot;</span>, array $params = [], <span class="keywordtype">bool</span> $signed = <span class="keyword">false</span> ) {</div>
 <div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;      <span class="keywordflow">if</span>( function_exists( <span class="stringliteral">&#39;curl_init&#39;</span> ) == <span class="keyword">false</span> ) {</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;         die( <span class="stringliteral">&quot;Sorry cURL is not installed!&quot;</span> );</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;         <span class="keywordflow">throw</span> new \Exception( <span class="stringliteral">&quot;Sorry cURL is not installed!&quot;</span> );</div>
 <div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;      }</div>
 <div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;      </div>
 <div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;      $ch = curl_init();</div>
@@ -346,9 +346,9 @@
 <div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;      <span class="comment">// signed with params</span></div>
 <div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;      <span class="keywordflow">if</span>( $signed == <span class="keyword">true</span> ) {</div>
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;         <span class="keywordflow">if</span>( empty( $this-&gt;api_key ) )</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;            die( <span class="stringliteral">&quot;signedRequest error: API Key not set!&quot;</span> );</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;            <span class="keywordflow">throw</span> new \Exception( <span class="stringliteral">&quot;signedRequest error: API Key not set!&quot;</span> );</div>
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;         <span class="keywordflow">if</span>( empty( $this-&gt;api_secret ) )</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            die( <span class="stringliteral">&quot;signedRequest error: API Secret not set!&quot;</span> );</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            <span class="keywordflow">throw</span> new \Exception( <span class="stringliteral">&quot;signedRequest error: API Secret not set!&quot;</span> );</div>
 <div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;         $base = $this-&gt;base;</div>
 <div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;         $ts = ( microtime( <span class="keyword">true</span> ) * 1000 ) + $this-&gt;info[ <span class="stringliteral">&#39;timeOffset&#39;</span> ];</div>
 <div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;         $params[ <span class="stringliteral">&#39;timestamp&#39;</span> ] = number_format( $ts, 0, <span class="charliteral">&#39;.&#39;</span>, <span class="stringliteral">&#39;&#39;</span> );</div>
@@ -1165,7 +1165,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 2 2018 15:33:18 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 2 2018 16:33:19 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
