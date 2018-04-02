@@ -1340,7 +1340,7 @@ class API {
     * @param $json object time
     * @return null
     */
-   private function chartHandler( string $symbol, string $interval, object $json ) {
+   private function chartHandler( string $symbol, string $interval, \stdClass $json ) {
       if( !$this->info[ $symbol ][ $interval ][ 'firstOpen' ] ) { // Wait for /kline to finish loading
          $this->chartQueue[ $symbol ][ $interval ][] = $json;
          return;
