@@ -1112,7 +1112,7 @@
 <div class="line"><a name="l01750"></a><span class="lineno"> 1750</span>&#160;      $endpoint = <span class="stringliteral">&#39;@miniticker&#39;</span>;</div>
 <div class="line"><a name="l01751"></a><span class="lineno"> 1751</span>&#160;      $this-&gt;subscriptions[ $endpoint ] = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l01752"></a><span class="lineno"> 1752</span>&#160;      </div>
-<div class="line"><a name="l01753"></a><span class="lineno"> 1753</span>&#160;      $connect = \Ratchet\Client\connect( <span class="stringliteral">&#39;wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms&#39;</span> )-&gt;then( <span class="keyword">function</span> ( $ws ) use ($callback, $endpoint ) {</div>
+<div class="line"><a name="l01753"></a><span class="lineno"> 1753</span>&#160;      \Ratchet\Client\connect( <span class="stringliteral">&#39;wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms&#39;</span> )-&gt;then( <span class="keyword">function</span> ( $ws ) use ($callback, $endpoint ) {</div>
 <div class="line"><a name="l01754"></a><span class="lineno"> 1754</span>&#160;         $ws-&gt;on( <span class="stringliteral">&#39;message&#39;</span>, <span class="keyword">function</span> ( $data ) use ($ws, $callback, $endpoint ) {</div>
 <div class="line"><a name="l01755"></a><span class="lineno"> 1755</span>&#160;            <span class="keywordflow">if</span>( $this-&gt;subscriptions[ $endpoint ] === <span class="keyword">false</span> ) {</div>
 <div class="line"><a name="l01756"></a><span class="lineno"> 1756</span>&#160;               <span class="comment">//$this-&gt;subscriptions[$endpoint] = null;</span></div>
@@ -1199,7 +1199,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 2 2018 13:14:03 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 2 2018 13:33:33 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
