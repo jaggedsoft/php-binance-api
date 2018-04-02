@@ -970,7 +970,7 @@ class API {
     * @param $json object data to convert
     * @return array
     */
-   private function tickerStreamHandler( object $json ) {
+   private function tickerStreamHandler( \stdClass $json ) {
       return [ 
             "eventType" => $json->e,
             "eventTime" => $json->E,
@@ -1537,8 +1537,15 @@ class API {
     */
    public function ticker( $symbol, Callable $callback ) {
       $endpoint = $symbol ? strtolower( $symbol ) . '@ticker' : '!ticker@arr';
-      \Ratchet\Client\connect( $this->stream . $endpoint )->then( function ( $ws ) use ($callback, $symbol ) {
-         $ws->on( 'message', function ( $data ) use ($ws, $callback, $symbol ) {
+      $this->subscriptions[ $endpoint ] = true;
+      
+      \Ratchet\Client\connect( $this->stream . $endpoint )->then( function ( $ws ) use ($callback, $symbol, $endpoint ) {
+         $ws->on( 'message', function ( $data ) use ($ws, $callback, $symbol, $endpoint ) {
+            if( $this->subscriptions[ $endpoint ] === false ) {
+               //$this->subscriptions[$endpoint] = null;
+               $ws->close();
+               return; //return $ws->close();
+            }
             $json = json_decode( $data );
             if( $symbol ) {
                call_user_func( $callback, $this, $symbol, $this->tickerStreamHandler( $json ) );
@@ -1699,8 +1706,15 @@ class API {
       $this->info[ 'balanceCallback' ] = $balance_callback;
       $this->info[ 'executionCallback' ] = $execution_callback;
       
+      $this->subscriptions[ '@userdata' ] = true;
+      
       \Ratchet\Client\connect( $this->stream . $listenKey )->then( function ( $ws ) {
          $ws->on( 'message', function ( $data ) use ($ws ) {
+            if( $this->subscriptions[ '@userdata' ] === false ) {
+               //$this->subscriptions[$endpoint] = null;
+               $ws->close();
+               return; //return $ws->close();
+            }
             $json = json_decode( $data );
             $type = $json->e;
             if( $type == "outboundAccountInfo" ) {
