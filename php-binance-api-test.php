@@ -29,6 +29,21 @@ final class BinanceTest extends TestCase {
       
       @unlink( self::$config_file );
       @file_put_contents( self::$config_file, "{ \"api-key\": \"" . self::$apikey . "\", \"api-secret\": \"" . self::$apisecret . "\" }" );
+      
+   }
+   
+   private static function writeConfigWithProxy() {
+      self::writeConfig();
+      
+      $contents = json_decode( file_get_contents( self::$config_file ), true );
+      $contents[ 'proto' ] = "https";
+      $contents[ 'user' ] = "a";
+      $contents[ 'pass' ] = "b";
+      $contents[ 'address' ] = "1.2.3.4";
+      $contents[ 'port' ] = "5678";
+      
+      @unlink( self::$config_file );
+      @file_put_contents( self::$config_file, json_encode( $contents ) );
    }
    
    private static function debug( $pipe, $method, $msg ) {
@@ -50,6 +65,15 @@ final class BinanceTest extends TestCase {
       self::writeConfig();
       $this->_testable = new Binance\API();
       $this->assertInstanceOf( 'Binance\API', $this->_testable );
+   }
+   
+   public static function setUpBeforeClass() {
+      self::debug( 0, __METHOD__, "" );
+      self::writeConfig();
+      if( file_exists( self::$config_file ) == false ) {
+         self::debug( 0, __METHOD__, self::$config_file . " not found" );
+         exit();
+      }
    }
    
    public function testInstantiate() {
@@ -428,6 +452,16 @@ final class BinanceTest extends TestCase {
       $this->assertTrue( $uri == $proxyConf[ 'proto' ] . "://" . $proxyConf[ 'address' ] . ":" . $proxyConf[ 'port' ] );
    }
    
+   public function testGetProxyUriStringFromFile() {
+      self::debug( 0, __METHOD__, "" );
+      self::writeConfigWithProxy();
+      
+      $this->_testable = new Binance\API();
+      $this->assertInstanceOf( 'Binance\API', $this->_testable );
+      $uri = $this->_testable->getProxyUriString();
+      $this->assertTrue( strcmp( $uri, "https://1.2.3.4:5678" ) == 0 );
+   }
+   
    public function testHttpRequest() {
       self::debug( 0, __METHOD__, "" );
       $this->assertTrue( true );
@@ -509,7 +543,24 @@ final class BinanceTest extends TestCase {
    
    public function testHighstock() {
       self::debug( 0, __METHOD__, "" );
-      $this->assertTrue( true );
+      
+      $this->_testable->chart( [
+            "BNBBTC"
+      ], "15m", function ( $api, $symbol, $chart ) {
+         echo "{$symbol} chart update\n";
+         //print_r($chart);
+         $endpoint = strtolower( $symbol ) . '@kline_' . "15m";
+         $api->terminate( $endpoint );
+         
+         $this->assertTrue( $symbol == "BNBBTC" );
+         $this->assertTrue( is_array( $chart ) );
+         $this->assertTrue( count( $chart ) > 0 );
+         
+         $result = $this->_testable->highstock( $chart, true );
+         $this->assertTrue( is_array( $result ) );
+         $this->assertTrue( count( $result ) > 0 );
+         
+      } );
    }
    
    public function testDepthHandler() {
