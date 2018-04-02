@@ -81,7 +81,7 @@
     <member refid="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd" kind="function"><name>priceData</name></member>
     <member refid="classBinance_1_1API_1ac58a4a51592fce18cb300cf331201548" kind="function"><name>depthData</name></member>
     <member refid="classBinance_1_1API_1a2a27388362d21462e9152f0cd0c54127" kind="function"><name>depthHandler</name></member>
-    <member refid="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0" kind="function"><name>chartHandler</name></member>
+    <member refid="classBinance_1_1API_1a3bd08d6f6a8ef35a5506cb2f4e413a22" kind="function"><name>chartHandler</name></member>
   </compound>
   <compound refid="namespaceBinance" kind="namespace"><name>Binance</name>
   </compound>

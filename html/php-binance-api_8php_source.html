@@ -829,7 +829,7 @@
 <div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;      }</div>
 <div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;   }</div>
 <div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;</div>
-<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;   <span class="keyword">private</span> <span class="keyword">function</span> chartHandler( <span class="keywordtype">string</span> $symbol, <span class="keywordtype">string</span> $interval, <span class="keywordtype">object</span> $json ) {</div>
+<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;   <span class="keyword">private</span> <span class="keyword">function</span> chartHandler( <span class="keywordtype">string</span> $symbol, <span class="keywordtype">string</span> $interval, \stdClass $json ) {</div>
 <div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;      <span class="keywordflow">if</span>( !$this-&gt;info[ $symbol ][ $interval ][ <span class="stringliteral">&#39;firstOpen&#39;</span> ] ) { <span class="comment">// Wait for /kline to finish loading</span></div>
 <div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;         $this-&gt;chartQueue[ $symbol ][ $interval ][] = $json;</div>
 <div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;         <span class="keywordflow">return</span>;</div>
@@ -1199,7 +1199,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 2 2018 12:34:47 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 2 2018 13:03:31 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

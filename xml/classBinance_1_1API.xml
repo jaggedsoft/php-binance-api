@@ -2415,10 +2415,10 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         </inbodydescription>
         <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1317" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1317" bodyend="1331"/>
       </memberdef>
-      <memberdef kind="function" id="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classBinance_1_1API_1a3bd08d6f6a8ef35a5506cb2f4e413a22" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>Binance\API::chartHandler</definition>
-        <argsstring>(string $symbol, string $interval, object $json)</argsstring>
+        <argsstring>(string $symbol, string $interval,\stdClass $json)</argsstring>
         <name>chartHandler</name>
         <param>
           <type>string</type>
@@ -2429,7 +2429,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
           <declname>$interval</declname>
         </param>
         <param>
-          <type>object</type>
+          <type>\stdClass</type>
           <declname>$json</declname>
         </param>
         <briefdescription>
@@ -2503,7 +2503,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
       <member refid="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>candlesticks</name></member>
       <member refid="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>chart</name></member>
       <member refid="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e" prot="private" virt="non-virtual"><scope>Binance::API</scope><name>chartData</name></member>
-      <member refid="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0" prot="private" virt="non-virtual"><scope>Binance::API</scope><name>chartHandler</name></member>
+      <member refid="classBinance_1_1API_1a3bd08d6f6a8ef35a5506cb2f4e413a22" prot="private" virt="non-virtual"><scope>Binance::API</scope><name>chartHandler</name></member>
       <member refid="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>cumulative</name></member>
       <member refid="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>depositAddress</name></member>
       <member refid="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>depositHistory</name></member>

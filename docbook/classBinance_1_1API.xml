@@ -637,8 +637,8 @@ array $json)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0">chartHandler</link> (
-string $symbol, string $interval, object $json)</para>
+                        <para> <link linkend="classBinance_1_1API_1a3bd08d6f6a8ef35a5506cb2f4e413a22">chartHandler</link> (
+string $symbol, string $interval, \stdClass $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -2659,8 +2659,8 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a094755d6bde40a864702bc30834df4b0">
-                <title>Binance\API::chartHandler (string $symbol, string $interval, object $json)</title> <emphasis>chartHandler For WebSocket Chart Cache</emphasis>
+            <section xml:id="classBinance_1_1API_1a3bd08d6f6a8ef35a5506cb2f4e413a22">
+                <title>Binance\API::chartHandler (string $symbol, string $interval,\stdClass $json)</title> <emphasis>chartHandler For WebSocket Chart Cache</emphasis>
                 
 <para>$this-&gt;chartHandler($symbol, $interval, $json);</para>
 
