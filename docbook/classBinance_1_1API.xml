@@ -330,7 +330,7 @@ string $asset)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a3568ed724dfba2eaf6dcfd91b936dc6f">prevDay</link> (
+                        <para> <link linkend="classBinance_1_1API_1a884414d58f6297f79afe94a60dc0d794">prevDay</link> (
 string $symbol)</para>
                     </listitem>
                 </itemizedlist>
@@ -813,7 +813,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
                             <row>
                                 <entry>$type</entry>
                                 <entry>
-<para>array config </para>
+<para>string config </para>
 </entry>
                             </row>
                             <row>
@@ -1153,7 +1153,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or the order details </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4">
@@ -1188,7 +1198,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or the order details </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335">
@@ -1217,7 +1237,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or the order details </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8">
@@ -1258,7 +1288,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of orderDetails array </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8">
@@ -1299,7 +1339,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of orderDetails array </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f">
@@ -1311,7 +1361,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>null </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b">
@@ -1323,7 +1383,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array with server time key </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a">
@@ -1335,7 +1405,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or exchange info array </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e">
@@ -1384,7 +1464,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array transaction </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061">
@@ -1413,7 +1503,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array deposit address information </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b">
@@ -1444,7 +1544,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array deposit history information </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0">
@@ -1475,7 +1585,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array deposit history information </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698">
@@ -1487,7 +1607,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of all the currencies prices </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97">
@@ -1499,7 +1629,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of all the book prices </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5">
@@ -1511,11 +1651,21 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of all the account information </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a3568ed724dfba2eaf6dcfd91b936dc6f">
-                <title>Binance\API::prevDay (string $symbol)</title> <emphasis>prevDay get 24hr ticker price change statistics for symbols</emphasis>
+            <section xml:id="classBinance_1_1API_1a884414d58f6297f79afe94a60dc0d794">
+                <title>Binance\API::prevDay (string $symbol=null)</title> <emphasis>prevDay get 24hr ticker price change statistics for symbols</emphasis>
                 
 <para>$prevDay = $api-&gt;prevDay(&quot;BNBBTC&quot;);</para>
 
@@ -1540,7 +1690,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of prevDay change </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1af047ce7afeff0729b62fb28b2697ad9f">
@@ -1569,7 +1729,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of market history </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1ac36901dbea220b2401786a6d1bc4d051">
@@ -1598,7 +1768,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of market depth </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1afe968feb47f5b68853dae571cb75800c">
@@ -1627,7 +1807,17 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 
 <para>array with error message or array of balances </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1af1d41534a9f67bc74a6133efa2df4df7">
@@ -1727,7 +1917,17 @@ You can call this function directly or use the helper functions</emphasis>
 
 <para>array containing the response </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa">
@@ -1781,7 +1981,17 @@ You can call this function directly or use the helper functions</emphasis>
 
 <para>array containing the response </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d">
@@ -2058,9 +2268,9 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                         <tgroup cols="2" align="left" colsep="1" rowsep="1">
                         <tbody>
                             <row>
-                                <entry>$symbol</entry>
+                                <entry>$symbols</entry>
                                 <entry>
-<para>string optional symbol </para>
+<para></para>
 </entry>
                             </row>
                             <row>
@@ -2153,7 +2363,17 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 
 <para>null </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14">
@@ -2218,7 +2438,17 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 
 <para>null </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2">
@@ -2328,7 +2558,17 @@ this function will attempt to load the proxy info from the users home directory
 
 <para>array containing the response </para>
 </formalpara>
-</para>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159">
@@ -2630,18 +2870,6 @@ This function sets $btc_value which is your estimated BTC value of all assets co
                         <title>Parameters</title>
                         <tgroup cols="2" align="left" colsep="1" rowsep="1">
                         <tbody>
-                            <row>
-                                <entry>$symbol</entry>
-                                <entry>
-<para>string to sort </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$interval</entry>
-                                <entry>
-<para>string time </para>
-</entry>
-                            </row>
                             <row>
                                 <entry>$json</entry>
                                 <entry>
