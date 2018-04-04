@@ -57,11 +57,14 @@ class API {
     * @param $proxyConf array config
     * @return null
     */
-   public function __construct( string $api_key = '', string $api_secret = '', array $options = ["useServerTime"=>false], array $proxyConf = null ) {
-      $this->api_key = $api_key;
-      $this->api_secret = $api_secret;
-      $this->proxyConf = $proxyConf;
-      if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
+   public function __construct( string $api_key = null, string $api_secret = null, array $options = null, array $proxyConf = null ) {
+      $this->api_key = is_null( $api_key ) ? '' : $api_key;
+      $this->api_secret = is_null( $api_secret ) ? '' : $api_secret;
+      
+      if( is_null( $options ) ) {
+         $options = [ 
+               "useServerTime" => false 
+         ];
          $this->useServerTime();
       }
       $this->setupApiConfigFromFile();
@@ -140,7 +143,13 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function buy( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
+   public function buy( string $symbol, $quantity, $price, string $type, array $flags ) {
+      if( empty( $type ) ) {
+         $type = "LIMIT";
+      }
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "BUY", $symbol, $quantity, $price, $type, $flags );
    }
 
@@ -156,7 +165,13 @@ class API {
     * @param $flags array config
     * @return array with error message or empty or the order details
     */
-   public function buyTest( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
+   public function buyTest( string $symbol, $quantity, $price, string $type, array $flags ) {
+      if( empty( $type ) ) {
+         $type = "LIMIT";
+      }
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "BUY", $symbol, $quantity, $price, $type, $flags, true );
    }
 
@@ -185,7 +200,13 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function sell( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
+   public function sell( string $symbol, $quantity, $price, string $type, array $flags ) {
+      if( empty( $type ) ) {
+         $type = "LIMIT";
+      }
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "SELL", $symbol, $quantity, $price, $type, $flags );
    }
 
@@ -201,7 +222,13 @@ class API {
     * @param $flags array config
     * @return array with error message or empty or the order details
     */
-   public function sellTest( string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [] ) {
+   public function sellTest( string $symbol, $quantity, $price, string $type, array $flags ) {
+      if( empty( $type ) ) {
+         $type = "LIMIT";
+      }
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "SELL", $symbol, $quantity, $price, $type, $flags, true );
    }
 
@@ -216,7 +243,10 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketBuy( string $symbol, $quantity, array $flags = [] ) {
+   public function marketBuy( string $symbol, $quantity, array $flags ) {
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "BUY", $symbol, $quantity, 0, "MARKET", $flags );
    }
 
@@ -230,7 +260,10 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketBuyTest( string $symbol, $quantity, array $flags = [] ) {
+   public function marketBuyTest( string $symbol, $quantity, array $flags ) {
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "BUY", $symbol, $quantity, 0, "MARKET", $flags, true );
    }
 
@@ -245,7 +278,10 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketSell( string $symbol, $quantity, array $flags = [] ) {
+   public function marketSell( string $symbol, $quantity, array $flags ) {
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "SELL", $symbol, $quantity, 0, "MARKET", $flags );
    }
 
@@ -259,7 +295,10 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketSellTest( string $symbol, $quantity, array $flags = [] ) {
+   public function marketSellTest( string $symbol, $quantity, array $flags ) {
+      if( empty( $type ) ) {
+         $flags = [];
+      }
       return $this->order( "SELL", $symbol, $quantity, 0, "MARKET", $flags, true );
    }
 
@@ -311,7 +350,7 @@ class API {
     */
    public function openOrders( string $symbol = null ) {
       $params = [];
-      if( is_null( $symbol ) != true ) {
+      if( empty( $symbol ) == false ) {
          $params = [ 
                "symbol" => $symbol 
          ];
@@ -330,7 +369,14 @@ class API {
     * @return array with error message or array of orderDetails array
     * @throws \Exception
     */
-   public function orders( string $symbol, int $limit = 500, int $fromOrderId = 1 ) {
+   public function orders( string $symbol, int $limit, int $fromOrderId ) {
+      if( empty( $limit ) ) {
+         $limit = 500;
+      }
+      if( empty( $fromOrderId ) ) {
+         $fromOrderId = 1;
+      }
+      
       return $this->httpRequest( "v3/allOrders", "GET", [ 
             "symbol" => $symbol,
             "limit" => $limit,
@@ -352,7 +398,14 @@ class API {
     * @return array with error message or array of orderDetails array
     * @throws \Exception
     */
-   public function history( string $symbol, int $limit = 500, int $fromTradeId = 1 ) {
+   public function history( string $symbol, int $limit, int $fromTradeId ) {
+      if( empty( $limit ) ) {
+         $limit = 500;
+      }
+      if( empty( $fromTradeId ) ) {
+         $fromTradeId = 1;
+      }
+      
       return $this->httpRequest( "v3/myTrades", "GET", [ 
             "symbol" => $symbol,
             "limit" => $limit,
@@ -673,9 +726,18 @@ class API {
     * @return array containing the response
     * @throws \Exception
     */
-   private function httpRequest( string $url, string $method = "GET", array $params = [], bool $signed = false ) {
+   private function httpRequest( string $url, string $method, array $params, bool $signed ) {
       if( function_exists( 'curl_init' ) == false ) {
          throw new \Exception( "Sorry cURL is not installed!" );
+      }
+      if( empty( $method ) ) {
+         $method = "GET";
+      }
+      if( empty( $params ) ) {
+         $params = [];
+      }
+      if( empty( $signed ) ) {
+         $signed = false;
       }
       
       $ch = curl_init();
@@ -771,7 +833,17 @@ class API {
     * @return array containing the response
     * @throws \Exception
     */
-   public function order( string $side, string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [], bool $test = false ) {
+   public function order( string $side, string $symbol, $quantity, $price, string $type, array $flags, bool $test ) {
+      if( empty( $type ) ) {
+         $type = "LIMIT";
+      }
+      if( empty( $flags ) ) {
+         $flags = [];
+      }
+      if( empty( $test ) ) {
+         $test = false;
+      }
+      
       $opt = [ 
             "symbol" => $symbol,
             "side" => $side,
@@ -830,7 +902,11 @@ class API {
     * @return array containing the response
     * @throws \Exception
     */
-   public function candlesticks( string $symbol, string $interval = "5m", int $limit = null, $startTime = null, $endTime = null ) {
+   public function candlesticks( string $symbol, string $interval, int $limit, $startTime, $endTime ) {
+      if( empty( $interval ) ) {
+         $interval = "5m";
+      }
+      
       if( !isset( $this->charts[ $symbol ] ) ) {
          $this->charts[ $symbol ] = [];
       }
@@ -840,12 +916,17 @@ class API {
             "interval" => $interval 
       ];
       
-      if( $limit )
+      if( empty( $limit ) == false ) {
          $opt[ "limit" ] = $limit;
-      if( $startTime )
+      }
+      
+      if( empty( $startTime ) == false ) {
          $opt[ "startTime" ] = $startTime;
-      if( $endTime )
+      }
+      
+      if( empty( $endTime ) == false ) {
          $opt[ "endTime" ] = $endTime;
+      }
       $response = $this->httpRequest( "v1/klines", "GET", $opt );
       $ticks = $this->chartData( $symbol, $interval, $response );
       $this->charts[ $symbol ][ $interval ] = $ticks;
@@ -1137,7 +1218,11 @@ class API {
     * @param $include_volume bool for inclusion of volume
     * @return array highchart data
     */
-   public function highstock( array $chart, bool $include_volume = false ) {
+   public function highstock( array $chart, bool $include_volume ) {
+      if( empty( $include_volume ) ) {
+         $include_volume = false;
+      }
+      
       $array = [];
       foreach( $chart as $timestamp => $obj ) {
          $line = [ 
@@ -1350,7 +1435,10 @@ class API {
     * @param $limit int depth
     * @return null
     */
-   public function sortDepth( string $symbol, int $limit = 11 ) {
+   public function sortDepth( string $symbol, int $limit ) {
+      if( empty( $limit ) ) {
+         $limit = 11;
+      }
       $bids = $this->depthCache[ $symbol ][ 'bids' ];
       $asks = $this->depthCache[ $symbol ][ 'asks' ];
       krsort( $bids );
@@ -1560,7 +1648,10 @@ class API {
     * @return null
     * @throws \Exception
     */
-   public function chart( $symbols, string $interval = "30m", Callable $callback ) {
+   public function chart( $symbols, string $interval, Callable $callback ) {
+      if( empty( $interval ) ) {
+         $interval = "30m";
+      }
       if( !is_array( $symbols ) )
          $symbols = [ 
                $symbols 
