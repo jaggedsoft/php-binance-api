@@ -153,7 +153,7 @@ class API {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
-      if( empty( $type ) ) {
+      if( empty( $flags ) ) {
          $flags = [];
       }
       return $this->order( "BUY", $symbol, $quantity, $price, $type, $flags );
@@ -175,7 +175,7 @@ class API {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
-      if( empty( $type ) ) {
+      if( empty( $flags ) ) {
          $flags = [];
       }
       return $this->order( "BUY", $symbol, $quantity, $price, $type, $flags, true );
