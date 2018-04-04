@@ -839,7 +839,7 @@ class API {
     * @return array containing the response
     * @throws \Exception
     */
-   public function order( string $side, string $symbol, $quantity, $price, string $type, array $flags, bool $test ) {
+   public function order( string $side, string $symbol, $quantity, $price, string $type = null, array $flags = null, bool $test = null ) {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
