@@ -149,7 +149,7 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function buy( string $symbol, $quantity, $price, string $type, array $flags ) {
+   public function buy( string $symbol, $quantity, $price, string $type = null, array $flags = null ) {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
@@ -171,7 +171,7 @@ class API {
     * @param $flags array config
     * @return array with error message or empty or the order details
     */
-   public function buyTest( string $symbol, $quantity, $price, string $type, array $flags ) {
+   public function buyTest( string $symbol, $quantity, $price, string $type = null, array $flags = null ) {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
@@ -206,7 +206,7 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function sell( string $symbol, $quantity, $price, string $type, array $flags ) {
+   public function sell( string $symbol, $quantity, $price, string $type = null, array $flags = null ) {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
@@ -228,7 +228,7 @@ class API {
     * @param $flags array config
     * @return array with error message or empty or the order details
     */
-   public function sellTest( string $symbol, $quantity, $price, string $type, array $flags ) {
+   public function sellTest( string $symbol, $quantity, $price, string $type = null, array $flags = null ) {
       if( empty( $type ) ) {
          $type = "LIMIT";
       }
@@ -249,7 +249,7 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketBuy( string $symbol, $quantity, array $flags ) {
+   public function marketBuy( string $symbol, $quantity, array $flags = null ) {
       if( empty( $type ) ) {
          $flags = [];
       }
@@ -266,7 +266,7 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketBuyTest( string $symbol, $quantity, array $flags ) {
+   public function marketBuyTest( string $symbol, $quantity, array $flags = null ) {
       if( empty( $type ) ) {
          $flags = [];
       }
@@ -284,7 +284,7 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketSell( string $symbol, $quantity, array $flags ) {
+   public function marketSell( string $symbol, $quantity, array $flags = null ) {
       if( empty( $type ) ) {
          $flags = [];
       }
@@ -301,7 +301,7 @@ class API {
     * @param $flags array addtional options for order type
     * @return array with error message or the order details
     */
-   public function marketSellTest( string $symbol, $quantity, array $flags ) {
+   public function marketSellTest( string $symbol, $quantity, array $flags = null ) {
       if( empty( $type ) ) {
          $flags = [];
       }
@@ -375,7 +375,7 @@ class API {
     * @return array with error message or array of orderDetails array
     * @throws \Exception
     */
-   public function orders( string $symbol, int $limit, int $fromOrderId ) {
+   public function orders( string $symbol, int $limit = null, int $fromOrderId = null ) {
       if( empty( $limit ) ) {
          $limit = 500;
       }
@@ -404,7 +404,7 @@ class API {
     * @return array with error message or array of orderDetails array
     * @throws \Exception
     */
-   public function history( string $symbol, int $limit, int $fromTradeId ) {
+   public function history( string $symbol, int $limit = null, int $fromTradeId = null ) {
       if( empty( $limit ) ) {
          $limit = 500;
       }
