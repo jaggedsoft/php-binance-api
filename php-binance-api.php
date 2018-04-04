@@ -13,6 +13,12 @@
  */
 namespace Binance;
 
+// PHP version check
+if( version_compare( phpversion(), '7', '<' ) ) {
+   fwrite( STDERR, "Hi, PHP " . phpversion() . " support will be removed very soon as part of continued development.\n" );
+   fwrite( STDERR, "Please consider upgrading.\n" );
+}
+
 /**
  * Main Binance class
  *
@@ -70,7 +76,7 @@ class API {
       $this->setupApiConfigFromFile();
       $this->setupProxyConfigFromFile();
    }
-
+   
    /**
     * If no paramaters are supplied in the constructor, this function will attempt
     * to load the api_key and api_secret from the users home directory in the file
