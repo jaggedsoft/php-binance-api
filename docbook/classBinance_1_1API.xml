@@ -565,7 +565,7 @@ string $api_key, string $api_secret, array $options, false] )</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a787b43fd691f94adec7d246fdd25edb3">__construct4</link> (
+                        <para> <link linkend="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f">__construct4</link> (
 string $api_key, string $api_secret, array $options, false] , array $proxyConf)</para>
                     </listitem>
                 </itemizedlist>
@@ -2584,8 +2584,8 @@ Specifiy the filename where the config is stored.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a787b43fd691f94adec7d246fdd25edb3">
-                <title>Binance\API::__construct4 (string $api_key= &apos;&apos;, string $api_secret= &apos;&apos;, array $options=[&quot;useServerTime&quot;=&gt;false], array $proxyConf=null)</title> <emphasis>Constructor for the class.</emphasis>
+            <section xml:id="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f">
+                <title>Binance\API::__construct4 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt;false], array $proxyConf=null)</title> <emphasis>Constructor for the class.</emphasis>
                 
 <para>
                 <formalpara>

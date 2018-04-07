@@ -72,7 +72,7 @@
     <member refid="classBinance_1_1API_1ad3f405545b40fa6b786f04252381db99" kind="function"><name>__construct1</name></member>
     <member refid="classBinance_1_1API_1a4eb195af7ae194a594d2ce9df0fe89a1" kind="function"><name>__construct2</name></member>
     <member refid="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c" kind="function"><name>__construct3</name></member>
-    <member refid="classBinance_1_1API_1a787b43fd691f94adec7d246fdd25edb3" kind="function"><name>__construct4</name></member>
+    <member refid="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f" kind="function"><name>__construct4</name></member>
     <member refid="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf" kind="function"><name>setupApiConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab" kind="function"><name>setupProxyConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590" kind="function"><name>httpRequest</name></member>
