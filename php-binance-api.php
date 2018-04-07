@@ -137,7 +137,7 @@ class API {
     * @param $proxyConf array config
     * @return null
     */
-   private function __construct4( string $api_key = '', string $api_secret = '', array $options = ["useServerTime"=>false], array $proxyConf = null ) {
+   private function __construct4( string $api_key = null, string $api_secret = null, array $options = ["useServerTime"=>false], array $proxyConf = null ) {
       $this->api_key = $api_key;
       $this->api_secret = $api_secret;
       $this->proxyConf = $proxyConf;
