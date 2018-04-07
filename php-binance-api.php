@@ -13,6 +13,12 @@
  */
 namespace Binance;
 
+// PHP version check
+if( version_compare( phpversion(), '7.0', '<=' ) ) {
+   fwrite( STDERR, "Hi, PHP " . phpversion() . " support will be removed very soon as part of continued development.\n" );
+   fwrite( STDERR, "Please consider upgrading.\n" );
+}
+
 /**
  * Main Binance class
  *
@@ -45,11 +51,85 @@ class API {
    // /< value of available onOrder assets
    
    /**
-    * Constructor for the class, There are 4 ways to contruct the class:
-    * - You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor
-    * - new Binance\\API( $api_key, $api_secret);
-    * - new Binance\\API( $api_key, $api_secret, $options);
-    * - new Binance\\API( $api_key, $api_secret, $options, $proxyConf);
+    * Constructor for the class, 
+    * send as many agument as you want.
+    * 
+    * @return null
+    */
+   public function __construct() {
+      $param = func_get_args();
+      switch( func_num_args() ) {
+         case 0:
+            $this->__construct0();
+         break;
+         case 1:
+            $this->__construct1( $param[ 0 ] );
+         break;
+         case 2:
+            $this->__construct2( $param[ 0 ], $param[ 1 ] );
+         break;
+         case 3:
+            $this->__construct2( $param[ 0 ], $param[ 1 ], $param[ 2 ] );
+         break;
+         case 4:
+            $this->__construct2( $param[ 0 ], $param[ 1 ], $param[ 2 ], $param[ 3 ] );
+         break;
+      }
+   }
+
+   /**
+    * Constructor for the class
+    *
+    * @return null
+    */
+   private function __construct0() {
+      $this->setupApiConfigFromFile();
+      $this->setupProxyConfigFromFile();
+   }
+
+   /**
+    * Constructor for the class
+    * Specifiy the filename where the config is stored
+    *
+    * @param $filename string the config file location
+    * @return null
+    */
+   private function __construct1( string $filename = null ) {
+      $this->setupApiConfigFromFile( $filename );
+      $this->setupProxyConfigFromFile( $filename );
+   }
+
+   /**
+    * Constructor for the class
+    *
+    * @param $api_key string api key
+    * @param $api_secret string api secret
+    * @return null
+    */
+   private function __construct2( string $api_key = null, string $api_secret = null ) {
+      $this->api_key = $api_key;
+      $this->api_secret = $api_secret;
+   }
+
+   /**
+    * Constructor for the class
+    *
+    * @param $api_key string api key
+    * @param $api_secret string api secret
+    * @param $options array addtional coniguration options
+    * @return null
+    */
+   private function __construct3( string $api_key = null, string $api_secret = null, array $options = ["useServerTime"=>false] ) {
+      $this->api_key = $api_key;
+      $this->api_secret = $api_secret;
+      $this->proxyConf = $proxyConf;
+      if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
+         $this->useServerTime();
+      }
+   }
+
+   /**
+    * Constructor for the class
     *
     * @param $api_key string api key
     * @param $api_secret string api secret
@@ -57,7 +137,7 @@ class API {
     * @param $proxyConf array config
     * @return null
     */
-   public function __construct( string $api_key = '', string $api_secret = '', array $options = ["useServerTime"=>false], array $proxyConf = null ) {
+   private function __construct4( string $api_key = '', string $api_secret = '', array $options = ["useServerTime"=>false], array $proxyConf = null ) {
       $this->api_key = $api_key;
       $this->api_secret = $api_secret;
       $this->proxyConf = $proxyConf;
@@ -73,37 +153,49 @@ class API {
     * to load the api_key and api_secret from the users home directory in the file
     * ~/jaggedsoft/php-binance-api.json
     *
+    * @param $file string file location
     * @return null
     */
-   private function setupApiConfigFromFile() {
-      if( empty( $this->api_key ) == false || empty( $this->api_key ) == false )
+   private function setupApiConfigFromFile( string $file = null ) {
+      $file = is_null( $file ) ? getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" : $file;
+      
+      if( empty( $this->api_key ) == false || empty( $this->api_key ) == false ) {
          return;
-      if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false )
+      }
+      if( file_exists( $file ) == false ) {
          return;
-      $contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
+      }
+      $contents = json_decode( file_get_contents( $file ), true );
       $this->api_key = isset( $contents[ 'api-key' ] ) ? $contents[ 'api-key' ] : "";
       $this->api_secret = isset( $contents[ 'api-secret' ] ) ? $contents[ 'api-secret' ] : "";
    }
 
    /**
-    * If no paramaters are supplied in the constructor ofr the proxy confguration,
+    * If no paramaters are supplied in the constructor for the proxy confguration,
     * this function will attempt to load the proxy info from the users home directory
     * ~/jaggedsoft/php-binance-api.json
     *
     * @return null
     */
-   private function setupProxyConfigFromFile() {
-      if( is_null( $this->proxyConf ) == false )
+   private function setupProxyConfigFromFile( string $file = null ) {
+      $file = is_null( $file ) ? getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" : $file;
+      
+      if( is_null( $this->proxyConf ) == false ) {
          return;
-      if( file_exists( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ) == false )
+      }
+      if( file_exists( $file ) == false ) {
          return;
-      $contents = json_decode( file_get_contents( getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" ), true );
-      if( isset( $contents[ 'proto' ] ) == false )
+      }
+      $contents = json_decode( file_get_contents( $file ), true );
+      if( isset( $contents[ 'proto' ] ) == false ) {
          return;
-      if( isset( $contents[ 'address' ] ) == false )
+      }
+      if( isset( $contents[ 'address' ] ) == false ) {
          return;
-      if( isset( $contents[ 'port' ] ) == false )
+      }
+      if( isset( $contents[ 'port' ] ) == false ) {
          return;
+      }
       $this->proxyConf[ 'proto' ] = $contents[ 'proto' ];
       $this->proxyConf[ 'address' ] = $contents[ 'address' ];
       $this->proxyConf[ 'port' ] = $contents[ 'port' ];
