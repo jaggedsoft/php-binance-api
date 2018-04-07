@@ -22,7 +22,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a858ac2cec1de7719779b6c517adcb0bf"><param name="Name" value="$subscriptions"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#ac40776b871ae1591348c96162e872789"><param name="Name" value="$transfered"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a52a5376574ff759fb1df6c8efe24cb7f"><param name="Name" value="$wapi"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a97cadb5a2170a1b34114592fb9b6912c"><param name="Name" value="__construct"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#adbaefdc26d86ac1fd69ad101e0905c78"><param name="Name" value="__construct"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a14272f6a80009bc8fd742b5f35fee9a5"><param name="Name" value="account"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a90daef87526a753473580139c04d311b"><param name="Name" value="addToTransfered"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#af047ce7afeff0729b62fb28b2697ad9f"><param name="Name" value="aggTrades"></OBJECT>
@@ -48,7 +48,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a858ac2cec1de7719779b6c517adcb0bf"><param name="Name" value="$subscriptions"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#ac40776b871ae1591348c96162e872789"><param name="Name" value="$transfered"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a52a5376574ff759fb1df6c8efe24cb7f"><param name="Name" value="$wapi"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a97cadb5a2170a1b34114592fb9b6912c"><param name="Name" value="__construct"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#adbaefdc26d86ac1fd69ad101e0905c78"><param name="Name" value="__construct"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a14272f6a80009bc8fd742b5f35fee9a5"><param name="Name" value="account"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a90daef87526a753473580139c04d311b"><param name="Name" value="addToTransfered"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#af047ce7afeff0729b62fb28b2697ad9f"><param name="Name" value="aggTrades"></OBJECT>

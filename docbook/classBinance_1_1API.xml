@@ -138,8 +138,8 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a97cadb5a2170a1b34114592fb9b6912c">__construct</link> (
-string $api_key, string $api_secret, array $options, false] , array $proxyConf)</para>
+                        <para> <link linkend="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78">__construct</link> (
+)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -533,7 +533,7 @@ Callable $callback)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85">setupApiConfigFromFile</link> (
+                        <para> <link linkend="classBinance_1_1API_1a64eb639389887f37b6e7de9a2f585745">__construct0</link> (
 )</para>
                     </listitem>
                 </itemizedlist>
@@ -541,8 +541,48 @@ Callable $callback)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165">setupProxyConfigFromFile</link> (
-)</para>
+                        <para> <link linkend="classBinance_1_1API_1ad3f405545b40fa6b786f04252381db99">__construct1</link> (
+string $filename)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a4eb195af7ae194a594d2ce9df0fe89a1">__construct2</link> (
+string $api_key, string $api_secret)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c">__construct3</link> (
+string $api_key, string $api_secret, array $options, false] )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a787b43fd691f94adec7d246fdd25edb3">__construct4</link> (
+string $api_key, string $api_secret, array $options, false] , array $proxyConf)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf">setupApiConfigFromFile</link> (
+string $file)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab">setupProxyConfigFromFile</link> (
+string $file)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -652,61 +692,15 @@ string $symbol, string $interval, \stdClass $json)</para>
             <title>Detailed Description</title>
 
 <para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>
-                <para>Definition at line 23 of file php-binance-api.php</para>
+                <para>Definition at line 29 of file php-binance-api.php</para>
                 <para>The Documentation for this struct was generated from the following file: </para>
                 <para><itemizedlist><listitem><para>php-binance-api.php</para></listitem></itemizedlist></para>
         </simplesect>
-            <section xml:id="classBinance_1_1API_1a97cadb5a2170a1b34114592fb9b6912c">
-                <title>Binance\API::__construct (string $api_key= &apos;&apos;, string $api_secret= &apos;&apos;, array $options=[&quot;useServerTime&quot;=&gt;false], array $proxyConf=null)</title> <emphasis>Constructor for the class, There are 4 ways to contruct the class:</emphasis>
+            <section xml:id="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78">
+                <title>Binance\API::__construct ()</title> <emphasis>Constructor for the class, 
+send as many agument as you want.</emphasis>
                 
-<para><itemizedlist>
-<listitem>
-<para>You can use the config file in ~/jaggedsoft/php-binance-api.json and empty contructor</para>
-</listitem><listitem>
-<para>new Binance\API( $api_key, $api_secret);</para>
-</listitem><listitem>
-<para>new Binance\API( $api_key, $api_secret, $options);</para>
-</listitem><listitem>
-<para>new Binance\API( $api_key, $api_secret, $options, $proxyConf);</para>
-</listitem></itemizedlist>
-</para>
-
-<para>
-                <formalpara>
-                    <title/>
-                    <table frame="all">
-                        <title>Parameters</title>
-                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
-                        <tbody>
-                            <row>
-                                <entry>$api_key</entry>
-                                <entry>
-<para>string api key </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$api_secret</entry>
-                                <entry>
-<para>string api secret </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$options</entry>
-                                <entry>
-<para>array addtional coniguration options </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$proxyConf</entry>
-                                <entry>
-<para>array config </para>
-</entry>
-                            </row>
-                        </tbody>
-                        </tgroup>
-                    </table>
-                </formalpara>
-                <formalpara><title>Returns: </title>
+<para><formalpara><title>Returns: </title>
 
 <para>null </para>
 </formalpara>
@@ -2480,10 +2474,8 @@ exception                            <row>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a9c3424a8cf17d79552afbfa1a8942c85">
-                <title>Binance\API::setupApiConfigFromFile ()</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt
-to load the api_key and api_secret from the users home directory in the file
-~/jaggedsoft/php-binance-api.json.</emphasis>
+            <section xml:id="classBinance_1_1API_1a64eb639389887f37b6e7de9a2f585745">
+                <title>Binance\API::__construct0 ()</title> <emphasis>Constructor for the class.</emphasis>
                 
 <para><formalpara><title>Returns: </title>
 
@@ -2492,8 +2484,182 @@ to load the api_key and api_secret from the users home directory in the file
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a976f2c24c8e05a28f45814ceeacdf165">
-                <title>Binance\API::setupProxyConfigFromFile ()</title> <emphasis>If no paramaters are supplied in the constructor ofr the proxy confguration,
+            <section xml:id="classBinance_1_1API_1ad3f405545b40fa6b786f04252381db99">
+                <title>Binance\API::__construct1 (string $filename=null)</title> <emphasis>Constructor for the class
+Specifiy the filename where the config is stored.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$filename</entry>
+                                <entry>
+<para>string the config file location </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a4eb195af7ae194a594d2ce9df0fe89a1">
+                <title>Binance\API::__construct2 (string $api_key=null, string $api_secret=null)</title> <emphasis>Constructor for the class.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$api_key</entry>
+                                <entry>
+<para>string api key </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$api_secret</entry>
+                                <entry>
+<para>string api secret </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c">
+                <title>Binance\API::__construct3 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt;false])</title> <emphasis>Constructor for the class.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$api_key</entry>
+                                <entry>
+<para>string api key </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$api_secret</entry>
+                                <entry>
+<para>string api secret </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$options</entry>
+                                <entry>
+<para>array addtional coniguration options </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a787b43fd691f94adec7d246fdd25edb3">
+                <title>Binance\API::__construct4 (string $api_key= &apos;&apos;, string $api_secret= &apos;&apos;, array $options=[&quot;useServerTime&quot;=&gt;false], array $proxyConf=null)</title> <emphasis>Constructor for the class.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$api_key</entry>
+                                <entry>
+<para>string api key </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$api_secret</entry>
+                                <entry>
+<para>string api secret </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$options</entry>
+                                <entry>
+<para>array addtional coniguration options </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$proxyConf</entry>
+                                <entry>
+<para>array config </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf">
+                <title>Binance\API::setupApiConfigFromFile (string $file=null)</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt
+to load the api_key and api_secret from the users home directory in the file
+~/jaggedsoft/php-binance-api.json.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$file</entry>
+                                <entry>
+<para>string file location </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab">
+                <title>Binance\API::setupProxyConfigFromFile (string $file=null)</title> <emphasis>If no paramaters are supplied in the constructor for the proxy confguration,
 this function will attempt to load the proxy info from the users home directory
 ~/jaggedsoft/php-binance-api.json.</emphasis>
                 

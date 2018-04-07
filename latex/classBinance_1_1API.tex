@@ -9,8 +9,8 @@ Main Binance class.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classBinance_1_1API_a97cadb5a2170a1b34114592fb9b6912c}{\-\_\-\-\_\-construct} (string \$api\-\_\-key= '', string \$api\-\_\-secret= '', array \$options=\mbox{[}\char`\"{}use\-Server\-Time\char`\"{}=$>$false\mbox{]}, array \$proxy\-Conf=null)
-\begin{DoxyCompactList}\small\item\em Constructor for the class, There are 4 ways to contruct the class\-: \end{DoxyCompactList}\item 
+\hyperlink{classBinance_1_1API_adbaefdc26d86ac1fd69ad101e0905c78}{\-\_\-\-\_\-construct} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the class, send as many agument as you want. \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a98bf564a5ff752a2393bc626b222905e}{buy} (string \$symbol, \$quantity, \$price, string \$type=\char`\"{}L\-I\-M\-I\-T\char`\"{}, array \$flags=\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em buy attempts to create a currency order each currency supports a number of order types, such as -\/\-L\-I\-M\-I\-T -\/\-M\-A\-R\-K\-E\-T -\/\-S\-T\-O\-P\-\_\-\-L\-O\-S\-S -\/\-S\-T\-O\-P\-\_\-\-L\-O\-S\-S\-\_\-\-L\-I\-M\-I\-T -\/\-T\-A\-K\-E\-\_\-\-P\-R\-O\-F\-I\-T -\/\-T\-A\-K\-E\-\_\-\-P\-R\-O\-F\-I\-T\-\_\-\-L\-I\-M\-I\-T -\/\-L\-I\-M\-I\-T\-\_\-\-M\-A\-K\-E\-R \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a9e199a90097fbee4e89e2777534599b7}{buy\-Test} (string \$symbol, \$quantity, \$price, string \$type=\char`\"{}L\-I\-M\-I\-T\char`\"{}, array \$flags=\mbox{[}$\,$\mbox{]})
@@ -156,51 +156,28 @@ Main Binance class.
 
 Eg. Usage\-: require 'vendor/autoload.\-php'; \$api = new Binance\textbackslash{}A\-P\-I(); 
 
-Definition at line 23 of file php-\/binance-\/api.\-php.
+Definition at line 29 of file php-\/binance-\/api.\-php.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classBinance_1_1API_a97cadb5a2170a1b34114592fb9b6912c}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\hypertarget{classBinance_1_1API_adbaefdc26d86ac1fd69ad101e0905c78}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
 \index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\-\_\-\-\_\-construct (
 \begin{DoxyParamCaption}
-\item[{string}]{\$api\-\_\-key = {\ttfamily ''}, }
-\item[{string}]{\$api\-\_\-secret = {\ttfamily ''}, }
-\item[{array}]{\$options = {\ttfamily \mbox{[}\char`\"{}useServerTime\char`\"{}=}, }
-\item[{false\mbox{]}}]{, }
-\item[{array}]{\$proxy\-Conf = {\ttfamily null}}
+{}
 \end{DoxyParamCaption}
-)}}\label{classBinance_1_1API_a97cadb5a2170a1b34114592fb9b6912c}
+)}}\label{classBinance_1_1API_adbaefdc26d86ac1fd69ad101e0905c78}
 
 
-Constructor for the class, There are 4 ways to contruct the class\-: 
+Constructor for the class, send as many agument as you want. 
 
-
-\begin{DoxyItemize}
-\item You can use the config file in $\sim$/jaggedsoft/php-\/binance-\/api.json and empty contructor
-\item new Binance\textbackslash{}A\-P\-I( \$api\-\_\-key, \$api\-\_\-secret);
-\item new Binance\textbackslash{}A\-P\-I( \$api\-\_\-key, \$api\-\_\-secret, \$options);
-\item new Binance\textbackslash{}A\-P\-I( \$api\-\_\-key, \$api\-\_\-secret, \$options, \$proxy\-Conf);
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}{Parameters}
-{\em \$api\-\_\-key} & string api key \\
-\hline
-{\em \$api\-\_\-secret} & string api secret \\
-\hline
-{\em \$options} & array addtional coniguration options \\
-\hline
-{\em \$proxy\-Conf} & array config \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 null 
 \end{DoxyReturn}
 
 
-Definition at line 60 of file php-\/binance-\/api.\-php.
+Definition at line 59 of file php-\/binance-\/api.\-php.
 
 
 
@@ -228,7 +205,7 @@ array with error message or array of all the account information
 \end{DoxyExceptions}
 
 
-Definition at line 525 of file php-\/binance-\/api.\-php.
+Definition at line 617 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a90daef87526a753473580139c04d311b}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!add\-To\-Transfered@{add\-To\-Transfered}}
 \index{add\-To\-Transfered@{add\-To\-Transfered}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -248,7 +225,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1276 of file php-\/binance-\/api.\-php.
+Definition at line 1368 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_af047ce7afeff0729b62fb28b2697ad9f}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!agg\-Trades@{agg\-Trades}}
 \index{agg\-Trades@{agg\-Trades}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -278,7 +255,7 @@ array with error message or array of market history
 \end{DoxyExceptions}
 
 
-Definition at line 557 of file php-\/binance-\/api.\-php.
+Definition at line 649 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_afe968feb47f5b68853dae571cb75800c}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!balances@{balances}}
 \index{balances@{balances}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -308,7 +285,7 @@ array with error message or array of balances
 \end{DoxyExceptions}
 
 
-Definition at line 595 of file php-\/binance-\/api.\-php.
+Definition at line 687 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_aa1e851e6a5fe2e01f7c5493fa9b90c97}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!book\-Prices@{book\-Prices}}
 \index{book\-Prices@{book\-Prices}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -333,7 +310,7 @@ array with error message or array of all the book prices
 \end{DoxyExceptions}
 
 
-Definition at line 513 of file php-\/binance-\/api.\-php.
+Definition at line 605 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a98bf564a5ff752a2393bc626b222905e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!buy@{buy}}
 \index{buy@{buy}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -373,7 +350,7 @@ array with error message or the order details
 \end{DoxyReturn}
 
 
-Definition at line 143 of file php-\/binance-\/api.\-php.
+Definition at line 235 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a9e199a90097fbee4e89e2777534599b7}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!buy\-Test@{buy\-Test}}
 \index{buy\-Test@{buy\-Test}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -411,7 +388,7 @@ array with error message or empty or the order details
 \end{DoxyReturn}
 
 
-Definition at line 159 of file php-\/binance-\/api.\-php.
+Definition at line 251 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ac49c3595190e193510eb368c0fa92992}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!cancel@{cancel}}
 \index{cancel@{cancel}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -444,7 +421,7 @@ array with error message or the order details
 \end{DoxyExceptions}
 
 
-Definition at line 277 of file php-\/binance-\/api.\-php.
+Definition at line 369 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a8273c4cc5c3226aa46e5aee6a69a58aa}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!candlesticks@{candlesticks}}
 \index{candlesticks@{candlesticks}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -486,7 +463,7 @@ array containing the response
 \end{DoxyExceptions}
 
 
-Definition at line 833 of file php-\/binance-\/api.\-php.
+Definition at line 925 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a1e0a2985b3ff7e4e9c1155a8e46caa5c}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!chart@{chart}}
 \index{chart@{chart}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -522,7 +499,7 @@ null
 \end{DoxyExceptions}
 
 
-Definition at line 1563 of file php-\/binance-\/api.\-php.
+Definition at line 1655 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a00d93784ab9eb83c3817ccaa75e9746d}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!cumulative@{cumulative}}
 \index{cumulative@{cumulative}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -547,7 +524,7 @@ array cumulative depth cache
 \end{DoxyReturn}
 
 
-Definition at line 1106 of file php-\/binance-\/api.\-php.
+Definition at line 1198 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a40614aa2f9799c1197919812b37e6061}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!deposit\-Address@{deposit\-Address}}
 \index{deposit\-Address@{deposit\-Address}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -577,7 +554,7 @@ array with error message or array deposit address information
 \end{DoxyExceptions}
 
 
-Definition at line 443 of file php-\/binance-\/api.\-php.
+Definition at line 535 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a0d353a3fe6f6fd28aa2177fc170d9f8b}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!deposit\-History@{deposit\-History}}
 \index{deposit\-History@{deposit\-History}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -609,7 +586,7 @@ array with error message or array deposit history information
 \end{DoxyExceptions}
 
 
-Definition at line 462 of file php-\/binance-\/api.\-php.
+Definition at line 554 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ac36901dbea220b2401786a6d1bc4d051}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!depth@{depth}}
 \index{depth@{depth}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -639,7 +616,7 @@ array with error message or array of market depth
 \end{DoxyExceptions}
 
 
-Definition at line 572 of file php-\/binance-\/api.\-php.
+Definition at line 664 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a9960b45d3a9eee17d8ec9b8f3d9bf060}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!depth\-Cache@{depth\-Cache}}
 \index{depth\-Cache@{depth\-Cache}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -669,7 +646,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1385 of file php-\/binance-\/api.\-php.
+Definition at line 1477 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a184430be210c8e5cb7be80c9e239619f}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!display\-Depth@{display\-Depth}}
 \index{display\-Depth@{display\-Depth}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -694,7 +671,7 @@ string of the depth information
 \end{DoxyReturn}
 
 
-Definition at line 1195 of file php-\/binance-\/api.\-php.
+Definition at line 1287 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a944f676d29829384ea8eca179fe9ca5a}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!exchange\-Info@{exchange\-Info}}
 \index{exchange\-Info@{exchange\-Info}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -719,7 +696,7 @@ array with error message or exchange info array
 \end{DoxyExceptions}
 
 
-Definition at line 396 of file php-\/binance-\/api.\-php.
+Definition at line 488 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a53fcf31d85faa8445653f581fdbdb72c}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!first@{first}}
 \index{first@{first}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -744,7 +721,7 @@ string key or null
 \end{DoxyReturn}
 
 
-Definition at line 1165 of file php-\/binance-\/api.\-php.
+Definition at line 1257 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_af1d41534a9f67bc74a6133efa2df4df7}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!get\-Proxy\-Uri\-String@{get\-Proxy\-Uri\-String}}
 \index{get\-Proxy\-Uri\-String@{get\-Proxy\-Uri\-String}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -764,7 +741,7 @@ string uri
 \end{DoxyReturn}
 
 
-Definition at line 608 of file php-\/binance-\/api.\-php.
+Definition at line 700 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_abfb76ae473557ff989bee3287d3c437c}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!get\-Request\-Count@{get\-Request\-Count}}
 \index{get\-Request\-Count@{get\-Request\-Count}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -784,7 +761,7 @@ int get the total number of api calls
 \end{DoxyReturn}
 
 
-Definition at line 1264 of file php-\/binance-\/api.\-php.
+Definition at line 1356 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ae1688d4d245b8f22a87c7afb1db5432a}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!get\-Transfered@{get\-Transfered}}
 \index{get\-Transfered@{get\-Transfered}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -804,7 +781,7 @@ string showing the total transfered
 \end{DoxyReturn}
 
 
-Definition at line 1245 of file php-\/binance-\/api.\-php.
+Definition at line 1337 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a5eaa9d36db8181fc4605a3841f1106ac}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!highstock@{highstock}}
 \index{highstock@{highstock}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -832,7 +809,7 @@ array highchart data
 \end{DoxyReturn}
 
 
-Definition at line 1140 of file php-\/binance-\/api.\-php.
+Definition at line 1232 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a433da4ce62d8acc2a5a501b98215a4e8}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!history@{history}}
 \index{history@{history}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -868,7 +845,7 @@ array with error message or array of order\-Details array
 \end{DoxyExceptions}
 
 
-Definition at line 355 of file php-\/binance-\/api.\-php.
+Definition at line 447 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a2a29ca9ab18d04ff2e42aa6e5e0ce312}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!keep\-Alive@{keep\-Alive}}
 \index{keep\-Alive@{keep\-Alive}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -888,7 +865,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1638 of file php-\/binance-\/api.\-php.
+Definition at line 1730 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a468092e1edfd35f79954236714c825c6}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!last@{last}}
 \index{last@{last}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -913,7 +890,7 @@ string key or null
 \end{DoxyReturn}
 
 
-Definition at line 1180 of file php-\/binance-\/api.\-php.
+Definition at line 1272 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_aa6156e4c8d03bbdd8c16bbb18ea75646}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!market\-Buy@{market\-Buy}}
 \index{market\-Buy@{market\-Buy}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -944,7 +921,7 @@ array with error message or the order details
 \end{DoxyReturn}
 
 
-Definition at line 219 of file php-\/binance-\/api.\-php.
+Definition at line 311 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ad11565e34ba1c715ac2478ee7f9aab6e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!market\-Buy\-Test@{market\-Buy\-Test}}
 \index{market\-Buy\-Test@{market\-Buy\-Test}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -976,7 +953,7 @@ array with error message or the order details
 \end{DoxyReturn}
 
 
-Definition at line 233 of file php-\/binance-\/api.\-php.
+Definition at line 325 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a72d07ceea281b273d65a487efc02e31e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!market\-Sell@{market\-Sell}}
 \index{market\-Sell@{market\-Sell}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1007,7 +984,7 @@ array with error message or the order details
 \end{DoxyReturn}
 
 
-Definition at line 248 of file php-\/binance-\/api.\-php.
+Definition at line 340 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a77eaa982d0ca78fbce80d6203213af28}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!market\-Sell\-Test@{market\-Sell\-Test}}
 \index{market\-Sell\-Test@{market\-Sell\-Test}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1039,7 +1016,7 @@ array with error message or the order details
 \end{DoxyReturn}
 
 
-Definition at line 262 of file php-\/binance-\/api.\-php.
+Definition at line 354 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a9790abae353fbde93bc42069c672f3e2}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!mini\-Ticker@{mini\-Ticker}}
 \index{mini\-Ticker@{mini\-Ticker}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1064,7 +1041,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1734 of file php-\/binance-\/api.\-php.
+Definition at line 1826 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a155a0a0d36ea7145f5833d9f17386335}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!open\-Orders@{open\-Orders}}
 \index{open\-Orders@{open\-Orders}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1094,7 +1071,7 @@ array with error message or the order details
 \end{DoxyExceptions}
 
 
-Definition at line 312 of file php-\/binance-\/api.\-php.
+Definition at line 404 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a40e8ddf7280b33b1899f59d0f16e5fa0}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!order@{order}}
 \index{order@{order}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1149,7 +1126,7 @@ array containing the response
 \end{DoxyExceptions}
 
 
-Definition at line 774 of file php-\/binance-\/api.\-php.
+Definition at line 866 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_aa1b445b6eb144e0c551fbe035737dbf8}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!orders@{orders}}
 \index{orders@{orders}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1185,7 +1162,7 @@ array with error message or array of order\-Details array
 \end{DoxyExceptions}
 
 
-Definition at line 333 of file php-\/binance-\/api.\-php.
+Definition at line 425 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ae7eae3f9588c2aee0d3c46bb9fa2ffe4}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!order\-Status@{order\-Status}}
 \index{order\-Status@{order\-Status}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1218,7 +1195,7 @@ array with error message or the order details
 \end{DoxyExceptions}
 
 
-Definition at line 295 of file php-\/binance-\/api.\-php.
+Definition at line 387 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a884414d58f6297f79afe94a60dc0d794}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!prev\-Day@{prev\-Day}}
 \index{prev\-Day@{prev\-Day}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1248,7 +1225,7 @@ array with error message or array of prev\-Day change
 \end{DoxyExceptions}
 
 
-Definition at line 538 of file php-\/binance-\/api.\-php.
+Definition at line 630 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a718271dc0691ae3a1f60dc0e7ad89698}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!prices@{prices}}
 \index{prices@{prices}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1273,7 +1250,7 @@ array with error message or array of all the currencies prices
 \end{DoxyExceptions}
 
 
-Definition at line 501 of file php-\/binance-\/api.\-php.
+Definition at line 593 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_aa5d028c98ced18dab5194009f4abdb0e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!sell@{sell}}
 \index{sell@{sell}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1313,7 +1290,7 @@ array with error message or the order details
 \end{DoxyReturn}
 
 
-Definition at line 188 of file php-\/binance-\/api.\-php.
+Definition at line 280 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a67841995467768588781cde190e59235}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!sell\-Test@{sell\-Test}}
 \index{sell\-Test@{sell\-Test}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1351,7 +1328,7 @@ array with error message or empty or the order details
 \end{DoxyReturn}
 
 
-Definition at line 204 of file php-\/binance-\/api.\-php.
+Definition at line 296 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a3647415e517c745a35d2d54bb27575fe}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!set\-Proxy@{set\-Proxy}}
 \index{set\-Proxy@{set\-Proxy}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1373,7 +1350,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 656 of file php-\/binance-\/api.\-php.
+Definition at line 748 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a61742a5bdff7fc2119ab8b797c0cef4e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!sort\-Depth@{sort\-Depth}}
 \index{sort\-Depth@{sort\-Depth}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1401,7 +1378,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1353 of file php-\/binance-\/api.\-php.
+Definition at line 1445 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a67ed560d60527ad64f16253069cb1b14}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!terminate@{terminate}}
 \index{terminate@{terminate}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1423,7 +1400,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1626 of file php-\/binance-\/api.\-php.
+Definition at line 1718 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a0ef50663f1cca6d48620d458fd26ee28}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!ticker@{ticker}}
 \index{ticker@{ticker}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1451,7 +1428,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1515 of file php-\/binance-\/api.\-php.
+Definition at line 1607 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_afd72d19a5504b1a0a694ca9a8af1047b}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!time@{time}}
 \index{time@{time}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1476,7 +1453,7 @@ array with error message or array with server time key
 \end{DoxyExceptions}
 
 
-Definition at line 384 of file php-\/binance-\/api.\-php.
+Definition at line 476 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a338fb6baf24bf3723bcb1fe19fb4ff67}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!trades@{trades}}
 \index{trades@{trades}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1504,7 +1481,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1454 of file php-\/binance-\/api.\-php.
+Definition at line 1546 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_af033a40a6a86ad422c58d67dc57bb0fd}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!user\-Data@{user\-Data}}
 \index{user\-Data@{user\-Data}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1541,7 +1518,7 @@ null
 \end{DoxyExceptions}
 
 
-Definition at line 1685 of file php-\/binance-\/api.\-php.
+Definition at line 1777 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_abcc2a5c9ca76dd659db43aec7a0a9a5f}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!use\-Server\-Time@{use\-Server\-Time}}
 \index{use\-Server\-Time@{use\-Server\-Time}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1566,7 +1543,7 @@ null
 \end{DoxyExceptions}
 
 
-Definition at line 371 of file php-\/binance-\/api.\-php.
+Definition at line 463 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ab69047e208ca2a148f97120d518ecd3e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!withdraw@{withdraw}}
 \index{withdraw@{withdraw}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1607,7 +1584,7 @@ array with error message or array transaction
 \end{DoxyExceptions}
 
 
-Definition at line 420 of file php-\/binance-\/api.\-php.
+Definition at line 512 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ae189e805dbb408560e539a94d44c63b0}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!withdraw\-History@{withdraw\-History}}
 \index{withdraw\-History@{withdraw\-History}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1639,7 +1616,7 @@ array with error message or array deposit history information
 \end{DoxyExceptions}
 
 
-Definition at line 483 of file php-\/binance-\/api.\-php.
+Definition at line 575 of file php-\/binance-\/api.\-php.
 
 
 
@@ -1649,77 +1626,77 @@ Definition at line 483 of file php-\/binance-\/api.\-php.
 \subsubsection[{\$api\-\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$api\-\_\-key\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a4b70fc1796d52440e44423da2cbafca5}
 
 
-Definition at line 27 of file php-\/binance-\/api.\-php.
+Definition at line 33 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a5612f3068ec5843031812893537e7677}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$api\-\_\-secret@{\$api\-\_\-secret}}
 \index{\$api\-\_\-secret@{\$api\-\_\-secret}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$api\-\_\-secret}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$api\-\_\-secret\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a5612f3068ec5843031812893537e7677}
 
 
-Definition at line 28 of file php-\/binance-\/api.\-php.
+Definition at line 34 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a706b2458b10d731ea4918714c333a845}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$balances@{\$balances}}
 \index{\$balances@{\$balances}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$balances}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$balances = \mbox{[}$\,$\mbox{]}}}\label{classBinance_1_1API_a706b2458b10d731ea4918714c333a845}
 
 
-Definition at line 41 of file php-\/binance-\/api.\-php.
+Definition at line 47 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ac863e52396757997d84e6783b5336828}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$base@{\$base}}
 \index{\$base@{\$base}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$base}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$base = 'https\-://api.\-binance.\-com/api/'\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_ac863e52396757997d84e6783b5336828}
 
 
-Definition at line 24 of file php-\/binance-\/api.\-php.
+Definition at line 30 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a80f67dda302da9465596ad5e0bd86ce2}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$btc\-\_\-total@{\$btc\-\_\-total}}
 \index{\$btc\-\_\-total@{\$btc\-\_\-total}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$btc\-\_\-total}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$btc\-\_\-total = 0.\-00}}\label{classBinance_1_1API_a80f67dda302da9465596ad5e0bd86ce2}
 
 
-Definition at line 43 of file php-\/binance-\/api.\-php.
+Definition at line 49 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_af80ef162a101ffa0963d977126d6811d}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$btc\-\_\-value@{\$btc\-\_\-value}}
 \index{\$btc\-\_\-value@{\$btc\-\_\-value}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$btc\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$btc\-\_\-value = 0.\-00}}\label{classBinance_1_1API_af80ef162a101ffa0963d977126d6811d}
 
 
-Definition at line 42 of file php-\/binance-\/api.\-php.
+Definition at line 48 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_aaa75d873054290eecf1dd2876237a279}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$chart\-Queue@{\$chart\-Queue}}
 \index{\$chart\-Queue@{\$chart\-Queue}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$chart\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$chart\-Queue = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_aaa75d873054290eecf1dd2876237a279}
 
 
-Definition at line 31 of file php-\/binance-\/api.\-php.
+Definition at line 37 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a0c2d0cd199527b3b275143c49d91702e}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$charts@{\$charts}}
 \index{\$charts@{\$charts}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$charts}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$charts = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a0c2d0cd199527b3b275143c49d91702e}
 
 
-Definition at line 32 of file php-\/binance-\/api.\-php.
+Definition at line 38 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a69d62e886266a59b0a314cb4f5f164ca}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$depth\-Cache@{\$depth\-Cache}}
 \index{\$depth\-Cache@{\$depth\-Cache}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$depth\-Cache}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$depth\-Cache = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a69d62e886266a59b0a314cb4f5f164ca}
 
 
-Definition at line 29 of file php-\/binance-\/api.\-php.
+Definition at line 35 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ab04600479e07a4af0ead9ba84772bde1}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$depth\-Queue@{\$depth\-Queue}}
 \index{\$depth\-Queue@{\$depth\-Queue}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$depth\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$depth\-Queue = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_ab04600479e07a4af0ead9ba84772bde1}
 
 
-Definition at line 30 of file php-\/binance-\/api.\-php.
+Definition at line 36 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_aaaf9a901342001f8734bfab6ba505205}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$http\-Debug@{\$http\-Debug}}
 \index{\$http\-Debug@{\$http\-Debug}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$http\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$http\-Debug = false}}\label{classBinance_1_1API_aaaf9a901342001f8734bfab6ba505205}
 
 
-Definition at line 39 of file php-\/binance-\/api.\-php.
+Definition at line 45 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a8d15ac7cb74ac52f8f008e61aa7cab89}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$info@{\$info}}
 \index{\$info@{\$info}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1732,47 +1709,47 @@ Definition at line 39 of file php-\/binance-\/api.\-php.
 \end{DoxyCode}
 
 
-Definition at line 33 of file php-\/binance-\/api.\-php.
+Definition at line 39 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a1415587257942c2b5af22c642ff58005}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$proxy\-Conf@{\$proxy\-Conf}}
 \index{\$proxy\-Conf@{\$proxy\-Conf}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$proxy\-Conf}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$proxy\-Conf = null\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a1415587257942c2b5af22c642ff58005}
 
 
-Definition at line 36 of file php-\/binance-\/api.\-php.
+Definition at line 42 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a69a4bfc5a6773dff1d01166dfbb402a2}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$request\-Count@{\$request\-Count}}
 \index{\$request\-Count@{\$request\-Count}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$request\-Count}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$request\-Count = 0\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a69a4bfc5a6773dff1d01166dfbb402a2}
 
 
-Definition at line 38 of file php-\/binance-\/api.\-php.
+Definition at line 44 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a0ce2df2282110071b78061c3043200af}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$stream@{\$stream}}
 \index{\$stream@{\$stream}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$stream}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$stream = 'wss\-://stream.\-binance.\-com\-:9443/ws/'\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a0ce2df2282110071b78061c3043200af}
 
 
-Definition at line 26 of file php-\/binance-\/api.\-php.
+Definition at line 32 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a858ac2cec1de7719779b6c517adcb0bf}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$subscriptions@{\$subscriptions}}
 \index{\$subscriptions@{\$subscriptions}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$subscriptions}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$subscriptions = \mbox{[}$\,$\mbox{]}}}\label{classBinance_1_1API_a858ac2cec1de7719779b6c517adcb0bf}
 
 
-Definition at line 40 of file php-\/binance-\/api.\-php.
+Definition at line 46 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_ac40776b871ae1591348c96162e872789}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$transfered@{\$transfered}}
 \index{\$transfered@{\$transfered}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$transfered}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$transfered = 0\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_ac40776b871ae1591348c96162e872789}
 
 
-Definition at line 37 of file php-\/binance-\/api.\-php.
+Definition at line 43 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a52a5376574ff759fb1df6c8efe24cb7f}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!\$wapi@{\$wapi}}
 \index{\$wapi@{\$wapi}!Binance::API@{Binance\-::\-A\-P\-I}}
 \subsubsection[{\$wapi}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::\$wapi = 'https\-://api.\-binance.\-com/wapi/'\hspace{0.3cm}{\ttfamily [protected]}}}\label{classBinance_1_1API_a52a5376574ff759fb1df6c8efe24cb7f}
 
 
-Definition at line 25 of file php-\/binance-\/api.\-php.
+Definition at line 31 of file php-\/binance-\/api.\-php.
 

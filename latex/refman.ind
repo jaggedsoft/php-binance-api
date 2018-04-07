@@ -2,58 +2,58 @@
 
   \item {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{26}
   \item {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}secret}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{26}
   \item {\$balances}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{26}
   \item {\$base}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}total}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}value}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$chart\discretionary {-}{}{}Queue}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$charts}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$depth\discretionary {-}{}{}Cache}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$depth\discretionary {-}{}{}Queue}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$http\discretionary {-}{}{}Debug}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$info}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$proxy\discretionary {-}{}{}Conf}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$request\discretionary {-}{}{}Count}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{29}
+		\hyperpage{27}
   \item {\$stream}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{30}
+		\hyperpage{28}
   \item {\$subscriptions}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{30}
+		\hyperpage{28}
   \item {\$transfered}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{30}
+		\hyperpage{28}
   \item {\$wapi}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{30}
+		\hyperpage{28}
   \item {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}construct}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{10}
@@ -74,265 +74,265 @@
 
   \item {balances}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{12}
+		\hyperpage{11}
   \item {Binance}, \hyperpage{5}
   \item {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}
     \subitem {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}, 
-		\hyperpage{28}
+		\hyperpage{26}
     \subitem {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}secret}, 
-		\hyperpage{28}
-    \subitem {\$balances}, \hyperpage{28}
-    \subitem {\$base}, \hyperpage{29}
+		\hyperpage{26}
+    \subitem {\$balances}, \hyperpage{26}
+    \subitem {\$base}, \hyperpage{27}
     \subitem {\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}total}, 
-		\hyperpage{29}
+		\hyperpage{27}
     \subitem {\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}value}, 
-		\hyperpage{29}
-    \subitem {\$chart\discretionary {-}{}{}Queue}, \hyperpage{29}
-    \subitem {\$charts}, \hyperpage{29}
-    \subitem {\$depth\discretionary {-}{}{}Cache}, \hyperpage{29}
-    \subitem {\$depth\discretionary {-}{}{}Queue}, \hyperpage{29}
-    \subitem {\$http\discretionary {-}{}{}Debug}, \hyperpage{29}
-    \subitem {\$info}, \hyperpage{29}
-    \subitem {\$proxy\discretionary {-}{}{}Conf}, \hyperpage{29}
-    \subitem {\$request\discretionary {-}{}{}Count}, \hyperpage{29}
-    \subitem {\$stream}, \hyperpage{30}
-    \subitem {\$subscriptions}, \hyperpage{30}
-    \subitem {\$transfered}, \hyperpage{30}
-    \subitem {\$wapi}, \hyperpage{30}
+		\hyperpage{27}
+    \subitem {\$chart\discretionary {-}{}{}Queue}, \hyperpage{27}
+    \subitem {\$charts}, \hyperpage{27}
+    \subitem {\$depth\discretionary {-}{}{}Cache}, \hyperpage{27}
+    \subitem {\$depth\discretionary {-}{}{}Queue}, \hyperpage{27}
+    \subitem {\$http\discretionary {-}{}{}Debug}, \hyperpage{27}
+    \subitem {\$info}, \hyperpage{27}
+    \subitem {\$proxy\discretionary {-}{}{}Conf}, \hyperpage{27}
+    \subitem {\$request\discretionary {-}{}{}Count}, \hyperpage{27}
+    \subitem {\$stream}, \hyperpage{28}
+    \subitem {\$subscriptions}, \hyperpage{28}
+    \subitem {\$transfered}, \hyperpage{28}
+    \subitem {\$wapi}, \hyperpage{28}
     \subitem {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}construct}, 
 		\hyperpage{10}
     \subitem {account}, \hyperpage{10}
     \subitem {add\discretionary {-}{}{}To\discretionary {-}{}{}Transfered}, 
 		\hyperpage{10}
     \subitem {agg\discretionary {-}{}{}Trades}, \hyperpage{10}
-    \subitem {balances}, \hyperpage{12}
-    \subitem {book\discretionary {-}{}{}Prices}, \hyperpage{12}
-    \subitem {buy}, \hyperpage{12}
-    \subitem {buy\discretionary {-}{}{}Test}, \hyperpage{13}
-    \subitem {cancel}, \hyperpage{13}
-    \subitem {candlesticks}, \hyperpage{13}
-    \subitem {chart}, \hyperpage{15}
-    \subitem {cumulative}, \hyperpage{15}
-    \subitem {deposit\discretionary {-}{}{}Address}, \hyperpage{15}
-    \subitem {deposit\discretionary {-}{}{}History}, \hyperpage{16}
-    \subitem {depth}, \hyperpage{16}
-    \subitem {depth\discretionary {-}{}{}Cache}, \hyperpage{16}
-    \subitem {display\discretionary {-}{}{}Depth}, \hyperpage{17}
-    \subitem {exchange\discretionary {-}{}{}Info}, \hyperpage{17}
-    \subitem {first}, \hyperpage{17}
+    \subitem {balances}, \hyperpage{11}
+    \subitem {book\discretionary {-}{}{}Prices}, \hyperpage{11}
+    \subitem {buy}, \hyperpage{11}
+    \subitem {buy\discretionary {-}{}{}Test}, \hyperpage{12}
+    \subitem {cancel}, \hyperpage{12}
+    \subitem {candlesticks}, \hyperpage{12}
+    \subitem {chart}, \hyperpage{13}
+    \subitem {cumulative}, \hyperpage{13}
+    \subitem {deposit\discretionary {-}{}{}Address}, \hyperpage{13}
+    \subitem {deposit\discretionary {-}{}{}History}, \hyperpage{14}
+    \subitem {depth}, \hyperpage{14}
+    \subitem {depth\discretionary {-}{}{}Cache}, \hyperpage{14}
+    \subitem {display\discretionary {-}{}{}Depth}, \hyperpage{15}
+    \subitem {exchange\discretionary {-}{}{}Info}, \hyperpage{15}
+    \subitem {first}, \hyperpage{15}
     \subitem {get\discretionary {-}{}{}Proxy\discretionary {-}{}{}Uri\discretionary {-}{}{}String}, 
-		\hyperpage{18}
+		\hyperpage{16}
     \subitem {get\discretionary {-}{}{}Request\discretionary {-}{}{}Count}, 
-		\hyperpage{18}
-    \subitem {get\discretionary {-}{}{}Transfered}, \hyperpage{18}
-    \subitem {highstock}, \hyperpage{18}
-    \subitem {history}, \hyperpage{18}
-    \subitem {keep\discretionary {-}{}{}Alive}, \hyperpage{19}
-    \subitem {last}, \hyperpage{19}
-    \subitem {market\discretionary {-}{}{}Buy}, \hyperpage{19}
+		\hyperpage{16}
+    \subitem {get\discretionary {-}{}{}Transfered}, \hyperpage{16}
+    \subitem {highstock}, \hyperpage{16}
+    \subitem {history}, \hyperpage{16}
+    \subitem {keep\discretionary {-}{}{}Alive}, \hyperpage{17}
+    \subitem {last}, \hyperpage{17}
+    \subitem {market\discretionary {-}{}{}Buy}, \hyperpage{17}
     \subitem {market\discretionary {-}{}{}Buy\discretionary {-}{}{}Test}, 
-		\hyperpage{20}
-    \subitem {market\discretionary {-}{}{}Sell}, \hyperpage{20}
+		\hyperpage{18}
+    \subitem {market\discretionary {-}{}{}Sell}, \hyperpage{18}
     \subitem {market\discretionary {-}{}{}Sell\discretionary {-}{}{}Test}, 
-		\hyperpage{20}
-    \subitem {mini\discretionary {-}{}{}Ticker}, \hyperpage{21}
-    \subitem {open\discretionary {-}{}{}Orders}, \hyperpage{21}
-    \subitem {order}, \hyperpage{21}
-    \subitem {order\discretionary {-}{}{}Status}, \hyperpage{22}
-    \subitem {orders}, \hyperpage{22}
-    \subitem {prev\discretionary {-}{}{}Day}, \hyperpage{23}
-    \subitem {prices}, \hyperpage{23}
-    \subitem {sell}, \hyperpage{23}
-    \subitem {sell\discretionary {-}{}{}Test}, \hyperpage{24}
-    \subitem {set\discretionary {-}{}{}Proxy}, \hyperpage{24}
-    \subitem {sort\discretionary {-}{}{}Depth}, \hyperpage{24}
-    \subitem {terminate}, \hyperpage{25}
-    \subitem {ticker}, \hyperpage{25}
-    \subitem {time}, \hyperpage{25}
-    \subitem {trades}, \hyperpage{25}
+		\hyperpage{18}
+    \subitem {mini\discretionary {-}{}{}Ticker}, \hyperpage{19}
+    \subitem {open\discretionary {-}{}{}Orders}, \hyperpage{19}
+    \subitem {order}, \hyperpage{19}
+    \subitem {order\discretionary {-}{}{}Status}, \hyperpage{20}
+    \subitem {orders}, \hyperpage{20}
+    \subitem {prev\discretionary {-}{}{}Day}, \hyperpage{21}
+    \subitem {prices}, \hyperpage{21}
+    \subitem {sell}, \hyperpage{21}
+    \subitem {sell\discretionary {-}{}{}Test}, \hyperpage{22}
+    \subitem {set\discretionary {-}{}{}Proxy}, \hyperpage{22}
+    \subitem {sort\discretionary {-}{}{}Depth}, \hyperpage{22}
+    \subitem {terminate}, \hyperpage{23}
+    \subitem {ticker}, \hyperpage{23}
+    \subitem {time}, \hyperpage{23}
+    \subitem {trades}, \hyperpage{23}
     \subitem {use\discretionary {-}{}{}Server\discretionary {-}{}{}Time}, 
-		\hyperpage{27}
-    \subitem {user\discretionary {-}{}{}Data}, \hyperpage{27}
-    \subitem {withdraw}, \hyperpage{27}
-    \subitem {withdraw\discretionary {-}{}{}History}, \hyperpage{28}
+		\hyperpage{25}
+    \subitem {user\discretionary {-}{}{}Data}, \hyperpage{25}
+    \subitem {withdraw}, \hyperpage{25}
+    \subitem {withdraw\discretionary {-}{}{}History}, \hyperpage{26}
   \item {Binance\textbackslash {}\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{7}
   \item {book\discretionary {-}{}{}Prices}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{12}
+		\hyperpage{11}
   \item {buy}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{12}
+		\hyperpage{11}
   \item {buy\discretionary {-}{}{}Test}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{13}
+		\hyperpage{12}
 
   \indexspace
 
   \item {cancel}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{13}
+		\hyperpage{12}
   \item {candlesticks}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{13}
+		\hyperpage{12}
   \item {chart}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{15}
+		\hyperpage{13}
   \item {cumulative}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{15}
+		\hyperpage{13}
 
   \indexspace
 
   \item {deposit\discretionary {-}{}{}Address}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{15}
+		\hyperpage{13}
   \item {deposit\discretionary {-}{}{}History}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{16}
+		\hyperpage{14}
   \item {depth}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{16}
+		\hyperpage{14}
   \item {depth\discretionary {-}{}{}Cache}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{16}
+		\hyperpage{14}
   \item {display\discretionary {-}{}{}Depth}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{17}
+		\hyperpage{15}
 
   \indexspace
 
   \item {exchange\discretionary {-}{}{}Info}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{17}
+		\hyperpage{15}
 
   \indexspace
 
   \item {first}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{17}
+		\hyperpage{15}
 
   \indexspace
 
   \item {get\discretionary {-}{}{}Proxy\discretionary {-}{}{}Uri\discretionary {-}{}{}String}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{18}
+		\hyperpage{16}
   \item {get\discretionary {-}{}{}Request\discretionary {-}{}{}Count}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{18}
+		\hyperpage{16}
   \item {get\discretionary {-}{}{}Transfered}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{18}
+		\hyperpage{16}
 
   \indexspace
 
   \item {highstock}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{18}
+		\hyperpage{16}
   \item {history}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{18}
+		\hyperpage{16}
 
   \indexspace
 
   \item {keep\discretionary {-}{}{}Alive}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{19}
+		\hyperpage{17}
 
   \indexspace
 
   \item {last}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{19}
+		\hyperpage{17}
 
   \indexspace
 
   \item {market\discretionary {-}{}{}Buy}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{19}
+		\hyperpage{17}
   \item {market\discretionary {-}{}{}Buy\discretionary {-}{}{}Test}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{20}
+		\hyperpage{18}
   \item {market\discretionary {-}{}{}Sell}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{20}
+		\hyperpage{18}
   \item {market\discretionary {-}{}{}Sell\discretionary {-}{}{}Test}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{20}
+		\hyperpage{18}
   \item {mini\discretionary {-}{}{}Ticker}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{21}
+		\hyperpage{19}
 
   \indexspace
 
   \item {open\discretionary {-}{}{}Orders}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{21}
+		\hyperpage{19}
   \item {order}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{21}
+		\hyperpage{19}
   \item {order\discretionary {-}{}{}Status}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{22}
+		\hyperpage{20}
   \item {orders}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{22}
+		\hyperpage{20}
 
   \indexspace
 
   \item {prev\discretionary {-}{}{}Day}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{23}
+		\hyperpage{21}
   \item {prices}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{23}
+		\hyperpage{21}
 
   \indexspace
 
   \item {sell}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{23}
+		\hyperpage{21}
   \item {sell\discretionary {-}{}{}Test}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{24}
+		\hyperpage{22}
   \item {set\discretionary {-}{}{}Proxy}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{24}
+		\hyperpage{22}
   \item {sort\discretionary {-}{}{}Depth}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{24}
+		\hyperpage{22}
 
   \indexspace
 
   \item {terminate}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{25}
+		\hyperpage{23}
   \item {ticker}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{25}
+		\hyperpage{23}
   \item {time}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{25}
+		\hyperpage{23}
   \item {trades}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{25}
+		\hyperpage{23}
 
   \indexspace
 
   \item {use\discretionary {-}{}{}Server\discretionary {-}{}{}Time}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{25}
   \item {user\discretionary {-}{}{}Data}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{25}
 
   \indexspace
 
   \item {withdraw}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{25}
   \item {withdraw\discretionary {-}{}{}History}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{26}
 
 \end{theindex}

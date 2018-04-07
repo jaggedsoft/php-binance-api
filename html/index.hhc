@@ -19,7 +19,7 @@
       <UL>
       <LI><OBJECT type="text/sitemap"><param name="Name" value="API"><param name="Local" value="classBinance_1_1API.html"><param name="ImageNumber" value="1"></OBJECT>
         <UL>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="__construct"><param name="Local" value="classBinance_1_1API.html#a97cadb5a2170a1b34114592fb9b6912c"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="__construct"><param name="Local" value="classBinance_1_1API.html#adbaefdc26d86ac1fd69ad101e0905c78"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="account"><param name="Local" value="classBinance_1_1API.html#a14272f6a80009bc8fd742b5f35fee9a5"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="addToTransfered"><param name="Local" value="classBinance_1_1API.html#a90daef87526a753473580139c04d311b"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="aggTrades"><param name="Local" value="classBinance_1_1API.html#af047ce7afeff0729b62fb28b2697ad9f"><param name="ImageNumber" value="11"></OBJECT>
