@@ -539,9 +539,9 @@ class API {
     * @param $timestamp timestamp in millisecond
     */
    public function withdrawFee($asset, $timestamp, $recvWindow = null) {
-        $params = ["wapi"=>true, "asset"=>$asset, $timestamp];
+        $params = ["wapi"=>true, "asset"=>$asset, "timestamp" => $timestamp];
         if( is_null( $recvWindow ) == false ) {
-            $params['$timestamp'] = $timestamp;
+            $params['recvWindow'] = $recvWindow;
         }
         return $this->httpRequest("v3/withdrawFee.html", "GET", $params, true);
     }
