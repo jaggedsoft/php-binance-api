@@ -522,6 +522,29 @@ class API {
       }
       return $this->httpRequest( "v3/withdraw.html", "POST", $options, true );
    }
+   
+      /**
+    * withdrawFee request the fees of an asset
+    *
+    * $asset = "BTC";
+    * $timestamp = 1510903211000;
+    *
+    * Array
+    *  (
+    *    [success] => 1
+    *    [withdrawFee] => 1
+    *  )
+    *
+    * @param $asset string the currency such as BTC
+    * @param $timestamp timestamp in millisecond
+    */
+   public function withdrawFee($asset, $timestamp, $recvWindow = null) {
+        $params = ["wapi"=>true, "asset"=>$asset, $timestamp];
+        if( is_null( $recvWindow ) == false ) {
+            $params['$timestamp'] = $timestamp;
+        }
+        return $this->httpRequest("v3/withdrawFee.html", "GET", $params, true);
+    }
 
    /**
     * depositAddress get the deposit address for an asset
