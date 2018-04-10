@@ -498,6 +498,14 @@ string $symbol, int $limit)</para>
             <para>
                 <itemizedlist>
                     <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a20661f6cf682e433fcdfc035a9388c5f">kline</link> (
+ $symbols, string $interval, Callable $callback)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
                         <para> <link linkend="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14">terminate</link> (
  $endpoint)</para>
                     </listitem>
@@ -1925,7 +1933,7 @@ exception                            <row>
 
             </section>
             <section xml:id="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa">
-                <title>Binance\API::candlesticks (string $symbol, string $interval=&quot;5m&quot;, int $limit=null, $startTime=null, $endTime=null)</title> <emphasis>candlesticks get the cancles for the given intervals
+                <title>Binance\API::candlesticks (string $symbol, string $interval=&quot;5m&quot;, int $limit=null, $startTime=null, $endTime=null)</title> <emphasis>candlesticks get the candles for the given intervals
 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M</emphasis>
                 
 <para>$candles = $api-&gt;candlesticks(&quot;BNBBTC&quot;, &quot;5m&quot;);</para>
@@ -2323,6 +2331,57 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 <title>Binance\API::chart ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</title> <emphasis>chart Pulls /kline data and subscribes to @klines WebSocket endpoint</emphasis>
                 
 <para>$api-&gt;chart([&quot;BNBBTC&quot;], &quot;15m&quot;, function($api, $symbol, $chart) { echo &quot;{$symbol} chart update\n&quot;; print_r($chart); });</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$symbols</entry>
+                                <entry>
+<para>string required symbols </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$interval</entry>
+                                <entry>
+<para>string time inteval </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$callback</entry>
+                                <entry>
+<para>callable closure </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a20661f6cf682e433fcdfc035a9388c5f">
+                <title>Binance\API::kline ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</title> <emphasis>kline Subscribes to @klines WebSocket endpoint for latest chart data only</emphasis>
+                
+<para>$api-&gt;kline([&quot;BNBBTC&quot;], &quot;15m&quot;, function($api, $symbol, $chart) { echo &quot;{$symbol} chart update\n&quot;; print_r($chart); });</para>
 
 <para>
                 <formalpara>

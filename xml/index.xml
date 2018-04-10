@@ -64,6 +64,7 @@
     <member refid="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67" kind="function"><name>trades</name></member>
     <member refid="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28" kind="function"><name>ticker</name></member>
     <member refid="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c" kind="function"><name>chart</name></member>
+    <member refid="classBinance_1_1API_1a20661f6cf682e433fcdfc035a9388c5f" kind="function"><name>kline</name></member>
     <member refid="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14" kind="function"><name>terminate</name></member>
     <member refid="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" kind="function"><name>keepAlive</name></member>
     <member refid="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" kind="function"><name>userData</name></member>

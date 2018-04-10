@@ -72,7 +72,7 @@ Main Binance class.
 \hyperlink{classBinance_1_1API_a40e8ddf7280b33b1899f59d0f16e5fa0}{order} (string \$side, string \$symbol, \$quantity, \$price, string \$type=\char`\"{}L\-I\-M\-I\-T\char`\"{}, array \$flags=\mbox{[}$\,$\mbox{]}, bool \$test=false)
 \begin{DoxyCompactList}\small\item\em order formats the orders before sending them to the curl wrapper function You can call this function directly or use the helper functions \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a8273c4cc5c3226aa46e5aee6a69a58aa}{candlesticks} (string \$symbol, string \$interval=\char`\"{}5m\char`\"{}, int \$limit=null, \$start\-Time=null, \$end\-Time=null)
-\begin{DoxyCompactList}\small\item\em candlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1\-M \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em candlesticks get the candles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1\-M \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a00d93784ab9eb83c3817ccaa75e9746d}{cumulative} (array \$\hyperlink{classBinance_1_1API_ac36901dbea220b2401786a6d1bc4d051}{depth})
 \begin{DoxyCompactList}\small\item\em cumulative Converts depth cache into a cumulative array \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a5eaa9d36db8181fc4605a3841f1106ac}{highstock} (array \$\hyperlink{classBinance_1_1API_a1e0a2985b3ff7e4e9c1155a8e46caa5c}{chart}, bool \$include\-\_\-volume=false)
@@ -99,6 +99,8 @@ Main Binance class.
 \begin{DoxyCompactList}\small\item\em ticker pulls 24h price change statistics via Web\-Socket \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a1e0a2985b3ff7e4e9c1155a8e46caa5c}{chart} (\$symbols, string \$interval=\char`\"{}30m\char`\"{}, Callable \$callback)
 \begin{DoxyCompactList}\small\item\em chart Pulls /kline data and subscribes to  Web\-Socket endpoint \end{DoxyCompactList}\item 
+\hyperlink{classBinance_1_1API_a20661f6cf682e433fcdfc035a9388c5f}{kline} (\$symbols, string \$interval=\char`\"{}30m\char`\"{}, Callable \$callback)
+\begin{DoxyCompactList}\small\item\em kline Subscribes to  Web\-Socket endpoint for latest chart data only \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a67ed560d60527ad64f16253069cb1b14}{terminate} (\$endpoint)
 \begin{DoxyCompactList}\small\item\em terminate Terminates websocket endpoints. \end{DoxyCompactList}\item 
 \hyperlink{classBinance_1_1API_a2a29ca9ab18d04ff2e42aa6e5e0ce312}{keep\-Alive} ()
@@ -436,7 +438,7 @@ Definition at line 369 of file php-\/binance-\/api.\-php.
 )}}\label{classBinance_1_1API_a8273c4cc5c3226aa46e5aee6a69a58aa}
 
 
-candlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1\-M 
+candlesticks get the candles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1\-M 
 
 \$candles = \$api-\/$>$candlesticks(\char`\"{}\-B\-N\-B\-B\-T\-C\char`\"{}, \char`\"{}5m\char`\"{});
 
@@ -865,7 +867,43 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1730 of file php-\/binance-\/api.\-php.
+Definition at line 1777 of file php-\/binance-\/api.\-php.
+
+\hypertarget{classBinance_1_1API_a20661f6cf682e433fcdfc035a9388c5f}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!kline@{kline}}
+\index{kline@{kline}!Binance::API@{Binance\-::\-A\-P\-I}}
+\subsubsection[{kline}]{\setlength{\rightskip}{0pt plus 5cm}Binance\textbackslash{}\-A\-P\-I\-::kline (
+\begin{DoxyParamCaption}
+\item[{}]{\$symbols, }
+\item[{string}]{\$interval = {\ttfamily \char`\"{}30m\char`\"{}}, }
+\item[{Callable}]{\$callback}
+\end{DoxyParamCaption}
+)}}\label{classBinance_1_1API_a20661f6cf682e433fcdfc035a9388c5f}
+
+
+kline Subscribes to  Web\-Socket endpoint for latest chart data only 
+
+\$api-\/$>$kline(\mbox{[}\char`\"{}\-B\-N\-B\-B\-T\-C\char`\"{}\mbox{]}, \char`\"{}15m\char`\"{}, function(\$api, \$symbol, \$chart) \{ echo \char`\"{}\{\$symbol\} chart update\textbackslash{}n\char`\"{}; print\-\_\-r(\$chart); \});
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$symbols} & string required symbols \\
+\hline
+{\em \$interval} & string time inteval \\
+\hline
+{\em \$callback} & callable closure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+null 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \textbackslash{}\-Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 1723 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a468092e1edfd35f79954236714c825c6}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!last@{last}}
 \index{last@{last}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1041,7 +1079,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1826 of file php-\/binance-\/api.\-php.
+Definition at line 1873 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a155a0a0d36ea7145f5833d9f17386335}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!open\-Orders@{open\-Orders}}
 \index{open\-Orders@{open\-Orders}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1400,7 +1438,7 @@ null
 \end{DoxyReturn}
 
 
-Definition at line 1718 of file php-\/binance-\/api.\-php.
+Definition at line 1765 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_a0ef50663f1cca6d48620d458fd26ee28}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!ticker@{ticker}}
 \index{ticker@{ticker}!Binance::API@{Binance\-::\-A\-P\-I}}
@@ -1518,7 +1556,7 @@ null
 \end{DoxyExceptions}
 
 
-Definition at line 1777 of file php-\/binance-\/api.\-php.
+Definition at line 1824 of file php-\/binance-\/api.\-php.
 
 \hypertarget{classBinance_1_1API_abcc2a5c9ca76dd659db43aec7a0a9a5f}{\index{Binance\-::\-A\-P\-I@{Binance\-::\-A\-P\-I}!use\-Server\-Time@{use\-Server\-Time}}
 \index{use\-Server\-Time@{use\-Server\-Time}!Binance::API@{Binance\-::\-A\-P\-I}}

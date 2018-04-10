@@ -73,6 +73,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a5eaa9d36db8181fc4605a3841f1106ac"><param name="Name" value="highstock"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a433da4ce62d8acc2a5a501b98215a4e8"><param name="Name" value="history"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a2a29ca9ab18d04ff2e42aa6e5e0ce312"><param name="Name" value="keepAlive"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a20661f6cf682e433fcdfc035a9388c5f"><param name="Name" value="kline"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a468092e1edfd35f79954236714c825c6"><param name="Name" value="last"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#aa6156e4c8d03bbdd8c16bbb18ea75646"><param name="Name" value="marketBuy"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#ad11565e34ba1c715ac2478ee7f9aab6e"><param name="Name" value="marketBuyTest"></OBJECT>
@@ -118,6 +119,7 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a5eaa9d36db8181fc4605a3841f1106ac"><param name="Name" value="highstock"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a433da4ce62d8acc2a5a501b98215a4e8"><param name="Name" value="history"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a2a29ca9ab18d04ff2e42aa6e5e0ce312"><param name="Name" value="keepAlive"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a20661f6cf682e433fcdfc035a9388c5f"><param name="Name" value="kline"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#a468092e1edfd35f79954236714c825c6"><param name="Name" value="last"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#aa6156e4c8d03bbdd8c16bbb18ea75646"><param name="Name" value="marketBuy"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="classBinance_1_1API.html#ad11565e34ba1c715ac2478ee7f9aab6e"><param name="Name" value="marketBuyTest"></OBJECT>

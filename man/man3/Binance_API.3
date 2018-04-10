@@ -139,7 +139,7 @@ Main Binance class\&.
 .ti -1c
 .RI "\fBcandlesticks\fP (string $symbol, string $interval='5m', int $limit=null, $startTime=null, $endTime=null)"
 .br
-.RI "\fIcandlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M \fP"
+.RI "\fIcandlesticks get the candles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M \fP"
 .ti -1c
 .RI "\fBcumulative\fP (array $\fBdepth\fP)"
 .br
@@ -192,6 +192,10 @@ Main Binance class\&.
 .RI "\fBchart\fP ($symbols, string $interval='30m', Callable $callback)"
 .br
 .RI "\fIchart Pulls /kline data and subscribes to  WebSocket endpoint \fP"
+.ti -1c
+.RI "\fBkline\fP ($symbols, string $interval='30m', Callable $callback)"
+.br
+.RI "\fIkline Subscribes to  WebSocket endpoint for latest chart data only \fP"
 .ti -1c
 .RI "\fBterminate\fP ($endpoint)"
 .br
@@ -482,7 +486,7 @@ Definition at line 369 of file php-binance-api\&.php\&.
 .SS "Binance\\API::candlesticks (string$symbol, string$interval = \fC'5m'\fP, int$limit = \fCnull\fP, $startTime = \fCnull\fP, $endTime = \fCnull\fP)"
 
 .PP
-candlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M $candles = $api->candlesticks('BNBBTC', '5m');
+candlesticks get the candles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M $candles = $api->candlesticks('BNBBTC', '5m');
 .PP
 \fBParameters:\fP
 .RS 4
@@ -800,7 +804,34 @@ null
 .PP
 
 .PP
-Definition at line 1730 of file php-binance-api\&.php\&.
+Definition at line 1777 of file php-binance-api\&.php\&.
+.SS "Binance\\API::kline ($symbols, string$interval = \fC'30m'\fP, Callable$callback)"
+
+.PP
+kline Subscribes to  WebSocket endpoint for latest chart data only $api->kline(['BNBBTC'], '15m', function($api, $symbol, $chart) { echo '{$symbol} chart update\\n'; print_r($chart); });
+.PP
+\fBParameters:\fP
+.RS 4
+\fI$symbols\fP string required symbols 
+.br
+\fI$interval\fP string time inteval 
+.br
+\fI$callback\fP callable closure 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+null 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fI\\Exception\fP 
+.RE
+.PP
+
+.PP
+Definition at line 1723 of file php-binance-api\&.php\&.
 .SS "Binance\\API::last (array$array)"
 
 .PP
@@ -934,7 +965,7 @@ null
 .PP
 
 .PP
-Definition at line 1826 of file php-binance-api\&.php\&.
+Definition at line 1873 of file php-binance-api\&.php\&.
 .SS "Binance\\API::openOrders (string$symbol = \fCnull\fP)"
 
 .PP
@@ -1210,7 +1241,7 @@ null
 .PP
 
 .PP
-Definition at line 1718 of file php-binance-api\&.php\&.
+Definition at line 1765 of file php-binance-api\&.php\&.
 .SS "Binance\\API::ticker ($symbol, Callable$callback)"
 
 .PP
@@ -1297,7 +1328,7 @@ null
 .PP
 
 .PP
-Definition at line 1777 of file php-binance-api\&.php\&.
+Definition at line 1824 of file php-binance-api\&.php\&.
 .SS "Binance\\API::useServerTime ()"
 
 .PP

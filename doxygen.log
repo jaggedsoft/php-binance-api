@@ -1,23 +1,27 @@
 Error: When enabling GENERATE_HTMLHELP the tree view (GENERATE_TREEVIEW) should be disabled. I'll do it for you.
 Error: When enabling GENERATE_HTMLHELP the search engine (SEARCHENGINE) should be disabled. I'll do it for you.
-error: fatal: at line 1865 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
-error: fatal: at line 1865 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
-error: fatal: at line 1865 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 1912 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
+error: fatal: at line 1912 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 1912 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
 fatal: /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: '/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php' is outside repository
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1641: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1709: warning: Found unknown command `\klines'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1456: warning: Found unknown command `\depth'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1456: warning: Found unknown command `\depth'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1641: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1709: warning: Found unknown command `\klines'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1641: warning: Found unknown command `\klines'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1456: warning: Found unknown command `\depth'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1457: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, Callable $callback)
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1457: warning: The following parameters of Binance\API\depthCache($symbols, Callable $callback) are not documented:
   parameter '$symbols'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1709: warning: Found unknown command `\klines'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1456: warning: Found unknown command `\depth'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1457: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, Callable $callback)
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1457: warning: The following parameters of Binance\API\depthCache($symbols, Callable $callback) are not documented:
   parameter '$symbols'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1641: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1709: warning: Found unknown command `\klines'
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1457: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, Callable $callback)
 /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1457: warning: The following parameters of Binance\API\depthCache($symbols, Callable $callback) are not documented:
   parameter '$symbols'
@@ -117,5 +121,5 @@ Generating Docbook output for namespace Binance
 Generating Docbook output for class Binance::API
 Generating Docbook output for file php-binance-api.php
 Combining RTF output...
-lookup cache used 141/65536 hits=950 misses=141
+lookup cache used 142/65536 hits=956 misses=142
 finished...

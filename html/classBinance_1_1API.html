@@ -155,7 +155,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a40e8ddf7280b33b1899f59d0f16e5fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">order formats the orders before sending them to the curl wrapper function You can call this function directly or use the helper functions  <a href="#a40e8ddf7280b33b1899f59d0f16e5fa0">More...</a><br/></td></tr>
 <tr class="separator:a40e8ddf7280b33b1899f59d0f16e5fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8273c4cc5c3226aa46e5aee6a69a58aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a8273c4cc5c3226aa46e5aee6a69a58aa">candlesticks</a> (string $symbol, string $interval=&quot;5m&quot;, int $limit=null, $startTime=null, $endTime=null)</td></tr>
-<tr class="memdesc:a8273c4cc5c3226aa46e5aee6a69a58aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">candlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M  <a href="#a8273c4cc5c3226aa46e5aee6a69a58aa">More...</a><br/></td></tr>
+<tr class="memdesc:a8273c4cc5c3226aa46e5aee6a69a58aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">candlesticks get the candles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M  <a href="#a8273c4cc5c3226aa46e5aee6a69a58aa">More...</a><br/></td></tr>
 <tr class="separator:a8273c4cc5c3226aa46e5aee6a69a58aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00d93784ab9eb83c3817ccaa75e9746d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a00d93784ab9eb83c3817ccaa75e9746d">cumulative</a> (array $<a class="el" href="classBinance_1_1API.html#ac36901dbea220b2401786a6d1bc4d051">depth</a>)</td></tr>
 <tr class="memdesc:a00d93784ab9eb83c3817ccaa75e9746d"><td class="mdescLeft">&#160;</td><td class="mdescRight">cumulative Converts depth cache into a cumulative array  <a href="#a00d93784ab9eb83c3817ccaa75e9746d">More...</a><br/></td></tr>
@@ -196,6 +196,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e0a2985b3ff7e4e9c1155a8e46caa5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a1e0a2985b3ff7e4e9c1155a8e46caa5c">chart</a> ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</td></tr>
 <tr class="memdesc:a1e0a2985b3ff7e4e9c1155a8e46caa5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">chart Pulls /kline data and subscribes to  WebSocket endpoint  <a href="#a1e0a2985b3ff7e4e9c1155a8e46caa5c">More...</a><br/></td></tr>
 <tr class="separator:a1e0a2985b3ff7e4e9c1155a8e46caa5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20661f6cf682e433fcdfc035a9388c5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a20661f6cf682e433fcdfc035a9388c5f">kline</a> ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</td></tr>
+<tr class="memdesc:a20661f6cf682e433fcdfc035a9388c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">kline Subscribes to  WebSocket endpoint for latest chart data only  <a href="#a20661f6cf682e433fcdfc035a9388c5f">More...</a><br/></td></tr>
+<tr class="separator:a20661f6cf682e433fcdfc035a9388c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67ed560d60527ad64f16253069cb1b14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a67ed560d60527ad64f16253069cb1b14">terminate</a> ($endpoint)</td></tr>
 <tr class="memdesc:a67ed560d60527ad64f16253069cb1b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">terminate Terminates websocket endpoints.  <a href="#a67ed560d60527ad64f16253069cb1b14">More...</a><br/></td></tr>
 <tr class="separator:a67ed560d60527ad64f16253069cb1b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -631,7 +634,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>candlesticks get the cancles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M </p>
+<p>candlesticks get the candles for the given intervals 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M </p>
 <p>$candles = $api-&gt;candlesticks("BNBBTC", "5m");</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1132,7 +1135,59 @@ Protected Attributes</h2></td></tr>
 <p>$api-&gt;keepAlive();</p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01730">1730</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01777">1777</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a20661f6cf682e433fcdfc035a9388c5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Binance\API::kline </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$symbols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$interval</em> = <code>&quot;30m&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Callable&#160;</td>
+          <td class="paramname"><em>$callback</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>kline Subscribes to  WebSocket endpoint for latest chart data only </p>
+<p>$api-&gt;kline(["BNBBTC"], "15m", function($api, $symbol, $chart) { echo "{$symbol} chart update\n"; print_r($chart); });</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$symbols</td><td>string required symbols </td></tr>
+    <tr><td class="paramname">$interval</td><td>string time inteval </td></tr>
+    <tr><td class="paramname">$callback</td><td>callable closure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">\Exception</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01723">1723</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1372,7 +1427,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01826">1826</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01873">1873</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1857,7 +1912,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 <p>$api-&gt;terminate('ethbtc_kline@5m');</p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01718">1718</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01765">1765</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2009,7 +2064,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01777">1777</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01824">1824</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2498,7 +2553,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 10 2018 16:56:11 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 10 2018 21:12:19 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
