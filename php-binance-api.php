@@ -909,7 +909,7 @@ class API {
    }
 
    /**
-    * candlesticks get the cancles for the given intervals
+    * candlesticks get the candles for the given intervals
     * 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
     *
     * $candles = $api->candlesticks("BNBBTC", "5m");
@@ -1672,11 +1672,10 @@ class API {
             $this->chartQueue[ $symbol ] = [];
          $this->chartQueue[ $symbol ][ $interval ] = [];
          $this->info[ $symbol ][ $interval ][ 'firstOpen' ] = 0;
-         // $this->info[$symbol]['chartCallback'.$interval] = $callback;
          $endpoint = strtolower( $symbol ) . '@kline_' . $interval;
          $this->subscriptions[ $endpoint ] = true;
-         $connector( $this->stream . $endpoint )->then( function ( $ws ) use ($callback, $symbol, $loop, $endpoint, $interval ) {
-            $ws->on( 'message', function ( $data ) use ($ws, $loop, $callback, $endpoint ) {
+         $connector( $this->stream . $endpoint )->then( function ( $ws ) use ( $callback, $symbol, $loop, $endpoint, $interval ) {
+            $ws->on( 'message', function ( $data ) use ( $ws, $loop, $callback, $endpoint ) {
                if( $this->subscriptions[ $endpoint ] === false ) {
                   //$this->subscriptions[$endpoint] = null;
                   $loop->stop();
@@ -1689,11 +1688,11 @@ class API {
                $this->chartHandler( $symbol, $interval, $json );
                call_user_func( $callback, $this, $symbol, $this->charts[ $symbol ][ $interval ] );
             } );
-            $ws->on( 'close', function ( $code = null, $reason = null ) use ($symbol, $loop, $interval ) {
+            $ws->on( 'close', function ( $code = null, $reason = null ) use ( $symbol, $loop, $interval ) {
                echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                $loop->stop();
             } );
-         }, function ( $e ) use ($loop, $symbol, $interval ) {
+         }, function ( $e ) use ( $loop, $symbol, $interval ) {
             echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
             $loop->stop();
          } );
@@ -1702,8 +1701,56 @@ class API {
             $this->chartHandler( $symbol, $interval, $json );
          }
          $this->chartQueue[ $symbol ][ $interval ] = [];
-         // $this->info[$symbol]['chartCallback'.$interval]($this, $symbol, $this->charts[$symbol][$interval]);
          call_user_func( $callback, $this, $symbol, $this->charts[ $symbol ][ $interval ] );
+      }
+      $loop->run();
+   }
+	
+   /**
+    * kline Subscribes to @klines WebSocket endpoint for latest chart data only
+    *
+    * $api->kline(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+    * echo "{$symbol} chart update\n";
+    * print_r($chart);
+    * });
+    *
+    * @param $symbols string required symbols
+    * @param $interval string time inteval
+    * @param $callback callable closure
+    * @return null
+    * @throws \Exception
+    */
+	 public function kline( $symbols, string $interval = "30m", Callable $callback ) {
+      if( !is_array( $symbols ) )
+         $symbols = [ 
+               $symbols 
+         ];
+      $loop = \React\EventLoop\Factory::create();
+      $react = new \React\Socket\Connector( $loop );
+      $connector = new \Ratchet\Client\Connector( $loop, $react );
+      foreach( $symbols as $symbol ) {
+         $endpoint = strtolower( $symbol ) . '@kline_' . $interval;
+         $this->subscriptions[ $endpoint ] = true;
+         $connector( $this->stream . $endpoint )->then( function ( $ws ) use ( $callback, $symbol, $loop, $endpoint, $interval ) {
+            $ws->on( 'message', function ( $data ) use ( $ws, $loop, $callback, $endpoint ) {
+               if( $this->subscriptions[ $endpoint ] === false ) {
+                  $loop->stop();
+                  return;
+               }
+               $json = json_decode( $data );
+               $chart = $json->k;
+               $symbol = $json->s;
+               $interval = $chart->i;
+               call_user_func( $callback, $this, $symbol, $this->chart );
+            } );
+            $ws->on( 'close', function ( $code = null, $reason = null ) use ( $symbol, $loop, $interval ) {
+               echo "kline({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+               $loop->stop();
+            } );
+         }, function ( $e ) use ( $loop, $symbol, $interval ) {
+            echo "kline({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $loop->stop();
+         } );
       }
       $loop->run();
    }
