@@ -121,5 +121,5 @@ Generating Docbook output for namespace Binance
 Generating Docbook output for class Binance::API
 Generating Docbook output for file php-binance-api.php
 Combining RTF output...
-lookup cache used 142/65536 hits=956 misses=142
+lookup cache used 144/65536 hits=956 misses=144
 finished...

@@ -67,10 +67,10 @@
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;__construct2(<sp/>$param[<sp/>0<sp/>],<sp/>$param[<sp/>1<sp/>]<sp/>);</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;__construct2(<sp/>$param[<sp/>0<sp/>],<sp/>$param[<sp/>1<sp/>],<sp/>$param[<sp/>2<sp/>]<sp/>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;__construct3(<sp/>$param[<sp/>0<sp/>],<sp/>$param[<sp/>1<sp/>],<sp/>$param[<sp/>2<sp/>]<sp/>);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;__construct2(<sp/>$param[<sp/>0<sp/>],<sp/>$param[<sp/>1<sp/>],<sp/>$param[<sp/>2<sp/>],<sp/>$param[<sp/>3<sp/>]<sp/>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;__construct4(<sp/>$param[<sp/>0<sp/>],<sp/>$param[<sp/>1<sp/>],<sp/>$param[<sp/>2<sp/>],<sp/>$param[<sp/>3<sp/>]<sp/>);</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
