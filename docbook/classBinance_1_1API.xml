@@ -69,6 +69,13 @@
             <para>
                 <itemizedlist>
                     <listitem>
+                        <para>$curlOpts</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
                         <para>$info</para>
                     </listitem>
                 </itemizedlist>
@@ -582,6 +589,14 @@ string $api_key, string $api_secret, array $options, false] , array $proxyConf)<
                 <itemizedlist>
                     <listitem>
                         <para> <link linkend="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf">setupApiConfigFromFile</link> (
+string $file)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a012f48621ba42ff06159cbc3024f20e9">setupCurlOptsFromFile</link> (
 string $file)</para>
                     </listitem>
                 </itemizedlist>
@@ -2691,6 +2706,35 @@ Specifiy the filename where the config is stored.</emphasis>
             <section xml:id="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf">
                 <title>Binance\API::setupApiConfigFromFile (string $file=null)</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt
 to load the api_key and api_secret from the users home directory in the file
+~/jaggedsoft/php-binance-api.json.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$file</entry>
+                                <entry>
+<para>string file location </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a012f48621ba42ff06159cbc3024f20e9">
+                <title>Binance\API::setupCurlOptsFromFile (string $file=null)</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt
+to load the acurlopts from the users home directory in the file
 ~/jaggedsoft/php-binance-api.json.</emphasis>
                 
 <para>

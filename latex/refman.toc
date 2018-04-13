@@ -68,14 +68,15 @@
 \contentsline {subsubsection}{\numberline {4.1.4.6}\$btc\discretionary {-}{}{}\_\discretionary {-}{}{}value}{27}{subsubsection.4.1.4.6}
 \contentsline {subsubsection}{\numberline {4.1.4.7}\$chart\discretionary {-}{}{}Queue}{27}{subsubsection.4.1.4.7}
 \contentsline {subsubsection}{\numberline {4.1.4.8}\$charts}{27}{subsubsection.4.1.4.8}
-\contentsline {subsubsection}{\numberline {4.1.4.9}\$depth\discretionary {-}{}{}Cache}{27}{subsubsection.4.1.4.9}
-\contentsline {subsubsection}{\numberline {4.1.4.10}\$depth\discretionary {-}{}{}Queue}{28}{subsubsection.4.1.4.10}
-\contentsline {subsubsection}{\numberline {4.1.4.11}\$http\discretionary {-}{}{}Debug}{28}{subsubsection.4.1.4.11}
-\contentsline {subsubsection}{\numberline {4.1.4.12}\$info}{28}{subsubsection.4.1.4.12}
-\contentsline {subsubsection}{\numberline {4.1.4.13}\$proxy\discretionary {-}{}{}Conf}{28}{subsubsection.4.1.4.13}
-\contentsline {subsubsection}{\numberline {4.1.4.14}\$request\discretionary {-}{}{}Count}{28}{subsubsection.4.1.4.14}
-\contentsline {subsubsection}{\numberline {4.1.4.15}\$stream}{28}{subsubsection.4.1.4.15}
-\contentsline {subsubsection}{\numberline {4.1.4.16}\$subscriptions}{28}{subsubsection.4.1.4.16}
-\contentsline {subsubsection}{\numberline {4.1.4.17}\$transfered}{28}{subsubsection.4.1.4.17}
-\contentsline {subsubsection}{\numberline {4.1.4.18}\$wapi}{28}{subsubsection.4.1.4.18}
+\contentsline {subsubsection}{\numberline {4.1.4.9}\$curl\discretionary {-}{}{}Opts}{27}{subsubsection.4.1.4.9}
+\contentsline {subsubsection}{\numberline {4.1.4.10}\$depth\discretionary {-}{}{}Cache}{28}{subsubsection.4.1.4.10}
+\contentsline {subsubsection}{\numberline {4.1.4.11}\$depth\discretionary {-}{}{}Queue}{28}{subsubsection.4.1.4.11}
+\contentsline {subsubsection}{\numberline {4.1.4.12}\$http\discretionary {-}{}{}Debug}{28}{subsubsection.4.1.4.12}
+\contentsline {subsubsection}{\numberline {4.1.4.13}\$info}{28}{subsubsection.4.1.4.13}
+\contentsline {subsubsection}{\numberline {4.1.4.14}\$proxy\discretionary {-}{}{}Conf}{28}{subsubsection.4.1.4.14}
+\contentsline {subsubsection}{\numberline {4.1.4.15}\$request\discretionary {-}{}{}Count}{28}{subsubsection.4.1.4.15}
+\contentsline {subsubsection}{\numberline {4.1.4.16}\$stream}{28}{subsubsection.4.1.4.16}
+\contentsline {subsubsection}{\numberline {4.1.4.17}\$subscriptions}{28}{subsubsection.4.1.4.17}
+\contentsline {subsubsection}{\numberline {4.1.4.18}\$transfered}{28}{subsubsection.4.1.4.18}
+\contentsline {subsubsection}{\numberline {4.1.4.19}\$wapi}{28}{subsubsection.4.1.4.19}
 \contentsline {chapter}{Index}{29}{section*.6}

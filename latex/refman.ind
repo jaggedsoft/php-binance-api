@@ -24,12 +24,15 @@
   \item {\$charts}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{27}
+  \item {\$curl\discretionary {-}{}{}Opts}
+    \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
+		\hyperpage{27}
   \item {\$depth\discretionary {-}{}{}Cache}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{27}
   \item {\$depth\discretionary {-}{}{}Queue}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{28}
   \item {\$http\discretionary {-}{}{}Debug}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{28}
@@ -89,8 +92,9 @@
 		\hyperpage{27}
     \subitem {\$chart\discretionary {-}{}{}Queue}, \hyperpage{27}
     \subitem {\$charts}, \hyperpage{27}
+    \subitem {\$curl\discretionary {-}{}{}Opts}, \hyperpage{27}
     \subitem {\$depth\discretionary {-}{}{}Cache}, \hyperpage{27}
-    \subitem {\$depth\discretionary {-}{}{}Queue}, \hyperpage{27}
+    \subitem {\$depth\discretionary {-}{}{}Queue}, \hyperpage{28}
     \subitem {\$http\discretionary {-}{}{}Debug}, \hyperpage{28}
     \subitem {\$info}, \hyperpage{28}
     \subitem {\$proxy\discretionary {-}{}{}Conf}, \hyperpage{28}

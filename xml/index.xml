@@ -10,6 +10,7 @@
     <member refid="classBinance_1_1API_1ab04600479e07a4af0ead9ba84772bde1" kind="variable"><name>$depthQueue</name></member>
     <member refid="classBinance_1_1API_1aaa75d873054290eecf1dd2876237a279" kind="variable"><name>$chartQueue</name></member>
     <member refid="classBinance_1_1API_1a0c2d0cd199527b3b275143c49d91702e" kind="variable"><name>$charts</name></member>
+    <member refid="classBinance_1_1API_1ace9645947686e99baf916e3bc189aeaf" kind="variable"><name>$curlOpts</name></member>
     <member refid="classBinance_1_1API_1a8d15ac7cb74ac52f8f008e61aa7cab89" kind="variable"><name>$info</name></member>
     <member refid="classBinance_1_1API_1a1415587257942c2b5af22c642ff58005" kind="variable"><name>$proxyConf</name></member>
     <member refid="classBinance_1_1API_1ac40776b871ae1591348c96162e872789" kind="variable"><name>$transfered</name></member>
@@ -75,6 +76,7 @@
     <member refid="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c" kind="function"><name>__construct3</name></member>
     <member refid="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f" kind="function"><name>__construct4</name></member>
     <member refid="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf" kind="function"><name>setupApiConfigFromFile</name></member>
+    <member refid="classBinance_1_1API_1a012f48621ba42ff06159cbc3024f20e9" kind="function"><name>setupCurlOptsFromFile</name></member>
     <member refid="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab" kind="function"><name>setupProxyConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590" kind="function"><name>httpRequest</name></member>
     <member refid="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159" kind="function"><name>balanceData</name></member>
