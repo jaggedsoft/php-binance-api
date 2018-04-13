@@ -129,7 +129,7 @@ class API {
          $this->useServerTime();
       }
       if( isset( $options[ 'curlOpts' ] ) && is_array( $options[ 'curlOpts' ] ) ) {
-         $this->curlOpts == $options[ 'curlOpts' ];
+         $this->curlOpts = $options[ 'curlOpts' ];
       }
    }
 
