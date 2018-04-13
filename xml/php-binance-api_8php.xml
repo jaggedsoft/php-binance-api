@@ -112,7 +112,7 @@
 <codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;useServerTime();</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>isset(<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>]<sp/>)<sp/>&amp;&amp;<sp/>is_array(<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>]<sp/>)<sp/>)<sp/>{</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;curlOpts<sp/>==<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;curlOpts<sp/>=<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>];</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;setupApiConfigFromFile();</highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;setupProxyConfigFromFile();</highlight></codeline>
