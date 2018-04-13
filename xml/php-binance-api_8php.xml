@@ -100,7 +100,7 @@
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;useServerTime();</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>isset(<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>]<sp/>)<sp/>&amp;&amp;<sp/>is_array(<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>]<sp/>)<sp/>)<sp/>{</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;curlOpts<sp/>==<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>];</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$this-&gt;curlOpts<sp/>=<sp/>$options[<sp/></highlight><highlight class="stringliteral">&apos;curlOpts&apos;</highlight><highlight class="normal"><sp/>];</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
