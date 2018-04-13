@@ -36,6 +36,7 @@ class API {
    protected $depthQueue = []; // /< Websockets depth queue
    protected $chartQueue = []; // /< Websockets chart queue
    protected $charts = []; // /< Websockets chart data
+   protected $curlOpts = []; // /< User defined curl coptions
    protected $info = [ 
          "timeOffset" => 0 
    ]; // /< Additional connection options
@@ -97,6 +98,7 @@ class API {
    private function __construct1( string $filename = null ) {
       $this->setupApiConfigFromFile( $filename );
       $this->setupProxyConfigFromFile( $filename );
+      $this->setupCurlOptsFromFile( $filename );
    }
 
    /**
@@ -122,9 +124,11 @@ class API {
    private function __construct3( string $api_key = null, string $api_secret = null, array $options = ["useServerTime"=>false] ) {
       $this->api_key = $api_key;
       $this->api_secret = $api_secret;
-      $this->proxyConf = $proxyConf;
       if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
          $this->useServerTime();
+      }
+      if( isset( $options[ 'curlOpts' ] ) && is_array( $options[ 'curlOpts' ] ) ) {
+         $this->curlOpts = $options[ 'curlOpts' ];
       }
    }
 
@@ -144,8 +148,12 @@ class API {
       if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
          $this->useServerTime();
       }
+      if( isset( $options[ 'curlOpts' ] ) && is_array( $options[ 'curlOpts' ] ) ) {
+         $this->curlOpts = $options[ 'curlOpts' ];
+      }
       $this->setupApiConfigFromFile();
       $this->setupProxyConfigFromFile();
+      $this->setupCurlOptsFromFile();
    }
 
    /**
@@ -168,6 +176,27 @@ class API {
       $contents = json_decode( file_get_contents( $file ), true );
       $this->api_key = isset( $contents[ 'api-key' ] ) ? $contents[ 'api-key' ] : "";
       $this->api_secret = isset( $contents[ 'api-secret' ] ) ? $contents[ 'api-secret' ] : "";
+   }
+
+   /**
+    * If no paramaters are supplied in the constructor, this function will attempt
+    * to load the acurlopts from the users home directory in the file
+    * ~/jaggedsoft/php-binance-api.json
+    *
+    * @param $file string file location
+    * @return null
+    */
+    private function setupCurlOptsFromFile( string $file = null ) {
+      $file = is_null( $file ) ? getenv( "HOME" ) . "/.config/jaggedsoft/php-binance-api.json" : $file;
+
+      if( count( $this->curlOpts ) > 0 ) {
+         return;
+      }
+      if( file_exists( $file ) == false ) {
+         return;
+      }
+      $contents = json_decode( file_get_contents( $file ), true );
+      $this->curlOpts = isset( $contents[ 'curlOpts' ] ) && is_array( $contents[ 'curlOpts' ] ) ? $contents[ 'curlOpts' ] : [];
    }
 
    /**
@@ -828,6 +857,12 @@ class API {
       curl_setopt( $ch, CURLOPT_HEADER, false );
       curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
       curl_setopt( $ch, CURLOPT_TIMEOUT, 60 );
+
+      // set user defined curl opts last for overriding
+      foreach( $this->curlOpts as $key => $value ) {  
+         curl_setopt( $ch, constant( $key ), $value );
+      }
+
       $output = curl_exec( $ch );
       // Check if any error occurred
       if( curl_errno( $ch ) > 0 ) {
