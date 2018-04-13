@@ -69,10 +69,10 @@ class API {
             $this->__construct2( $param[ 0 ], $param[ 1 ] );
          break;
          case 3:
-            $this->__construct2( $param[ 0 ], $param[ 1 ], $param[ 2 ] );
+            $this->__construct3( $param[ 0 ], $param[ 1 ], $param[ 2 ] );
          break;
          case 4:
-            $this->__construct2( $param[ 0 ], $param[ 1 ], $param[ 2 ], $param[ 3 ] );
+            $this->__construct4( $param[ 0 ], $param[ 1 ], $param[ 2 ], $param[ 3 ] );
          break;
       }
    }

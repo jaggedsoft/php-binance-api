@@ -16,6 +16,7 @@ This project is designed to help you make your own projects that interact with t
 > Special thank you to all contributors: **dmzoneill, dxjones, jokaorgua,** and others!! *This package needs help from the community.* Improvements contributed to this project are encouraged, and you will be given full credit for changes. All pull requests welcome.
 
 #### Getting started
+`composer require jaggedsoft/php-binance-api`
 ```php
 require 'vendor/autoload.php';
 $api = new Binance\API("<api key>","<secret>");
