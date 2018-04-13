@@ -124,7 +124,6 @@ class API {
    private function __construct3( string $api_key = null, string $api_secret = null, array $options = ["useServerTime"=>false] ) {
       $this->api_key = $api_key;
       $this->api_secret = $api_secret;
-      $this->proxyConf = $proxyConf;
       if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
          $this->useServerTime();
       }
