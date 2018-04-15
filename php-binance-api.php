@@ -70,7 +70,7 @@ class API {
             $this->__construct2( $param[ 0 ], $param[ 1 ] );
          break;
          case 3:
-            $this->__construct3( $param[ 0 ], $param[ 1 ], $param[ 2 ] );
+            $this->__construct4( $param[ 0 ], $param[ 1 ], $param[ 2 ],null );
          break;
          case 4:
             $this->__construct4( $param[ 0 ], $param[ 1 ], $param[ 2 ], $param[ 3 ] );
@@ -119,25 +119,6 @@ class API {
     * @param $api_key string api key
     * @param $api_secret string api secret
     * @param $options array addtional coniguration options
-    * @return null
-    */
-   private function __construct3( string $api_key = null, string $api_secret = null, array $options = ["useServerTime"=>false] ) {
-      $this->api_key = $api_key;
-      $this->api_secret = $api_secret;
-      if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
-         $this->useServerTime();
-      }
-      if( isset( $options[ 'curlOpts' ] ) && is_array( $options[ 'curlOpts' ] ) ) {
-         $this->curlOpts = $options[ 'curlOpts' ];
-      }
-   }
-
-   /**
-    * Constructor for the class
-    *
-    * @param $api_key string api key
-    * @param $api_secret string api secret
-    * @param $options array addtional coniguration options
     * @param $proxyConf array config
     * @return null
     */
@@ -145,15 +126,19 @@ class API {
       $this->api_key = $api_key;
       $this->api_secret = $api_secret;
       $this->proxyConf = $proxyConf;
-      if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
-         $this->useServerTime();
-      }
+
       if( isset( $options[ 'curlOpts' ] ) && is_array( $options[ 'curlOpts' ] ) ) {
-         $this->curlOpts = $options[ 'curlOpts' ];
-      }
+		   $this->curlOpts = $options[ 'curlOpts' ];
+	   }
+
       $this->setupApiConfigFromFile();
       $this->setupProxyConfigFromFile();
       $this->setupCurlOptsFromFile();
+
+	   if( isset( $options[ 'useServerTime' ] ) && $options[ 'useServerTime' ] ) {
+		   $this->useServerTime();
+	   }
+
    }
 
    /**
