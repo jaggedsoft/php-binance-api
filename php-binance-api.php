@@ -539,8 +539,10 @@ class API
      */
     public function useServerTime()
     {
-        $serverTime = $this->httpRequest("v1/time")['serverTime'];
-        $this->info['timeOffset'] = $serverTime - (microtime(true) * 1000);
+        $request = $this->httpRequest("v1/time");
+        if (isset($request['serverTime'])) {
+            $this->info['timeOffset'] = $request['serverTime'] - (microtime(true) * 1000);
+        }
     }
 
     /**
