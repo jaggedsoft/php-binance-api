@@ -63,20 +63,20 @@
     <member refid="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c" kind="function"><name>getRequestCount</name></member>
     <member refid="classBinance_1_1API_1a90daef87526a753473580139c04d311b" kind="function"><name>addToTransfered</name></member>
     <member refid="classBinance_1_1API_1a61742a5bdff7fc2119ab8b797c0cef4e" kind="function"><name>sortDepth</name></member>
-    <member refid="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060" kind="function"><name>depthCache</name></member>
-    <member refid="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67" kind="function"><name>trades</name></member>
-    <member refid="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28" kind="function"><name>ticker</name></member>
-    <member refid="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c" kind="function"><name>chart</name></member>
-    <member refid="classBinance_1_1API_1a20661f6cf682e433fcdfc035a9388c5f" kind="function"><name>kline</name></member>
+    <member refid="classBinance_1_1API_1a179ddfeb9d6469f43f56f4415e226ca0" kind="function"><name>depthCache</name></member>
+    <member refid="classBinance_1_1API_1a77611c0cbe2d55dc04239274769e2de9" kind="function"><name>trades</name></member>
+    <member refid="classBinance_1_1API_1a67bb7518406ed697a1e476f22ed78bf6" kind="function"><name>ticker</name></member>
+    <member refid="classBinance_1_1API_1a2d4a65cde999da48f82c29e989133ac3" kind="function"><name>chart</name></member>
+    <member refid="classBinance_1_1API_1a33e3e2b84393ad729ce3639004970254" kind="function"><name>kline</name></member>
     <member refid="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14" kind="function"><name>terminate</name></member>
     <member refid="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" kind="function"><name>keepAlive</name></member>
     <member refid="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" kind="function"><name>userData</name></member>
-    <member refid="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2" kind="function"><name>miniTicker</name></member>
+    <member refid="classBinance_1_1API_1af115a75377eb89f33d7beb488f5bb7c5" kind="function"><name>miniTicker</name></member>
     <member refid="classBinance_1_1API_1a64eb639389887f37b6e7de9a2f585745" kind="function"><name>__construct0</name></member>
     <member refid="classBinance_1_1API_1ad3f405545b40fa6b786f04252381db99" kind="function"><name>__construct1</name></member>
     <member refid="classBinance_1_1API_1a4eb195af7ae194a594d2ce9df0fe89a1" kind="function"><name>__construct2</name></member>
-    <member refid="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c" kind="function"><name>__construct3</name></member>
-    <member refid="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f" kind="function"><name>__construct4</name></member>
+    <member refid="classBinance_1_1API_1a0fd63de864ee94c60b87c1c3b0940a85" kind="function"><name>__construct3</name></member>
+    <member refid="classBinance_1_1API_1af8e8a85361b63d69538fdce231f1e775" kind="function"><name>__construct4</name></member>
     <member refid="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf" kind="function"><name>setupApiConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a012f48621ba42ff06159cbc3024f20e9" kind="function"><name>setupCurlOptsFromFile</name></member>
     <member refid="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab" kind="function"><name>setupProxyConfigFromFile</name></member>

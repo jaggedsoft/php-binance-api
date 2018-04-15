@@ -489,40 +489,40 @@ string $symbol, int $limit)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060">depthCache</link> (
- $symbols, Callable $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a179ddfeb9d6469f43f56f4415e226ca0">depthCache</link> (
+ $symbols, callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67">trades</link> (
- $symbols, Callable $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a77611c0cbe2d55dc04239274769e2de9">trades</link> (
+ $symbols, callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28">ticker</link> (
- $symbol, Callable $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a67bb7518406ed697a1e476f22ed78bf6">ticker</link> (
+ $symbol, callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c">chart</link> (
- $symbols, string $interval, Callable $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a2d4a65cde999da48f82c29e989133ac3">chart</link> (
+ $symbols, string $interval, callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a20661f6cf682e433fcdfc035a9388c5f">kline</link> (
- $symbols, string $interval, Callable $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1a33e3e2b84393ad729ce3639004970254">kline</link> (
+ $symbols, string $interval, callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -553,8 +553,8 @@ string $symbol, int $limit)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2">miniTicker</link> (
-Callable $callback)</para>
+                        <para> <link linkend="classBinance_1_1API_1af115a75377eb89f33d7beb488f5bb7c5">miniTicker</link> (
+callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -588,7 +588,7 @@ string $api_key, string $api_secret)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c">__construct3</link> (
+                        <para> <link linkend="classBinance_1_1API_1a0fd63de864ee94c60b87c1c3b0940a85">__construct3</link> (
 string $api_key, string $api_secret, array $options, false] )</para>
                     </listitem>
                 </itemizedlist>
@@ -596,7 +596,7 @@ string $api_key, string $api_secret, array $options, false] )</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f">__construct4</link> (
+                        <para> <link linkend="classBinance_1_1API_1af8e8a85361b63d69538fdce231f1e775">__construct4</link> (
 string $api_key, string $api_secret, array $options, false] , array $proxyConf)</para>
                     </listitem>
                 </itemizedlist>
@@ -731,12 +731,12 @@ string $symbol, string $interval, \stdClass $json)</para>
             <title>Detailed Description</title>
 
 <para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>
-                <para>Definition at line 29 of file php-binance-api.php</para>
+                <para>Definition at line 30 of file php-binance-api.php</para>
                 <para>The Documentation for this struct was generated from the following file: </para>
                 <para><itemizedlist><listitem><para>php-binance-api.php</para></listitem></itemizedlist></para>
         </simplesect>
             <section xml:id="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78">
-                <title>Binance\API::__construct ()</title> <emphasis>Constructor for the class, 
+                <title>Binance\API::__construct ()</title> <emphasis>Constructor for the class,
 send as many agument as you want.</emphasis>
                 
 <para><formalpara><title>Returns: </title>
@@ -2306,8 +2306,8 @@ also incrementes the api counter</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a9960b45d3a9eee17d8ec9b8f3d9bf060">
-                <title>Binance\API::depthCache ($symbols, Callable $callback)</title> <emphasis>depthCache Pulls /depth data and subscribes to @depth WebSocket endpoint
+            <section xml:id="classBinance_1_1API_1a179ddfeb9d6469f43f56f4415e226ca0">
+                <title>Binance\API::depthCache ($symbols, callable $callback)</title> <emphasis>depthCache Pulls /depth data and subscribes to @depth WebSocket endpoint
 Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
                 
 <para>See depth() and depthHandler()</para>
@@ -2344,8 +2344,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a338fb6baf24bf3723bcb1fe19fb4ff67">
-                <title>Binance\API::trades ($symbols, Callable $callback)</title> <emphasis>trades Trades WebSocket Endpoint</emphasis>
+            <section xml:id="classBinance_1_1API_1a77611c0cbe2d55dc04239274769e2de9">
+                <title>Binance\API::trades ($symbols, callable $callback)</title> <emphasis>trades Trades WebSocket Endpoint</emphasis>
                 
 <para>$api-&gt;trades([&quot;BNBBTC&quot;], function($api, $symbol, $trades) { echo &quot;{$symbol} trades update&quot;.PHP_EOL; print_r($trades); });</para>
 
@@ -2379,8 +2379,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a0ef50663f1cca6d48620d458fd26ee28">
-                <title>Binance\API::ticker ($symbol, Callable $callback)</title> <emphasis>ticker pulls 24h price change statistics via WebSocket</emphasis>
+            <section xml:id="classBinance_1_1API_1a67bb7518406ed697a1e476f22ed78bf6">
+                <title>Binance\API::ticker ($symbol, callable $callback)</title> <emphasis>ticker pulls 24h price change statistics via WebSocket</emphasis>
                 
 <para>$api-&gt;ticker(false, function($api, $symbol, $ticker) { print_r($ticker); });</para>
 
@@ -2414,8 +2414,8 @@ Maintains a local Depth Cache in sync via lastUpdateId.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a1e0a2985b3ff7e4e9c1155a8e46caa5c">
-                <title>Binance\API::chart ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</title> <emphasis>chart Pulls /kline data and subscribes to @klines WebSocket endpoint</emphasis>
+            <section xml:id="classBinance_1_1API_1a2d4a65cde999da48f82c29e989133ac3">
+                <title>Binance\API::chart ($symbols, string $interval=&quot;30m&quot;, callable $callback)</title> <emphasis>chart Pulls /kline data and subscribes to @klines WebSocket endpoint</emphasis>
                 
 <para>$api-&gt;chart([&quot;BNBBTC&quot;], &quot;15m&quot;, function($api, $symbol, $chart) { echo &quot;{$symbol} chart update\n&quot;; print_r($chart); });</para>
 
@@ -2465,8 +2465,8 @@ exception                            <row>
                 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a20661f6cf682e433fcdfc035a9388c5f">
-                <title>Binance\API::kline ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</title> <emphasis>kline Subscribes to @klines WebSocket endpoint for latest chart data only</emphasis>
+            <section xml:id="classBinance_1_1API_1a33e3e2b84393ad729ce3639004970254">
+                <title>Binance\API::kline ($symbols, string $interval=&quot;30m&quot;, callable $callback)</title> <emphasis>kline Subscribes to @klines WebSocket endpoint for latest chart data only</emphasis>
                 
 <para>$api-&gt;kline([&quot;BNBBTC&quot;], &quot;15m&quot;, function($api, $symbol, $chart) { echo &quot;{$symbol} chart update\n&quot;; print_r($chart); });</para>
 
@@ -2591,8 +2591,8 @@ exception                            <row>
                 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a9790abae353fbde93bc42069c672f3e2">
-                <title>Binance\API::miniTicker (Callable $callback)</title> <emphasis>miniTicker Get miniTicker for all symbols</emphasis>
+            <section xml:id="classBinance_1_1API_1af115a75377eb89f33d7beb488f5bb7c5">
+                <title>Binance\API::miniTicker (callable $callback)</title> <emphasis>miniTicker Get miniTicker for all symbols</emphasis>
                 
 <para>$api-&gt;miniTicker(function($api, $ticker) { print_r($ticker); });</para>
 
@@ -2691,8 +2691,8 @@ Specifiy the filename where the config is stored.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ae63a5736e065eb3fdd78a9a76858753c">
-                <title>Binance\API::__construct3 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt;false])</title> <emphasis>Constructor for the class.</emphasis>
+            <section xml:id="classBinance_1_1API_1a0fd63de864ee94c60b87c1c3b0940a85">
+                <title>Binance\API::__construct3 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt; false])</title> <emphasis>Constructor for the class.</emphasis>
                 
 <para>
                 <formalpara>
@@ -2730,8 +2730,8 @@ Specifiy the filename where the config is stored.</emphasis>
 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a95198e2b4832941e5d003db4712d802f">
-                <title>Binance\API::__construct4 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt;false], array $proxyConf=null)</title> <emphasis>Constructor for the class.</emphasis>
+            <section xml:id="classBinance_1_1API_1af8e8a85361b63d69538fdce231f1e775">
+                <title>Binance\API::__construct4 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt; false], array $proxyConf=null)</title> <emphasis>Constructor for the class.</emphasis>
                 
 <para>
                 <formalpara>

@@ -165,7 +165,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a00d93784ab9eb83c3817ccaa75e9746d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a00d93784ab9eb83c3817ccaa75e9746d">cumulative</a> (array $<a class="el" href="classBinance_1_1API.html#ac36901dbea220b2401786a6d1bc4d051">depth</a>)</td></tr>
 <tr class="memdesc:a00d93784ab9eb83c3817ccaa75e9746d"><td class="mdescLeft">&#160;</td><td class="mdescRight">cumulative Converts depth cache into a cumulative array  <a href="#a00d93784ab9eb83c3817ccaa75e9746d">More...</a><br/></td></tr>
 <tr class="separator:a00d93784ab9eb83c3817ccaa75e9746d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eaa9d36db8181fc4605a3841f1106ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a5eaa9d36db8181fc4605a3841f1106ac">highstock</a> (array $<a class="el" href="classBinance_1_1API.html#a1e0a2985b3ff7e4e9c1155a8e46caa5c">chart</a>, bool $include_volume=false)</td></tr>
+<tr class="memitem:a5eaa9d36db8181fc4605a3841f1106ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a5eaa9d36db8181fc4605a3841f1106ac">highstock</a> (array $<a class="el" href="classBinance_1_1API.html#a2d4a65cde999da48f82c29e989133ac3">chart</a>, bool $include_volume=false)</td></tr>
 <tr class="memdesc:a5eaa9d36db8181fc4605a3841f1106ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">highstock Converts Chart Data into array for highstock &amp; kline charts  <a href="#a5eaa9d36db8181fc4605a3841f1106ac">More...</a><br/></td></tr>
 <tr class="separator:a5eaa9d36db8181fc4605a3841f1106ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53fcf31d85faa8445653f581fdbdb72c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a53fcf31d85faa8445653f581fdbdb72c">first</a> (array $array)</td></tr>
@@ -189,21 +189,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a61742a5bdff7fc2119ab8b797c0cef4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a61742a5bdff7fc2119ab8b797c0cef4e">sortDepth</a> (string $symbol, int $limit=11)</td></tr>
 <tr class="memdesc:a61742a5bdff7fc2119ab8b797c0cef4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">sortDepth Sorts depth data for display &amp; getting highest bid and lowest ask  <a href="#a61742a5bdff7fc2119ab8b797c0cef4e">More...</a><br/></td></tr>
 <tr class="separator:a61742a5bdff7fc2119ab8b797c0cef4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9960b45d3a9eee17d8ec9b8f3d9bf060"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a9960b45d3a9eee17d8ec9b8f3d9bf060">depthCache</a> ($symbols, Callable $callback)</td></tr>
-<tr class="memdesc:a9960b45d3a9eee17d8ec9b8f3d9bf060"><td class="mdescLeft">&#160;</td><td class="mdescRight">depthCache Pulls /depth data and subscribes to  WebSocket endpoint Maintains a local Depth Cache in sync via lastUpdateId.  <a href="#a9960b45d3a9eee17d8ec9b8f3d9bf060">More...</a><br/></td></tr>
-<tr class="separator:a9960b45d3a9eee17d8ec9b8f3d9bf060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a338fb6baf24bf3723bcb1fe19fb4ff67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a338fb6baf24bf3723bcb1fe19fb4ff67">trades</a> ($symbols, Callable $callback)</td></tr>
-<tr class="memdesc:a338fb6baf24bf3723bcb1fe19fb4ff67"><td class="mdescLeft">&#160;</td><td class="mdescRight">trades Trades WebSocket Endpoint  <a href="#a338fb6baf24bf3723bcb1fe19fb4ff67">More...</a><br/></td></tr>
-<tr class="separator:a338fb6baf24bf3723bcb1fe19fb4ff67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ef50663f1cca6d48620d458fd26ee28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a0ef50663f1cca6d48620d458fd26ee28">ticker</a> ($symbol, Callable $callback)</td></tr>
-<tr class="memdesc:a0ef50663f1cca6d48620d458fd26ee28"><td class="mdescLeft">&#160;</td><td class="mdescRight">ticker pulls 24h price change statistics via WebSocket  <a href="#a0ef50663f1cca6d48620d458fd26ee28">More...</a><br/></td></tr>
-<tr class="separator:a0ef50663f1cca6d48620d458fd26ee28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e0a2985b3ff7e4e9c1155a8e46caa5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a1e0a2985b3ff7e4e9c1155a8e46caa5c">chart</a> ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</td></tr>
-<tr class="memdesc:a1e0a2985b3ff7e4e9c1155a8e46caa5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">chart Pulls /kline data and subscribes to  WebSocket endpoint  <a href="#a1e0a2985b3ff7e4e9c1155a8e46caa5c">More...</a><br/></td></tr>
-<tr class="separator:a1e0a2985b3ff7e4e9c1155a8e46caa5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20661f6cf682e433fcdfc035a9388c5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a20661f6cf682e433fcdfc035a9388c5f">kline</a> ($symbols, string $interval=&quot;30m&quot;, Callable $callback)</td></tr>
-<tr class="memdesc:a20661f6cf682e433fcdfc035a9388c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">kline Subscribes to  WebSocket endpoint for latest chart data only  <a href="#a20661f6cf682e433fcdfc035a9388c5f">More...</a><br/></td></tr>
-<tr class="separator:a20661f6cf682e433fcdfc035a9388c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179ddfeb9d6469f43f56f4415e226ca0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a179ddfeb9d6469f43f56f4415e226ca0">depthCache</a> ($symbols, callable $callback)</td></tr>
+<tr class="memdesc:a179ddfeb9d6469f43f56f4415e226ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">depthCache Pulls /depth data and subscribes to  WebSocket endpoint Maintains a local Depth Cache in sync via lastUpdateId.  <a href="#a179ddfeb9d6469f43f56f4415e226ca0">More...</a><br/></td></tr>
+<tr class="separator:a179ddfeb9d6469f43f56f4415e226ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77611c0cbe2d55dc04239274769e2de9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a77611c0cbe2d55dc04239274769e2de9">trades</a> ($symbols, callable $callback)</td></tr>
+<tr class="memdesc:a77611c0cbe2d55dc04239274769e2de9"><td class="mdescLeft">&#160;</td><td class="mdescRight">trades Trades WebSocket Endpoint  <a href="#a77611c0cbe2d55dc04239274769e2de9">More...</a><br/></td></tr>
+<tr class="separator:a77611c0cbe2d55dc04239274769e2de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67bb7518406ed697a1e476f22ed78bf6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a67bb7518406ed697a1e476f22ed78bf6">ticker</a> ($symbol, callable $callback)</td></tr>
+<tr class="memdesc:a67bb7518406ed697a1e476f22ed78bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">ticker pulls 24h price change statistics via WebSocket  <a href="#a67bb7518406ed697a1e476f22ed78bf6">More...</a><br/></td></tr>
+<tr class="separator:a67bb7518406ed697a1e476f22ed78bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d4a65cde999da48f82c29e989133ac3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a2d4a65cde999da48f82c29e989133ac3">chart</a> ($symbols, string $interval=&quot;30m&quot;, callable $callback)</td></tr>
+<tr class="memdesc:a2d4a65cde999da48f82c29e989133ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">chart Pulls /kline data and subscribes to  WebSocket endpoint  <a href="#a2d4a65cde999da48f82c29e989133ac3">More...</a><br/></td></tr>
+<tr class="separator:a2d4a65cde999da48f82c29e989133ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33e3e2b84393ad729ce3639004970254"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a33e3e2b84393ad729ce3639004970254">kline</a> ($symbols, string $interval=&quot;30m&quot;, callable $callback)</td></tr>
+<tr class="memdesc:a33e3e2b84393ad729ce3639004970254"><td class="mdescLeft">&#160;</td><td class="mdescRight">kline Subscribes to  WebSocket endpoint for latest chart data only  <a href="#a33e3e2b84393ad729ce3639004970254">More...</a><br/></td></tr>
+<tr class="separator:a33e3e2b84393ad729ce3639004970254"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67ed560d60527ad64f16253069cb1b14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a67ed560d60527ad64f16253069cb1b14">terminate</a> ($endpoint)</td></tr>
 <tr class="memdesc:a67ed560d60527ad64f16253069cb1b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">terminate Terminates websocket endpoints.  <a href="#a67ed560d60527ad64f16253069cb1b14">More...</a><br/></td></tr>
 <tr class="separator:a67ed560d60527ad64f16253069cb1b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,9 +213,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af033a40a6a86ad422c58d67dc57bb0fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#af033a40a6a86ad422c58d67dc57bb0fd">userData</a> (&amp;$balance_callback, &amp;$execution_callback=false)</td></tr>
 <tr class="memdesc:af033a40a6a86ad422c58d67dc57bb0fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">userData Issues userDataStream token and keepalive, subscribes to userData WebSocket  <a href="#af033a40a6a86ad422c58d67dc57bb0fd">More...</a><br/></td></tr>
 <tr class="separator:af033a40a6a86ad422c58d67dc57bb0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9790abae353fbde93bc42069c672f3e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#a9790abae353fbde93bc42069c672f3e2">miniTicker</a> (Callable $callback)</td></tr>
-<tr class="memdesc:a9790abae353fbde93bc42069c672f3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">miniTicker Get miniTicker for all symbols  <a href="#a9790abae353fbde93bc42069c672f3e2">More...</a><br/></td></tr>
-<tr class="separator:a9790abae353fbde93bc42069c672f3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af115a75377eb89f33d7beb488f5bb7c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinance_1_1API.html#af115a75377eb89f33d7beb488f5bb7c5">miniTicker</a> (callable $callback)</td></tr>
+<tr class="memdesc:af115a75377eb89f33d7beb488f5bb7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">miniTicker Get miniTicker for all symbols  <a href="#af115a75377eb89f33d7beb488f5bb7c5">More...</a><br/></td></tr>
+<tr class="separator:af115a75377eb89f33d7beb488f5bb7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -270,7 +270,7 @@ Protected Attributes</h2></td></tr>
 <p>Constructor for the class, send as many agument as you want. </p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00060">60</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00061">61</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -298,7 +298,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00165">165</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00172">172</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -335,7 +335,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00178">178</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00186">186</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -362,7 +362,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00669">669</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00703">703</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -384,7 +384,7 @@ Protected Attributes</h2></td></tr>
 <p>$apiCount = $api-&gt;addToTransfered( $int );</p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01426">1426</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01506">1506</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -418,7 +418,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00701">701</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00737">737</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00739">739</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00777">777</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -479,7 +479,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00657">657</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00690">690</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -541,7 +541,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00287">287</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00299">299</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or empty or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00303">303</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00316">316</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -646,7 +646,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00421">421</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00441">441</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -712,11 +712,11 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00983">983</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01032">1032</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1e0a2985b3ff7e4e9c1155a8e46caa5c"></a>
+<a class="anchor" id="a2d4a65cde999da48f82c29e989133ac3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -735,7 +735,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Callable&#160;</td>
+          <td class="paramtype">callable&#160;</td>
           <td class="paramname"><em>$callback</em>&#160;</td>
         </tr>
         <tr>
@@ -764,7 +764,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01713">1713</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01819">1819</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -792,7 +792,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array cumulative depth cache </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01256">1256</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01324">1324</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -826,7 +826,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00587">587</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00616">616</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -861,7 +861,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00606">606</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00636">636</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -895,11 +895,11 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00716">716</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00753">753</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9960b45d3a9eee17d8ec9b8f3d9bf060"></a>
+<a class="anchor" id="a179ddfeb9d6469f43f56f4415e226ca0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -912,7 +912,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Callable&#160;</td>
+          <td class="paramtype">callable&#160;</td>
           <td class="paramname"><em>$callback</em>&#160;</td>
         </tr>
         <tr>
@@ -935,7 +935,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01535">1535</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01627">1627</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -963,7 +963,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string of the depth information </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01345">1345</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01419">1419</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -990,7 +990,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00540">540</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00567">567</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1018,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string key or null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01315">1315</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01387">1387</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1039,7 @@ Protected Attributes</h2></td></tr>
 <p>$balances = $api-&gt;getProxyUriString();</p>
 <dl class="section return"><dt>Returns</dt><dd>string uri </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00752">752</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00793">793</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1060,7 +1060,7 @@ Protected Attributes</h2></td></tr>
 <p>$apiCount = $api-&gt;getRequestCount();</p>
 <dl class="section return"><dt>Returns</dt><dd>int get the total number of api calls </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01414">1414</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01493">1493</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1081,7 +1081,7 @@ Protected Attributes</h2></td></tr>
 <p>$transfered = $api-&gt;getTransfered();</p>
 <dl class="section return"><dt>Returns</dt><dd>string showing the total transfered </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01395">1395</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01473">1473</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1120,7 +1120,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array highchart data </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01290">1290</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01359">1359</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1172,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00499">499</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00523">523</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1193,11 +1193,11 @@ Protected Attributes</h2></td></tr>
 <p>$api-&gt;keepAlive();</p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01835">1835</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01956">1956</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a20661f6cf682e433fcdfc035a9388c5f"></a>
+<a class="anchor" id="a33e3e2b84393ad729ce3639004970254"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1216,7 +1216,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Callable&#160;</td>
+          <td class="paramtype">callable&#160;</td>
           <td class="paramname"><em>$callback</em>&#160;</td>
         </tr>
         <tr>
@@ -1245,7 +1245,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01781">1781</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01898">1898</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1273,7 +1273,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string key or null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01330">1330</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01403">1403</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1319,7 +1319,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00363">363</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00379">379</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1365,7 +1365,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00377">377</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00394">394</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1411,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00392">392</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00410">410</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1457,18 +1457,18 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00406">406</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00425">425</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9790abae353fbde93bc42069c672f3e2"></a>
+<a class="anchor" id="af115a75377eb89f33d7beb488f5bb7c5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Binance\API::miniTicker </td>
           <td>(</td>
-          <td class="paramtype">Callable&#160;</td>
+          <td class="paramtype">callable&#160;</td>
           <td class="paramname"><em>$callback</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1485,7 +1485,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01931">1931</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l02053">2053</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1519,7 +1519,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00456">456</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00478">478</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1605,7 +1605,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00924">924</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00972">972</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1657,7 +1657,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00477">477</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00500">500</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1702,7 +1702,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00439">439</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00460">460</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1736,7 +1736,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00682">682</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00717">717</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1763,7 +1763,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00645">645</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00677">677</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1825,7 +1825,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00332">332</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00346">346</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1885,7 +1885,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array with error message or empty or the order details </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00348">348</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00363">363</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1908,7 +1908,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 <p>$api-&gt;setProxy( $proxyconf );</p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00800">800</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00842">842</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1947,7 +1947,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01503">1503</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01594">1594</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -1970,11 +1970,11 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 <p>$api-&gt;terminate('ethbtc_kline@5m');</p>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01823">1823</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01943">1943</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0ef50663f1cca6d48620d458fd26ee28"></a>
+<a class="anchor" id="a67bb7518406ed697a1e476f22ed78bf6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1987,7 +1987,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Callable&#160;</td>
+          <td class="paramtype">callable&#160;</td>
           <td class="paramname"><em>$callback</em>&#160;</td>
         </tr>
         <tr>
@@ -2009,7 +2009,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01665">1665</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01771">1771</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2036,11 +2036,11 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00528">528</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00554">554</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a338fb6baf24bf3723bcb1fe19fb4ff67"></a>
+<a class="anchor" id="a77611c0cbe2d55dc04239274769e2de9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -2053,7 +2053,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Callable&#160;</td>
+          <td class="paramtype">callable&#160;</td>
           <td class="paramname"><em>$callback</em>&#160;</td>
         </tr>
         <tr>
@@ -2075,7 +2075,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>null </dd></dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01604">1604</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01705">1705</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2122,7 +2122,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l01882">1882</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l02004">2004</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2149,7 +2149,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00515">515</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00540">540</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2209,7 +2209,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00564">564</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00592">592</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2244,7 +2244,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00627">627</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00658">658</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2267,7 +2267,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00033">33</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00034">34</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2289,7 +2289,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00034">34</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00035">35</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2311,7 +2311,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00030">30</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00031">31</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2333,7 +2333,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00037">37</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00038">38</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2355,7 +2355,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00038">38</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00039">39</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2377,7 +2377,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00039">39</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00040">40</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2399,7 +2399,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00035">35</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00036">36</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2421,7 +2421,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00036">36</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00037">37</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2442,11 +2442,10 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= [ </div>
-<div class="line">         <span class="stringliteral">&quot;timeOffset&quot;</span> =&gt; 0 </div>
-<div class="line">   ]</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= [</div>
+<div class="line">        <span class="stringliteral">&quot;timeOffset&quot;</span> =&gt; 0</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00040">40</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00041">41</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2468,7 +2467,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00043">43</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00044">44</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2490,7 +2489,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00045">45</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00046">46</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2512,7 +2511,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00032">32</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00033">33</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2534,7 +2533,7 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00044">44</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00045">45</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
@@ -2556,14 +2555,14 @@ marketSell() $this-&gt;httpRequest( "https://api.binance.com/api/v1/ticker/24hr"
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00031">31</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
+<p>Definition at line <a class="el" href="php-binance-api_8php_source.html#l00032">32</a> of file <a class="el" href="php-binance-api_8php_source.html">php-binance-api.php</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 15 2018 22:28:11 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 15 2018 22:35:24 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
