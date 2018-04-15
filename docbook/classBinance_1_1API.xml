@@ -103,7 +103,7 @@
             </para>
         </simplesect>
         <simplesect>
-            <title>Public Attributes</title>
+            <title>Private Attributes</title>
             <para>
                 <itemizedlist>
                     <listitem>
@@ -147,6 +147,22 @@
                     <listitem>
                         <para> <link linkend="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78">__construct</link> (
 )</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1aa48130f98262fb73c42b90837a39ee9b">__get</link> (
+string $member)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a0c51e059d275539f7591ae1886787916">__set</link> (
+string $member,  $value)</para>
                     </listitem>
                 </itemizedlist>
             </para>
@@ -728,6 +744,62 @@ send as many agument as you want.</emphasis>
 <para>null </para>
 </formalpara>
 </para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1aa48130f98262fb73c42b90837a39ee9b">
+                <title>Binance\API::__get (string $member)</title> <emphasis>magic get for private and protected members</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$file</entry>
+                                <entry>
+<para>string the name of the property to return </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>null </para>
+</formalpara>
+</para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a0c51e059d275539f7591ae1886787916">
+                <title>Binance\API::__set (string $member, $value)</title> <emphasis>magic set for private and protected members</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$member</entry>
+                                <entry>
+<para>string the name of the member property </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$value</entry>
+                                <entry>
+<para>the value of the member property </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
 
             </section>
             <section xml:id="classBinance_1_1API_1a98bf564a5ff752a2393bc626b222905e">

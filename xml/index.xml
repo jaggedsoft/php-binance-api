@@ -21,6 +21,8 @@
     <member refid="classBinance_1_1API_1af80ef162a101ffa0963d977126d6811d" kind="variable"><name>$btc_value</name></member>
     <member refid="classBinance_1_1API_1a80f67dda302da9465596ad5e0bd86ce2" kind="variable"><name>$btc_total</name></member>
     <member refid="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78" kind="function"><name>__construct</name></member>
+    <member refid="classBinance_1_1API_1aa48130f98262fb73c42b90837a39ee9b" kind="function"><name>__get</name></member>
+    <member refid="classBinance_1_1API_1a0c51e059d275539f7591ae1886787916" kind="function"><name>__set</name></member>
     <member refid="classBinance_1_1API_1a98bf564a5ff752a2393bc626b222905e" kind="function"><name>buy</name></member>
     <member refid="classBinance_1_1API_1a9e199a90097fbee4e89e2777534599b7" kind="function"><name>buyTest</name></member>
     <member refid="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e" kind="function"><name>sell</name></member>
