@@ -114,12 +114,7 @@ final class BinanceTest extends TestCase
     public function testInstantiate4()
     {
         self::debug(0, __METHOD__, "");
-        $proxyconf['proto'] = "https";
-        $proxyconf['user'] = "a";
-        $proxyconf['pass'] = "b";
-        $proxyconf['address'] = "1.2.3.4";
-        $proxyconf['port'] = "5678";
-        $this->_testable = new Binance\API(null, null, [], $proxyconf);
+        $this->_testable = new Binance\API(null, null, ["useServerTime" => true, "curlOpts" => array()], $proxyconf);
         $this->assertInstanceOf('Binance\API', $this->_testable);
         $this->assertTrue(strcmp($this->_testable->api_key, self::$apikey) === 0);
         $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
@@ -128,6 +123,31 @@ final class BinanceTest extends TestCase
         $this->assertTrue(strcmp($this->_testable->proxyConf['pass'], $proxyconf['pass']) === 0);
         $this->assertTrue(strcmp($this->_testable->proxyConf['address'], $proxyconf['address']) === 0);
         $this->assertTrue(strcmp($this->_testable->proxyConf['port'], $proxyconf['port']) === 0);
+    }
+
+    public function testInstantiate4CredentialsProxyOrdering()
+    {
+        self::debug(0, __METHOD__, "");
+        $proxyconf['proto'] = "https";
+        $proxyconf['user'] = "a";
+        $proxyconf['pass'] = "b";
+        $proxyconf['address'] = "1.2.3.4";
+        $proxyconf['port'] = "5678";
+        $this->_testable = new Binance\API(self::$apikey, self::$apisecret, ["useServerTime" => true, "curlOpts" => array()], $proxyconf);
+        $this->assertInstanceOf('Binance\API', $this->_testable);
+    }
+
+    public function testMagicGet()
+    {
+        self::debug(0, __METHOD__, "");
+        $this->assertTrue($this->_testable->DoesntExist === null);
+    }
+
+    public function testMagicSet()
+    {
+        self::debug(0, __METHOD__, "");
+        $this->_testable->info['test'] = 'test';
+        $this->assertTrue(strcmp($this->_testable->info['test'], 'test') === 0);
     }
 
     public function testAccount()
