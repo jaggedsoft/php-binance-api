@@ -43,11 +43,11 @@ class API {
    protected $proxyConf = null; // /< Used for story the proxy configuration
    protected $transfered = 0; // /< This stores the amount of bytes transfered
    protected $requestCount = 0; // /< This stores the amount of API requests
-   public $httpDebug = false; // /< If you enable this, curl will output debugging information
-   public $subscriptions = []; // /< View all websocket subscriptions
-   public $balances = []; // /< binace balances from the last run
-   public $btc_value = 0.00; // /< value of available assets
-   public $btc_total = 0.00;
+   private $httpDebug = false; // /< If you enable this, curl will output debugging information
+   private $subscriptions = []; // /< View all websocket subscriptions
+   private $balances = []; // /< binace balances from the last run
+   private $btc_value = 0.00; // /< value of available assets
+   private $btc_total = 0.00;
 
    // /< value of available onOrder assets
    
@@ -155,6 +155,29 @@ class API {
       $this->setupProxyConfigFromFile();
       $this->setupCurlOptsFromFile();
    }
+
+   /**
+    * magic get for private and protected members
+    *
+    * @param $file string the name of the property to return
+    * @return null
+    */
+    public function __get( string $member ) {
+      if( property_exists($this, $member) ) {
+         return $this->$member;
+      }
+      return null;
+   }
+
+   /**
+    * magic set for private and protected members
+    *
+    * @param $member string the name of the member property
+    * @param $value the value of the member property
+    */
+    public function __set( string $member, $value ) {
+       $this->$member = $value;
+    }
 
    /**
     * If no paramaters are supplied in the constructor, this function will attempt
