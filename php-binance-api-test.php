@@ -108,7 +108,7 @@ final class BinanceTest extends TestCase {
       $proxyconf[ 'pass' ] = "b";
       $proxyconf[ 'address' ] = "1.2.3.4";
       $proxyconf[ 'port' ] = "5678";
-      $this->_testable = new Binance\API( null, null, null, $proxyconf );
+      $this->_testable = new Binance\API( null, null, [], $proxyconf );
       $this->assertInstanceOf( 'Binance\API', $this->_testable );
       $this->assertTrue( strcmp( $this->_testable->api_key, self::$apikey ) === 0 );
       $this->assertTrue( strcmp( $this->_testable->api_secret, self::$apisecret ) === 0 );
