@@ -1919,7 +1919,7 @@ class API
                     $chart = $json->k;
                     $symbol = $json->s;
                     $interval = $chart->i;
-                    call_user_func($callback, $this, $symbol, $this->chart);
+                    call_user_func($callback, $this, $symbol, $chart);
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop, $interval) {
                     echo "kline({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
