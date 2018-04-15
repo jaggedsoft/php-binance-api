@@ -1257,7 +1257,7 @@
 <div class="line"><a name="l01919"></a><span class="lineno"> 1919</span>&#160;                    $chart = $json-&gt;k;</div>
 <div class="line"><a name="l01920"></a><span class="lineno"> 1920</span>&#160;                    $symbol = $json-&gt;s;</div>
 <div class="line"><a name="l01921"></a><span class="lineno"> 1921</span>&#160;                    $interval = $chart-&gt;i;</div>
-<div class="line"><a name="l01922"></a><span class="lineno"> 1922</span>&#160;                    call_user_func($callback, $this, $symbol, $this-&gt;chart);</div>
+<div class="line"><a name="l01922"></a><span class="lineno"> 1922</span>&#160;                    call_user_func($callback, $this, $symbol, $chart);</div>
 <div class="line"><a name="l01923"></a><span class="lineno"> 1923</span>&#160;                });</div>
 <div class="line"><a name="l01924"></a><span class="lineno"> 1924</span>&#160;                $ws-&gt;on(<span class="stringliteral">&#39;close&#39;</span>, <span class="keyword">function</span> ($code = null, $reason = null) use ($symbol, $loop, $interval) {</div>
 <div class="line"><a name="l01925"></a><span class="lineno"> 1925</span>&#160;                    echo <span class="stringliteral">&quot;kline({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})&quot;</span> . PHP_EOL;</div>
@@ -1424,7 +1424,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 15 2018 22:35:36 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 15 2018 23:01:30 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
