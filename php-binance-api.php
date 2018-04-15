@@ -1041,7 +1041,7 @@ class API {
                continue;
             }
             $symbol = $asset . 'BTC';
-            if( $symbol == 'USDTBTC' ) {
+            if( $symbol == 'BTCUSDT' ) {
                $btcValue = number_format( $obj[ 'free' ] / $priceData[ 'BTCUSDT' ], 8, '.', '' );
                $btcTotal = number_format( ( $obj[ 'free' ] + $obj[ 'locked' ] ) / $priceData[ 'BTCUSDT' ], 8, '.', '' );
             }
