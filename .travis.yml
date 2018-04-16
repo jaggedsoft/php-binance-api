@@ -14,6 +14,7 @@ before_script:
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/php-binance-api-test.php -O php-binance-api-test.php
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/phpunit.xml -O phpunit.xml
   - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+  - travis_retry wget https://github.com/phpfmt-next/fmt/raw/master/bin/fmt.phar -O fmt.phar 
   - travis_retry wget https://codecov.io/bash -O codecov.sh
   - COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
   - chmod -v +x codecov.sh
@@ -22,6 +23,8 @@ before_script:
 
 script:
   - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test
+  - php fmt.phar -v --psr2 --indent_with_space=4 -o=php-binance-api.php.fmt php-binance-api.php
+  - diff php-binance-api.php.fmt php-binance-api.php
 
 after_success:
  - travis_retry php coveralls.phar -v
