@@ -46,7 +46,6 @@ class API
     protected $requestCount = 0; // /< This stores the amount of API requests
     private $httpDebug = false; // /< If you enable this, curl will output debugging information
     private $subscriptions = []; // /< View all websocket subscriptions
-    private $balances = []; // /< binace balances from the last run
     private $btc_value = 0.00; // /< value of available assets
     private $btc_total = 0.00;
 
