@@ -665,7 +665,7 @@ class API
         }
         return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
     }
-    
+
     /**
      * withdrawFee get the withdrawal fee for an asset
      *
@@ -679,7 +679,7 @@ class API
     {
         $params = [
             "wapi" => true,
-            "asset" => $asset
+            "asset" => $asset,
         ];
         return $this->httpRequest("v3/withdrawFee.html", "GET", $params, true);
     }
