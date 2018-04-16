@@ -30,9 +30,9 @@ script:
   - diff php-binance-api.php.fmt php-binance-api.php
 
 after_success:
- - travis_retry php coveralls.phar -v
- - travis_retry bash -x ./codecov.sh -f "!$TRAVIS_BUILD_DIR/php-binance-api-test.php"
- - travis_retry bash -x ./docs.sh
+    - if [[ $TRAVIS_OS_NAME != "linux" && ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then travis_retry php coveralls.phar -v; fi
+    - if [[ $TRAVIS_OS_NAME != "linux" && ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then travis_retry bash -x ./codecov.sh -f "!$TRAVIS_BUILD_DIR/php-binance-api-test.php"; fi
+    - if [[ $TRAVIS_OS_NAME != "linux" && ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then travis_retry bash -x ./docs.sh; fi
 
 branches:
   only: master
