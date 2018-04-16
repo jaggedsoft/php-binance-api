@@ -1260,6 +1260,12 @@ class API
                 "volume" => $baseVolume,
                 "openTime" => $openTime,
                 "closeTime" => $closeTime,
+                "assetVolume" => $assetVolume,
+                "baseVolume" => $baseVolume,
+                "trades" => $trades,
+                "assetBuyVolume" => $assetBuyVolume,
+                "takerBuyVolume" => $takerBuyVolume,
+                "ignored" => $ignored
             ];
         }
         $this->info[$symbol][$interval]['firstOpen'] = $openTime;
