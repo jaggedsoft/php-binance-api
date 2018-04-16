@@ -1710,7 +1710,7 @@ exception                            <row>
             <section xml:id="classBinance_1_1API_1a6b849844ef3f827d8144ae8e129978b5">
                 <title>Binance\API::withdrawFee (string $asset)</title> <emphasis>withdrawFee get the withdrawal fee for an asset</emphasis>
                 
-<para>$withdrawFee = $api-&gt;withdrawHistory( &quot;BTC&quot; );</para>
+<para>$withdrawFee = $api-&gt;withdrawFee( &quot;BTC&quot; );</para>
 
 <para>
                 <formalpara>

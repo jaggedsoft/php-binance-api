@@ -1336,7 +1336,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         <briefdescription>
 <para>withdrawFee get the withdrawal fee for an asset </para>        </briefdescription>
         <detaileddescription>
-<para>$withdrawFee = $api-&gt;withdrawHistory( &quot;BTC&quot; );</para><para><parameterlist kind="param"><parameteritem>
+<para>$withdrawFee = $api-&gt;withdrawFee( &quot;BTC&quot; );</para><para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>$asset</parametername>
 </parameternamelist>
