@@ -935,7 +935,7 @@ class API
         }
         // Delete Method
         if ($method == "DELETE") {
-            curl_setopt($curlch, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         }
         // proxy settings
         if (is_array($this->proxyConf)) {
