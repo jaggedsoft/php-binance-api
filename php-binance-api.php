@@ -669,7 +669,7 @@ class API
     /**
      * withdrawFee get the withdrawal fee for an asset
      *
-     * $withdrawFee = $api->withdrawHistory( "BTC" );
+     * $withdrawFee = $api->withdrawFee( "BTC" );
      *
      * @param $asset string currency such as BTC
      * @return array with error message or array containing withdrawFee
