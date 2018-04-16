@@ -811,7 +811,7 @@ class API
     {
         $uri = isset($this->proxyConf['proto']) ? $this->proxyConf['proto'] : "http";
         // https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html
-        $supportedProxyProtocols = array(
+        $supportedProtocols = array(
             'http',
             'https',
             'socks4',
@@ -820,8 +820,8 @@ class API
             'socks5h',
         );
 
-        if (in_array($uri, $supportedProxyProtocols) == false) {
-            echo "Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ", $supportedProxyProtocols) . PHP_EOL;
+        if (in_array($uri, $supportedProtocols) == false) {
+            echo "Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ", $supportedProtocols) . PHP_EOL;
         }
 
         $uri .= "://";
