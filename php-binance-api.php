@@ -770,6 +770,7 @@ class API
     public function depth(string $symbol)
     {
         if (isset($symbol) == false || is_string($symbol) == false) {
+            // WPCS: XSS OK.
             echo "asset: expected bool false, " . gettype($symbol) . " given" . PHP_EOL;
         }
         $json = $this->httpRequest("v1/depth", "GET", [
@@ -821,6 +822,7 @@ class API
         );
 
         if (in_array($uri, $supportedProtocols) == false) {
+            // WPCS: XSS OK.
             echo "Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ", $supportedProtocols) . PHP_EOL;
         }
 
@@ -828,6 +830,7 @@ class API
         $uri .= isset($this->proxyConf['address']) ? $this->proxyConf['address'] : "localhost";
 
         if (isset($this->proxyConf['address']) == false) {
+            // WPCS: XSS OK.
             echo "warning: proxy address not set defaulting to localhost" . PHP_EOL;
         }
 
@@ -835,6 +838,7 @@ class API
         $uri .= isset($this->proxyConf['port']) ? $this->proxyConf['port'] : "1080";
 
         if (isset($this->proxyConf['address']) == false) {
+            // WPCS: XSS OK.
             echo "warning: proxy port not set defaulting to 1080" . PHP_EOL;
         }
 
@@ -954,12 +958,14 @@ class API
         $output = curl_exec($curl);
         // Check if any error occurred
         if (curl_errno($curl) > 0) {
+            // WPCS: XSS OK.
             echo 'Curl error: ' . curl_error($curl) . "\n";
             return [];
         }
         curl_close($curl);
         $json = json_decode($output, true);
         if (isset($json['msg'])) {
+            // WPCS: XSS OK.
             echo "signedRequest error: {$output}" . PHP_EOL;
         }
         $this->transfered += strlen($output);
@@ -1004,10 +1010,12 @@ class API
         }
 
         if (is_numeric($quantity) === false) {
+            // WPCS: XSS OK.
             echo "warning: quantity expected numeric got " . gettype($quantity) . PHP_EOL;
         }
 
         if (is_string($price) === false) {
+            // WPCS: XSS OK.
             echo "warning: price expected string got " . gettype($price) . PHP_EOL;
         }
 
@@ -1095,6 +1103,7 @@ class API
         }
      
         if (empty($array) || empty($array['balances'])) {
+            // WPCS: XSS OK.
             echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option." . PHP_EOL;
             return [];
         }
@@ -1705,10 +1714,12 @@ class API
                     call_user_func($callback, $this, $symbol, $this->depthCache[$symbol]);
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop) {
+                    // WPCS: XSS OK.
                     echo "depthCache({$symbol}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol) {
+                // WPCS: XSS OK.
                 echo "depthCache({$symbol})) Could not connect: {$e->getMessage()}" . PHP_EOL;
                 $loop->stop();
             });
@@ -1779,10 +1790,12 @@ class API
                     call_user_func($callback, $this, $symbol, $trades);
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop) {
+                    // WPCS: XSS OK.
                     echo "trades({$symbol}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol) {
+                // WPCS: XSS OK.
                 echo "trades({$symbol}) Could not connect: {$e->getMessage()}" . PHP_EOL;
                 $loop->stop();
             });
@@ -1827,9 +1840,11 @@ class API
                 }
             });
             $ws->on('close', function ($code = null, $reason = null) {
+                // WPCS: XSS OK.
                 echo "ticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
             });
         }, function ($e) {
+            // WPCS: XSS OK.
             echo "ticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
         });
         // @codeCoverageIgnoreEnd
@@ -1897,10 +1912,12 @@ class API
                     call_user_func($callback, $this, $symbol, $this->charts[$symbol][$interval]);
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop, $interval) {
+                    // WPCS: XSS OK.
                     echo "chart({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol, $interval) {
+                // WPCS: XSS OK.
                 echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
                 $loop->stop();
             });
@@ -1955,10 +1972,12 @@ class API
                     call_user_func($callback, $this, $symbol, $chart);
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop, $interval) {
+                    // WPCS: XSS OK.
                     echo "kline({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol, $interval) {
+                // WPCS: XSS OK.
                 echo "kline({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
                 $loop->stop();
             });
@@ -2065,9 +2084,11 @@ class API
                 }
             });
             $ws->on('close', function ($code = null, $reason = null) {
+                // WPCS: XSS OK.
                 echo "userData: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
             });
         }, function ($e) {
+            // WPCS: XSS OK.
             echo "userData: Could not connect: {$e->getMessage()}" . PHP_EOL;
         });
         // @codeCoverageIgnoreEnd
@@ -2114,9 +2135,11 @@ class API
                 call_user_func($callback, $this, $markets);
             });
             $ws->on('close', function ($code = null, $reason = null) {
+                // WPCS: XSS OK.
                 echo "miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
             });
         }, function ($e) {
+            // WPCS: XSS OK.
             echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
         });
         // @codeCoverageIgnoreEnd
