@@ -2,13 +2,13 @@
 
   \item {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{28}
   \item {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}secret}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{28}
   \item {\$base}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{27}
+		\hyperpage{28}
   \item {\$chart\discretionary {-}{}{}Queue}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{28}
@@ -29,19 +29,19 @@
 		\hyperpage{28}
   \item {\$proxy\discretionary {-}{}{}Conf}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{29}
   \item {\$request\discretionary {-}{}{}Count}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{29}
   \item {\$stream}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{29}
   \item {\$transfered}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{29}
   \item {\$wapi}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
-		\hyperpage{28}
+		\hyperpage{29}
   \item {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}construct}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{10}
@@ -72,21 +72,21 @@
   \item {Binance}, \hyperpage{5}
   \item {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}
     \subitem {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}key}, 
-		\hyperpage{27}
+		\hyperpage{28}
     \subitem {\$api\discretionary {-}{}{}\_\discretionary {-}{}{}secret}, 
-		\hyperpage{27}
-    \subitem {\$base}, \hyperpage{27}
+		\hyperpage{28}
+    \subitem {\$base}, \hyperpage{28}
     \subitem {\$chart\discretionary {-}{}{}Queue}, \hyperpage{28}
     \subitem {\$charts}, \hyperpage{28}
     \subitem {\$curl\discretionary {-}{}{}Opts}, \hyperpage{28}
     \subitem {\$depth\discretionary {-}{}{}Cache}, \hyperpage{28}
     \subitem {\$depth\discretionary {-}{}{}Queue}, \hyperpage{28}
     \subitem {\$info}, \hyperpage{28}
-    \subitem {\$proxy\discretionary {-}{}{}Conf}, \hyperpage{28}
-    \subitem {\$request\discretionary {-}{}{}Count}, \hyperpage{28}
-    \subitem {\$stream}, \hyperpage{28}
-    \subitem {\$transfered}, \hyperpage{28}
-    \subitem {\$wapi}, \hyperpage{28}
+    \subitem {\$proxy\discretionary {-}{}{}Conf}, \hyperpage{29}
+    \subitem {\$request\discretionary {-}{}{}Count}, \hyperpage{29}
+    \subitem {\$stream}, \hyperpage{29}
+    \subitem {\$transfered}, \hyperpage{29}
+    \subitem {\$wapi}, \hyperpage{29}
     \subitem {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}construct}, 
 		\hyperpage{10}
     \subitem {\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}get}, 
@@ -147,6 +147,7 @@
 		\hyperpage{26}
     \subitem {user\discretionary {-}{}{}Data}, \hyperpage{26}
     \subitem {withdraw}, \hyperpage{26}
+    \subitem {withdraw\discretionary {-}{}{}Fee}, \hyperpage{27}
     \subitem {withdraw\discretionary {-}{}{}History}, \hyperpage{27}
   \item {Binance\textbackslash {}\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{7}
@@ -327,6 +328,9 @@
   \item {withdraw}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{26}
+  \item {withdraw\discretionary {-}{}{}Fee}
+    \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
+		\hyperpage{27}
   \item {withdraw\discretionary {-}{}{}History}
     \subitem {Binance\discretionary {-}{}{}::\discretionary {-}{}{}A\discretionary {-}{}{}P\discretionary {-}{}{}I}, 
 		\hyperpage{27}

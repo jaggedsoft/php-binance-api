@@ -41,8 +41,9 @@
     <member refid="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a" kind="function"><name>exchangeInfo</name></member>
     <member refid="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e" kind="function"><name>withdraw</name></member>
     <member refid="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061" kind="function"><name>depositAddress</name></member>
-    <member refid="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b" kind="function"><name>depositHistory</name></member>
-    <member refid="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0" kind="function"><name>withdrawHistory</name></member>
+    <member refid="classBinance_1_1API_1ac1e40c1bef7a768365d1e123d2324d5d" kind="function"><name>depositHistory</name></member>
+    <member refid="classBinance_1_1API_1ac58d133afd56809f520aeb05e12b69d4" kind="function"><name>withdrawHistory</name></member>
+    <member refid="classBinance_1_1API_1a6b849844ef3f827d8144ae8e129978b5" kind="function"><name>withdrawFee</name></member>
     <member refid="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698" kind="function"><name>prices</name></member>
     <member refid="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97" kind="function"><name>bookPrices</name></member>
     <member refid="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5" kind="function"><name>account</name></member>

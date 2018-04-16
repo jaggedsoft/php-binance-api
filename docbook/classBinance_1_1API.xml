@@ -313,15 +313,23 @@ string $asset)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b">depositHistory</link> (
-string $asset)</para>
+                        <para> <link linkend="classBinance_1_1API_1ac1e40c1bef7a768365d1e123d2324d5d">depositHistory</link> (
+string $asset, array $params)</para>
                     </listitem>
                 </itemizedlist>
             </para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0">withdrawHistory</link> (
+                        <para> <link linkend="classBinance_1_1API_1ac58d133afd56809f520aeb05e12b69d4">withdrawHistory</link> (
+string $asset, array $params)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a6b849844ef3f827d8144ae8e129978b5">withdrawFee</link> (
 string $asset)</para>
                     </listitem>
                 </itemizedlist>
@@ -1605,8 +1613,8 @@ exception                            <row>
                 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a0d353a3fe6f6fd28aa2177fc170d9f8b">
-                <title>Binance\API::depositHistory (string $asset=null)</title> <emphasis>depositAddress get the deposit history for an asset</emphasis>
+            <section xml:id="classBinance_1_1API_1ac1e40c1bef7a768365d1e123d2324d5d">
+                <title>Binance\API::depositHistory (string $asset=null, array $params=[])</title> <emphasis>depositAddress get the deposit history for an asset</emphasis>
                 
 <para>$depositHistory = $api-&gt;depositHistory();</para>
 
@@ -1623,6 +1631,12 @@ exception                            <row>
                                 <entry>$asset</entry>
                                 <entry>
 <para>string empty or the currency such as BTC </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>$params</entry>
+                                <entry>
+<para>array optional startTime, endTime, status parameters </para>
 </entry>
                             </row>
                         </tbody>
@@ -1646,8 +1660,8 @@ exception                            <row>
                 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1ae189e805dbb408560e539a94d44c63b0">
-                <title>Binance\API::withdrawHistory (string $asset=null)</title> <emphasis>withdrawHistory get the withdrawal history for an asset</emphasis>
+            <section xml:id="classBinance_1_1API_1ac58d133afd56809f520aeb05e12b69d4">
+                <title>Binance\API::withdrawHistory (string $asset=null, array $params=[])</title> <emphasis>withdrawHistory get the withdrawal history for an asset</emphasis>
                 
 <para>$withdrawHistory = $api-&gt;withdrawHistory();</para>
 
@@ -1666,6 +1680,12 @@ exception                            <row>
 <para>string empty or the currency such as BTC </para>
 </entry>
                             </row>
+                            <row>
+                                <entry>$params</entry>
+                                <entry>
+<para>array optional startTime, endTime, status parameters </para>
+</entry>
+                            </row>
                         </tbody>
                         </tgroup>
                     </table>
@@ -1673,6 +1693,45 @@ exception                            <row>
                 <formalpara><title>Returns: </title>
 
 <para>array with error message or array deposit history information </para>
+</formalpara>
+exception                            <row>
+                                <entry>\Exception</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="classBinance_1_1API_1a6b849844ef3f827d8144ae8e129978b5">
+                <title>Binance\API::withdrawFee (string $asset)</title> <emphasis>withdrawFee get the withdrawal fee for an asset</emphasis>
+                
+<para>$withdrawFee = $api-&gt;withdrawHistory( &quot;BTC&quot; );</para>
+
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters</title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <tbody>
+                            <row>
+                                <entry>$asset</entry>
+                                <entry>
+<para>string currency such as BTC </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                <formalpara><title>Returns: </title>
+
+<para>array with error message or array containing withdrawFee </para>
 </formalpara>
 exception                            <row>
                                 <entry>\Exception</entry>
