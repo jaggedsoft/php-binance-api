@@ -884,8 +884,8 @@ class API
             throw new \Exception("Sorry cURL is not installed!");
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_VERBOSE, $this->httpDebug);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
         $query = http_build_query($params, '', '&');
 
         // signed with params
@@ -908,57 +908,57 @@ class API
             $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
-            curl_setopt($ch, CURLOPT_URL, $endpoint);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            curl_setopt($curl, CURLOPT_URL, $endpoint);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
             ));
         }
         // params so buildquery string and append to url
         else if (count($params) > 0) {
-            curl_setopt($ch, CURLOPT_URL, $this->base . $url . '?' . $query);
+            curl_setopt($curl, CURLOPT_URL, $this->base . $url . '?' . $query);
         }
         // no params so just the base url
         else {
-            curl_setopt($ch, CURLOPT_URL, $this->base . $url);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            curl_setopt($curl, CURLOPT_URL, $this->base . $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
             ));
         }
-        curl_setopt($ch, CURLOPT_USERAGENT, "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)");
+        curl_setopt($curl, CURLOPT_USERAGENT, "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)");
         // Post and postfields
         if ($method == "POST") {
-            curl_setopt($ch, CURLOPT_POST, true);
-            // curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+            curl_setopt($curl, CURLOPT_POST, true);
+            // curl_setopt($curlch, CURLOPT_POSTFIELDS, $query);
         }
         // Delete Method
         if ($method == "DELETE") {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($curlch, CURLOPT_CUSTOMREQUEST, $method);
         }
         // proxy settings
         if (is_array($this->proxyConf)) {
-            curl_setopt($ch, CURLOPT_PROXY, $this->getProxyUriString());
+            curl_setopt($curl, CURLOPT_PROXY, $this->getProxyUriString());
             if (isset($this->proxyConf['user']) && isset($this->proxyConf['pass'])) {
-                curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
+                curl_setopt($curl, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
             }
         }
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         // headers will proceed the output, json_decode will fail below
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 60);
 
         // set user defined curl opts last for overriding
         foreach ($this->curlOpts as $key => $value) {
-            curl_setopt($ch, constant($key), $value);
+            curl_setopt($curl, constant($key), $value);
         }
 
-        $output = curl_exec($ch);
+        $output = curl_exec($curl);
         // Check if any error occurred
-        if (curl_errno($ch) > 0) {
-            echo 'Curl error: ' . curl_error($ch) . "\n";
+        if (curl_errno($curl) > 0) {
+            echo 'Curl error: ' . curl_error($curl) . "\n";
             return [];
         }
-        curl_close($ch);
+        curl_close($curl);
         $json = json_decode($output, true);
         if (isset($json['msg'])) {
             echo "signedRequest error: {$output}" . PHP_EOL;
