@@ -1101,7 +1101,7 @@ class API
         if (is_array($priceData)) {
             $btc_value = $btc_total = 0.00;
         }
-     
+
         if (empty($array) || empty($array['balances'])) {
             // WPCS: XSS OK.
             echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option." . PHP_EOL;
@@ -1117,8 +1117,7 @@ class API
                 "btcTotal" => 0.00000000,
             ];
 
-            if (is_array($priceData) === false) 
-            {
+            if (is_array($priceData) === false) {
                 continue;
             }
 
@@ -1139,7 +1138,7 @@ class API
             if ($symbol === 'BTCUSDT') {
                 $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'], 8, '.', '');
                 $btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'], 8, '.', '');
-            } elseif (isset($priceData[$symbol]) === false ) {
+            } elseif (isset($priceData[$symbol]) === false) {
                 $btcValue = $btcTotal = 0;
             } else {
                 $btcValue = number_format($obj['free'] * $priceData[$symbol], 8, '.', '');
