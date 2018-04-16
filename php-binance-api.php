@@ -1089,14 +1089,17 @@ class API
      */
     private function balanceData(array $array, $priceData)
     {
+        $balances = [];
+
         if (is_array($priceData)) {
             $btc_value = $btc_total = 0.00;
         }
-        $balances = [];
+     
         if (empty($array) || empty($array['balances'])) {
             echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option." . PHP_EOL;
             return [];
         }
+
         foreach ($array['balances'] as $obj) {
             $asset = $obj['asset'];
             $balances[$asset] = [
@@ -1105,33 +1108,40 @@ class API
                 "btcValue" => 0.00000000,
                 "btcTotal" => 0.00000000,
             ];
-            if ($priceData) {
-                if ($obj['free'] + $obj['locked'] < 0.00000001) {
-                    continue;
-                }
 
-                if ($asset == 'BTC') {
-                    $balances[$asset]['btcValue'] = $obj['free'];
-                    $balances[$asset]['btcTotal'] = $obj['free'] + $obj['locked'];
-                    $btc_value += $obj['free'];
-                    $btc_total += $obj['free'] + $obj['locked'];
-                    continue;
-                }
-                $symbol = $asset . 'BTC';
-                if ($symbol == 'BTCUSDT') {
-                    $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'], 8, '.', '');
-                    $btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'], 8, '.', '');
-                } elseif (!isset($priceData[$symbol])) {
-                    $btcValue = $btcTotal = 0;
-                } else {
-                    $btcValue = number_format($obj['free'] * $priceData[$symbol], 8, '.', '');
-                    $btcTotal = number_format(($obj['free'] + $obj['locked']) * $priceData[$symbol], 8, '.', '');
-                }
-                $balances[$asset]['btcValue'] = $btcValue;
-                $balances[$asset]['btcTotal'] = $btcTotal;
-                $btc_value += $btcValue;
-                $btc_total += $btcTotal;
+            if (is_array($priceData) === false) 
+            {
+                continue;
             }
+
+            if ($obj['free'] + $obj['locked'] < 0.00000001) {
+                continue;
+            }
+
+            if ($asset === 'BTC') {
+                $balances[$asset]['btcValue'] = $obj['free'];
+                $balances[$asset]['btcTotal'] = $obj['free'] + $obj['locked'];
+                $btc_value += $obj['free'];
+                $btc_total += $obj['free'] + $obj['locked'];
+                continue;
+            }
+
+            $symbol = $asset . 'BTC';
+
+            if ($symbol === 'BTCUSDT') {
+                $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'], 8, '.', '');
+                $btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'], 8, '.', '');
+            } elseif (isset($priceData[$symbol]) === false ) {
+                $btcValue = $btcTotal = 0;
+            } else {
+                $btcValue = number_format($obj['free'] * $priceData[$symbol], 8, '.', '');
+                $btcTotal = number_format(($obj['free'] + $obj['locked']) * $priceData[$symbol], 8, '.', '');
+            }
+
+            $balances[$asset]['btcValue'] = $btcValue;
+            $balances[$asset]['btcTotal'] = $btcTotal;
+            $btc_value += $btcValue;
+            $btc_total += $btcTotal;
         }
         if (is_array($priceData)) {
             uasort($balances, function ($opA, $opB) {
