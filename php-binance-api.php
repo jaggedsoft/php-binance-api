@@ -632,14 +632,13 @@ class API
      * $depositHistory = $api->depositHistory( "BTC" );
      *
      * @param $asset string empty or the currency such as BTC
+     * @param $params array optional startTime, endTime, status parameters
      * @return array with error message or array deposit history information
      * @throws \Exception
      */
-    public function depositHistory(string $asset = null)
+    public function depositHistory(string $asset = null, array $params = [])
     {
-        $params = [
-            "wapi" => true,
-        ];
+        $params["wapi"] = true;
         if (is_null($asset) == false) {
             $params['asset'] = $asset;
         }
@@ -654,18 +653,35 @@ class API
      * $withdrawHistory = $api->withdrawHistory( "BTC" );
      *
      * @param $asset string empty or the currency such as BTC
+     * @param $params array optional startTime, endTime, status parameters
      * @return array with error message or array deposit history information
      * @throws \Exception
      */
-    public function withdrawHistory(string $asset = null)
+    public function withdrawHistory(string $asset = null, array $params = [])
     {
-        $params = [
-            "wapi" => true,
-        ];
+        $params["wapi"] = true;
         if (is_null($asset) == false) {
             $params['asset'] = $asset;
         }
         return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
+    }
+    
+    /**
+     * withdrawFee get the withdrawal fee for an asset
+     *
+     * $withdrawFee = $api->withdrawHistory( "BTC" );
+     *
+     * @param $asset string currency such as BTC
+     * @return array with error message or array containing withdrawFee
+     * @throws \Exception
+     */
+    public function withdrawFee(string $asset)
+    {
+        $params = [
+            "wapi" => true,
+            "asset" => $asset
+        ];
+        return $this->httpRequest("v3/withdrawFee.html", "GET", $params, true);
     }
 
     /**
