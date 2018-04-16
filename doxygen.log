@@ -1,38 +1,38 @@
 Error: When enabling GENERATE_HTMLHELP the tree view (GENERATE_TREEVIEW) should be disabled. I'll do it for you.
 Error: When enabling GENERATE_HTMLHELP the search engine (SEARCHENGINE) should be disabled. I'll do it for you.
-error: fatal: at line 2111 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
-error: fatal: at line 2111 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
-error: fatal: at line 2111 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 2148 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: unexpected end of file
+error: fatal: at line 2148 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
+error: fatal: at line 2148 column 0 of /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: error while parsing prolog
 fatal: /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php: '/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php' is outside repository
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1624: warning: Found unknown command `\depth'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1823: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1902: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1624: warning: Found unknown command `\depth'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1823: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1902: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:166: warning: argument '$file' of command @param is not found in the argument list of Binance\API::__get(string $member)
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:166: warning: The following parameters of Binance\API\__get(string $member) are not documented:
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1647: warning: Found unknown command `\depth'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1852: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1933: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1647: warning: Found unknown command `\depth'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1852: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1933: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:165: warning: argument '$file' of command @param is not found in the argument list of Binance\API::__get(string $member)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:165: warning: The following parameters of Binance\API\__get(string $member) are not documented:
   parameter '$member'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1823: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1624: warning: Found unknown command `\depth'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1625: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, callable $callback)
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1625: warning: The following parameters of Binance\API\depthCache($symbols, callable $callback) are not documented:
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1852: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1647: warning: Found unknown command `\depth'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1648: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, callable $callback)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1648: warning: The following parameters of Binance\API\depthCache($symbols, callable $callback) are not documented:
   parameter '$symbols'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1902: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:166: warning: argument '$file' of command @param is not found in the argument list of Binance\API::__get(string $member)
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:166: warning: The following parameters of Binance\API\__get(string $member) are not documented:
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1933: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:165: warning: argument '$file' of command @param is not found in the argument list of Binance\API::__get(string $member)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:165: warning: The following parameters of Binance\API\__get(string $member) are not documented:
   parameter '$member'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1624: warning: Found unknown command `\depth'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1625: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, callable $callback)
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1625: warning: The following parameters of Binance\API\depthCache($symbols, callable $callback) are not documented:
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1647: warning: Found unknown command `\depth'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1648: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, callable $callback)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1648: warning: The following parameters of Binance\API\depthCache($symbols, callable $callback) are not documented:
   parameter '$symbols'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1823: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1902: warning: Found unknown command `\klines'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:166: warning: argument '$file' of command @param is not found in the argument list of Binance\API::__get(string $member)
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:166: warning: The following parameters of Binance\API\__get(string $member) are not documented:
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1852: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1933: warning: Found unknown command `\klines'
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:165: warning: argument '$file' of command @param is not found in the argument list of Binance\API::__get(string $member)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:165: warning: The following parameters of Binance\API\__get(string $member) are not documented:
   parameter '$member'
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1625: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, callable $callback)
-/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1625: warning: The following parameters of Binance\API\depthCache($symbols, callable $callback) are not documented:
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1648: warning: argument '$symbol' of command @param is not found in the argument list of Binance\API::depthCache($symbols, callable $callback)
+/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php:1648: warning: The following parameters of Binance\API\depthCache($symbols, callable $callback) are not documented:
   parameter '$symbols'
 Parsing layout file /home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php...
 Searching for include files...
@@ -130,5 +130,5 @@ Generating Docbook output for namespace Binance
 Generating Docbook output for class Binance::API
 Generating Docbook output for file php-binance-api.php
 Combining RTF output...
-lookup cache used 144/65536 hits=972 misses=144
+lookup cache used 142/65536 hits=910 misses=142
 finished...

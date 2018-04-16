@@ -121,13 +121,6 @@
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para>$balances</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
                         <para>$btc_value</para>
                     </listitem>
                 </itemizedlist>

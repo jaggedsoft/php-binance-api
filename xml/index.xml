@@ -17,7 +17,6 @@
     <member refid="classBinance_1_1API_1a69a4bfc5a6773dff1d01166dfbb402a2" kind="variable"><name>$requestCount</name></member>
     <member refid="classBinance_1_1API_1aaaf9a901342001f8734bfab6ba505205" kind="variable"><name>$httpDebug</name></member>
     <member refid="classBinance_1_1API_1a858ac2cec1de7719779b6c517adcb0bf" kind="variable"><name>$subscriptions</name></member>
-    <member refid="classBinance_1_1API_1a706b2458b10d731ea4918714c333a845" kind="variable"><name>$balances</name></member>
     <member refid="classBinance_1_1API_1af80ef162a101ffa0963d977126d6811d" kind="variable"><name>$btc_value</name></member>
     <member refid="classBinance_1_1API_1a80f67dda302da9465596ad5e0bd86ce2" kind="variable"><name>$btc_total</name></member>
     <member refid="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78" kind="function"><name>__construct</name></member>
