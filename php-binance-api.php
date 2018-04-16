@@ -999,16 +999,16 @@ class API
 
         // someone has preformated there 8 decimal point double already
         // dont do anything, leave them do whatever they want
-        if (gettype($price) != "string") {
+        if (gettype($price) !== "string") {
             // for every other type, lets format it appropriately
             $price = number_format($price, 8, '.', '');
         }
 
-        if (is_numeric($quantity) == false) {
+        if (is_numeric($quantity) === false) {
             echo "warning: quantity expected numeric got " . gettype($quantity) . PHP_EOL;
         }
 
-        if (is_string($price) == false) {
+        if (is_string($price) === false) {
             echo "warning: price expected string got " . gettype($price) . PHP_EOL;
         }
 
@@ -1029,7 +1029,7 @@ class API
             $opt['newOrderRespType'] = $flags['newOrderRespType'];
         }
 
-        $qstring = ($test == false) ? "v3/order" : "v3/order/test";
+        $qstring = ($test === false) ? "v3/order" : "v3/order/test";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
 
