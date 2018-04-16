@@ -1134,8 +1134,8 @@ class API
             }
         }
         if (is_array($priceData)) {
-            uasort($balances, function ($a, $b) {
-                return $a['btcValue'] < $b['btcValue'];
+            uasort($balances, function ($opA, $opB) {
+                return $opA['btcValue'] < $opB['btcValue'];
             });
             $this->btc_value = $btc_value;
             $this->btc_total = $btc_total;
@@ -1265,7 +1265,7 @@ class API
                 "trades" => $trades,
                 "assetBuyVolume" => $assetBuyVolume,
                 "takerBuyVolume" => $takerBuyVolume,
-                "ignored" => $ignored
+                "ignored" => $ignored,
             ];
         }
         $this->info[$symbol][$interval]['firstOpen'] = $openTime;
