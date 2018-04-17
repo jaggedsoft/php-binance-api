@@ -15,7 +15,8 @@
         "ratchet/rfc6455": "^0.2.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6"
+        "phpunit/phpunit": "~6",
+        "codacy/coverage": "dev-master"
     },
     "config": {
     	"optimize-autoloader": true,
