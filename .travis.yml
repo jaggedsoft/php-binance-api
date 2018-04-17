@@ -25,6 +25,7 @@ before_script:
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/php-binance-api-test.php -O php-binance-api-test.php
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/phpunit.xml -O phpunit.xml
   - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+  - travis_retry wget https://github.com/codacy/php-codacy-coverage/releases/download/1.4.2/codacy-coverage.phar -O codacy.phar
   - travis_retry wget https://github.com/phpfmt-next/fmt/raw/master/bin/fmt.phar -O fmt.phar 
   - travis_retry wget https://codecov.io/bash -O codecov.sh
   - COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
@@ -39,8 +40,10 @@ script:
 
 after_success:
     - if [[ $QUALITY == "yes" ]]; then travis_retry php coveralls.phar -v; fi
+    - if [[ $QUALITY == "yes" ]]; then travis_retry php codacy.phar clover -vv build/logs/clover.xml; fi
     - if [[ $QUALITY == "yes" ]]; then travis_retry bash -x ./codecov.sh -f "!$TRAVIS_BUILD_DIR/php-binance-api-test.php"; fi
     - if [[ $QUALITY == "yes" ]]; then travis_retry bash -x ./docs.sh; fi
+    php vendor/bin/codacycoverage clover 
 
 branches:
   only: master
