@@ -43,7 +43,6 @@ after_success:
     - if [[ $QUALITY == "yes" ]]; then travis_retry php codacy.phar clover -vv build/logs/clover.xml; fi
     - if [[ $QUALITY == "yes" ]]; then travis_retry bash -x ./codecov.sh -f "!$TRAVIS_BUILD_DIR/php-binance-api-test.php"; fi
     - if [[ $QUALITY == "yes" ]]; then travis_retry bash -x ./docs.sh; fi
-    php vendor/bin/codacycoverage clover 
 
 branches:
   only: master
