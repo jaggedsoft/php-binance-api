@@ -7,6 +7,7 @@
 [![Build Status](https://travis-ci.org/jaggedsoft/php-binance-api.svg?branch=master&style=flat-square)](https://travis-ci.org/jaggedsoft/php-binance-api) 
 [![Coverage Status](https://coveralls.io/repos/github/jaggedsoft/php-binance-api/badge.svg?branch=master&style=flat-square)](https://coveralls.io/github/jaggedsoft/php-binance-api) 
 [![CodeCov](https://codecov.io/gh/jaggedsoft/php-binance-api/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/github/jaggedsoft/php-binance-api/) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/683459a5a71c4875956cf23078a0c39b)](https://www.codacy.com/app/dmzoneill/php-binance-api?utm_source=github.com&utm_medium=referral&utm_content=jaggedsoft/php-binance-api&utm_campaign=Badge_Coverage)
 [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/jaggedsoft/php-binance-api/grade.svg?style=flat-square)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/jaggedsoft/php-binance-api)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/683459a5a71c4875956cf23078a0c39b)](https://www.codacy.com/app/dmzoneill/php-binance-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jaggedsoft/php-binance-api&amp;utm_campaign=Badge_Grade)
 
