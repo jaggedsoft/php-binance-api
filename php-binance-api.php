@@ -960,14 +960,18 @@ class API
         // Check if any error occurred
         if (curl_errno($curl) > 0) {
             // WPCS: XSS OK.
-            echo 'Curl error: ' . curl_error($curl) . "\n";
+            if($this->httpDebug) {
+                echo 'Curl error: ' . curl_error($curl) . "\n";
+            }
             return [];
         }
         curl_close($curl);
         $json = json_decode($output, true);
         if (isset($json['msg'])) {
             // WPCS: XSS OK.
-            echo "signedRequest error: {$output}" . PHP_EOL;
+            if($this->httpDebug) {
+                echo "signedRequest error: {$output}" . PHP_EOL;
+            }
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
