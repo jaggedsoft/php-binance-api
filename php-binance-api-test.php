@@ -48,6 +48,19 @@ final class BinanceTest extends TestCase
         @file_put_contents(self::$config_file, json_encode($contents));
     }
 
+    private static function writeConfigWithSocksProxy()
+    {
+        self::writeConfig();
+
+        $contents = json_decode(file_get_contents(self::$config_file), true);
+        $contents['proto'] = "socks";
+        $contents['address'] = "127.0.01";
+        $contents['port'] = "9999";
+
+        @unlink(self::$config_file);
+        @file_put_contents(self::$config_file, json_encode($contents));
+    }
+
     private static function debug($pipe, $method, $msg)
     {
         $pipe = ($pipe == 0) ? STDOUT : STDERR;
@@ -57,7 +70,14 @@ final class BinanceTest extends TestCase
     public static function setUpBeforeClass()
     {
         self::debug(0, __METHOD__, "");
-        self::writeConfig();
+
+        if( getenv( "socks_proxy" ) !== false ) {
+            self::writeConfigWithSocksProxy();
+        }
+        else {
+            self::writeConfig();
+        }
+
         if (file_exists(self::$config_file) == false) {
             self::debug(0, __METHOD__, self::$config_file . " not found");
             exit();
