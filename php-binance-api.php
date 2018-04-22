@@ -521,12 +521,15 @@ class API
      */
     public function history(string $symbol, int $limit = 500, int $fromTradeId = -1)
     {
-        $parameters = [ 
+        $parameters = [
             "symbol" => $symbol,
-            "limit" => $limit
+            "limit" => $limit,
         ];
-        if ( $fromTradeId > 0 ) $parameters["fromId"] = $fromTradeId;
-        return $this->httpRequest( "v3/myTrades", "GET", $parameters, true );
+        if ($fromTradeId > 0) {
+            $parameters["fromId"] = $fromTradeId;
+        }
+
+        return $this->httpRequest("v3/myTrades", "GET", $parameters, true);
     }
 
     /**
@@ -960,7 +963,7 @@ class API
         // Check if any error occurred
         if (curl_errno($curl) > 0) {
             // WPCS: XSS OK.
-            if($this->httpDebug) {
+            if ($this->httpDebug) {
                 echo 'Curl error: ' . curl_error($curl) . "\n";
             }
             return [];
@@ -969,7 +972,7 @@ class API
         $json = json_decode($output, true);
         if (isset($json['msg'])) {
             // WPCS: XSS OK.
-            if($this->httpDebug) {
+            if ($this->httpDebug) {
                 echo "signedRequest error: {$output}" . PHP_EOL;
             }
         }
