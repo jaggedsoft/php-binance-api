@@ -34,7 +34,7 @@
     <member refid="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4" kind="function"><name>orderStatus</name></member>
     <member refid="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335" kind="function"><name>openOrders</name></member>
     <member refid="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8" kind="function"><name>orders</name></member>
-    <member refid="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8" kind="function"><name>history</name></member>
+    <member refid="classBinance_1_1API_1a91842828e25805fe9a6fd51391566386" kind="function"><name>history</name></member>
     <member refid="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f" kind="function"><name>useServerTime</name></member>
     <member refid="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b" kind="function"><name>time</name></member>
     <member refid="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a" kind="function"><name>exchangeInfo</name></member>

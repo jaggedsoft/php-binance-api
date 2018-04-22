@@ -258,7 +258,7 @@ string $symbol, int $limit, int $fromOrderId)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8">history</link> (
+                        <para> <link linkend="classBinance_1_1API_1a91842828e25805fe9a6fd51391566386">history</link> (
 string $symbol, int $limit, int $fromTradeId)</para>
                     </listitem>
                 </itemizedlist>
@@ -1391,8 +1391,8 @@ exception                            <row>
                 </para>
 
             </section>
-            <section xml:id="classBinance_1_1API_1a433da4ce62d8acc2a5a501b98215a4e8">
-                <title>Binance\API::history (string $symbol, int $limit=500, int $fromTradeId=1)</title> <emphasis>history Get the complete account trade history for all or a specific currency</emphasis>
+            <section xml:id="classBinance_1_1API_1a91842828e25805fe9a6fd51391566386">
+                <title>Binance\API::history (string $symbol, int $limit=500, int $fromTradeId=-1)</title> <emphasis>history Get the complete account trade history for all or a specific currency</emphasis>
                 
 <para>$allHistory = $api-&gt;history(); $BNBHistory = $api-&gt;history(&quot;BNBBTC&quot;); $limitBNBHistory = $api-&gt;history(&quot;BNBBTC&quot;,5); $limitBNBHistoryFromId = $api-&gt;history(&quot;BNBBTC&quot;,5,3);</para>
 
@@ -1418,7 +1418,7 @@ exception                            <row>
                             <row>
                                 <entry>$fromTradeId</entry>
                                 <entry>
-<para>int return the orders from this order onwards </para>
+<para>int (optional) return the orders from this order onwards. negative for all </para>
 </entry>
                             </row>
                         </tbody>
