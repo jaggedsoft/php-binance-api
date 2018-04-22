@@ -515,17 +515,18 @@ class API
      *
      * @param $symbol string the currency symbol
      * @param $limit int the amount of orders returned
-     * @param $fromTradeId int return the orders from this order onwards
+     * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function history(string $symbol, int $limit = 500, int $fromTradeId = 1)
+    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1)
     {
-        return $this->httpRequest("v3/myTrades", "GET", [
+        $parameters = [ 
             "symbol" => $symbol,
-            "limit" => $limit,
-            "fromId" => $fromTradeId,
-        ], true);
+            "limit" => $limit
+        ];
+        if ( $fromTradeId > 0 ) $parameters["fromId"] = $fromTradeId;
+        return $this->httpRequest( "v3/myTrades", "GET", $parameters, true );
     }
 
     /**
