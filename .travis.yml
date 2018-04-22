@@ -6,7 +6,9 @@ matrix:
     - php: 7.0
     - php: 7.1
     - php: 7.2
-      env: QUALITY=yes
+      env: 
+        - QUALITY=yes
+        - PROXY_VALIDATION=yes
     - php: nightly
     - os: osx
       osx_image: xcode7.2
@@ -17,6 +19,12 @@ notifications:
     webhooks: https://www.travisbuddy.com/?insertMode=update
 
 before_script:
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then mkdir -vp /home/travis/.ssh/; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then ssh-keygen -f /home/travis/.ssh/id_ecdsa -t ecdsa -N ''; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then cat /home/travis/.ssh/*.pub > /home/travis/.ssh/authorized_keys; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then chmod 600 /home/travis/.ssh/*; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then chmod 700 /home/travis/.ssh/.; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then ssh -f -o "StrictHostKeyChecking no" -D 9999 -q -N travis@localhost; fi
   - mkdir -vp ~/.config/jaggedsoft/
   - mkdir -vp build/logs
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/composer-test.json -O composer-test.json
@@ -32,9 +40,14 @@ before_script:
   - chmod -v +x codecov.sh
   - chmod -v +x docs.sh
   - chmod -v +x coveralls.phar
+  - travis_retry sudo apt-get install tinyproxy curl
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then tinyproxy; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then travis_retry curl -v -I --proxy socks://127.0.0.1:9999 https://www.google.com; fi
 
 script:
   - ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then export socks_proxy=http://127.0.0.1:9999; fi
+  - if [[ $PROXY_VALIDATION == "yes" ]]; then ./vendor/bin/phpunit --verbose --debug --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php php-binance-api-test; fi
   - php fmt.phar -v --psr2 --indent_with_space=4 -o=php-binance-api.php.fmt php-binance-api.php
   - diff php-binance-api.php.fmt php-binance-api.php
 
