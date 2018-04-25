@@ -802,7 +802,17 @@ class API
             $priceData = false;
         }
 
-        return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
+        $account = $this->httpRequest("v3/account", "GET", [], true);
+
+        if (is_array($account) === false) {
+            echo "Error: unable to fetch your account details" . PHP_EOL;
+        }
+
+        if (isset($account['balances']) === false) {
+            echo "Error: your balances were empty or unset" . PHP_EOL;
+        }
+
+        return $this->balanceData($account, $priceData);
     }
 
     /**
