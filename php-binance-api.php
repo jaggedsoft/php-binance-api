@@ -1122,7 +1122,8 @@ class API
 
         if (empty($array) || empty($array['balances'])) {
             // WPCS: XSS OK.
-            echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option." . PHP_EOL;
+            echo "balanceData error: Please make sure your system time is synchronized: call $api->useServerTime() before this function" . PHP_EOL;
+            echo "ERROR: Invalid request. Please double check your API keys and permissions." . PHP_EOL;
             return [];
         }
 
