@@ -515,17 +515,21 @@ class API
      *
      * @param $symbol string the currency symbol
      * @param $limit int the amount of orders returned
-     * @param $fromTradeId int return the orders from this order onwards
+     * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function history(string $symbol, int $limit = 500, int $fromTradeId = 1)
+    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1)
     {
-        return $this->httpRequest("v3/myTrades", "GET", [
+        $parameters = [
             "symbol" => $symbol,
             "limit" => $limit,
-            "fromId" => $fromTradeId,
-        ], true);
+        ];
+        if ($fromTradeId > 0) {
+            $parameters["fromId"] = $fromTradeId;
+        }
+
+        return $this->httpRequest("v3/myTrades", "GET", $parameters, true);
     }
 
     /**
@@ -798,7 +802,17 @@ class API
             $priceData = false;
         }
 
-        return $this->balanceData($this->httpRequest("v3/account", "GET", [], true), $priceData);
+        $account = $this->httpRequest("v3/account", "GET", [], true);
+
+        if (is_array($account) === false) {
+            echo "Error: unable to fetch your account details" . PHP_EOL;
+        }
+
+        if (isset($account['balances']) === false) {
+            echo "Error: your balances were empty or unset" . PHP_EOL;
+        }
+
+        return $this->balanceData($account, $priceData);
     }
 
     /**
@@ -959,14 +973,18 @@ class API
         // Check if any error occurred
         if (curl_errno($curl) > 0) {
             // WPCS: XSS OK.
-            echo 'Curl error: ' . curl_error($curl) . "\n";
+            if ($this->httpDebug) {
+                echo 'Curl error: ' . curl_error($curl) . "\n";
+            }
             return [];
         }
         curl_close($curl);
         $json = json_decode($output, true);
         if (isset($json['msg'])) {
             // WPCS: XSS OK.
-            echo "signedRequest error: {$output}" . PHP_EOL;
+            if ($this->httpDebug) {
+                echo "signedRequest error: {$output}" . PHP_EOL;
+            }
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
@@ -1104,7 +1122,8 @@ class API
 
         if (empty($array) || empty($array['balances'])) {
             // WPCS: XSS OK.
-            echo "balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option." . PHP_EOL;
+            echo "balanceData error: Please make sure your system time is synchronized: call $api->useServerTime() before this function" . PHP_EOL;
+            echo "ERROR: Invalid request. Please double check your API keys and permissions." . PHP_EOL;
             return [];
         }
 
@@ -2110,7 +2129,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect('wss://stream2.binance.com:9443/ws/!miniTicker@arr@1000ms')->then(function ($ws) use ($callback, $endpoint) {
+        \Ratchet\Client\connect($this->stream . '!miniTicker@arr')->then(function ($ws) use ($callback, $endpoint) {
             $ws->on('message', function ($data) use ($ws, $callback, $endpoint) {
                 if ($this->subscriptions[$endpoint] === false) {
                     //$this->subscriptions[$endpoint] = null;
