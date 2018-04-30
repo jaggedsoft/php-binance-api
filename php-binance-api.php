@@ -53,7 +53,11 @@ class API
 
     /**
      * Constructor for the class,
-     * send as many agument as you want.
+     * send as many argument as you want.
+     *
+     * No arguments - use file setup
+     * 1 argument - file to load config from
+     * 2 arguments - api key and api secret
      *
      * @return null
      */
@@ -62,104 +66,19 @@ class API
         $param = func_get_args();
         switch (func_num_args()) {
             case 0:
-                $this->__construct0();
+                $this->setupApiConfigFromFile();
+                $this->setupProxyConfigFromFile();
                 break;
             case 1:
-                $this->__construct1($param[0]);
+                $this->setupApiConfigFromFile($param[0]);
+                $this->setupProxyConfigFromFile($param[0]);
+                $this->setupCurlOptsFromFile($param[0]);
                 break;
             case 2:
-                $this->__construct2($param[0], $param[1]);
-                break;
-            case 3:
-                $this->__construct3($param[0], $param[1], $param[2]);
-                break;
-            case 4:
-                $this->__construct4($param[0], $param[1], $param[2], $param[3]);
+                $this->api_key = $param[0];
+                $this->api_secret = $param[1];
                 break;
         }
-    }
-
-    /**
-     * Constructor for the class
-     *
-     * @return null
-     */
-    private function __construct0()
-    {
-        $this->setupApiConfigFromFile();
-        $this->setupProxyConfigFromFile();
-    }
-
-    /**
-     * Constructor for the class
-     * Specifiy the filename where the config is stored
-     *
-     * @param $filename string the config file location
-     * @return null
-     */
-    private function __construct1(string $filename = null)
-    {
-        $this->setupApiConfigFromFile($filename);
-        $this->setupProxyConfigFromFile($filename);
-        $this->setupCurlOptsFromFile($filename);
-    }
-
-    /**
-     * Constructor for the class
-     *
-     * @param $api_key string api key
-     * @param $api_secret string api secret
-     * @return null
-     */
-    private function __construct2(string $api_key = null, string $api_secret = null)
-    {
-        $this->api_key = $api_key;
-        $this->api_secret = $api_secret;
-    }
-
-    /**
-     * Constructor for the class
-     *
-     * @param $api_key string api key
-     * @param $api_secret string api secret
-     * @param $options array addtional coniguration options
-     * @return null
-     */
-    private function __construct3(string $api_key = null, string $api_secret = null, array $options = ["useServerTime" => false])
-    {
-        $this->api_key = $api_key;
-        $this->api_secret = $api_secret;
-        if (isset($options['useServerTime']) && $options['useServerTime']) {
-            $this->useServerTime();
-        }
-        if (isset($options['curlOpts']) && is_array($options['curlOpts'])) {
-            $this->curlOpts = $options['curlOpts'];
-        }
-    }
-
-    /**
-     * Constructor for the class
-     *
-     * @param $api_key string api key
-     * @param $api_secret string api secret
-     * @param $options array addtional coniguration options
-     * @param $proxyConf array config
-     * @return null
-     */
-    private function __construct4(string $api_key = null, string $api_secret = null, array $options = ["useServerTime" => false], array $proxyConf = null)
-    {
-        $this->api_key = $api_key;
-        $this->api_secret = $api_secret;
-        $this->proxyConf = $proxyConf;
-        if (isset($options['useServerTime']) && $options['useServerTime']) {
-            $this->useServerTime();
-        }
-        if (isset($options['curlOpts']) && is_array($options['curlOpts'])) {
-            $this->curlOpts = $options['curlOpts'];
-        }
-        $this->setupApiConfigFromFile();
-        $this->setupProxyConfigFromFile();
-        $this->setupCurlOptsFromFile();
     }
 
     /**
