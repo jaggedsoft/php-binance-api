@@ -119,37 +119,6 @@ final class BinanceTest extends TestCase
         $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
     }
 
-    public function testInstantiate3()
-    {
-        self::debug(0, __METHOD__, "");
-        $opts = ['CURLOPT_CERTINFO' => 1];
-        $this->_testable = new Binance\API(self::$apikey, self::$apisecret, ["useServerTime" => true, "curlOpts" => $opts]);
-        $this->assertInstanceOf('Binance\API', $this->_testable);
-        $this->assertTrue(strcmp($this->_testable->api_key, self::$apikey) === 0);
-        $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
-        $this->assertTrue($this->_testable->curlOpts['CURLOPT_CERTINFO'] === 1);
-        $this->assertTrue($this->_testable->curlOpts['CURLOPT_CERTINFO'] === 1);
-    }
-
-    public function testInstantiate4()
-    {
-        self::debug(0, __METHOD__, "");
-        $proxyconf['proto'] = "https";
-        $proxyconf['user'] = "a";
-        $proxyconf['pass'] = "b";
-        $proxyconf['address'] = "1.2.3.4";
-        $proxyconf['port'] = "5678";
-        $this->_testable = new Binance\API(null, null, ["useServerTime" => true, "curlOpts" => array()], $proxyconf);
-        $this->assertInstanceOf('Binance\API', $this->_testable);
-        $this->assertTrue(strcmp($this->_testable->api_key, self::$apikey) === 0);
-        $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
-        $this->assertTrue(strcmp($this->_testable->proxyConf['proto'], $proxyconf['proto']) === 0);
-        $this->assertTrue(strcmp($this->_testable->proxyConf['user'], $proxyconf['user']) === 0);
-        $this->assertTrue(strcmp($this->_testable->proxyConf['pass'], $proxyconf['pass']) === 0);
-        $this->assertTrue(strcmp($this->_testable->proxyConf['address'], $proxyconf['address']) === 0);
-        $this->assertTrue(strcmp($this->_testable->proxyConf['port'], $proxyconf['port']) === 0);
-    }
-
     public function testInstantiate4CredentialsProxyOrdering()
     {
         self::debug(0, __METHOD__, "");
