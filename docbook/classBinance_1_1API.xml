@@ -565,46 +565,6 @@ callable $callback)</para>
             <para>
                 <itemizedlist>
                     <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a64eb639389887f37b6e7de9a2f585745">__construct0</link> (
-)</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        <para> <link linkend="classBinance_1_1API_1ad3f405545b40fa6b786f04252381db99">__construct1</link> (
-string $filename)</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a4eb195af7ae194a594d2ce9df0fe89a1">__construct2</link> (
-string $api_key, string $api_secret)</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        <para> <link linkend="classBinance_1_1API_1a0fd63de864ee94c60b87c1c3b0940a85">__construct3</link> (
-string $api_key, string $api_secret, array $options, false] )</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        <para> <link linkend="classBinance_1_1API_1af8e8a85361b63d69538fdce231f1e775">__construct4</link> (
-string $api_key, string $api_secret, array $options, false] , array $proxyConf)</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
                         <para> <link linkend="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf">setupApiConfigFromFile</link> (
 string $file)</para>
                     </listitem>
@@ -738,8 +698,10 @@ string $symbol, string $interval, \stdClass $json)</para>
         </simplesect>
             <section xml:id="classBinance_1_1API_1adbaefdc26d86ac1fd69ad101e0905c78">
                 <title>Binance\API::__construct ()</title> <emphasis>Constructor for the class,
-send as many agument as you want.</emphasis>
+send as many argument as you want.</emphasis>
                 
+<para>No arguments - use file setup 1 argument - file to load config from 2 arguments - api key and api secret</para>
+
 <para><formalpara><title>Returns: </title>
 
 <para>null </para>
@@ -2659,161 +2621,6 @@ exception                            <row>
                                 <entry>$callback</entry>
                                 <entry>
 <para>callable function closer that takes 2 arguments, $pai and $ticker data </para>
-</entry>
-                            </row>
-                        </tbody>
-                        </tgroup>
-                    </table>
-                </formalpara>
-                <formalpara><title>Returns: </title>
-
-<para>null </para>
-</formalpara>
-</para>
-
-            </section>
-            <section xml:id="classBinance_1_1API_1a64eb639389887f37b6e7de9a2f585745">
-                <title>Binance\API::__construct0 ()</title> <emphasis>Constructor for the class.</emphasis>
-                
-<para><formalpara><title>Returns: </title>
-
-<para>null </para>
-</formalpara>
-</para>
-
-            </section>
-            <section xml:id="classBinance_1_1API_1ad3f405545b40fa6b786f04252381db99">
-                <title>Binance\API::__construct1 (string $filename=null)</title> <emphasis>Constructor for the class
-Specifiy the filename where the config is stored.</emphasis>
-                
-<para>
-                <formalpara>
-                    <title/>
-                    <table frame="all">
-                        <title>Parameters</title>
-                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
-                        <tbody>
-                            <row>
-                                <entry>$filename</entry>
-                                <entry>
-<para>string the config file location </para>
-</entry>
-                            </row>
-                        </tbody>
-                        </tgroup>
-                    </table>
-                </formalpara>
-                <formalpara><title>Returns: </title>
-
-<para>null </para>
-</formalpara>
-</para>
-
-            </section>
-            <section xml:id="classBinance_1_1API_1a4eb195af7ae194a594d2ce9df0fe89a1">
-                <title>Binance\API::__construct2 (string $api_key=null, string $api_secret=null)</title> <emphasis>Constructor for the class.</emphasis>
-                
-<para>
-                <formalpara>
-                    <title/>
-                    <table frame="all">
-                        <title>Parameters</title>
-                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
-                        <tbody>
-                            <row>
-                                <entry>$api_key</entry>
-                                <entry>
-<para>string api key </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$api_secret</entry>
-                                <entry>
-<para>string api secret </para>
-</entry>
-                            </row>
-                        </tbody>
-                        </tgroup>
-                    </table>
-                </formalpara>
-                <formalpara><title>Returns: </title>
-
-<para>null </para>
-</formalpara>
-</para>
-
-            </section>
-            <section xml:id="classBinance_1_1API_1a0fd63de864ee94c60b87c1c3b0940a85">
-                <title>Binance\API::__construct3 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt; false])</title> <emphasis>Constructor for the class.</emphasis>
-                
-<para>
-                <formalpara>
-                    <title/>
-                    <table frame="all">
-                        <title>Parameters</title>
-                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
-                        <tbody>
-                            <row>
-                                <entry>$api_key</entry>
-                                <entry>
-<para>string api key </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$api_secret</entry>
-                                <entry>
-<para>string api secret </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$options</entry>
-                                <entry>
-<para>array addtional coniguration options </para>
-</entry>
-                            </row>
-                        </tbody>
-                        </tgroup>
-                    </table>
-                </formalpara>
-                <formalpara><title>Returns: </title>
-
-<para>null </para>
-</formalpara>
-</para>
-
-            </section>
-            <section xml:id="classBinance_1_1API_1af8e8a85361b63d69538fdce231f1e775">
-                <title>Binance\API::__construct4 (string $api_key=null, string $api_secret=null, array $options=[&quot;useServerTime&quot;=&gt; false], array $proxyConf=null)</title> <emphasis>Constructor for the class.</emphasis>
-                
-<para>
-                <formalpara>
-                    <title/>
-                    <table frame="all">
-                        <title>Parameters</title>
-                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
-                        <tbody>
-                            <row>
-                                <entry>$api_key</entry>
-                                <entry>
-<para>string api key </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$api_secret</entry>
-                                <entry>
-<para>string api secret </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$options</entry>
-                                <entry>
-<para>array addtional coniguration options </para>
-</entry>
-                            </row>
-                            <row>
-                                <entry>$proxyConf</entry>
-                                <entry>
-<para>array config </para>
 </entry>
                             </row>
                         </tbody>

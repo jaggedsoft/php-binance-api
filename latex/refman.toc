@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{\numberline {4.1.3.1}\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}get}{10}{subsubsection.4.1.3.1}
 \contentsline {subsubsection}{\numberline {4.1.3.2}\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}\_\discretionary {-}{}{}set}{10}{subsubsection.4.1.3.2}
 \contentsline {subsubsection}{\numberline {4.1.3.3}account}{10}{subsubsection.4.1.3.3}
-\contentsline {subsubsection}{\numberline {4.1.3.4}add\discretionary {-}{}{}To\discretionary {-}{}{}Transfered}{10}{subsubsection.4.1.3.4}
+\contentsline {subsubsection}{\numberline {4.1.3.4}add\discretionary {-}{}{}To\discretionary {-}{}{}Transfered}{11}{subsubsection.4.1.3.4}
 \contentsline {subsubsection}{\numberline {4.1.3.5}agg\discretionary {-}{}{}Trades}{11}{subsubsection.4.1.3.5}
 \contentsline {subsubsection}{\numberline {4.1.3.6}balances}{11}{subsubsection.4.1.3.6}
 \contentsline {subsubsection}{\numberline {4.1.3.7}book\discretionary {-}{}{}Prices}{11}{subsubsection.4.1.3.7}
