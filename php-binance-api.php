@@ -68,6 +68,7 @@ class API
             case 0:
                 $this->setupApiConfigFromFile();
                 $this->setupProxyConfigFromFile();
+                $this->setupCurlOptsFromFile();
                 break;
             case 1:
                 $this->setupApiConfigFromFile($param[0]);
@@ -118,11 +119,11 @@ class API
     {
         $file = is_null($file) ? getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" : $file;
 
-        if (empty($this->api_key) == false || empty($this->api_key) == false) {
+        if (empty($this->api_key) === false || empty($this->api_key) === false) {
             return;
         }
-        if (file_exists($file) == false) {
-            return;
+        if (file_exists($file) === false) {
+            die("Unable to load config from: " . $file . PHP_EOL);
         }
         $contents = json_decode(file_get_contents($file), true);
         $this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
@@ -144,8 +145,8 @@ class API
         if (count($this->curlOpts) > 0) {
             return;
         }
-        if (file_exists($file) == false) {
-            return;
+        if (file_exists($file) === false) {
+            die("Unable to load config from: " . $file . PHP_EOL);
         }
         $contents = json_decode(file_get_contents($file), true);
         $this->curlOpts = isset($contents['curlOpts']) && is_array($contents['curlOpts']) ? $contents['curlOpts'] : [];
@@ -162,20 +163,20 @@ class API
     {
         $file = is_null($file) ? getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" : $file;
 
-        if (is_null($this->proxyConf) == false) {
+        if (is_null($this->proxyConf) === false) {
             return;
         }
-        if (file_exists($file) == false) {
-            return;
+        if (file_exists($file) === false) {
+            die("Unable to load config from: " . $file . PHP_EOL);
         }
         $contents = json_decode(file_get_contents($file), true);
-        if (isset($contents['proto']) == false) {
+        if (isset($contents['proto']) === false) {
             return;
         }
-        if (isset($contents['address']) == false) {
+        if (isset($contents['address']) === false) {
             return;
         }
-        if (isset($contents['port']) == false) {
+        if (isset($contents['port']) === false) {
             return;
         }
         $this->proxyConf['proto'] = $contents['proto'];
@@ -1041,7 +1042,7 @@ class API
 
         if (empty($array) || empty($array['balances'])) {
             // WPCS: XSS OK.
-            echo "balanceData error: Please make sure your system time is synchronized: call $api->useServerTime() before this function" . PHP_EOL;
+            echo "balanceData error: Please make sure your system time is synchronized: call \$api->useServerTime() before this function" . PHP_EOL;
             echo "ERROR: Invalid request. Please double check your API keys and permissions." . PHP_EOL;
             return [];
         }
@@ -2081,5 +2082,4 @@ class API
         });
         // @codeCoverageIgnoreEnd
     }
-
 }
