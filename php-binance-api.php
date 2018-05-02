@@ -2082,4 +2082,116 @@ class API
         });
         // @codeCoverageIgnoreEnd
     }
+
+    /**
+     * Report
+     */
+    public function report() {
+        $phpversion = phpversion();
+        $curlversion = phpversion('curl');
+        $dns1 = dns_get_record("api.binance.com", DNS_ANY, $authns, $addtl);
+        $dns2 = dns_get_record($dns1[0]['target'], DNS_ANY, $authns, $addtl);
+        $uname = php_uname();
+        $platform = PHP_OS;
+        $composer_installed = shell_exec( "composer show 2>&1" );
+
+        $fp = @fsockopen("api.binance.com", 443, $errno, $errstr, 0.1);
+        $api_access = false;
+
+        if (!$fp) {
+            $api_access = false;
+        } else {
+            fclose($fp);
+            $api_access = true;
+        }
+
+        $fp = @fsockopen("stream.binance.com", 9443, $errno, $errstr, 0.1);
+        $stream_access = false;
+
+        if (!$fp) {
+            $stream_access = false;
+        } else {
+            fclose($fp);
+            $stream_access = true;
+        }
+
+        $output_filename = "ca.pem";
+
+        $host = "https://curl.haxx.se/ca/cacert.pem";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $host);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $fp = fopen($output_filename, 'w');
+        fwrite($fp, $result);
+        fclose($fp);
+
+        $out = fopen('php://output', 'w');
+        ob_start();
+
+        $host = "https://api.binance.com";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $host);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_STDERR, $out); 
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        fclose($out); 
+        $with_system_ca = ob_get_clean();
+
+        $out = fopen('php://output', 'w');
+        ob_start();
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $host);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,1);
+        curl_setopt($ch, CURLOPT_STDERR, $out); 
+        curl_setopt($ch, CURLOPT_CAINFO, getcwd() . '/ca.pem');
+        curl_setopt($ch, CURLOPT_CAPATH,'/dev/null');
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        fclose($out);  
+        $with_downloaded_ca = ob_get_clean();
+
+        $output = "## Uname: " . PHP_EOL;
+        $output .= " - " . $uname . PHP_EOL;
+        $output .= "## Platform: " . PHP_EOL;
+        $output .= " - " . $platform . PHP_EOL;
+        $output .= "## PHP Version: " . PHP_EOL;
+        $output .= " - " . $phpversion . PHP_EOL;
+        $output .= "## PHP Curl Version: " . PHP_EOL;
+        $output .= " - " . $curlversion . PHP_EOL;
+        $output .= "## DNS : " . PHP_EOL;
+        $output .= "```" . PHP_EOL . print_r( $dns1, true ) . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## DNS Extra: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . print_r( $dns2, true ) . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## Curl Using System CA: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . $with_system_ca . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## Curl Using Downloaded CA: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . $with_downloaded_ca . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## Port Access 443 api.binance.com: " . PHP_EOL;
+        $output .= " - " . ($api_access ? "open" : "blocked") . PHP_EOL;
+        $output .= "## Port Access 9443 stream.binance.com: " . PHP_EOL;
+        $output .= " - " . ($stream_access ? "open" : "blocked") . PHP_EOL;
+        $output .= "## Composer modules: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . $composer_installed . PHP_EOL . "```" . PHP_EOL;
+
+        file_put_contents( "debug.txt", $output );        
+    }
 }
