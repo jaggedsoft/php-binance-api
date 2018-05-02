@@ -1379,7 +1379,117 @@
 <div class="line"><a name="l02082"></a><span class="lineno"> 2082</span>&#160;        });</div>
 <div class="line"><a name="l02083"></a><span class="lineno"> 2083</span>&#160;        <span class="comment">// @codeCoverageIgnoreEnd</span></div>
 <div class="line"><a name="l02084"></a><span class="lineno"> 2084</span>&#160;    }</div>
-<div class="line"><a name="l02085"></a><span class="lineno"> 2085</span>&#160;}</div>
+<div class="line"><a name="l02085"></a><span class="lineno"> 2085</span>&#160;</div>
+<div class="line"><a name="l02089"></a><span class="lineno"><a class="line" href="classBinance_1_1API.html#adf90d773a5fdbb8a4ca0c712a78f2b97"> 2089</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classBinance_1_1API.html#adf90d773a5fdbb8a4ca0c712a78f2b97">report</a>()</div>
+<div class="line"><a name="l02090"></a><span class="lineno"> 2090</span>&#160;    {</div>
+<div class="line"><a name="l02091"></a><span class="lineno"> 2091</span>&#160;        $phpversion = phpversion();</div>
+<div class="line"><a name="l02092"></a><span class="lineno"> 2092</span>&#160;        $curlversion = phpversion(<span class="stringliteral">&#39;curl&#39;</span>);</div>
+<div class="line"><a name="l02093"></a><span class="lineno"> 2093</span>&#160;        $dns1 = dns_get_record(<span class="stringliteral">&quot;api.binance.com&quot;</span>, DNS_ANY, $authns, $addtl);</div>
+<div class="line"><a name="l02094"></a><span class="lineno"> 2094</span>&#160;        $dns2 = dns_get_record($dns1[0][<span class="stringliteral">&#39;target&#39;</span>], DNS_ANY, $authns, $addtl);</div>
+<div class="line"><a name="l02095"></a><span class="lineno"> 2095</span>&#160;        $uname = php_uname();</div>
+<div class="line"><a name="l02096"></a><span class="lineno"> 2096</span>&#160;        $platform = PHP_OS;</div>
+<div class="line"><a name="l02097"></a><span class="lineno"> 2097</span>&#160;        $composer_installed = shell_exec(<span class="stringliteral">&quot;composer show 2&gt;&amp;1&quot;</span>);</div>
+<div class="line"><a name="l02098"></a><span class="lineno"> 2098</span>&#160;</div>
+<div class="line"><a name="l02099"></a><span class="lineno"> 2099</span>&#160;        $fp = @fsockopen(<span class="stringliteral">&quot;api.binance.com&quot;</span>, 443, $errno, $errstr, 0.1);</div>
+<div class="line"><a name="l02100"></a><span class="lineno"> 2100</span>&#160;        $api_access = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l02101"></a><span class="lineno"> 2101</span>&#160;</div>
+<div class="line"><a name="l02102"></a><span class="lineno"> 2102</span>&#160;        <span class="keywordflow">if</span> (!$fp) {</div>
+<div class="line"><a name="l02103"></a><span class="lineno"> 2103</span>&#160;            $api_access = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l02104"></a><span class="lineno"> 2104</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l02105"></a><span class="lineno"> 2105</span>&#160;            fclose($fp);</div>
+<div class="line"><a name="l02106"></a><span class="lineno"> 2106</span>&#160;            $api_access = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l02107"></a><span class="lineno"> 2107</span>&#160;        }</div>
+<div class="line"><a name="l02108"></a><span class="lineno"> 2108</span>&#160;</div>
+<div class="line"><a name="l02109"></a><span class="lineno"> 2109</span>&#160;        $fp = @fsockopen(<span class="stringliteral">&quot;stream.binance.com&quot;</span>, 9443, $errno, $errstr, 0.1);</div>
+<div class="line"><a name="l02110"></a><span class="lineno"> 2110</span>&#160;        $stream_access = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l02111"></a><span class="lineno"> 2111</span>&#160;</div>
+<div class="line"><a name="l02112"></a><span class="lineno"> 2112</span>&#160;        <span class="keywordflow">if</span> (!$fp) {</div>
+<div class="line"><a name="l02113"></a><span class="lineno"> 2113</span>&#160;            $stream_access = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l02114"></a><span class="lineno"> 2114</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l02115"></a><span class="lineno"> 2115</span>&#160;            fclose($fp);</div>
+<div class="line"><a name="l02116"></a><span class="lineno"> 2116</span>&#160;            $stream_access = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l02117"></a><span class="lineno"> 2117</span>&#160;        }</div>
+<div class="line"><a name="l02118"></a><span class="lineno"> 2118</span>&#160;</div>
+<div class="line"><a name="l02119"></a><span class="lineno"> 2119</span>&#160;        $output_filename = <span class="stringliteral">&quot;ca.pem&quot;</span>;</div>
+<div class="line"><a name="l02120"></a><span class="lineno"> 2120</span>&#160;</div>
+<div class="line"><a name="l02121"></a><span class="lineno"> 2121</span>&#160;        $host = <span class="stringliteral">&quot;https://curl.haxx.se/ca/cacert.pem&quot;</span>;</div>
+<div class="line"><a name="l02122"></a><span class="lineno"> 2122</span>&#160;        $ch = curl_init();</div>
+<div class="line"><a name="l02123"></a><span class="lineno"> 2123</span>&#160;        curl_setopt($ch, CURLOPT_URL, $host);</div>
+<div class="line"><a name="l02124"></a><span class="lineno"> 2124</span>&#160;        curl_setopt($ch, CURLOPT_VERBOSE, 0);</div>
+<div class="line"><a name="l02125"></a><span class="lineno"> 2125</span>&#160;        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</div>
+<div class="line"><a name="l02126"></a><span class="lineno"> 2126</span>&#160;        curl_setopt($ch, CURLOPT_HEADER, 0);</div>
+<div class="line"><a name="l02127"></a><span class="lineno"> 2127</span>&#160;        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);</div>
+<div class="line"><a name="l02128"></a><span class="lineno"> 2128</span>&#160;        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);</div>
+<div class="line"><a name="l02129"></a><span class="lineno"> 2129</span>&#160;        $result = curl_exec($ch);</div>
+<div class="line"><a name="l02130"></a><span class="lineno"> 2130</span>&#160;        curl_close($ch);</div>
+<div class="line"><a name="l02131"></a><span class="lineno"> 2131</span>&#160;</div>
+<div class="line"><a name="l02132"></a><span class="lineno"> 2132</span>&#160;        $fp = fopen($output_filename, <span class="charliteral">&#39;w&#39;</span>);</div>
+<div class="line"><a name="l02133"></a><span class="lineno"> 2133</span>&#160;        fwrite($fp, $result);</div>
+<div class="line"><a name="l02134"></a><span class="lineno"> 2134</span>&#160;        fclose($fp);</div>
+<div class="line"><a name="l02135"></a><span class="lineno"> 2135</span>&#160;</div>
+<div class="line"><a name="l02136"></a><span class="lineno"> 2136</span>&#160;        $out = fopen(<span class="stringliteral">&#39;php://output&#39;</span>, <span class="charliteral">&#39;w&#39;</span>);</div>
+<div class="line"><a name="l02137"></a><span class="lineno"> 2137</span>&#160;        ob_start();</div>
+<div class="line"><a name="l02138"></a><span class="lineno"> 2138</span>&#160;</div>
+<div class="line"><a name="l02139"></a><span class="lineno"> 2139</span>&#160;        $host = <span class="stringliteral">&quot;https://api.binance.com&quot;</span>;</div>
+<div class="line"><a name="l02140"></a><span class="lineno"> 2140</span>&#160;        $ch = curl_init();</div>
+<div class="line"><a name="l02141"></a><span class="lineno"> 2141</span>&#160;        curl_setopt($ch, CURLOPT_URL, $host);</div>
+<div class="line"><a name="l02142"></a><span class="lineno"> 2142</span>&#160;        curl_setopt($ch, CURLOPT_VERBOSE, 1);</div>
+<div class="line"><a name="l02143"></a><span class="lineno"> 2143</span>&#160;        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</div>
+<div class="line"><a name="l02144"></a><span class="lineno"> 2144</span>&#160;        curl_setopt($ch, CURLOPT_HEADER, 1);</div>
+<div class="line"><a name="l02145"></a><span class="lineno"> 2145</span>&#160;        curl_setopt($ch, CURLOPT_STDERR, $out);</div>
+<div class="line"><a name="l02146"></a><span class="lineno"> 2146</span>&#160;        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);</div>
+<div class="line"><a name="l02147"></a><span class="lineno"> 2147</span>&#160;        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);</div>
+<div class="line"><a name="l02148"></a><span class="lineno"> 2148</span>&#160;        $result = curl_exec($ch);</div>
+<div class="line"><a name="l02149"></a><span class="lineno"> 2149</span>&#160;        curl_close($ch);</div>
+<div class="line"><a name="l02150"></a><span class="lineno"> 2150</span>&#160;</div>
+<div class="line"><a name="l02151"></a><span class="lineno"> 2151</span>&#160;        fclose($out);</div>
+<div class="line"><a name="l02152"></a><span class="lineno"> 2152</span>&#160;        $with_system_ca = ob_get_clean();</div>
+<div class="line"><a name="l02153"></a><span class="lineno"> 2153</span>&#160;</div>
+<div class="line"><a name="l02154"></a><span class="lineno"> 2154</span>&#160;        $out = fopen(<span class="stringliteral">&#39;php://output&#39;</span>, <span class="charliteral">&#39;w&#39;</span>);</div>
+<div class="line"><a name="l02155"></a><span class="lineno"> 2155</span>&#160;        ob_start();</div>
+<div class="line"><a name="l02156"></a><span class="lineno"> 2156</span>&#160;</div>
+<div class="line"><a name="l02157"></a><span class="lineno"> 2157</span>&#160;        $ch = curl_init();</div>
+<div class="line"><a name="l02158"></a><span class="lineno"> 2158</span>&#160;        curl_setopt($ch, CURLOPT_URL, $host);</div>
+<div class="line"><a name="l02159"></a><span class="lineno"> 2159</span>&#160;        curl_setopt($ch, CURLOPT_VERBOSE, 1);</div>
+<div class="line"><a name="l02160"></a><span class="lineno"> 2160</span>&#160;        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</div>
+<div class="line"><a name="l02161"></a><span class="lineno"> 2161</span>&#160;        curl_setopt($ch, CURLOPT_HEADER, 1);</div>
+<div class="line"><a name="l02162"></a><span class="lineno"> 2162</span>&#160;        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);</div>
+<div class="line"><a name="l02163"></a><span class="lineno"> 2163</span>&#160;        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);</div>
+<div class="line"><a name="l02164"></a><span class="lineno"> 2164</span>&#160;        curl_setopt($ch, CURLOPT_STDERR, $out);</div>
+<div class="line"><a name="l02165"></a><span class="lineno"> 2165</span>&#160;        curl_setopt($ch, CURLOPT_CAINFO, getcwd() . <span class="stringliteral">&#39;/ca.pem&#39;</span>);</div>
+<div class="line"><a name="l02166"></a><span class="lineno"> 2166</span>&#160;        curl_setopt($ch, CURLOPT_CAPATH, <span class="stringliteral">&#39;/dev/null&#39;</span>);</div>
+<div class="line"><a name="l02167"></a><span class="lineno"> 2167</span>&#160;        $result = curl_exec($ch);</div>
+<div class="line"><a name="l02168"></a><span class="lineno"> 2168</span>&#160;        curl_close($ch);</div>
+<div class="line"><a name="l02169"></a><span class="lineno"> 2169</span>&#160;</div>
+<div class="line"><a name="l02170"></a><span class="lineno"> 2170</span>&#160;        fclose($out);</div>
+<div class="line"><a name="l02171"></a><span class="lineno"> 2171</span>&#160;        $with_downloaded_ca = ob_get_clean();</div>
+<div class="line"><a name="l02172"></a><span class="lineno"> 2172</span>&#160;</div>
+<div class="line"><a name="l02173"></a><span class="lineno"> 2173</span>&#160;        $output = <span class="stringliteral">&quot;## Uname: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02174"></a><span class="lineno"> 2174</span>&#160;        $output .= <span class="stringliteral">&quot; - &quot;</span> . $uname . PHP_EOL;</div>
+<div class="line"><a name="l02175"></a><span class="lineno"> 2175</span>&#160;        $output .= <span class="stringliteral">&quot;## Platform: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02176"></a><span class="lineno"> 2176</span>&#160;        $output .= <span class="stringliteral">&quot; - &quot;</span> . $platform . PHP_EOL;</div>
+<div class="line"><a name="l02177"></a><span class="lineno"> 2177</span>&#160;        $output .= <span class="stringliteral">&quot;## PHP Version: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02178"></a><span class="lineno"> 2178</span>&#160;        $output .= <span class="stringliteral">&quot; - &quot;</span> . $phpversion . PHP_EOL;</div>
+<div class="line"><a name="l02179"></a><span class="lineno"> 2179</span>&#160;        $output .= <span class="stringliteral">&quot;## PHP Curl Version: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02180"></a><span class="lineno"> 2180</span>&#160;        $output .= <span class="stringliteral">&quot; - &quot;</span> . $curlversion . PHP_EOL;</div>
+<div class="line"><a name="l02181"></a><span class="lineno"> 2181</span>&#160;        $output .= <span class="stringliteral">&quot;## DNS : &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02182"></a><span class="lineno"> 2182</span>&#160;        $output .= <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL . print_r($dns1, <span class="keyword">true</span>) . PHP_EOL . <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02183"></a><span class="lineno"> 2183</span>&#160;        $output .= <span class="stringliteral">&quot;## DNS Extra: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02184"></a><span class="lineno"> 2184</span>&#160;        $output .= <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL . print_r($dns2, <span class="keyword">true</span>) . PHP_EOL . <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02185"></a><span class="lineno"> 2185</span>&#160;        $output .= <span class="stringliteral">&quot;## Curl Using System CA: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02186"></a><span class="lineno"> 2186</span>&#160;        $output .= <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL . $with_system_ca . PHP_EOL . <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02187"></a><span class="lineno"> 2187</span>&#160;        $output .= <span class="stringliteral">&quot;## Curl Using Downloaded CA: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02188"></a><span class="lineno"> 2188</span>&#160;        $output .= <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL . $with_downloaded_ca . PHP_EOL . <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02189"></a><span class="lineno"> 2189</span>&#160;        $output .= <span class="stringliteral">&quot;## Port Access 443 api.binance.com: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02190"></a><span class="lineno"> 2190</span>&#160;        $output .= <span class="stringliteral">&quot; - &quot;</span> . ($api_access ? <span class="stringliteral">&quot;open&quot;</span> : <span class="stringliteral">&quot;blocked&quot;</span>) . PHP_EOL;</div>
+<div class="line"><a name="l02191"></a><span class="lineno"> 2191</span>&#160;        $output .= <span class="stringliteral">&quot;## Port Access 9443 stream.binance.com: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02192"></a><span class="lineno"> 2192</span>&#160;        $output .= <span class="stringliteral">&quot; - &quot;</span> . ($stream_access ? <span class="stringliteral">&quot;open&quot;</span> : <span class="stringliteral">&quot;blocked&quot;</span>) . PHP_EOL;</div>
+<div class="line"><a name="l02193"></a><span class="lineno"> 2193</span>&#160;        $output .= <span class="stringliteral">&quot;## Composer modules: &quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02194"></a><span class="lineno"> 2194</span>&#160;        $output .= <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL . $composer_installed . PHP_EOL . <span class="stringliteral">&quot;```&quot;</span> . PHP_EOL;</div>
+<div class="line"><a name="l02195"></a><span class="lineno"> 2195</span>&#160;</div>
+<div class="line"><a name="l02196"></a><span class="lineno"> 2196</span>&#160;        file_put_contents(<span class="stringliteral">&quot;debug.txt&quot;</span>, $output);</div>
+<div class="line"><a name="l02197"></a><span class="lineno"> 2197</span>&#160;    }</div>
+<div class="line"><a name="l02198"></a><span class="lineno"> 2198</span>&#160;}</div>
 <div class="ttc" id="classBinance_1_1API_html_a61742a5bdff7fc2119ab8b797c0cef4e"><div class="ttname"><a href="classBinance_1_1API.html#a61742a5bdff7fc2119ab8b797c0cef4e">Binance\API\sortDepth</a></div><div class="ttdeci">sortDepth(string $symbol, int $limit=11)</div><div class="ttdoc">sortDepth Sorts depth data for display &amp; getting highest bid and lowest ask </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01574">php-binance-api.php:1574</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_abcc2a5c9ca76dd659db43aec7a0a9a5f"><div class="ttname"><a href="classBinance_1_1API.html#abcc2a5c9ca76dd659db43aec7a0a9a5f">Binance\API\useServerTime</a></div><div class="ttdeci">useServerTime()</div><div class="ttdoc">useServerTime adds the &#39;useServerTime&#39;=&gt;true to the API request to avoid time errors ...</div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00463">php-binance-api.php:463</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_afe968feb47f5b68853dae571cb75800c"><div class="ttname"><a href="classBinance_1_1API.html#afe968feb47f5b68853dae571cb75800c">Binance\API\balances</a></div><div class="ttdeci">balances($priceData=false)</div><div class="ttdoc">balances get balances for the account assets </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00719">php-binance-api.php:719</a></div></div>
@@ -1433,13 +1543,14 @@
 <div class="ttc" id="classBinance_1_1API_html_a3647415e517c745a35d2d54bb27575fe"><div class="ttname"><a href="classBinance_1_1API.html#a3647415e517c745a35d2d54bb27575fe">Binance\API\setProxy</a></div><div class="ttdeci">setProxy(array $proxyconf)</div><div class="ttdoc">setProxy set proxy config by passing in an array of the proxy configuration </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00797">php-binance-api.php:797</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_ac1e40c1bef7a768365d1e123d2324d5d"><div class="ttname"><a href="classBinance_1_1API.html#ac1e40c1bef7a768365d1e123d2324d5d">Binance\API\depositHistory</a></div><div class="ttdeci">depositHistory(string $asset=null, array $params=[])</div><div class="ttdoc">depositAddress get the deposit history for an asset </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00562">php-binance-api.php:562</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_af1d41534a9f67bc74a6133efa2df4df7"><div class="ttname"><a href="classBinance_1_1API.html#af1d41534a9f67bc74a6133efa2df4df7">Binance\API\getProxyUriString</a></div><div class="ttdeci">getProxyUriString()</div><div class="ttdoc">getProxyUriString get Uniform Resource Identifier string assocaited with proxy config ...</div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00745">php-binance-api.php:745</a></div></div>
+<div class="ttc" id="classBinance_1_1API_html_adf90d773a5fdbb8a4ca0c712a78f2b97"><div class="ttname"><a href="classBinance_1_1API.html#adf90d773a5fdbb8a4ca0c712a78f2b97">Binance\API\report</a></div><div class="ttdeci">report()</div><div class="ttdoc">Report. </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l02089">php-binance-api.php:2089</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a33e3e2b84393ad729ce3639004970254"><div class="ttname"><a href="classBinance_1_1API.html#a33e3e2b84393ad729ce3639004970254">Binance\API\kline</a></div><div class="ttdeci">kline($symbols, string $interval=&quot;30m&quot;, callable $callback)</div><div class="ttdoc">kline Subscribes to  WebSocket endpoint for latest chart data only </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01886">php-binance-api.php:1886</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a00d93784ab9eb83c3817ccaa75e9746d"><div class="ttname"><a href="classBinance_1_1API.html#a00d93784ab9eb83c3817ccaa75e9746d">Binance\API\cumulative</a></div><div class="ttdeci">cumulative(array $depth)</div><div class="ttdoc">cumulative Converts depth cache into a cumulative array </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l01304">php-binance-api.php:1304</a></div></div>
 <div class="ttc" id="classBinance_1_1API_html_a6b849844ef3f827d8144ae8e129978b5"><div class="ttname"><a href="classBinance_1_1API.html#a6b849844ef3f827d8144ae8e129978b5">Binance\API\withdrawFee</a></div><div class="ttdeci">withdrawFee(string $asset)</div><div class="ttdoc">withdrawFee get the withdrawal fee for an asset </div><div class="ttdef"><b>Definition:</b> <a href="php-binance-api_8php_source.html#l00601">php-binance-api.php:601</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 2 2018 17:03:47 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 2 2018 22:37:11 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

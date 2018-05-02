@@ -72,6 +72,7 @@
     <member refid="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" kind="function"><name>keepAlive</name></member>
     <member refid="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" kind="function"><name>userData</name></member>
     <member refid="classBinance_1_1API_1af115a75377eb89f33d7beb488f5bb7c5" kind="function"><name>miniTicker</name></member>
+    <member refid="classBinance_1_1API_1adf90d773a5fdbb8a4ca0c712a78f2b97" kind="function"><name>report</name></member>
     <member refid="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf" kind="function"><name>setupApiConfigFromFile</name></member>
     <member refid="classBinance_1_1API_1a012f48621ba42ff06159cbc3024f20e9" kind="function"><name>setupCurlOptsFromFile</name></member>
     <member refid="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab" kind="function"><name>setupProxyConfigFromFile</name></member>

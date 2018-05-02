@@ -559,6 +559,14 @@ callable $callback)</para>
                     </listitem>
                 </itemizedlist>
             </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1adf90d773a5fdbb8a4ca0c712a78f2b97">report</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
         </simplesect>
         <simplesect>
             <title></title>
@@ -2633,6 +2641,10 @@ exception                            <row>
 </formalpara>
 </para>
 
+            </section>
+            <section xml:id="classBinance_1_1API_1adf90d773a5fdbb8a4ca0c712a78f2b97">
+                <title>Binance\API::report ()</title> <emphasis>Report.</emphasis>
+                
             </section>
             <section xml:id="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf">
                 <title>Binance\API::setupApiConfigFromFile (string $file=null)</title> <emphasis>If no paramaters are supplied in the constructor, this function will attempt

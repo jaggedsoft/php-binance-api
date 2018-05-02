@@ -2312,6 +2312,19 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         </inbodydescription>
         <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2045" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2045" bodyend="2084"/>
       </memberdef>
+      <memberdef kind="function" id="classBinance_1_1API_1adf90d773a5fdbb8a4ca0c712a78f2b97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Binance\API::report</definition>
+        <argsstring>()</argsstring>
+        <name>report</name>
+        <briefdescription>
+<para>Report. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2089" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2089" bodyend="2197"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
       <memberdef kind="function" id="classBinance_1_1API_1ace1a4cd10b0239f40d0b89daf8fd67cf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2816,7 +2829,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 <para>Main Binance class. </para>    </briefdescription>
     <detaileddescription>
 <para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>    </detaileddescription>
-    <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="30" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="29" bodyend="2085"/>
+    <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="30" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="29" bodyend="2198"/>
     <listofallmembers>
       <member refid="classBinance_1_1API_1a4b70fc1796d52440e44423da2cbafca5" prot="protected" virt="non-virtual"><scope>Binance::API</scope><name>$api_key</name></member>
       <member refid="classBinance_1_1API_1a5612f3068ec5843031812893537e7677" prot="protected" virt="non-virtual"><scope>Binance::API</scope><name>$api_secret</name></member>
@@ -2886,6 +2899,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
       <member refid="classBinance_1_1API_1a884414d58f6297f79afe94a60dc0d794" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>prevDay</name></member>
       <member refid="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd" prot="private" virt="non-virtual"><scope>Binance::API</scope><name>priceData</name></member>
       <member refid="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>prices</name></member>
+      <member refid="classBinance_1_1API_1adf90d773a5fdbb8a4ca0c712a78f2b97" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>report</name></member>
       <member refid="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>sell</name></member>
       <member refid="classBinance_1_1API_1a67841995467768588781cde190e59235" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>sellTest</name></member>
       <member refid="classBinance_1_1API_1a3647415e517c745a35d2d54bb27575fe" prot="public" virt="non-virtual"><scope>Binance::API</scope><name>setProxy</name></member>
