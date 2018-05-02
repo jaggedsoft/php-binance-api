@@ -2086,14 +2086,15 @@ class API
     /**
      * Report
      */
-    public function report() {
+    public function report()
+    {
         $phpversion = phpversion();
         $curlversion = phpversion('curl');
         $dns1 = dns_get_record("api.binance.com", DNS_ANY, $authns, $addtl);
         $dns2 = dns_get_record($dns1[0]['target'], DNS_ANY, $authns, $addtl);
         $uname = php_uname();
         $platform = PHP_OS;
-        $composer_installed = shell_exec( "composer show 2>&1" );
+        $composer_installed = shell_exec("composer show 2>&1");
 
         $fp = @fsockopen("api.binance.com", 443, $errno, $errstr, 0.1);
         $api_access = false;
@@ -2141,13 +2142,13 @@ class API
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_STDERR, $out); 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,1);
+        curl_setopt($ch, CURLOPT_STDERR, $out);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
         $result = curl_exec($ch);
         curl_close($ch);
 
-        fclose($out); 
+        fclose($out);
         $with_system_ca = ob_get_clean();
 
         $out = fopen('php://output', 'w');
@@ -2158,15 +2159,15 @@ class API
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,1);
-        curl_setopt($ch, CURLOPT_STDERR, $out); 
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+        curl_setopt($ch, CURLOPT_STDERR, $out);
         curl_setopt($ch, CURLOPT_CAINFO, getcwd() . '/ca.pem');
-        curl_setopt($ch, CURLOPT_CAPATH,'/dev/null');
+        curl_setopt($ch, CURLOPT_CAPATH, '/dev/null');
         $result = curl_exec($ch);
         curl_close($ch);
 
-        fclose($out);  
+        fclose($out);
         $with_downloaded_ca = ob_get_clean();
 
         $output = "## Uname: " . PHP_EOL;
@@ -2178,9 +2179,9 @@ class API
         $output .= "## PHP Curl Version: " . PHP_EOL;
         $output .= " - " . $curlversion . PHP_EOL;
         $output .= "## DNS : " . PHP_EOL;
-        $output .= "```" . PHP_EOL . print_r( $dns1, true ) . PHP_EOL . "```" . PHP_EOL;
+        $output .= "```" . PHP_EOL . print_r($dns1, true) . PHP_EOL . "```" . PHP_EOL;
         $output .= "## DNS Extra: " . PHP_EOL;
-        $output .= "```" . PHP_EOL . print_r( $dns2, true ) . PHP_EOL . "```" . PHP_EOL;
+        $output .= "```" . PHP_EOL . print_r($dns2, true) . PHP_EOL . "```" . PHP_EOL;
         $output .= "## Curl Using System CA: " . PHP_EOL;
         $output .= "```" . PHP_EOL . $with_system_ca . PHP_EOL . "```" . PHP_EOL;
         $output .= "## Curl Using Downloaded CA: " . PHP_EOL;
@@ -2192,6 +2193,6 @@ class API
         $output .= "## Composer modules: " . PHP_EOL;
         $output .= "```" . PHP_EOL . $composer_installed . PHP_EOL . "```" . PHP_EOL;
 
-        file_put_contents( "debug.txt", $output );        
+        file_put_contents("debug.txt", $output);
     }
 }
