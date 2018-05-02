@@ -123,7 +123,7 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            die( "Unable to load config from: " . $file . PHP_EOL );
+            die("Unable to load config from: " . $file . PHP_EOL);
         }
         $contents = json_decode(file_get_contents($file), true);
         $this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
@@ -146,7 +146,7 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            die( "Unable to load config from: " . $file . PHP_EOL );
+            die("Unable to load config from: " . $file . PHP_EOL);
         }
         $contents = json_decode(file_get_contents($file), true);
         $this->curlOpts = isset($contents['curlOpts']) && is_array($contents['curlOpts']) ? $contents['curlOpts'] : [];
@@ -167,7 +167,7 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            die( "Unable to load config from: " . $file . PHP_EOL );
+            die("Unable to load config from: " . $file . PHP_EOL);
         }
         $contents = json_decode(file_get_contents($file), true);
         if (isset($contents['proto']) === false) {
