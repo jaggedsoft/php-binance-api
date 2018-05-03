@@ -690,6 +690,14 @@ string $symbol, string $interval, \stdClass $json)</para>
                     </listitem>
                 </itemizedlist>
             </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para> <link linkend="classBinance_1_1API_1a5579352b60172f7bb5494ed2df7ae867">downloadCurlCaBundle</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
         </simplesect>
     <simplesect>
         <title>Brief Description</title>
@@ -3139,5 +3147,11 @@ This function sets $btc_value which is your estimated BTC value of all assets co
 </formalpara>
 </para>
 
+            </section>
+            <section xml:id="classBinance_1_1API_1a5579352b60172f7bb5494ed2df7ae867">
+                <title>Binance\API::downloadCurlCaBundle ()</title> <emphasis>Due to ongoing issues with out of date wamp CA bundles
+This function downloads ca bundle for curl website
+and uses it as part of the curl options.</emphasis>
+                
             </section>
 </section>
