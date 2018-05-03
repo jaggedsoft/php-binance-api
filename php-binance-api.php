@@ -2103,15 +2103,24 @@ class API
         $output_filename = getcwd() . "/ca.pem";
 
         $host = "https://curl.haxx.se/ca/cacert.pem";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $host);
-        curl_setopt($ch, CURLOPT_VERBOSE, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $result = curl_exec($ch);
-        curl_close($ch);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $host);
+        curl_setopt($curl, CURLOPT_VERBOSE, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        // proxy settings
+        if (is_array($this->proxyConf)) {
+            curl_setopt($curl, CURLOPT_PROXY, $this->getProxyUriString());
+            if (isset($this->proxyConf['user']) && isset($this->proxyConf['pass'])) {
+                curl_setopt($curl, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
+            }
+        }
+
+        $result = curl_exec($curl);
+        curl_close($curl);
 
         $fp = fopen($output_filename, 'w');
         fwrite($fp, $result);
