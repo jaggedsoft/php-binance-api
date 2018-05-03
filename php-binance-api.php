@@ -823,6 +823,10 @@ class API
             throw new \Exception("Sorry cURL is not installed!");
         }
 
+        if (file_exists(getcwd() . '/ca.pem') === false) {
+            $this->downloadCurlCaBundle();
+        }
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
         $query = http_build_query($params, '', '&');
@@ -889,6 +893,10 @@ class API
         // set user defined curl opts last for overriding
         foreach ($this->curlOpts as $key => $value) {
             curl_setopt($curl, constant($key), $value);
+        }
+
+        if (file_exists(getcwd() . '/ca.pem')) {
+            curl_setopt($curl, CURLOPT_CAINFO, getcwd() . '/ca.pem');
         }
 
         $output = curl_exec($curl);
@@ -2086,6 +2094,31 @@ class API
     }
 
     /**
+     * Due to ongoing issues with out of date wamp CA bundles
+     * This function downloads ca bundle for curl website
+     * and uses it as part of the curl options
+     */
+    private function downloadCurlCaBundle()
+    {
+        $output_filename = getcwd() . "/ca.pem";
+
+        $host = "https://curl.haxx.se/ca/cacert.pem";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $host);
+        curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $fp = fopen($output_filename, 'w');
+        fwrite($fp, $result);
+        fclose($fp);
+    }
+
+    /**
      * Report
      */
     public function report()
@@ -2118,22 +2151,7 @@ class API
             $stream_access = true;
         }
 
-        $output_filename = "ca.pem";
-
-        $host = "https://curl.haxx.se/ca/cacert.pem";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $host);
-        curl_setopt($ch, CURLOPT_VERBOSE, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        $fp = fopen($output_filename, 'w');
-        fwrite($fp, $result);
-        fclose($fp);
+        $this->downloadCurlCaBundle();
 
         $out = fopen('php://output', 'w');
         ob_start();
