@@ -79,6 +79,8 @@ class API
                 $this->api_key = $param[0];
                 $this->api_secret = $param[1];
                 break;
+            default:
+                echo 'Please see valid constructors here: https://github.com/jaggedsoft/php-binance-api/blob/master/examples/constructor.php';
         }
     }
 
@@ -821,6 +823,10 @@ class API
             throw new \Exception("Sorry cURL is not installed!");
         }
 
+        if (file_exists(getcwd() . '/ca.pem') === false) {
+            $this->downloadCurlCaBundle();
+        }
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
         $query = http_build_query($params, '', '&');
@@ -887,6 +893,10 @@ class API
         // set user defined curl opts last for overriding
         foreach ($this->curlOpts as $key => $value) {
             curl_setopt($curl, constant($key), $value);
+        }
+
+        if (file_exists(getcwd() . '/ca.pem')) {
+            curl_setopt($curl, CURLOPT_CAINFO, getcwd() . '/ca.pem');
         }
 
         $output = curl_exec($curl);
@@ -2081,5 +2091,137 @@ class API
             echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
         });
         // @codeCoverageIgnoreEnd
+    }
+
+    /**
+     * Due to ongoing issues with out of date wamp CA bundles
+     * This function downloads ca bundle for curl website
+     * and uses it as part of the curl options
+     */
+    private function downloadCurlCaBundle()
+    {
+        $output_filename = getcwd() . "/ca.pem";
+
+        $host = "https://curl.haxx.se/ca/cacert.pem";
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $host);
+        curl_setopt($curl, CURLOPT_VERBOSE, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        // proxy settings
+        if (is_array($this->proxyConf)) {
+            curl_setopt($curl, CURLOPT_PROXY, $this->getProxyUriString());
+            if (isset($this->proxyConf['user']) && isset($this->proxyConf['pass'])) {
+                curl_setopt($curl, CURLOPT_PROXYUSERPWD, $this->proxyConf['user'] . ':' . $this->proxyConf['pass']);
+            }
+        }
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        $fp = fopen($output_filename, 'w');
+        fwrite($fp, $result);
+        fclose($fp);
+    }
+
+    /**
+     * Report
+     */
+    public function report()
+    {
+        $phpversion = phpversion();
+        $curlversion = phpversion('curl');
+        $dns1 = dns_get_record("api.binance.com", DNS_ANY, $authns, $addtl);
+        $dns2 = dns_get_record($dns1[0]['target'], DNS_ANY, $authns, $addtl);
+        $uname = php_uname();
+        $platform = PHP_OS;
+        $composer_installed = shell_exec("composer show 2>&1");
+
+        $fp = @fsockopen("api.binance.com", 443, $errno, $errstr, 0.1);
+        $api_access = false;
+
+        if (!$fp) {
+            $api_access = false;
+        } else {
+            fclose($fp);
+            $api_access = true;
+        }
+
+        $fp = @fsockopen("stream.binance.com", 9443, $errno, $errstr, 0.1);
+        $stream_access = false;
+
+        if (!$fp) {
+            $stream_access = false;
+        } else {
+            fclose($fp);
+            $stream_access = true;
+        }
+
+        $this->downloadCurlCaBundle();
+
+        $out = fopen('php://output', 'w');
+        ob_start();
+
+        $host = "https://api.binance.com";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $host);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_STDERR, $out);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        fclose($out);
+        $with_system_ca = ob_get_clean();
+
+        $out = fopen('php://output', 'w');
+        ob_start();
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $host);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+        curl_setopt($ch, CURLOPT_STDERR, $out);
+        curl_setopt($ch, CURLOPT_CAINFO, getcwd() . '/ca.pem');
+        curl_setopt($ch, CURLOPT_CAPATH, '/dev/null');
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        fclose($out);
+        $with_downloaded_ca = ob_get_clean();
+
+        $output = "## Uname: " . PHP_EOL;
+        $output .= " - " . $uname . PHP_EOL;
+        $output .= "## Platform: " . PHP_EOL;
+        $output .= " - " . $platform . PHP_EOL;
+        $output .= "## PHP Version: " . PHP_EOL;
+        $output .= " - " . $phpversion . PHP_EOL;
+        $output .= "## PHP Curl Version: " . PHP_EOL;
+        $output .= " - " . $curlversion . PHP_EOL;
+        $output .= "## DNS : " . PHP_EOL;
+        $output .= "```" . PHP_EOL . print_r($dns1, true) . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## DNS Extra: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . print_r($dns2, true) . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## Curl Using System CA: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . $with_system_ca . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## Curl Using Downloaded CA: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . $with_downloaded_ca . PHP_EOL . "```" . PHP_EOL;
+        $output .= "## Port Access 443 api.binance.com: " . PHP_EOL;
+        $output .= " - " . ($api_access ? "open" : "blocked") . PHP_EOL;
+        $output .= "## Port Access 9443 stream.binance.com: " . PHP_EOL;
+        $output .= " - " . ($stream_access ? "open" : "blocked") . PHP_EOL;
+        $output .= "## Composer modules: " . PHP_EOL;
+        $output .= "```" . PHP_EOL . $composer_installed . PHP_EOL . "```" . PHP_EOL;
+
+        file_put_contents("debug.txt", $output);
     }
 }
