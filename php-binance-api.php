@@ -79,6 +79,8 @@ class API
                 $this->api_key = $param[0];
                 $this->api_secret = $param[1];
                 break;
+            default:
+                echo 'Please see valid constructors here: https://github.com/jaggedsoft/php-binance-api/blob/master/examples/constructor.php';
         }
     }
 
