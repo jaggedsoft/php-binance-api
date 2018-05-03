@@ -90,6 +90,7 @@ final class BinanceTest extends TestCase
         self::writeConfig();
         $this->_testable = new Binance\API();
         $this->assertInstanceOf('Binance\API', $this->_testable);
+        @unlink( getcwd() . "/ca.pem" );
     }
 
     public function testInstantiate0()
@@ -1012,6 +1013,14 @@ final class BinanceTest extends TestCase
         $this->assertTrue(strcmp($trans, $trans1) != 0);
     }
 
+    public function testReport()
+    {
+        self::debug(0, __METHOD__, "");
+        $count = $this->_testable->report();
+
+        $this->assertTrue(file_exists( getcwd() . '/ca.pem' ));
+    }
+
     public function invokeMethod(&$object, $methodName, array $parameters = array())
     {
         $reflection = new \ReflectionClass(get_class($object));
@@ -1020,5 +1029,6 @@ final class BinanceTest extends TestCase
 
         return $method->invokeArgs($object, $parameters);
     }
+
 
 }
