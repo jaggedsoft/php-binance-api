@@ -1367,8 +1367,6 @@ $api->getTransfered();
 
 
 
-### [Documentation](https://github.com/jaggedsoft/php-binance-api/wiki/1.-Getting-Started)
-> The primary documentation can be found on the [wiki](https://github.com/jaggedsoft/php-binance-api/wiki).  There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
-```
-git clone https://github.com/jaggedsoft/php-binance-api.wiki.git
-```
+### Documentation
+> There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
+https://github.com/jaggedsoft/php-binance-api/tree/gh-pages
