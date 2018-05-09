@@ -1240,6 +1240,50 @@ Balance update
 </details>
 
 
+#### Withdraw
+```php
+$asset = "BTC";
+$address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
+$amount = 0.2;
+$response = $api->withdraw($asset, $address, $amount);
+print_r($response);
+```
+
+#### Withdraw with addressTag
+```php
+//Required for coins like XMR, XRP, etc.
+$address = "44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn";
+$addressTag = "0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1
+";
+$amount = 0.1;
+$response = $api->withdraw($asset, $address, $amount, $addressTag);
+print_r($response);
+```
+
+#### Get All Withdraw History
+```php
+$withdrawHistory = $api->withdrawHistory();
+print_r($withdrawHistory);
+```
+
+#### Get Withdraw History for a specific asset
+```php
+$withdrawHistory = $api->withdrawHistory("BTC");
+print_r($withdrawHistory);
+```
+
+#### Get Deposit Address
+```php
+$depositAddress = $api->depositAddress("VEN");
+print_r($depositAddress);
+```
+
+#### Get All Deposit History
+```php
+$depositHistory = $api->depositHistory();
+print_r($depositHistory);
+```
+
 
 ### [Documentation](https://github.com/jaggedsoft/php-binance-api/wiki/1.-Getting-Started)
 > The primary documentation can be found on the [wiki](https://github.com/jaggedsoft/php-binance-api/wiki).  There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
