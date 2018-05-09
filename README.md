@@ -999,6 +999,247 @@ print_r($ticks);
 ```
 </details>
 
+## WebSocket API
+
+#### miniTicker return the latest candlestick information for every symbol
+```php
+$api->miniTicker(function($api, $ticker) {
+	print_r($ticker);
+});
+```
+
+<details>
+ <summary>View Response</summary>
+
+```
+    [18] => Array
+        (
+            [symbol] => ONTBNB
+            [close] => 0.37649000
+            [open] => 0.30241000
+            [high] => 0.38112000
+            [low] => 0.29300000
+            [volume] => 975240.72000000
+            [quoteVolume] => 326908.77744250
+            [eventTime] => 1523395389582
+        )
+
+    [19] => Array
+        (
+            [symbol] => WANBTC
+            [close] => 0.00063657
+            [open] => 0.00054151
+            [high] => 0.00063900
+            [low] => 0.00053900
+            [volume] => 4443618.00000000
+            [quoteVolume] => 2637.76413131
+            [eventTime] => 1523395389551
+        )
+```
+</details>
+
+#### Realtime Complete Chart Updates via WebSockets
+```php
+$api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+	echo "{$symbol} chart update\n";
+	print_r($chart);
+});
+```
+<details>
+ <summary>View Response</summary>
+
+```
+   [1508560200000] => Array
+        (
+            [open] => 0.00019691
+            [high] => 0.00019695
+            [low] => 0.00019502
+            [close] => 0.00019503
+            [volume] => 0.13712290
+        )
+
+    [1508560500000] => Array
+        (
+            [open] => 0.00019502
+            [high] => 0.00019693
+            [low] => 0.00019501
+            [close] => 0.00019692
+            [volume] => 1.03216357
+        )
+
+    [1508560800000] => Array
+        (
+            [open] => 0.00019692
+            [high] => 0.00019692
+            [low] => 0.00019689
+            [close] => 0.00019692
+            [volume] => 0.22270990
+        )
+... (more)
+```
+</details>
+
+#### Get latest candlestick data only
+```php
+$api->kline(["BTCUSDT", "EOSBTC"], "5m", function($api, $symbol, $chart) {
+  //echo "{$symbol} ({$interval}) candlestick update\n";
+	$interval = $chart->i;
+	$tick = $chart->t;
+	$open = $chart->o;
+	$high = $chart->h;
+	$low = $chart->l;
+	$close = $chart->c;
+	$volume = $chart->q; // +trades buyVolume assetVolume makerVolume
+	echo "{$symbol} price: {$close}\t volume: {$volume}\n";
+});
+```
+
+#### Trade Updates via WebSocket
+```php
+$api->trades(["BNBBTC"], function($api, $symbol, $trades) {
+	echo "{$symbol} trades update".PHP_EOL;
+	print_r($trades);
+});
+```
+
+#### Get ticker updates for all symbols via WebSocket
+```php
+$api->ticker(false, function($api, $symbol, $ticker) {
+	print_r($ticker);
+});
+```
+
+#### Get ticker updates for a specific symbol via WebSocket
+```php
+$api->ticker("BNBBTC", function($api, $symbol, $ticker) {
+	print_r($ticker);
+});
+```
+
+#### Realtime updated depth cache via WebSockets
+```php
+$api->depthCache(["BNBBTC"], function($api, $symbol, $depth) {
+	echo "{$symbol} depth cache update".PHP_EOL;
+	//print_r($depth); // Print all depth data
+	$limit = 11; // Show only the closest asks/bids
+	$sorted = $api->sortDepth($symbol, $limit);
+	$bid = $api->first($sorted['bids']);
+	$ask = $api->first($sorted['asks']);
+	echo $api->displayDepth($sorted);
+	echo "ask: {$ask}".PHP_EOL;
+	echo "bid: {$bid}".PHP_EOL;
+});
+```
+<details>
+ <summary>View Response</summary>
+
+```
+asks:
+0.00020649      1,194      0.24654906
+0.00020600        375      0.07725000
+0.00020586          4      0.00823440
+0.00020576          1      0.00205760
+0.00020564        226      0.04647464
+0.00020555         38      0.00781090
+0.00020552         98      0.02014096
+0.00020537        121      0.02484977
+0.00020520         46      0.09439200
+0.00020519         29      0.05950510
+0.00020518        311      0.06381098
+bids:
+0.00022258      5,142      1.14450636
+0.00020316          7      0.00142212
+0.00020315         82      0.01665830
+0.00020314         16      0.00325024
+0.00020313        512      0.10400256
+0.00020238          5      0.01011900
+0.00020154      1,207      0.24325878
+0.00020151          1      0.02015100
+0.00020150          3      0.60450000
+0.00020140        217      0.04370380
+0.00020135          1      0.02013500
+ask: 0.00020518
+bid: 0.00022258
+
+```
+</details>
+
+#### User Data: Account Balance Updates, Trade Updates, New Orders, Filled Orders, Cancelled Orders via WebSocket
+```php
+$balance_update = function($api, $balances) {
+	print_r($balances);
+	echo "Balance update".PHP_EOL;
+};
+
+$order_update = function($api, $report) {
+	echo "Order update".PHP_EOL;
+	print_r($report);
+	$price = $report['price'];
+	$quantity = $report['quantity'];
+	$symbol = $report['symbol'];
+	$side = $report['side'];
+	$orderType = $report['orderType'];
+	$orderId = $report['orderId'];
+	$orderStatus = $report['orderStatus'];
+	$executionType = $report['orderStatus'];
+	if ( $executionType == "NEW" ) {
+		if ( $executionType == "REJECTED" ) {
+			echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
+		}
+		echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
+		echo "..price: {$price}, quantity: {$quantity}".PHP_EOL;
+		return;
+	}
+	//NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
+	echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
+};
+$api->userData($balance_update, $order_update);
+```
+
+<details>
+ <summary>View Response</summary>
+
+```
+Order update
+    [symbol] => BNBETH
+    [side] => BUY
+    [orderType] => LIMIT
+    [quantity] => 2.00000000
+    [price] => 0.00623005
+    [executionType] => NEW
+    [orderStatus] => NEW
+    [rejectReason] => NONE
+    [orderId] => 4102532
+    [clientOrderId] => ULtH25RPmICFH0jvsQiq8y
+    [orderTime] => 1508637831437
+    [eventTime] => 1508637831440
+
+BNBETH BUY LIMIT ORDER #4102532 (NEW)
+..price: 0.00623005, quantity: 2.00000000
+
+Balance update
+    [BTC] => Array
+        (
+            [available] => 0.18167974
+            [onOrder] => 0.00000000
+        )
+
+    [LTC] => Array
+        (
+            [available] => 0.00000000
+            [onOrder] => 0.00000000
+        )
+
+    [ETH] => Array
+        (
+            [available] => 26.68739238
+            [onOrder] => 2.55103500
+        )
+...(more)
+```
+</details>
+
+
 
 ### [Documentation](https://github.com/jaggedsoft/php-binance-api/wiki/1.-Getting-Started)
 > The primary documentation can be found on the [wiki](https://github.com/jaggedsoft/php-binance-api/wiki).  There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
