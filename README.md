@@ -1368,5 +1368,5 @@ $api->getTransfered();
 
 
 ### Documentation
-> There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
+> There are also numerous other formats available here:
 https://github.com/jaggedsoft/php-binance-api/tree/gh-pages
