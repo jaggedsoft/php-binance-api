@@ -37,7 +37,7 @@ php composer.phar require "jaggedsoft/php-binance-api @dev"
 ```
 
 #### Windows:
-[Download installer for Windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
+[Download installer for Windows](https://github.com/jaggedsoft/php-binance-api/#installing-on-windows)
 
 </details>
 
@@ -52,7 +52,7 @@ $api = new Binance\API( "somefile.json" );
 // 3. config by specifying api key and secret
 $api = new Binance\API("<api key>","<secret>");
 ```
-See [additional options](https://github.com/jaggedsoft/php-binance-api/wiki/5.-$HOME-Config-(API---Proxy)) for more options and help installing on Windows
+See [additional options](https://github.com/jaggedsoft/php-binance-api/#config-file-in-home-directory) for more options and help installing on Windows
 
 #### Get latest price of a symbol
 ```php
