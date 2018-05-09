@@ -16,19 +16,30 @@ This project is designed to help you make your own projects that interact with t
 
 > Special thank you to all contributors: **dmzoneill, dxjones, jokaorgua,** and others!! *This package needs help from the community.* Improvements contributed to this project are encouraged, and you will be given full credit for changes. All pull requests welcome.
 
-#### Getting started
-`composer require jaggedsoft/php-binance-api`
-```php
-require 'vendor/autoload.php';
-$api = new Binance\API("<api key>","<secret>");
+#### Installation
+```
+composer require "jaggedsoft/php-binance-api @dev"
+```
+<details>
+ <summary>Click for help with installation</summary>
+
+## Install Composer
+If the above step didn't work, install composer and try again.
+#### Debian / Ubuntu
+```
+sudo apt-get install curl
+curl -s http://getcomposer.org/installer | php
+php composer.phar install
+```
+Composer not found? Use this command instead:
+```
+php composer.phar require "jaggedsoft/php-binance-api @dev"
 ```
 
-#### Get latest price of a symbol
-```php
-$ticker = $api->prices();
-print_r($ticker); // List prices of all symbols
-echo "Price of BNB: {$ticker['BNBBTC']} BTC";
-```
+#### Windows:
+[Download installer for Windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
+
+</details>
 
 ### [Documentation](https://github.com/jaggedsoft/php-binance-api/wiki/1.-Getting-Started)
 > The primary documentation can be found on the [wiki](https://github.com/jaggedsoft/php-binance-api/wiki).  There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
