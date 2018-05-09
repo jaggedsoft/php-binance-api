@@ -1284,6 +1284,88 @@ $depositHistory = $api->depositHistory();
 print_r($depositHistory);
 ```
 
+### Troubleshooting
+If you get the following errors, please synchronize your system time.
+```
+signedRequest error: {"code":-1021,"msg":"Timestamp for this request was 1000ms ahead of the server's time."}
+signedRequest error: {"code":-1021,"msg":"Timestamp for this request is outside of the recvWindow."}
+balanceData error: Please make sure your system time is synchronized, or pass the useServerTime option.
+```
+
+#### useServerTime 
+```php
+//Call this before running any functions
+$api->useServerTime();
+```
+
+#### Installing on Windows
+Download and install composer:
+1. https://getcomposer.org/download/
+2. Create a folder on your drive like C:\Binance
+3. Run command prompt and type `cd C:\Binance`
+4. ```composer require jaggedsoft/php-binance-api```
+5. Once complete copy the vendor folder into your project.
+
+#### Config file in home directory
+If you dont wish to store your API key and secret in your scripts, load it from your home directory
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<api key>",
+    "api-secret": "<secret>"
+}
+EOF
+```
+
+#### Config file in home directory with curl options
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<api key>",
+    "api-secret": "<secret>",
+    "curlOpts": {
+	    "CURLOPT_SSL_VERIFYPEER": 0,
+	    "INVALID_CONSTANT_NAME": 42
+    }
+
+}
+EOF
+```
+
+
+Optionally add proxy configuration
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<api key>",
+    "api-secret": "<secret>",
+    "proto": "https",
+    "address": "proxy.domain.com",
+    "port": "1080"
+}
+EOF
+```
+
+custom location
+```php
+$api = new Binance\API( "myfile.json" );
+```
+
+
+#### Basic stats: Get api call counter
+```php
+$api->getRequestCount();
+```
+
+#### Basic stats: Get total data transferred
+```php
+$api->getTransfered();
+```
+
+
 
 ### [Documentation](https://github.com/jaggedsoft/php-binance-api/wiki/1.-Getting-Started)
 > The primary documentation can be found on the [wiki](https://github.com/jaggedsoft/php-binance-api/wiki).  There are also numerous other formats available.  if you would like the markdown format of the wiki, you can clone it using:  
