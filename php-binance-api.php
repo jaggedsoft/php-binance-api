@@ -1234,7 +1234,11 @@ class API
                 "ignored" => $ignored,
             ];
         }
-        $this->info[$symbol][$interval]['firstOpen'] = $openTime;
+
+        if( isset( $openTime ) ) {
+            $this->info[$symbol][$interval]['firstOpen'] = $openTime;
+        }
+        
         return $output;
     }
 
