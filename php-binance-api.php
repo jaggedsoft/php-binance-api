@@ -1235,10 +1235,10 @@ class API
             ];
         }
 
-        if( isset( $openTime ) ) {
+        if (isset($openTime)) {
             $this->info[$symbol][$interval]['firstOpen'] = $openTime;
         }
-        
+
         return $output;
     }
 
