@@ -402,7 +402,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="220" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="220" bodyend="223"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="226" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="226" bodyend="229"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a9e199a90097fbee4e89e2777534599b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -473,7 +473,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;buy(&quot;BNBBTC&quot;, $quant
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="237" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="237" bodyend="240"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="243" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="243" bodyend="246"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa5d028c98ced18dab5194009f4abdb0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -544,7 +544,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="267" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="267" bodyend="270"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="273" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="273" bodyend="276"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a67841995467768588781cde190e59235" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -615,7 +615,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="284" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="284" bodyend="287"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="290" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="290" bodyend="293"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa6156e4c8d03bbdd8c16bbb18ea75646" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -663,7 +663,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="300" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="300" bodyend="303"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="306" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="306" bodyend="309"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ad11565e34ba1c715ac2478ee7f9aab6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -712,7 +712,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="315" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="315" bodyend="318"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="321" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="321" bodyend="324"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a72d07ceea281b273d65a487efc02e31e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -760,7 +760,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="331" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="331" bodyend="334"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="337" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="337" bodyend="340"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a77eaa982d0ca78fbce80d6203213af28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -809,7 +809,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="346" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="346" bodyend="349"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="352" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="352" bodyend="355"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac49c3595190e193510eb368c0fa92992" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -853,7 +853,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="362" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="362" bodyend="368"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="368" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="368" bodyend="374"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ae7eae3f9588c2aee0d3c46bb9fa2ffe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -897,7 +897,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="381" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="381" bodyend="387"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="387" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="387" bodyend="393"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a155a0a0d36ea7145f5833d9f17386335" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -932,7 +932,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="399" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="399" bodyend="408"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="405" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="405" bodyend="414"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa1b445b6eb144e0c551fbe035737dbf8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -990,7 +990,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="421" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="421" bodyend="428"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="427" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="427" bodyend="434"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a91842828e25805fe9a6fd51391566386" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1048,7 +1048,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="444" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="444" bodyend="455"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="450" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="450" bodyend="461"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1abcc2a5c9ca76dd659db43aec7a0a9a5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1070,7 +1070,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="465" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="465" bodyend="471"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="471" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="471" bodyend="477"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1afd72d19a5504b1a0a694ca9a8af1047b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1092,7 +1092,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="481" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="481" bodyend="484"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="487" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="487" bodyend="490"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a944f676d29829384ea8eca179fe9ca5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1114,7 +1114,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="494" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="494" bodyend="497"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="500" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="500" bodyend="503"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ab69047e208ca2a148f97120d518ecd3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1180,7 +1180,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="519" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="519" bodyend="532"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="525" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="525" bodyend="538"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a40614aa2f9799c1197919812b37e6061" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1214,7 +1214,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="543" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="543" bodyend="550"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="549" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="549" bodyend="556"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac1e40c1bef7a768365d1e123d2324d5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1261,7 +1261,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="564" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="564" bodyend="571"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="570" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="570" bodyend="577"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac58d133afd56809f520aeb05e12b69d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1308,7 +1308,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="585" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="585" bodyend="592"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="591" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="591" bodyend="598"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a6b849844ef3f827d8144ae8e129978b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1342,7 +1342,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="603" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="603" bodyend="610"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="609" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="609" bodyend="616"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a718271dc0691ae3a1f60dc0e7ad89698" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1364,7 +1364,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="620" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="620" bodyend="623"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="626" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="626" bodyend="629"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aa1e851e6a5fe2e01f7c5493fa9b90c97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1386,7 +1386,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="633" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="633" bodyend="636"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="639" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="639" bodyend="642"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a14272f6a80009bc8fd742b5f35fee9a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1408,7 +1408,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="646" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="646" bodyend="649"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="652" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="652" bodyend="655"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a884414d58f6297f79afe94a60dc0d794" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1443,7 +1443,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="660" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="660" bodyend="669"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="666" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="666" bodyend="675"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af047ce7afeff0729b62fb28b2697ad9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1477,7 +1477,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="680" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="680" bodyend="685"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="686" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="686" bodyend="691"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac36901dbea220b2401786a6d1bc4d051" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1511,7 +1511,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="696" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="696" bodyend="710"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="702" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="702" bodyend="716"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1afe968feb47f5b68853dae571cb75800c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1546,7 +1546,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="721" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="721" bodyend="738"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="727" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="727" bodyend="744"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af1d41534a9f67bc74a6133efa2df4df7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1560,7 +1560,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="747" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="747" bodyend="782"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="753" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="753" bodyend="788"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a3647415e517c745a35d2d54bb27575fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1578,7 +1578,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="799" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="799" bodyend="802"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="805" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="805" bodyend="808"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a40e8ddf7280b33b1899f59d0f16e5fa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1680,7 +1680,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="943" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="943" bodyend="989"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="947" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="947" bodyend="993"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a8273c4cc5c3226aa46e5aee6a69a58aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1760,7 +1760,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1005" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1005" bodyend="1032"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1009" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1009" bodyend="1036"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a00d93784ab9eb83c3817ccaa75e9746d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1786,7 +1786,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1318" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1318" bodyend="1342"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1322" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1322" bodyend="1346"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a5eaa9d36db8181fc4605a3841f1106ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1824,7 +1824,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1353" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1353" bodyend="1371"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1357" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1357" bodyend="1375"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a53fcf31d85faa8445653f581fdbdb72c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1850,7 +1850,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1381" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1381" bodyend="1387"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1385" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1385" bodyend="1391"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a468092e1edfd35f79954236714c825c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1876,7 +1876,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1397" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1397" bodyend="1403"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1401" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1401" bodyend="1407"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a184430be210c8e5cb7be80c9e239619f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1902,7 +1902,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1413" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1413" bodyend="1434"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1417" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1417" bodyend="1438"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ae1688d4d245b8f22a87c7afb1db5432a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1916,7 +1916,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1467" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1467" bodyend="1478"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1471" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1471" bodyend="1482"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1abfb76ae473557ff989bee3287d3c437c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1930,7 +1930,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1487" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1487" bodyend="1490"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1491" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1491" bodyend="1494"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a90daef87526a753473580139c04d311b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1948,7 +1948,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1500" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1500" bodyend="1504"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1504" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1504" bodyend="1508"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a61742a5bdff7fc2119ab8b797c0cef4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -1986,7 +1986,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1588" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1588" bodyend="1598"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1592" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1592" bodyend="1602"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a179ddfeb9d6469f43f56f4415e226ca0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2022,7 +2022,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1621" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1621" bodyend="1687"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1625" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1625" bodyend="1691"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a77611c0cbe2d55dc04239274769e2de9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2058,7 +2058,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1701" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1701" bodyend="1756"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1705" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1705" bodyend="1760"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a67bb7518406ed697a1e476f22ed78bf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2094,7 +2094,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1769" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1769" bodyend="1803"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1773" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1773" bodyend="1807"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a2d4a65cde999da48f82c29e989133ac3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2150,7 +2150,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1819" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1819" bodyend="1884"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1823" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1823" bodyend="1888"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a33e3e2b84393ad729ce3639004970254" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2206,7 +2206,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1900" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1900" bodyend="1938"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1904" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1904" bodyend="1942"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a67ed560d60527ad64f16253069cb1b14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2223,7 +2223,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1947" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1947" bodyend="1951"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1951" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1951" bodyend="1955"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a2a29ca9ab18d04ff2e42aa6e5e0ce312" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2237,7 +2237,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1960" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1960" bodyend="1968"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1964" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1964" bodyend="1972"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af033a40a6a86ad422c58d67dc57bb0fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2284,7 +2284,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2008" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2008" bodyend="2047"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2012" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2012" bodyend="2051"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1af115a75377eb89f33d7beb488f5bb7c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2310,7 +2310,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2059" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2059" bodyend="2098"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2063" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2063" bodyend="2102"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1adf90d773a5fdbb8a4ca0c712a78f2b97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2323,7 +2323,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2150" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2150" bodyend="2243"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2156" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2156" bodyend="2249"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -2352,7 +2352,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="120" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="120" bodyend="133"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="120" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="120" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a012f48621ba42ff06159cbc3024f20e9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2379,7 +2379,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="143" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="143" bodyend="155"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="145" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="145" bodyend="159"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a1531b3a71a673f021898a1ab11a941ab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2398,7 +2398,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="164" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="164" bodyend="193"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="168" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="168" bodyend="199"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a528767b0c2347b228d2c28f2d20f5590" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2469,7 +2469,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="820" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="820" bodyend="922"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="826" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="826" bodyend="926"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a84057ee146e075eec54be8c5e780e159" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2505,7 +2505,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1045" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1045" bodyend="1110"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1049" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1049" bodyend="1114"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ad2eb0a86fd2e6ddfec7ebe93fc74e2c8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2531,7 +2531,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1120" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1120" bodyend="1133"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1124" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1124" bodyend="1137"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a6ff65dd6e6b498671740c718f0421aec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2557,7 +2557,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1143" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1143" bodyend="1170"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1147" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1147" bodyend="1174"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aba2c700e43a03db162fc9fb9fc80eb11" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2584,7 +2584,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1180" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1180" bodyend="1196"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1184" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1184" bodyend="1200"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1abfa33a7a2d4300183c2a2b40b82ee21e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2632,7 +2632,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1208" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1208" bodyend="1243"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1212" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1212" bodyend="1247"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a89985a26a01e91bf449bc4ccad2eef29" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2658,7 +2658,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1253" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1253" bodyend="1269"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1257" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1257" bodyend="1273"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a65e35c5cdc897acaa25e9aeee0bb2bea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2684,7 +2684,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1279" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1279" bodyend="1291"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1283" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1283" bodyend="1295"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1aafcb1708921f53d72edfa257e3da51bd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2710,7 +2710,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1301" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1301" bodyend="1308"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1305" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1305" bodyend="1312"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1ac58a4a51592fce18cb300cf331201548" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2747,7 +2747,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1445" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1445" bodyend="1458"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1449" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1449" bodyend="1462"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a2a27388362d21462e9152f0cd0c54127" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2773,7 +2773,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1518" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1518" bodyend="1539"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1522" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1522" bodyend="1543"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a3bd08d6f6a8ef35a5506cb2f4e413a22" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2822,7 +2822,7 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1551" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1551" bodyend="1577"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="1555" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="1555" bodyend="1581"/>
       </memberdef>
       <memberdef kind="function" id="classBinance_1_1API_1a5579352b60172f7bb5494ed2df7ae867" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -2835,14 +2835,14 @@ $quantity = 1; $price = 0.0005; $order = $api-&gt;sell(&quot;BNBBTC&quot;, $quan
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2105" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2105" bodyend="2145"/>
+        <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="2109" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="2109" bodyend="2151"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Main Binance class. </para>    </briefdescription>
     <detaileddescription>
 <para>Eg. Usage: require &apos;vendor/autoload.php&apos;; $api = new Binance\API(); </para>    </detaileddescription>
-    <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="30" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="29" bodyend="2244"/>
+    <location file="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" line="30" column="1" bodyfile="/home/travis/build/jaggedsoft/php-binance-api/php-binance-api.php" bodystart="29" bodyend="2250"/>
     <listofallmembers>
       <member refid="classBinance_1_1API_1a4b70fc1796d52440e44423da2cbafca5" prot="protected" virt="non-virtual"><scope>Binance::API</scope><name>$api_key</name></member>
       <member refid="classBinance_1_1API_1a5612f3068ec5843031812893537e7677" prot="protected" virt="non-virtual"><scope>Binance::API</scope><name>$api_secret</name></member>
