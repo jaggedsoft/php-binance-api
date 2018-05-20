@@ -125,7 +125,9 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            die("Unable to load config from: " . $file . PHP_EOL);
+            echo "Unable to load config from: " . $file . PHP_EOL;
+            echo "Detected no API KEY or SECRET, all signed requests will fail" . PHP_EOL;
+            return;
         }
         $contents = json_decode(file_get_contents($file), true);
         $this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
@@ -148,7 +150,9 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            die("Unable to load config from: " . $file . PHP_EOL);
+            echo "Unable to load config from: " . $file . PHP_EOL;
+            echo "No curl options will be set" . PHP_EOL;
+            return;
         }
         $contents = json_decode(file_get_contents($file), true);
         $this->curlOpts = isset($contents['curlOpts']) && is_array($contents['curlOpts']) ? $contents['curlOpts'] : [];
@@ -169,7 +173,9 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            die("Unable to load config from: " . $file . PHP_EOL);
+            echo "Unable to load config from: " . $file . PHP_EOL;
+            echo "No proxies will be used " . PHP_EOL;
+            return;
         }
         $contents = json_decode(file_get_contents($file), true);
         if (isset($contents['proto']) === false) {
@@ -525,7 +531,7 @@ class API
             "wapi" => true,
             "name" => "API Withdraw",
         ];
-        if (is_null($addressTag) == false && is_empty($addressTag) == false) {
+        if (is_null($addressTag) === false && is_empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
         }
         return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
@@ -564,7 +570,7 @@ class API
     public function depositHistory(string $asset = null, array $params = [])
     {
         $params["wapi"] = true;
-        if (is_null($asset) == false) {
+        if (is_null($asset) === false) {
             $params['asset'] = $asset;
         }
         return $this->httpRequest("v3/depositHistory.html", "GET", $params, true);
@@ -585,7 +591,7 @@ class API
     public function withdrawHistory(string $asset = null, array $params = [])
     {
         $params["wapi"] = true;
-        if (is_null($asset) == false) {
+        if (is_null($asset) === false) {
             $params['asset'] = $asset;
         }
         return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
@@ -660,7 +666,7 @@ class API
     public function prevDay(string $symbol = null)
     {
         $additionalData = [];
-        if (is_null($symbol) == false) {
+        if (is_null($symbol) === false) {
             $additionalData = [
                 'symbol' => $symbol,
             ];
@@ -695,14 +701,14 @@ class API
      */
     public function depth(string $symbol)
     {
-        if (isset($symbol) == false || is_string($symbol) == false) {
+        if (isset($symbol) === false || is_string($symbol) === false) {
             // WPCS: XSS OK.
             echo "asset: expected bool false, " . gettype($symbol) . " given" . PHP_EOL;
         }
         $json = $this->httpRequest("v1/depth", "GET", [
             "symbol" => $symbol,
         ]);
-        if (isset($this->info[$symbol]) == false) {
+        if (isset($this->info[$symbol]) === false) {
             $this->info[$symbol] = [];
         }
         $this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
@@ -720,7 +726,7 @@ class API
      */
     public function balances($priceData = false)
     {
-        if (is_array($priceData) == false) {
+        if (is_array($priceData) === false) {
             $priceData = false;
         }
 
@@ -757,7 +763,7 @@ class API
             'socks5h',
         );
 
-        if (in_array($uri, $supportedProtocols) == false) {
+        if (in_array($uri, $supportedProtocols) === false) {
             // WPCS: XSS OK.
             echo "Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ", $supportedProtocols) . PHP_EOL;
         }
@@ -765,7 +771,7 @@ class API
         $uri .= "://";
         $uri .= isset($this->proxyConf['address']) ? $this->proxyConf['address'] : "localhost";
 
-        if (isset($this->proxyConf['address']) == false) {
+        if (isset($this->proxyConf['address']) === false) {
             // WPCS: XSS OK.
             echo "warning: proxy address not set defaulting to localhost" . PHP_EOL;
         }
@@ -773,7 +779,7 @@ class API
         $uri .= ":";
         $uri .= isset($this->proxyConf['port']) ? $this->proxyConf['port'] : "1080";
 
-        if (isset($this->proxyConf['address']) == false) {
+        if (isset($this->proxyConf['address']) === false) {
             // WPCS: XSS OK.
             echo "warning: proxy port not set defaulting to 1080" . PHP_EOL;
         }
@@ -819,7 +825,7 @@ class API
      */
     private function httpRequest(string $url, string $method = "GET", array $params = [], bool $signed = false)
     {
-        if (function_exists('curl_init') == false) {
+        if (function_exists('curl_init') === false) {
             throw new \Exception("Sorry cURL is not installed!");
         }
 
@@ -832,7 +838,7 @@ class API
         $query = http_build_query($params, '', '&');
 
         // signed with params
-        if ($signed == true) {
+        if ($signed === true) {
             if (empty($this->api_key)) {
                 throw new \Exception("signedRequest error: API Key not set!");
             }
@@ -869,12 +875,12 @@ class API
         }
         curl_setopt($curl, CURLOPT_USERAGENT, "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)");
         // Post and postfields
-        if ($method == "POST") {
+        if ($method === "POST") {
             curl_setopt($curl, CURLOPT_POST, true);
             // curl_setopt($curlch, CURLOPT_POSTFIELDS, $query);
         }
         // Delete Method
-        if ($method == "DELETE") {
+        if ($method === "DELETE") {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         }
         // proxy settings
@@ -902,19 +908,17 @@ class API
         $output = curl_exec($curl);
         // Check if any error occurred
         if (curl_errno($curl) > 0) {
-            // WPCS: XSS OK.
-            if ($this->httpDebug) {
-                echo 'Curl error: ' . curl_error($curl) . "\n";
-            }
+            // should always output error, not only on httpdebug
+            // not outputing errors, hides it from users and ends up with tickets on github
+            echo 'Curl error: ' . curl_error($curl) . "\n";
             return [];
         }
         curl_close($curl);
         $json = json_decode($output, true);
         if (isset($json['msg'])) {
-            // WPCS: XSS OK.
-            if ($this->httpDebug) {
-                echo "signedRequest error: {$output}" . PHP_EOL;
-            }
+            // should always output error, not only on httpdebug
+            // not outputing errors, hides it from users and ends up with tickets on github
+            echo "signedRequest error: {$output}" . PHP_EOL;
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
@@ -1418,7 +1422,7 @@ class API
             'bids',
         ] as $type) {
             $entries = $array[$type];
-            if ($type == 'asks') {
+            if ($type === 'asks') {
                 $entries = array_reverse($entries);
             }
 
@@ -1658,7 +1662,7 @@ class API
                     }
                     $json = json_decode($data, true);
                     $symbol = $json['s'];
-                    if ($this->info[$symbol]['firstUpdate'] == 0) {
+                    if (intval($this->info[$symbol]['firstUpdate']) === 0) {
                         $this->depthQueue[$symbol][] = $json;
                         return;
                     }
@@ -2025,10 +2029,10 @@ class API
                 }
                 $json = json_decode($data);
                 $type = $json->e;
-                if ($type == "outboundAccountInfo") {
+                if ($type === "outboundAccountInfo") {
                     $balances = $this->balanceHandler($json->B);
                     $this->info['balanceCallback']($this, $balances);
-                } elseif ($type == "executionReport") {
+                } elseif ($type === "executionReport") {
                     $report = $this->executionHandler($json);
                     if ($this->info['executionCallback']) {
                         $this->info['executionCallback']($this, $report);
@@ -2131,13 +2135,15 @@ class API
         curl_close($curl);
 
         if ($result === false) {
-            die("Unable to to download the CA bundle $host");
+            echo "Unable to to download the CA bundle $host" . PHP_EOL;
+            return;
         }
 
         $fp = fopen($output_filename, 'w');
 
         if ($fp === false) {
-            die("Unable to write $output_filename, please check permissions on folder");
+            echo "Unable to write $output_filename, please check permissions on folder" . PHP_EOL;
+            return;
         }
 
         fwrite($fp, $result);
