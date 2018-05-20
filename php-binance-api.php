@@ -2106,6 +2106,10 @@ class API
     {
         $output_filename = getcwd() . "/ca.pem";
 
+        if (is_writable(getcwd()) === false) {
+            die(getcwd() . " folder is not writeable, plese check your permissions");
+        }
+
         $host = "https://curl.haxx.se/ca/cacert.pem";
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $host);
@@ -2126,7 +2130,16 @@ class API
         $result = curl_exec($curl);
         curl_close($curl);
 
+        if ($result === false) {
+            die("Unable to to download the CA bundle $host");
+        }
+
         $fp = fopen($output_filename, 'w');
+
+        if ($fp === false) {
+            die("Unable to write $output_filename, please check permissions on folder");
+        }
+
         fwrite($fp, $result);
         fclose($fp);
     }
