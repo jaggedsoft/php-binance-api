@@ -1,4 +1,4 @@
-.TH "Binance\API" 3 "Sun May 20 2018" "PHP Binance Api" \" -*- nroff -*-
+.TH "Binance\API" 3 "Mon May 21 2018" "PHP Binance Api" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -224,10 +224,6 @@ Main Binance class\&.
 .RI "\fBminiTicker\fP (callable $callback)"
 .br
 .RI "\fIminiTicker Get miniTicker for all symbols \fP"
-.ti -1c
-.RI "\fBreport\fP ()"
-.br
-.RI "\fIReport\&. \fP"
 .in -1c
 .SS "Protected Attributes"
 
@@ -362,7 +358,7 @@ null
 .PP
 
 .PP
-Definition at line 1504 of file php-binance-api\&.php\&.
+Definition at line 1514 of file php-binance-api\&.php\&.
 .SS "Binance\\API::aggTrades (string$symbol)"
 
 .PP
@@ -573,7 +569,7 @@ null
 .PP
 
 .PP
-Definition at line 1823 of file php-binance-api\&.php\&.
+Definition at line 1833 of file php-binance-api\&.php\&.
 .SS "Binance\\API::cumulative (array$depth)"
 
 .PP
@@ -591,7 +587,7 @@ array cumulative depth cache
 .PP
 
 .PP
-Definition at line 1322 of file php-binance-api\&.php\&.
+Definition at line 1332 of file php-binance-api\&.php\&.
 .SS "Binance\\API::depositAddress (string$asset)"
 
 .PP
@@ -686,7 +682,7 @@ null
 .PP
 
 .PP
-Definition at line 1625 of file php-binance-api\&.php\&.
+Definition at line 1635 of file php-binance-api\&.php\&.
 .SS "Binance\\API::displayDepth (array$array)"
 
 .PP
@@ -704,7 +700,7 @@ string of the depth information
 .PP
 
 .PP
-Definition at line 1417 of file php-binance-api\&.php\&.
+Definition at line 1427 of file php-binance-api\&.php\&.
 .SS "Binance\\API::exchangeInfo ()"
 
 .PP
@@ -740,7 +736,7 @@ string key or null
 .PP
 
 .PP
-Definition at line 1385 of file php-binance-api\&.php\&.
+Definition at line 1395 of file php-binance-api\&.php\&.
 .SS "Binance\\API::getProxyUriString ()"
 
 .PP
@@ -766,7 +762,7 @@ int get the total number of api calls
 .PP
 
 .PP
-Definition at line 1491 of file php-binance-api\&.php\&.
+Definition at line 1501 of file php-binance-api\&.php\&.
 .SS "Binance\\API::getTransfered ()"
 
 .PP
@@ -779,7 +775,7 @@ string showing the total transfered
 .PP
 
 .PP
-Definition at line 1471 of file php-binance-api\&.php\&.
+Definition at line 1481 of file php-binance-api\&.php\&.
 .SS "Binance\\API::highstock (array$chart, bool$include_volume = \fCfalse\fP)"
 
 .PP
@@ -799,7 +795,7 @@ array highchart data
 .PP
 
 .PP
-Definition at line 1357 of file php-binance-api\&.php\&.
+Definition at line 1367 of file php-binance-api\&.php\&.
 .SS "Binance\\API::history (string$symbol, int$limit = \fC500\fP, int$fromTradeId = \fC-1\fP)"
 
 .PP
@@ -839,7 +835,7 @@ null
 .PP
 
 .PP
-Definition at line 1964 of file php-binance-api\&.php\&.
+Definition at line 1974 of file php-binance-api\&.php\&.
 .SS "Binance\\API::kline ($symbols, string$interval = \fC'30m'\fP, callable$callback)"
 
 .PP
@@ -866,7 +862,7 @@ null
 .PP
 
 .PP
-Definition at line 1904 of file php-binance-api\&.php\&.
+Definition at line 1914 of file php-binance-api\&.php\&.
 .SS "Binance\\API::last (array$array)"
 
 .PP
@@ -884,7 +880,7 @@ string key or null
 .PP
 
 .PP
-Definition at line 1401 of file php-binance-api\&.php\&.
+Definition at line 1411 of file php-binance-api\&.php\&.
 .SS "Binance\\API::marketBuy (string$symbol, $quantity, array$flags = \fC[]\fP)"
 
 .PP
@@ -1000,7 +996,7 @@ null
 .PP
 
 .PP
-Definition at line 2063 of file php-binance-api\&.php\&.
+Definition at line 2073 of file php-binance-api\&.php\&.
 .SS "Binance\\API::openOrders (string$symbol = \fCnull\fP)"
 
 .PP
@@ -1163,12 +1159,6 @@ array with error message or array of all the currencies prices
 
 .PP
 Definition at line 626 of file php-binance-api\&.php\&.
-.SS "Binance\\API::report ()"
-
-.PP
-Report\&. 
-.PP
-Definition at line 2156 of file php-binance-api\&.php\&.
 .SS "Binance\\API::sell (string$symbol, $quantity, $price, string$type = \fC'LIMIT'\fP, array$flags = \fC[]\fP)"
 
 .PP
@@ -1267,7 +1257,7 @@ null
 .PP
 
 .PP
-Definition at line 1592 of file php-binance-api\&.php\&.
+Definition at line 1602 of file php-binance-api\&.php\&.
 .SS "Binance\\API::terminate ($endpoint)"
 
 .PP
@@ -1282,7 +1272,7 @@ null
 .PP
 
 .PP
-Definition at line 1951 of file php-binance-api\&.php\&.
+Definition at line 1961 of file php-binance-api\&.php\&.
 .SS "Binance\\API::ticker ($symbol, callable$callback)"
 
 .PP
@@ -1302,7 +1292,7 @@ null
 .PP
 
 .PP
-Definition at line 1773 of file php-binance-api\&.php\&.
+Definition at line 1783 of file php-binance-api\&.php\&.
 .SS "Binance\\API::time ()"
 
 .PP
@@ -1340,7 +1330,7 @@ null
 .PP
 
 .PP
-Definition at line 1705 of file php-binance-api\&.php\&.
+Definition at line 1715 of file php-binance-api\&.php\&.
 .SS "Binance\\API::userData (&$balance_callback, &$execution_callback = \fCfalse\fP)"
 
 .PP
@@ -1369,7 +1359,7 @@ null
 .PP
 
 .PP
-Definition at line 2012 of file php-binance-api\&.php\&.
+Definition at line 2022 of file php-binance-api\&.php\&.
 .SS "Binance\\API::useServerTime ()"
 
 .PP
