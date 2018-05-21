@@ -34,7 +34,7 @@ before_script:
   - travis_retry wget https://raw.githubusercontent.com/jaggedsoft/php-binance-api/gh-travis/phpunit.xml -O phpunit.xml
   - travis_retry wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
   - travis_retry wget https://github.com/codacy/php-codacy-coverage/releases/download/1.4.2/codacy-coverage.phar -O codacy.phar
-  - travis_retry wget https://github.com/phpfmt-next/fmt/raw/master/bin/fmt.phar -O fmt.phar 
+  - travis_retry wget https://github.com/dmzoneill/fmt/raw/master/fmt.phar -O fmt.phar 
   - travis_retry wget https://codecov.io/bash -O codecov.sh
   - COMPOSER=composer-test.json composer -vvv install --no-interaction --no-suggest
   - chmod -v +x codecov.sh
