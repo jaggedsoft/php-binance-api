@@ -1030,6 +1030,16 @@ class API
         }
 
         $response = $this->httpRequest("v1/klines", "GET", $opt);
+
+        if (is_array($response) === false) {
+            return [];
+        }
+
+        if (count($response) === 0) {
+            echo "warning: v1/klines returned empty array, usually a blip in the connection or server" . PHP_EOL;
+            return [];
+        }
+
         $ticks = $this->chartData($symbol, $interval, $response);
         $this->charts[$symbol][$interval] = $ticks;
         return $ticks;
