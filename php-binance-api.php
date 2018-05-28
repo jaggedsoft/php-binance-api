@@ -885,9 +885,9 @@ class API
         }
 
 	    // PUT Method
-	    if ($method === "PUT") {
-	        curl_setopt($curl, CURLOPT_PUT, true);
-	    }
+	 if ($method === "PUT") {
+	     curl_setopt($curl, CURLOPT_PUT, true);
+	 }
 
         // proxy settings
         if (is_array($this->proxyConf)) {
