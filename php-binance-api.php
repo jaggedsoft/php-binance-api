@@ -883,6 +883,12 @@ class API
         if ($method === "DELETE") {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         }
+
+	    // PUT Method
+	 if ($method === "PUT") {
+	     curl_setopt($curl, CURLOPT_PUT, true);
+	 }
+
         // proxy settings
         if (is_array($this->proxyConf)) {
             curl_setopt($curl, CURLOPT_PROXY, $this->getProxyUriString());
