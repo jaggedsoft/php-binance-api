@@ -884,10 +884,10 @@ class API
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         }
 
-	    // PUT Method
-	 if ($method === "PUT") {
-	     curl_setopt($curl, CURLOPT_PUT, true);
-	 }
+        // PUT Method
+        if ($method === "PUT") {
+            curl_setopt($curl, CURLOPT_PUT, true);
+        }
 
         // proxy settings
         if (is_array($this->proxyConf)) {
