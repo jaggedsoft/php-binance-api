@@ -235,26 +235,29 @@ class RateLimiter
      */
     public function __call(string $name, array $arguments)
     {
-        $this->requestsPerMinute();
-        if (in_array($name, $this->ordersfunctions) === true) {
-            $this->ordersPerSecond();
-            $this->ordersPerDay();
-        }
-
         $weight = $this->weights[$name];
-        $c_time = time();
 
-        for ($w = 0; $w < $weight; $w++) {
-            $this->requestsQueue[] = $c_time;
-        }
+        if ($weight > 0) {
+            $this->requestsPerMinute();
+            if (in_array($name, $this->ordersfunctions) === true) {
+                $this->ordersPerSecond();
+                $this->ordersPerDay();
+            }
 
-        if (in_array($name, $this->ordersfunctions) === true) {
+            $c_time = time();
+
             for ($w = 0; $w < $weight; $w++) {
-                $this->ordersQueue[] = $c_time;
-                $this->ordersDayQueue[] = $c_time;
+                $this->requestsQueue[] = $c_time;
+            }
+
+            if (in_array($name, $this->ordersfunctions) === true) {
+                for ($w = 0; $w < $weight; $w++) {
+                    $this->ordersQueue[] = $c_time;
+                    $this->ordersDayQueue[] = $c_time;
+                }
             }
         }
-
+        
         return call_user_func_array(array(&$this->api, $name), $arguments);
     }
 }
