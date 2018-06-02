@@ -51,6 +51,8 @@ $api = new Binance\API();
 $api = new Binance\API( "somefile.json" );
 // 3. config by specifying api key and secret
 $api = new Binance\API("<api key>","<secret>");
+// 4. Rate Limiting Support
+$api = new Binance\RateLimiter(new Binance\API());
 ```
 See [additional options](https://github.com/jaggedsoft/php-binance-api/#config-file-in-home-directory) for more options and help installing on Windows
 
