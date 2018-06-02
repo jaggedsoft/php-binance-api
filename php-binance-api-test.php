@@ -12,6 +12,7 @@ declare (strict_types = 1)
 ;
 
 require 'php-binance-api.php';
+require 'php-binance-api-rate-limiter.php';
 require 'vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
@@ -88,16 +89,16 @@ final class BinanceTest extends TestCase
     {
         self::debug(0, __METHOD__, "");
         self::writeConfig();
-        $this->_testable = new Binance\API();
-        $this->assertInstanceOf('Binance\API', $this->_testable);
+        $this->_testable = new RateLimiter(new Binance\API());
+        $this->assertInstanceOf('Binance\RateLimiter', $this->_testable);
         @unlink( getcwd() . "/ca.pem" );
     }
 
     public function testInstantiate0()
     {
         self::debug(0, __METHOD__, "");
-        $this->_testable = new Binance\API();
-        $this->assertInstanceOf('Binance\API', $this->_testable);
+        $this->_testable = new RateLimiter(new Binance\API());
+        $this->assertInstanceOf('Binance\RateLimiter', $this->_testable);
         $this->assertTrue(strcmp($this->_testable->api_key, self::$apikey) === 0);
         $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
     }
@@ -105,8 +106,8 @@ final class BinanceTest extends TestCase
     public function testInstantiate1()
     {
         self::debug(0, __METHOD__, "");
-        $this->_testable = new Binance\API(self::$config_file);
-        $this->assertInstanceOf('Binance\API', $this->_testable);
+        $this->_testable = new RateLimiter(new Binance\API(self::$config_file));
+        $this->assertInstanceOf('Binance\RateLimiter', $this->_testable);
         $this->assertTrue(strcmp($this->_testable->api_key, self::$apikey) === 0);
         $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
     }
@@ -114,8 +115,8 @@ final class BinanceTest extends TestCase
     public function testInstantiate2()
     {
         self::debug(0, __METHOD__, "");
-        $this->_testable = new Binance\API(self::$apikey, self::$apisecret);
-        $this->assertInstanceOf('Binance\API', $this->_testable);
+        $this->_testable = new RateLimiter(new Binance\API(self::$apikey, self::$apisecret));
+        $this->assertInstanceOf('Binance\RateLimiter', $this->_testable);
         $this->assertTrue(strcmp($this->_testable->api_key, self::$apikey) === 0);
         $this->assertTrue(strcmp($this->_testable->api_secret, self::$apisecret) === 0);
     }
@@ -536,7 +537,7 @@ final class BinanceTest extends TestCase
         self::debug(0, __METHOD__, "");
         self::writeConfigWithProxy();
 
-        $this->_testable = new Binance\API();
+        $this->_testable = new RateLimiter(new Binance\API());
         $this->assertInstanceOf('Binance\API', $this->_testable);
         $uri = $this->_testable->getProxyUriString();
         $this->assertTrue(strcmp($uri, "https://1.2.3.4:5678") == 0);
