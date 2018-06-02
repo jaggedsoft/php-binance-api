@@ -543,21 +543,6 @@ final class BinanceTest extends TestCase
         $this->assertTrue($uri == $proxyConf['proto'] . "://" . $proxyConf['address'] . ":" . $proxyConf['port']);
     }
 
-    public function testGetProxyUriStringFromFile()
-    {
-        self::debug(0, __METHOD__, "");
-        self::writeConfigWithProxy();
-
-        $this->_testable_decap = new Binance\API(self::$apikey, self::$apisecret);
-        $this->_testable = new Binance\RateLimiter($this->_testable_decap);
-        $this->assertInstanceOf('Binance\RateLimiter', $this->_testable);
-        $this->assertInstanceOf('Binance\API', $this->_testable_decap);
-        
-        $uri = $this->_testable->getProxyUriString();
-        self::debug(0, __METHOD__, $uri);
-        $this->assertTrue(strcmp($uri, "https://1.2.3.4:5678") == 0);
-    }
-
     public function testHttpRequest()
     {
         self::debug(0, __METHOD__, "");
