@@ -544,7 +544,7 @@ final class BinanceTest extends TestCase
 
         $this->_testable_decap = new Binance\API(self::$apikey, self::$apisecret);
         $this->_testable = new Binance\RateLimiter($this->_testable_decap);
-        $this->assertInstanceOf('Binance\API', $this->_testable);
+        $this->assertInstanceOf('Binance\RateLimiter', $this->_testable);
         $uri = $this->_testable->getProxyUriString();
         $this->assertTrue(strcmp($uri, "https://1.2.3.4:5678") == 0);
     }
