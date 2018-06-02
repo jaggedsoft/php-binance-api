@@ -46,8 +46,10 @@ final class BinanceTest extends TestCase
         $contents['address'] = "1.2.3.4";
         $contents['port'] = "5678";
 
+        self::debug(0, __METHOD__, json_encode($contents));
+
         @unlink(self::$config_file);
-        @file_put_contents(self::$config_file, json_encode($contents));
+        file_put_contents(self::$config_file, json_encode($contents));
     }
 
     private static function writeConfigWithSocksProxy()
