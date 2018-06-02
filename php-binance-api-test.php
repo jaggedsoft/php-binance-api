@@ -552,6 +552,7 @@ final class BinanceTest extends TestCase
         $this->assertInstanceOf('Binance\API', $this->_testable_decap);
         
         $uri = $this->_testable->getProxyUriString();
+        self::debug(0, __METHOD__, $uri);
         $this->assertTrue(strcmp($uri, "https://1.2.3.4:5678") == 0);
     }
 
