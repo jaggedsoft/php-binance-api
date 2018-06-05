@@ -56,6 +56,14 @@ $api = new Binance\RateLimiter(new Binance\API());
 ```
 See [additional options](https://github.com/jaggedsoft/php-binance-api/#config-file-in-home-directory) for more options and help installing on Windows
 
+#### Rate Limiting
+This Feature is in beta, you can start using rate limiting as a wrapper to the main API class.
+```php
+$api = new Binance\API( "somefile.json" );
+$api = new Binance\RateLimiter($api);
+$api->prices();
+```
+
 #### Get latest price of a symbol
 ```php
 $ticker = $api->prices();
