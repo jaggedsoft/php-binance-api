@@ -61,7 +61,9 @@ This Feature is in beta, you can start using rate limiting as a wrapper to the m
 ```php
 $api = new Binance\API( "somefile.json" );
 $api = new Binance\RateLimiter($api);
-$api->prices();
+while(true) {
+   $api->openOrders("BNBBTC"); // rate limited
+}
 ```
 
 #### Get latest price of a symbol
