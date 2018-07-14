@@ -75,6 +75,7 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$api_key"><param name="Local" value="classBinance_1_1API.html#a4b70fc1796d52440e44423da2cbafca5"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$api_secret"><param name="Local" value="classBinance_1_1API.html#a5612f3068ec5843031812893537e7677"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$base"><param name="Local" value="classBinance_1_1API.html#ac863e52396757997d84e6783b5336828"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="$caOverride"><param name="Local" value="classBinance_1_1API.html#abeabeb044e83a23ad58bdcfa57e73d47"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$chartQueue"><param name="Local" value="classBinance_1_1API.html#aaa75d873054290eecf1dd2876237a279"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$charts"><param name="Local" value="classBinance_1_1API.html#a0c2d0cd199527b3b275143c49d91702e"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="$curlOpts"><param name="Local" value="classBinance_1_1API.html#ace9645947686e99baf916e3bc189aeaf"><param name="ImageNumber" value="11"></OBJECT>
