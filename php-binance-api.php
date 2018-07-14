@@ -1986,7 +1986,7 @@ class API
     {
         $loop = \React\EventLoop\Factory::create();
         $loop->addPeriodicTimer(30, function () {
-            $listenKey = $this->options['listenKey'];
+            $listenKey = $this->listenKey;
             $this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", []);
         });
         $loop->run();
@@ -2033,7 +2033,7 @@ class API
     public function userData(&$balance_callback, &$execution_callback = false)
     {
         $response = $this->httpRequest("v1/userDataStream", "POST", []);
-        $listenKey = $this->options['listenKey'] = $response['listenKey'];
+        $this->listenKey = $response['listenKey'];
         $this->info['balanceCallback'] = $balance_callback;
         $this->info['executionCallback'] = $execution_callback;
 
@@ -2041,7 +2041,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect($this->stream . $listenKey)->then(function ($ws) {
+        \Ratchet\Client\connect($this->stream . $this->listenKey)->then(function ($ws) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
