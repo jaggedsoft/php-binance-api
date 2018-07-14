@@ -51,8 +51,28 @@ $api = new Binance\API();
 $api = new Binance\API( "somefile.json" );
 // 3. config by specifying api key and secret
 $api = new Binance\API("<api key>","<secret>");
+// 4. Rate Limiting Support
+$api = new Binance\RateLimiter(new Binance\API());
 ```
 See [additional options](https://github.com/jaggedsoft/php-binance-api/#config-file-in-home-directory) for more options and help installing on Windows
+
+#### Rate Limiting
+This Feature is in beta, you can start using rate limiting as a wrapper to the main API class.
+```php
+$api = new Binance\API( "somefile.json" );
+$api = new Binance\RateLimiter($api);
+while(true) {
+   $api->openOrders("BNBBTC"); // rate limited
+}
+```
+
+#### Security - Ca Bunldes
+If you don't know what a CA bundle is, no action is required.  If you do know and you don't like our auto upate feature.
+You can disable the downloading of the CA Bundle
+```php
+$api = new Binance\API( "somefile.json" );
+$api->caOverride = true;
+```
 
 #### Get latest price of a symbol
 ```php

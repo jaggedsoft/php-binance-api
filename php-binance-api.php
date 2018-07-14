@@ -42,6 +42,7 @@ class API
         "timeOffset" => 0,
     ]; // /< Additional connection options
     protected $proxyConf = null; // /< Used for story the proxy configuration
+    protected $caOverride = false; // /< set this if you donnot wish to use CA bundle auto download feature
     protected $transfered = 0; // /< This stores the amount of bytes transfered
     protected $requestCount = 0; // /< This stores the amount of API requests
     private $httpDebug = false; // /< If you enable this, curl will output debugging information
@@ -829,8 +830,10 @@ class API
             throw new \Exception("Sorry cURL is not installed!");
         }
 
-        if (file_exists(getcwd() . '/ca.pem') === false) {
-            $this->downloadCurlCaBundle();
+        if ($this->caOverride === false) {
+            if (file_exists(getcwd() . '/ca.pem') === false) {
+                $this->downloadCurlCaBundle();
+            }
         }
 
         $curl = curl_init();
@@ -884,10 +887,10 @@ class API
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
         }
 
-	    // PUT Method
-	 if ($method === "PUT") {
-	     curl_setopt($curl, CURLOPT_PUT, true);
-	 }
+        // PUT Method
+        if ($method === "PUT") {
+            curl_setopt($curl, CURLOPT_PUT, true);
+        }
 
         // proxy settings
         if (is_array($this->proxyConf)) {
@@ -907,8 +910,10 @@ class API
             curl_setopt($curl, constant($key), $value);
         }
 
-        if (file_exists(getcwd() . '/ca.pem')) {
-            curl_setopt($curl, CURLOPT_CAINFO, getcwd() . '/ca.pem');
+        if ($this->caOverride === false) {
+            if (file_exists(getcwd() . '/ca.pem') === false) {
+                $this->downloadCurlCaBundle();
+            }
         }
 
         $output = curl_exec($curl);
@@ -1981,7 +1986,7 @@ class API
     {
         $loop = \React\EventLoop\Factory::create();
         $loop->addPeriodicTimer(30, function () {
-            $listenKey = $this->options['listenKey'];
+            $listenKey = $this->listenKey;
             $this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", []);
         });
         $loop->run();
@@ -2028,7 +2033,7 @@ class API
     public function userData(&$balance_callback, &$execution_callback = false)
     {
         $response = $this->httpRequest("v1/userDataStream", "POST", []);
-        $listenKey = $this->options['listenKey'] = $response['listenKey'];
+        $this->listenKey = $response['listenKey'];
         $this->info['balanceCallback'] = $balance_callback;
         $this->info['executionCallback'] = $execution_callback;
 
@@ -2036,7 +2041,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect($this->stream . $listenKey)->then(function ($ws) {
+        \Ratchet\Client\connect($this->stream . $this->listenKey)->then(function ($ws) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
