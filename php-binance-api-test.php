@@ -27,8 +27,8 @@ final class BinanceTest extends TestCase
 
     private static function writeConfig()
     {
-        self::$apikey = "z5RQZ9n8JcS3HLDQmPpfLQIGGQN6TTs5pCP5CTnn4nYk2ImFcew49v4ZrmP3MGl5";
-        self::$apisecret = "ZqePF1DcLb6Oa0CfcLWH0Tva59y8qBBIqu789JEY27jq0RkOKXpNl9992By1PN9Z";
+        self::$apikey = "5enQYcMQk2J3syHCao9xgJOnnPoGtDMhSRRAzG2Gxo90TBzXPG1itcXikQc2VRDh";
+        self::$apisecret = "uWJQXigS3AjftKe8c6xK2t3rkTqkmfeeNPwcycBLGXXsuU4eUvLkPY9qcOnB2UYI";
         self::$config_file = getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json";
 
         @unlink(self::$config_file);
