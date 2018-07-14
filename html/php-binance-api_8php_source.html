@@ -1331,7 +1331,7 @@
 <div class="line"><a name="l01986"></a><span class="lineno"> 1986</span>&#160;    {</div>
 <div class="line"><a name="l01987"></a><span class="lineno"> 1987</span>&#160;        $loop = \React\EventLoop\Factory::create();</div>
 <div class="line"><a name="l01988"></a><span class="lineno"> 1988</span>&#160;        $loop-&gt;addPeriodicTimer(30, <span class="keyword">function</span> () {</div>
-<div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;            $listenKey = $this-&gt;options[<span class="stringliteral">&#39;listenKey&#39;</span>];</div>
+<div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;            $listenKey = $this-&gt;listenKey;</div>
 <div class="line"><a name="l01990"></a><span class="lineno"> 1990</span>&#160;            $this-&gt;httpRequest(<span class="stringliteral">&quot;v1/userDataStream?listenKey={$listenKey}&quot;</span>, <span class="stringliteral">&quot;PUT&quot;</span>, []);</div>
 <div class="line"><a name="l01991"></a><span class="lineno"> 1991</span>&#160;        });</div>
 <div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160;        $loop-&gt;run();</div>
@@ -1340,7 +1340,7 @@
 <div class="line"><a name="l02033"></a><span class="lineno"><a class="line" href="classBinance_1_1API.html#af033a40a6a86ad422c58d67dc57bb0fd"> 2033</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classBinance_1_1API.html#af033a40a6a86ad422c58d67dc57bb0fd">userData</a>(&amp;$balance_callback, &amp;$execution_callback = <span class="keyword">false</span>)</div>
 <div class="line"><a name="l02034"></a><span class="lineno"> 2034</span>&#160;    {</div>
 <div class="line"><a name="l02035"></a><span class="lineno"> 2035</span>&#160;        $response = $this-&gt;httpRequest(<span class="stringliteral">&quot;v1/userDataStream&quot;</span>, <span class="stringliteral">&quot;POST&quot;</span>, []);</div>
-<div class="line"><a name="l02036"></a><span class="lineno"> 2036</span>&#160;        $listenKey = $this-&gt;options[<span class="stringliteral">&#39;listenKey&#39;</span>] = $response[<span class="stringliteral">&#39;listenKey&#39;</span>];</div>
+<div class="line"><a name="l02036"></a><span class="lineno"> 2036</span>&#160;        $this-&gt;listenKey = $response[<span class="stringliteral">&#39;listenKey&#39;</span>];</div>
 <div class="line"><a name="l02037"></a><span class="lineno"> 2037</span>&#160;        $this-&gt;info[<span class="stringliteral">&#39;balanceCallback&#39;</span>] = $balance_callback;</div>
 <div class="line"><a name="l02038"></a><span class="lineno"> 2038</span>&#160;        $this-&gt;info[<span class="stringliteral">&#39;executionCallback&#39;</span>] = $execution_callback;</div>
 <div class="line"><a name="l02039"></a><span class="lineno"> 2039</span>&#160;</div>
@@ -1348,7 +1348,7 @@
 <div class="line"><a name="l02041"></a><span class="lineno"> 2041</span>&#160;</div>
 <div class="line"><a name="l02042"></a><span class="lineno"> 2042</span>&#160;        <span class="comment">// @codeCoverageIgnoreStart</span></div>
 <div class="line"><a name="l02043"></a><span class="lineno"> 2043</span>&#160;        <span class="comment">// phpunit can&#39;t cover async function</span></div>
-<div class="line"><a name="l02044"></a><span class="lineno"> 2044</span>&#160;        \Ratchet\Client\connect($this-&gt;stream . $listenKey)-&gt;then(<span class="keyword">function</span> ($ws) {</div>
+<div class="line"><a name="l02044"></a><span class="lineno"> 2044</span>&#160;        \Ratchet\Client\connect($this-&gt;stream . $this-&gt;listenKey)-&gt;then(<span class="keyword">function</span> ($ws) {</div>
 <div class="line"><a name="l02045"></a><span class="lineno"> 2045</span>&#160;            $ws-&gt;on(<span class="stringliteral">&#39;message&#39;</span>, <span class="keyword">function</span> ($data) use ($ws) {</div>
 <div class="line"><a name="l02046"></a><span class="lineno"> 2046</span>&#160;                <span class="keywordflow">if</span> ($this-&gt;subscriptions[<span class="stringliteral">&#39;@userdata&#39;</span>] === <span class="keyword">false</span>) {</div>
 <div class="line"><a name="l02047"></a><span class="lineno"> 2047</span>&#160;                    <span class="comment">//$this-&gt;subscriptions[$endpoint] = null;</span></div>
@@ -1522,7 +1522,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 14 2018 11:44:23 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 14 2018 12:17:06 for PHP Binance Api by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
