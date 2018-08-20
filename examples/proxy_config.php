@@ -14,12 +14,11 @@ $proxyConf = [
 // use config from ~/.confg/jaggedsoft/php-binance-api.json
 $api = new Binance\API("","",["useServerTime"=>false],$proxyConf);
 
-$ticker = $api->prices();
-print_r($ticker); // List prices of all symbols
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.".PHP_EOL;
+$tickers = $api->prices();
+print_r($tickers); // List prices of all symbols
 
 // Get balances for all of your positions, including estimated BTC value
-$balances = $api->balances($ticker);
+$balances = $api->balances($tickers);
 print_r($balances);
 echo "BTC owned: ".$balances['BTC']['available'].PHP_EOL;
 echo "ETH owned: ".$balances['ETH']['available'].PHP_EOL;

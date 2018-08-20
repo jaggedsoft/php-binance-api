@@ -630,6 +630,21 @@ class API
     }
 
     /**
+     * price get the latest price of a symbol
+     *
+     * $price = $api->price( "ETHBTC" );
+     *
+     * @return array with error message or array with symbol price
+     * @throws \Exception
+     */
+    public function price(string $symbol)
+    {
+        $ticker = $this->httpRequest("v3/ticker/price", "GET", ["symbol" => $symbol]);
+
+        return $ticker['price'];
+    }
+
+    /**
      * bookPrices get all bid/asks prices
      *
      * $ticker = $api->bookPrices();

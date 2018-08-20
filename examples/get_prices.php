@@ -6,7 +6,10 @@ require '../php-binance-api.php';
 // use config from ~/.confg/jaggedsoft/php-binance-api.json
 $api = new Binance\API();
 
+// Get latest price of all symbols
+$tickers = $api->prices();
+print_r($tickers); // List prices of all symbols
+
 // Get latest price of a symbol
-$ticker = $api->prices();
-print_r($ticker); // List prices of all symbols
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.\n";
+$price = $api->price('BNBBTC');
+echo "Price of BNB: {$price} BTC.\n";
