@@ -8,8 +8,8 @@ $api = new Binance\API();
 $api = new Binance\RateLimiter($api);
 
 // Get latest price of a symbol
-$ticker = $api->prices();
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.\n";
+$price = $api->price("BNBBTC");
+echo "Price of BNB: {$price} BTC.\n";
 
 while(true)
 {

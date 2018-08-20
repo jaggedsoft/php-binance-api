@@ -3,12 +3,16 @@
 require 'binance-api-single.php';
 $api = new Binance("<key>","<secret>");
 
-$ticker = $api->prices();
-print_r($ticker); // List prices of all symbols 
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.".PHP_EOL;
+// Get latest price of all symbols
+$tickers = $api->prices();
+print_r($tickers); // List prices of all symbols
+
+// Get latest price of a symbol
+$price = $api->price("BNBBTC");
+echo "Price of BNB: {$price} BTC.".PHP_EOL;
 
 // Get balances for all of your positions, including estimated BTC value
-$balances = $api->balances($ticker);
+$balances = $api->balances($tickers);
 print_r($balances);
 echo "BTC owned: ".$balances['BTC']['available'].PHP_EOL;
 echo "ETH owned: ".$balances['ETH']['available'].PHP_EOL;
