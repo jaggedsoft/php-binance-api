@@ -2,13 +2,16 @@
 require '../vendor/autoload.php';
 $api = new Binance\API("<api key>","<secret>");
 
+// Get latest price of all symbols
+$tickers = $api->prices();
+print_r($tickers); // List prices of all symbols
+
 // Get latest price of a symbol
-$ticker = $api->prices();
-print_r($ticker); // List prices of all symbols
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.\n";
+$price = $api->price('BNBBTC');
+echo "Price of BNB: {$price} BTC.\n";
 
 // Get all of your positions, including estimated BTC value
-$balances = $api->balances($ticker);
+$balances = $api->balances($tickers);
 print_r($balances);
 
 // Get all bid/ask prices

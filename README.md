@@ -74,11 +74,10 @@ $api = new Binance\API( "somefile.json" );
 $api->caOverride = true;
 ```
 
-#### Get latest price of a symbol
+#### Get latest price of all symbols
 ```php
 $ticker = $api->prices();
-print_r($ticker); // List prices of all symbols
-echo "Price of BNB: {$ticker['BNBBTC']} BTC.".PHP_EOL;
+print_r($ticker);
 ```
 
 <details>
@@ -172,7 +171,13 @@ Price of BNB: 0.00021479 BTC.
 ```
 </details>
 
-### Get miniTicker for all symbols
+#### Get latest price of a symbol
+```php
+$price = $api->price("BNBBTC");
+echo "Price of BNB: {$price} BTC.".PHP_EOL;
+```
+
+#### Get miniTicker for all symbols
 ```php
 $api->miniTicker(function($api, $ticker) {
 	print_r($ticker);
