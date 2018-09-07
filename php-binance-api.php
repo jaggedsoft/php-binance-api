@@ -1496,6 +1496,18 @@ class API
             "asks" => $asks,
         ];
     }
+    
+    /**
+     * roundStep rounds number with given step
+     * @param $value price
+     * @param $stepSize parameter from exchangeInfo
+     * @return rounded value. example: roundStep(1.2345, 0.1) = 1.2
+     *
+     */
+    public function roundStep($value, $stepSize = 0.1) {
+        $precision = strlen(substr(strrchr(rtrim($value,'0'), '.'), 1));
+        return round((($value / $stepSize) | 0) * $stepSize, $precision);
+    }
 
     /**
      * getTransfered gets the total transfered in b,Kb,Mb,Gb
