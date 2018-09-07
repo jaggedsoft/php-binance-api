@@ -1505,7 +1505,7 @@ class API
      *
      */
     public function roundStep($value, $stepSize = 0.1) {
-        $precision = strlen(substr(strrchr(rtrim($value,'0'), '.'), 1));
+        $precision = strlen(substr(strrchr(rtrim($stepSize,'0'), '.'), 1));
         return round((($value / $stepSize) | 0) * $stepSize, $precision);
     }
 
