@@ -66,7 +66,7 @@ while(true) {
 }
 ```
 
-#### Security - Ca Bunldes
+#### Security - CA Bundles
 If you don't know what a CA bundle is, no action is required.  If you do know and you don't like our auto upate feature.
 You can disable the downloading of the CA Bundle
 ```php
