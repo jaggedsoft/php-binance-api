@@ -65,7 +65,7 @@ class API
     public function __construct()
     {
         $param = func_get_args();
-        switch (func_num_args()) {
+        switch (count($param)) {
             case 0:
                 $this->setupApiConfigFromFile();
                 $this->setupProxyConfigFromFile();
