@@ -363,15 +363,17 @@ class API
      *
      * @param $symbol string the currency symbol
      * @param $orderid string the orderid to cancel
+     * @param $flags array of optional options like ["side"=>"sell"]
      * @return array with error message or the order details
      * @throws \Exception
      */
-    public function cancel(string $symbol, $orderid)
+    public function cancel(string $symbol, $orderid, $flags = [])
     {
-        return $this->httpRequest("v3/order", "DELETE", [
+        $params = [
             "symbol" => $symbol,
             "orderId" => $orderid,
-        ], true);
+        ];
+        return $this->httpRequest("v3/order", "DELETE", array_merge($params, $flags), true);
     }
 
     /**
