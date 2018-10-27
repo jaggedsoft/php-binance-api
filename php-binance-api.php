@@ -1879,10 +1879,11 @@ class API
      * @param $symbols string required symbols
      * @param $interval string time inteval
      * @param $callback callable closure
+     * @param $limit int default 500, maximum 1000
      * @return null
      * @throws \Exception
      */
-    public function chart($symbols, string $interval = "30m", callable $callback)
+    public function chart($symbols, string $interval = "30m", callable $callback, $limit = 500)
     {
         if (!is_array($symbols)) {
             $symbols = [
@@ -1939,7 +1940,7 @@ class API
                 echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
                 $loop->stop();
             });
-            $this->candlesticks($symbol, $interval);
+            $this->candlesticks($symbol, $interval, $limit);
             foreach ($this->chartQueue[$symbol][$interval] as $json) {
                 $this->chartHandler($symbol, $interval, $json);
             }
