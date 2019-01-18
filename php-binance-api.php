@@ -876,7 +876,10 @@ class API
             }
             $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
-            $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
+			if ($method === "POST") {
+				$endpoint = $base . $url . '?'  . 'signature=' . $signature;
+			} else
+				$endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             curl_setopt($curl, CURLOPT_URL, $endpoint);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
@@ -897,7 +900,7 @@ class API
         // Post and postfields
         if ($method === "POST") {
             curl_setopt($curl, CURLOPT_POST, true);
-            // curl_setopt($curlch, CURLOPT_POSTFIELDS, $query);
+            curl_setopt($curlch, CURLOPT_POSTFIELDS, $query);
         }
         // Delete Method
         if ($method === "DELETE") {
