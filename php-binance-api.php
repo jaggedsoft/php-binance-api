@@ -504,6 +504,11 @@ class API
     {
         return $this->httpRequest("v1/exchangeInfo");
     }
+	
+    public function assetDetail() {
+        $params["wapi"] = true;
+        return $this -> httpRequest("v3/assetDetail.html", 'GET', $params, true);
+    }
 
     /**
      * withdraw requests a asset be withdrawn from binance to another wallet
