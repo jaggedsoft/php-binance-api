@@ -905,7 +905,7 @@ class API
         // Post and postfields
         if ($method === "POST") {
             curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curlch, CURLOPT_POSTFIELDS, $query);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $query);
         }
         // Delete Method
         if ($method === "DELETE") {
