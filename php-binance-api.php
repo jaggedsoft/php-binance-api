@@ -617,10 +617,14 @@ class API
     public function withdrawFee(string $asset)
     {
         $params = [
-            "wapi" => true,
-            "asset" => $asset,
+            "wapi" => true
         ];
-        return $this->httpRequest("v3/withdrawFee.html", "GET", $params, true);
+
+        $response = $this->httpRequest("v3/assetDetail.html", "GET", $params, true);
+
+        if (isset($response['success'], $response['assetDetail'], $response['assetDetail'][$asset]) && $response['success']) {
+            return $response['assetDetail'][$asset];
+        }
     }
 
     /**
