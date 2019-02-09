@@ -723,17 +723,21 @@ class API
      * $depth = $api->depth("ETHBTC");
      *
      * @param $symbol string the symbol to get the depth information for
+     * @param $limit int set limition for number of market depth data
      * @return array with error message or array of market depth
      * @throws \Exception
      */
-    public function depth(string $symbol)
+    public function depth(string $symbol, int $limit)
     {
+	if (isset($limit) === false || is_int($limit) === false)
+		$limit = 100;
         if (isset($symbol) === false || is_string($symbol) === false) {
             // WPCS: XSS OK.
             echo "asset: expected bool false, " . gettype($symbol) . " given" . PHP_EOL;
         }
         $json = $this->httpRequest("v1/depth", "GET", [
             "symbol" => $symbol,
+	    "limit" => $limit,
         ]);
         if (isset($this->info[$symbol]) === false) {
             $this->info[$symbol] = [];
