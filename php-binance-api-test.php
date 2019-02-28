@@ -174,10 +174,11 @@ final class BinanceTest extends TestCase
     public function testBuy()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->buy("TRXBTC", "5", "0.01");
+        $result = $this->_testable->buy("TRXBTC", "500", "0.01");
         $this->assertTrue(isset($result['code']));
 
-        if (isset($result['code'])) {
+	if (isset($result['code'])) {
+	    self::debug(0, __METHOD__, "code:" . $result['code']);
             $this->assertTrue($result['code'] == "-2010");
         }
 
@@ -208,7 +209,7 @@ final class BinanceTest extends TestCase
     public function testSell()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->sell("TRXBTC", "5", "0.01");
+        $result = $this->_testable->sell("TRXBTC", "500", "0.01");
         $this->assertTrue(isset($result['code']));
 
         if (isset($result['code'])) {
@@ -261,7 +262,7 @@ final class BinanceTest extends TestCase
     public function testMarketBuyTest()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->marketBuyTest("TRXBTC", "5");
+        $result = $this->_testable->marketBuyTest("TRXBTC", "500");
         $this->assertTrue((isset($result['code']) == false));
 
         if (isset($result['code'])) {
@@ -272,7 +273,7 @@ final class BinanceTest extends TestCase
     public function testMarketSell()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->marketSell("TRXBTC", "5");
+        $result = $this->_testable->marketSell("TRXBTC", "500");
         $this->assertTrue(isset($result['code']));
 
         if (isset($result['code'])) {
@@ -287,7 +288,7 @@ final class BinanceTest extends TestCase
     public function testMarketSellTest()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->marketSellTest("TRXBTC", "5");
+        $result = $this->_testable->marketSellTest("TRXBTC", "500");
         $this->assertTrue((isset($result['code']) == false));
 
         if (isset($result['code'])) {
