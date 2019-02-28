@@ -504,10 +504,11 @@ class API
     {
         return $this->httpRequest("v1/exchangeInfo");
     }
-	
-    public function assetDetail() {
+
+    public function assetDetail()
+    {
         $params["wapi"] = true;
-        return $this -> httpRequest("v3/assetDetail.html", 'GET', $params, true);
+        return $this->httpRequest("v3/assetDetail.html", 'GET', $params, true);
     }
 
     /**
@@ -617,7 +618,7 @@ class API
     public function withdrawFee(string $asset)
     {
         $params = [
-            "wapi" => true
+            "wapi" => true,
         ];
 
         $response = $this->httpRequest("v3/assetDetail.html", "GET", $params, true);
@@ -727,17 +728,19 @@ class API
      * @return array with error message or array of market depth
      * @throws \Exception
      */
-    public function depth(string $symbol, int $limit=100)
+    public function depth(string $symbol, int $limit = 100)
     {
-	if (is_int($limit) === false)
-		$limit = 100;
+        if (is_int($limit) === false) {
+            $limit = 100;
+        }
+
         if (isset($symbol) === false || is_string($symbol) === false) {
             // WPCS: XSS OK.
             echo "asset: expected bool false, " . gettype($symbol) . " given" . PHP_EOL;
         }
         $json = $this->httpRequest("v1/depth", "GET", [
             "symbol" => $symbol,
-	    "limit" => $limit,
+            "limit" => $limit,
         ]);
         if (isset($this->info[$symbol]) === false) {
             $this->info[$symbol] = [];
@@ -889,10 +892,12 @@ class API
             }
             $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
-			if ($method === "POST") {
-				$endpoint = $base . $url . '?'  . 'signature=' . $signature;
-			} else
-				$endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
+            if ($method === "POST") {
+                $endpoint = $base . $url . '?' . 'signature=' . $signature;
+            } else {
+                $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
+            }
+
             curl_setopt($curl, CURLOPT_URL, $endpoint);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
@@ -1514,7 +1519,7 @@ class API
             "asks" => $asks,
         ];
     }
-    
+
     /**
      * roundStep rounds quantity with stepSize
      * @param $qty quantity
@@ -1522,11 +1527,12 @@ class API
      * @return rounded value. example: roundStep(1.2345, 0.1) = 1.2
      *
      */
-    public function roundStep($qty, $stepSize = 0.1) {
-        $precision = strlen(substr(strrchr(rtrim($stepSize,'0'), '.'), 1));
+    public function roundStep($qty, $stepSize = 0.1)
+    {
+        $precision = strlen(substr(strrchr(rtrim($stepSize, '0'), '.'), 1));
         return round((($qty / $stepSize) | 0) * $stepSize, $precision);
     }
-    
+
     /**
      * roundTicks rounds price with tickSize
      * @param $value price
@@ -1534,11 +1540,12 @@ class API
      * @return rounded value. example: roundStep(1.2345, 0.1) = 1.2
      *
      */
-    public function roundTicks($price, $tickSize) {
-        $precision = strlen(rtrim(substr($tickSize,strpos($tickSize, '.', 1) + 1), '0'));
+    public function roundTicks($price, $tickSize)
+    {
+        $precision = strlen(rtrim(substr($tickSize, strpos($tickSize, '.', 1) + 1), '0'));
         return number_format($price, $precision, '.', '');
     }
-    
+
     /**
      * getTransfered gets the total transfered in b,Kb,Mb,Gb
      *
