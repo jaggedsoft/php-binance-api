@@ -174,7 +174,7 @@ final class BinanceTest extends TestCase
     public function testBuy()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->buy("TRXBTC", "5", "0.001");
+        $result = $this->_testable->buy("TRXBTC", "5", "0.01");
         $this->assertTrue(isset($result['code']));
 
         if (isset($result['code'])) {
@@ -192,23 +192,23 @@ final class BinanceTest extends TestCase
 
         $symbol = "TRXBTC";
 
-        $result = $this->_testable->buyTest($symbol, 999999, 0.00000001);
+        $result = $this->_testable->buyTest($symbol, 999999, 0.000001);
         $this->assertFalse(isset($result['code']));
 
-        $result = $this->_testable->buyTest($symbol, strval("999999"), strval("0.00000001"));
+        $result = $this->_testable->buyTest($symbol, strval("999999"), strval("0.000001"));
         $this->assertFalse(isset($result['code']));
 
-        $result = $this->_testable->buyTest($symbol, doubleval(999999), doubleval(0.00000001));
+        $result = $this->_testable->buyTest($symbol, doubleval(999999), doubleval(0.000001));
         $this->assertFalse(isset($result['code']));
 
-        $result = $this->_testable->buyTest($symbol, floatval(999999), floatval(0.00000001));
+        $result = $this->_testable->buyTest($symbol, floatval(999999), floatval(0.000001));
         $this->assertFalse(isset($result['code']));
     }
 
     public function testSell()
     {
         self::debug(0, __METHOD__, "");
-        $result = $this->_testable->sell("TRXBTC", "5", "0.001");
+        $result = $this->_testable->sell("TRXBTC", "5", "0.01");
         $this->assertTrue(isset($result['code']));
 
         if (isset($result['code'])) {
@@ -226,16 +226,16 @@ final class BinanceTest extends TestCase
 
         $symbol = "TRXBTC";
 
-        $result = $this->_testable->sellTest($symbol, 999999, 0.00000001);
+        $result = $this->_testable->sellTest($symbol, 999999, 0.000001);
         $this->assertFalse(isset($result['code']));
 
-        $result = $this->_testable->sellTest($symbol, strval("999999"), strval("0.00000001"));
+        $result = $this->_testable->sellTest($symbol, strval("999999"), strval("0.000001"));
         $this->assertFalse(isset($result['code']));
 
-        $result = $this->_testable->sellTest($symbol, doubleval(999999), doubleval(0.00000001));
+        $result = $this->_testable->sellTest($symbol, doubleval(999999), doubleval(0.000001));
         $this->assertFalse(isset($result['code']));
 
-        $result = $this->_testable->sellTest($symbol, floatval(999999), floatval(0.00000001));
+        $result = $this->_testable->sellTest($symbol, floatval(999999), floatval(0.000001));
         $this->assertFalse(isset($result['code']));
     }
 
