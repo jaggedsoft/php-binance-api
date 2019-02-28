@@ -727,9 +727,9 @@ class API
      * @return array with error message or array of market depth
      * @throws \Exception
      */
-    public function depth(string $symbol, int $limit)
+    public function depth(string $symbol, int $limit=100)
     {
-	if (isset($limit) === false || is_int($limit) === false)
+	if (is_int($limit) === false)
 		$limit = 100;
         if (isset($symbol) === false || is_string($symbol) === false) {
             // WPCS: XSS OK.
