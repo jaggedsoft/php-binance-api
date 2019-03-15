@@ -1764,7 +1764,7 @@ class API
                 echo "depthCache({$symbol})) Could not connect: {$e->getMessage()}" . PHP_EOL;
                 $loop->stop();
             });
-            $this->depth($symbol);
+            $this->depth($symbol, 100);
             foreach ($this->depthQueue[$symbol] as $data) {
                 //TODO:: WTF ??? where is json and what should be in it ??
                 $this->depthHandler($json);
