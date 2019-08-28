@@ -1,5 +1,4 @@
 <?php
-
 /*
  * ============================================================
  * @package php-binance-api
@@ -893,7 +892,9 @@ class API
             $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
-                $endpoint = $base . $url . '?' . 'signature=' . $signature;
+                $endpoint = $base . $url;
+				$params['signature'] = $signature; // signature needs to be inside BODY
+				$query = http_build_query($params, '', '&'); // rebuilding query
             } else {
                 $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             }
