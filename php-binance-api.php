@@ -893,7 +893,9 @@ class API
             $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
-                $endpoint = $base . $url . '?' . 'signature=' . $signature;
+                $endpoint = $base . $url;
+                $params['signature'] = $signature; // in case of POST signnature needs to be in BODY
+                $query = http_build_query($params, '', '&'); // rebuild the query
             } else {
                 $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             }
