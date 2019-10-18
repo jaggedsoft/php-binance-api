@@ -50,7 +50,9 @@ class API
     private $btc_total = 0.00;
 
     // /< value of available onOrder assets
-
+    
+    protected $exchangeInfo = NULL;
+    
     /**
      * Constructor for the class,
      * send as many argument as you want.
@@ -336,6 +338,9 @@ class API
      */
     public function marketSell(string $symbol, $quantity, array $flags = [])
     {
+        $c = $this->numberOfDecimals($this->exchangeInfo()['symbols'][$symbol]['filters'][2]['minQty']);
+        $quantity = $this->floorDecimal($quantity, $c);
+
         return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
     }
 
@@ -501,7 +506,20 @@ class API
      */
     public function exchangeInfo()
     {
-        return $this->httpRequest("v1/exchangeInfo");
+        if(!$this->exchangeInfo){
+            
+            $arr = $this->httpRequest("v1/exchangeInfo");
+            
+            $this->exchangeInfo = $arr;
+            $this->exchangeInfo['symbols'] = null;
+            
+            foreach($arr['symbols'] as $key => $value){
+                $this->exchangeInfo['symbols'][$value['symbol']] = $value;
+            }
+            
+        }
+        
+        return $this->exchangeInfo;
     }
 
     public function assetDetail()
@@ -2283,4 +2301,10 @@ class API
         fwrite($fp, $result);
         fclose($fp);
     }
+    
+    private function floorDecimal($n, $decimals=2)
+    {   
+        return floor($n * pow(10, $decimals)) / pow(10, $decimals);
+    }
+    
 }
