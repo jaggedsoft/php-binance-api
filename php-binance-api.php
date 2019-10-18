@@ -2188,6 +2188,53 @@ class API
         // @codeCoverageIgnoreEnd
     }
 
+	/**
+     * bookTicker Get bookTicker for all symbols
+     *
+     * $api->bookTicker(function($api, $ticker) {
+     * print_r($ticker);
+     * });
+     *
+     * @param $callback callable function closer that takes 2 arguments, $api and $ticker data
+     * @return null
+     */
+	public function bookTicker(callable $callback)
+    {
+        $endpoint = '!bookticker';
+        $this->subscriptions[$endpoint] = true;
+
+        // @codeCoverageIgnoreStart
+        // phpunit can't cover async function
+        \Ratchet\Client\connect($this->stream . '!bookTicker')->then(function ($ws) use ($callback, $endpoint) {
+            $ws->on('message', function ($data) use ($ws, $callback, $endpoint) {
+                if ($this->subscriptions[$endpoint] === false) {
+                    //$this->subscriptions[$endpoint] = null;
+                    $ws->close();
+                    return; //return $ws->close();
+                }
+                $json = json_decode($data, true);
+
+				$markets = [
+					"updateId"  => $json['u'],
+					"symbol"    => $json['s'],
+					"bid_price" => $json['b'],
+					"bid_qty"   => $json['B'],
+					"ask_price" => $json['a'],
+					"ask_qty"   => $json['A'],
+				];
+                call_user_func($callback, $this, $markets);
+            });
+            $ws->on('close', function ($code = null, $reason = null) {
+                // WPCS: XSS OK.
+                echo "miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+            });
+        }, function ($e) {
+            // WPCS: XSS OK.
+            echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
+        });
+        // @codeCoverageIgnoreEnd
+    }
+
     /**
      * Due to ongoing issues with out of date wamp CA bundles
      * This function downloads ca bundle for curl website
