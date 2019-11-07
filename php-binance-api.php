@@ -324,6 +324,21 @@ class API
     {
         return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
     }
+	
+	
+    /**
+     * numberOfDecimals() returns the signifcant digits level based on the minimum order amount.
+     *
+     * $dec = numberOfDecimals(0.00001); // Returns 5
+     *
+     * @param $val float the minimum order amount for the pair
+     * @return integer (signifcant digits) based on the minimum order amount
+     */
+    public function numberOfDecimals($val = 0.00000001) {
+        $parts = explode('.', $val); 
+	$parts[1] = rtrim($parts[1], "0");
+        return strlen($parts[1]);
+    }
 
     /**
      * marketSell attempts to create a currency order at given market price
