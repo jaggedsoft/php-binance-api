@@ -335,9 +335,9 @@ class API
      * @return integer (signifcant digits) based on the minimum order amount
      */
     public function numberOfDecimals($val = 0.00000001) {
-	$val = sprintf("%.18f", $val);
+        $val = sprintf("%.18f", $val);
         $parts = explode('.', $val); 
-	$parts[1] = rtrim($parts[1], "0");
+        $parts[1] = rtrim($parts[1], "0");
         return strlen($parts[1]);
     }
 
@@ -444,16 +444,22 @@ class API
      * @param $symbol string the currency symbol
      * @param $limit int the amount of orders returned
      * @param $fromOrderId string return the orders from this order onwards
+     * @param $params array optional startTime, endTime parameters
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function orders(string $symbol, int $limit = 500, int $fromOrderId = 1)
+    public function orders(string $symbol, int $limit = 500, int $fromOrderId = 1, array $params = [])
     {
-        return $this->httpRequest("v3/allOrders", "GET", [
+        
+        $parameters = [
             "symbol" => $symbol,
             "limit" => $limit,
-            "orderId" => $fromOrderId,
-        ], true);
+        ];
+        if($fromOrderId > 0) $parameters[] = ["orderId" => $fromOrderId];
+        
+        $parameters = array_merge($parameters, $params);
+        
+        return $this->httpRequest("v3/allOrders", "GET", $parameters, true);
     }
 
     /**
