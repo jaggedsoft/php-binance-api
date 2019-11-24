@@ -578,10 +578,10 @@ class API
             "amount" => $amount,
             "wapi" => true,
         ];
-        if (is_null($addressName) === false && is_empty($addressName) === false) {
+        if (is_null($addressName) === false && empty($addressName) === false) {
             $options['name'] = $addressName;
         }
-        if (is_null($addressTag) === false && is_empty($addressTag) === false) {
+        if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
         }
         return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
