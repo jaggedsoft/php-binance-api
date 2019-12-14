@@ -25,7 +25,7 @@ composer require "jaggedsoft/php-binance-api @dev"
 If the above step didn't work, install composer and try again.
 #### Debian / Ubuntu
 ```
-sudo apt-get install curl
+sudo apt-get install curl php-curl
 curl -s http://getcomposer.org/installer | php
 php composer.phar install
 ```
