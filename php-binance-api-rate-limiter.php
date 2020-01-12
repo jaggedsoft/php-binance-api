@@ -58,6 +58,7 @@ class RateLimiter
             'cumulative' => 0,
             'depositAddress' => 1,
             'depositHistory' => 1,
+            'assetDetail' => 1,
             'depth' => 1,
             'depthCache' => 1,
             'displayDepth' => 1,
