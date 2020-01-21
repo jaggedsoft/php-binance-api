@@ -2287,7 +2287,7 @@ class API
         $output_filename = getcwd() . "/ca.pem";
 
         if (is_writable(getcwd()) === false) {
-            die(getcwd() . " folder is not writeable, plese check your permissions");
+            die(getcwd() . " folder is not writeable, please check your permissions to download CA Certificates, or use $api->caOverride = true;");
         }
 
         $host = "https://curl.haxx.se/ca/cacert.pem";
