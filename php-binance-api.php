@@ -52,6 +52,7 @@ class API
     // /< value of available onOrder assets
     
     protected $exchangeInfo = NULL;
+    protected $query_logs = [];
     
     /**
      * Constructor for the class,
@@ -570,16 +571,18 @@ class API
      * @return array with error message or array transaction
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "API Withdraw")
     {
         $options = [
             "asset" => $asset,
             "address" => $address,
             "amount" => $amount,
             "wapi" => true,
-            "name" => "API Withdraw",
         ];
-        if (is_null($addressTag) === false && is_empty($addressTag) === false) {
+        if (is_null($addressName) === false && empty($addressName) === false) {
+            $options['name'] = $addressName;
+        }
+        if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
         }
         return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
@@ -979,8 +982,7 @@ class API
             }
         }
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        // headers will proceed the output, json_decode will fail below
-        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HEADER, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_TIMEOUT, 60);
 
@@ -1003,9 +1005,24 @@ class API
             echo 'Curl error: ' . curl_error($curl) . "\n";
             return [];
         }
+    
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $header = substr($output, 0, $header_size);
+        $output = substr($output, $header_size);
+        
         curl_close($curl);
+        
         $json = json_decode($output, true);
-        if (isset($json['msg'])) {
+        
+        $this->query_logs[] = [
+            'url' => $url,
+            'method' => $method,
+            'params' => $params,
+            'header' => $header,
+            'json' => $json
+        ];
+        
+        if(isset($json['msg'])){
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
             echo "signedRequest error: {$output}" . PHP_EOL;
@@ -2285,7 +2302,7 @@ class API
         $output_filename = getcwd() . "/ca.pem";
 
         if (is_writable(getcwd()) === false) {
-            die(getcwd() . " folder is not writeable, plese check your permissions");
+            die(getcwd() . " folder is not writeable, please check your permissions to download CA Certificates, or use $api->caOverride = true;");
         }
 
         $host = "https://curl.haxx.se/ca/cacert.pem";
