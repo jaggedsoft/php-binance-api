@@ -334,8 +334,8 @@ class API
      * @param $val float the minimum order amount for the pair
      * @return integer (signifcant digits) based on the minimum order amount
      */
-    public function numberOfDecimals($val = 0.00000001) {
-        $val = sprintf("%.18f", $val);
+    public function numberOfDecimals($val = 0.00000001){
+        $val = sprintf("%.14f", $val);
         $parts = explode('.', $val); 
         $parts[1] = rtrim($parts[1], "0");
         return strlen($parts[1]);
