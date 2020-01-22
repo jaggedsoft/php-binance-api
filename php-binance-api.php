@@ -52,6 +52,7 @@ class API
     // /< value of available onOrder assets
     
     protected $exchangeInfo = NULL;
+    protected $query_logs = [];
     
     /**
      * Constructor for the class,
@@ -981,8 +982,7 @@ class API
             }
         }
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        // headers will proceed the output, json_decode will fail below
-        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HEADER, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_TIMEOUT, 60);
 
@@ -1005,9 +1005,24 @@ class API
             echo 'Curl error: ' . curl_error($curl) . "\n";
             return [];
         }
+    
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $header = substr($output, 0, $header_size);
+        $output = substr($output, $header_size);
+        
         curl_close($curl);
+        
         $json = json_decode($output, true);
-        if (isset($json['msg'])) {
+        
+        $this->query_logs[] = [
+            'url' => $url,
+            'method' => $method,
+            'params' => $params,
+            'header' => $header,
+            'json' => $json
+        ];
+        
+        if(isset($json['msg'])){
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
             echo "signedRequest error: {$output}" . PHP_EOL;
