@@ -124,7 +124,7 @@ class API
     {
         $file = is_null($file) ? getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" : $file;
 
-        if (empty($this->api_key) === false || empty($this->api_key) === false) {
+        if (empty($this->api_key) === false || empty($this->api_secret) === false) {
             return;
         }
         if (file_exists($file) === false) {
