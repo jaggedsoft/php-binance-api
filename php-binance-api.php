@@ -1201,6 +1201,14 @@ class API
                 $btc_value += $obj['free'];
                 $btc_total += $obj['free'] + $obj['locked'];
                 continue;
+            } elseif ( $asset === 'USDT' || $asset === 'USDC' || $asset === 'PAX' || $asset === 'BUSD' ) {
+                $btcValue = $obj['free'] / $priceData['BTCUSDT'];
+                $btcTotal = ($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'];
+                $balances[$asset]['btcValue'] = $btcValue;
+                $balances[$asset]['btcTotal'] = $btcTotal;
+                $btc_value += $btcValue;
+                $btc_total += $btcTotal;
+                continue;
             }
 
             $symbol = $asset . 'BTC';
