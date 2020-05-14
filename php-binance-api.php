@@ -571,12 +571,13 @@ class API
      * @return array with error message or array transaction
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "API Withdraw")
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "API Withdraw", bool $transactionFeeFlag = false)
     {
         $options = [
             "asset" => $asset,
             "address" => $address,
             "amount" => $amount,
+            "transactionFeeFlag" => $transactionFeeFlag,
             "wapi" => true,
         ];
         if (is_null($addressName) === false && empty($addressName) === false) {
