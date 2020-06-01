@@ -449,18 +449,11 @@ class API
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function orders(string $symbol, int $limit = 500, int $fromOrderId = 1, array $params = [])
-    {
-        
-        $parameters = [
-            "symbol" => $symbol,
-            "limit" => $limit,
-        ];
-        if($fromOrderId > 0) $parameters[] = ["orderId" => $fromOrderId];
-        
-        $parameters = array_merge($parameters, $params);
-        
-        return $this->httpRequest("v3/allOrders", "GET", $parameters, true);
+    public function orders(string $symbol, int $limit = 500, int $fromOrderId = -1, array $params = []) {
+	$params["symbol"] = $symbol;
+	$params["limit"] = $limit;
+        if ( $fromOrderId ) $params["orderId"] = $fromOrderId;
+        return $this->httpRequest("v3/allOrders", "GET", $params, true);
     }
 
     /**
