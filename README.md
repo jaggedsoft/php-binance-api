@@ -26,7 +26,7 @@ composer require "jaggedsoft/php-binance-api @dev"
 If the above step didn't work, install composer and try again.
 #### Debian / Ubuntu
 ```
-sudo apt-get install curl
+sudo apt-get install curl php-curl
 curl -s http://getcomposer.org/installer | php
 php composer.phar install
 ```
@@ -63,6 +63,15 @@ $api = new Binance\RateLimiter($api);
 while(true) {
    $api->openOrders("BNBBTC"); // rate limited
 }
+```
+
+=======
+#### Security - CA Bundles
+If you don't know what a CA bundle is, no action is required.  If you do know and you don't like our auto upate feature.
+You can disable the downloading of the CA Bundle
+```php
+$api = new Binance\API( "somefile.json" );
+$api->caOverride = true;
 ```
 
 #### Get latest price of all symbols
