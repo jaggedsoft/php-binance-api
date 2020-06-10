@@ -52,7 +52,7 @@ class API
     // /< value of available onOrder assets
     
     protected $exchangeInfo = NULL;
-    protected $query_logs = [];
+    protected $lastRequest = [];
     
     /**
      * Constructor for the class,
@@ -1008,7 +1008,7 @@ class API
         
         $json = json_decode($output, true);
         
-        $this->query_logs[] = [
+        $this->lastRequest = [
             'url' => $url,
             'method' => $method,
             'params' => $params,
