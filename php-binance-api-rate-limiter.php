@@ -236,9 +236,9 @@ class RateLimiter
      */
     public function __call(string $name, array $arguments)
     {
-        $weight = $this->weights[$name];
+        $weight = $this->weights[$name] ?? false;
 
-        if ($weight > 0) {
+        if ($weight && $weight > 0) {
             $this->requestsPerMinute();
             if (in_array($name, $this->ordersfunctions) === true) {
                 $this->ordersPerSecond();
