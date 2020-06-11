@@ -53,7 +53,10 @@ class API
     
     protected $exchangeInfo = NULL;
     protected $lastRequest = [];
-    
+
+    private $xMbxUsedWeight = 0;
+    private $xMbxUsedWeight1m = 0;
+
     /**
      * Constructor for the class,
      * send as many argument as you want.
@@ -1015,7 +1018,15 @@ class API
             'header' => $header,
             'json' => $json
         ];
-        
+
+        if (isset($header['x-mbx-used-weight'])) {
+            $this->setXMbxUsedWeight($header['x-mbx-used-weight']);
+        }
+
+        if (isset($header['x-mbx-used-weight-1m'])) {
+            $this->setXMbxUsedWeight1m($header['x-mbx-used-weight-1m']);
+        }
+
         if(isset($json['msg'])){
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
@@ -2346,6 +2357,23 @@ class API
     private function floorDecimal($n, $decimals=2)
     {   
         return floor($n * pow(10, $decimals)) / pow(10, $decimals);
+    }
+
+
+    private function setXMbxUsedWeight (int $usedWeight) : void {
+        $this->xMbxUsedWeight = $usedWeight;
+    }
+
+    private function setXMbxUsedWeight1m (int $usedWeight1m) : void {
+        $this->xMbxUsedWeight1m = $usedWeight1m;
+    }
+
+    public function getXMbxUsedWeight () : int {
+        $this->xMbxUsedWeight;
+    }
+
+    public function getXMbxUsedWeight1m () : int {
+        $this->xMbxUsedWeight1m;
     }
     
 }
