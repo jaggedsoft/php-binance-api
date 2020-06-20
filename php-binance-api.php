@@ -568,7 +568,7 @@ class API
      * @return array with error message or array transaction
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "API Withdraw", bool $transactionFeeFlag = false)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "API Withdraw", bool $transactionFeeFlag = false,$network = null)
     {
         $options = [
             "asset" => $asset,
@@ -582,6 +582,9 @@ class API
         }
         if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
+        }
+        if (is_null($network) === false && empty($network) === false) {
+            $options['network'] = $network;
         }
         return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
     }
