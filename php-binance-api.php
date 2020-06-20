@@ -46,17 +46,17 @@ class API
     protected $transfered = 0; // /< This stores the amount of bytes transfered
     protected $requestCount = 0; // /< This stores the amount of API requests
     protected $httpDebug = false; // /< If you enable this, curl will output debugging information
-    private $subscriptions = []; // /< View all websocket subscriptions
-    private $btc_value = 0.00; // /< value of available assets
-    private $btc_total = 0.00;
+    protected $subscriptions = []; // /< View all websocket subscriptions
+    protected $btc_value = 0.00; // /< value of available assets
+    protected $btc_total = 0.00;
 
     // /< value of available onOrder assets
     
     protected $exchangeInfo = NULL;
     protected $lastRequest = [];
 
-    private $xMbxUsedWeight = 0;
-    private $xMbxUsedWeight1m = 0;
+    protected $xMbxUsedWeight = 0;
+    protected $xMbxUsedWeight1m = 0;
 
     /**
      * Constructor for the class,
@@ -92,7 +92,7 @@ class API
     }
 
     /**
-     * magic get for private and protected members
+     * magic get for protected and protected members
      *
      * @param $file string the name of the property to return
      * @return null
@@ -106,7 +106,7 @@ class API
     }
 
     /**
-     * magic set for private and protected members
+     * magic set for protected and protected members
      *
      * @param $member string the name of the member property
      * @param $value the value of the member property
@@ -124,7 +124,7 @@ class API
      * @param $file string file location
      * @return null
      */
-    private function setupApiConfigFromFile(string $file = null)
+    protected function setupApiConfigFromFile(string $file = null)
     {
         $file = is_null($file) ? getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" : $file;
 
@@ -149,7 +149,7 @@ class API
      * @param $file string file location
      * @return null
      */
-    private function setupCurlOptsFromFile(string $file = null)
+    protected function setupCurlOptsFromFile(string $file = null)
     {
         $file = is_null($file) ? getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" : $file;
 
@@ -172,7 +172,7 @@ class API
      *
      * @return null
      */
-    private function setupProxyConfigFromFile(string $file = null)
+    protected function setupProxyConfigFromFile(string $file = null)
     {
         $file = is_null($file) ? getenv("HOME") . "/.config/jaggedsoft/php-binance-api.json" : $file;
 
@@ -1175,7 +1175,7 @@ class API
      * @param $priceData array of prices
      * @return array containing the response
      */
-    private function balanceData(array $array, $priceData)
+    protected function balanceData(array $array, $priceData)
     {
         $balances = [];
 
@@ -1258,7 +1258,7 @@ class API
      * @param $json array data to convert
      * @return array
      */
-    private function balanceHandler(array $json)
+    protected function balanceHandler(array $json)
     {
         $balances = [];
         foreach ($json as $item) {
@@ -1281,7 +1281,7 @@ class API
      * @param $json object data to convert
      * @return array
      */
-    private function tickerStreamHandler(\stdClass $json)
+    protected function tickerStreamHandler(\stdClass $json)
     {
         return [
             "eventType" => $json->e,
@@ -1318,7 +1318,7 @@ class API
      * @param \stdClass $json object data to convert
      * @return array
      */
-    private function executionHandler(\stdClass $json)
+    protected function executionHandler(\stdClass $json)
     {
         return [
             "symbol" => $json->s,
@@ -1346,7 +1346,7 @@ class API
      * @param $ticks array of the canbles array
      * @return array object of the chartdata
      */
-    private function chartData(string $symbol, string $interval, array $ticks)
+    protected function chartData(string $symbol, string $interval, array $ticks)
     {
         if (!isset($this->info[$symbol])) {
             $this->info[$symbol] = [];
@@ -1391,7 +1391,7 @@ class API
      * @param $trades array of trade information
      * @return array easier format for trade information
      */
-    private function tradesData(array $trades)
+    protected function tradesData(array $trades)
     {
         $output = [];
         foreach ($trades as $trade) {
@@ -1417,7 +1417,7 @@ class API
      * @param $array array book prices
      * @return array easier format for book prices information
      */
-    private function bookPriceData(array $array)
+    protected function bookPriceData(array $array)
     {
         $bookprices = [];
         foreach ($array as $obj) {
@@ -1439,7 +1439,7 @@ class API
      * @param $array array of prices
      * @return array of key/value pairs
      */
-    private function priceData(array $array)
+    protected function priceData(array $array)
     {
         $prices = [];
         foreach ($array as $obj) {
@@ -1583,7 +1583,7 @@ class API
      * @param $json array of the depth infomration
      * @return array of the depth information
      */
-    private function depthData(string $symbol, array $json)
+    protected function depthData(string $symbol, array $json)
     {
         $bids = $asks = [];
         foreach ($json['bids'] as $obj) {
@@ -1682,7 +1682,7 @@ class API
      * @param $json array of depth bids and asks
      * @return null
      */
-    private function depthHandler(array $json)
+    protected function depthHandler(array $json)
     {
         $symbol = $json['s'];
         if ($json['u'] <= $this->info[$symbol]['firstUpdate']) {
@@ -1715,7 +1715,7 @@ class API
      * @param \stdClass $json object time
      * @return null
      */
-    private function chartHandler(string $symbol, string $interval, \stdClass $json)
+    protected function chartHandler(string $symbol, string $interval, \stdClass $json)
     {
         if (!$this->info[$symbol][$interval]['firstOpen']) { // Wait for /kline to finish loading
             $this->chartQueue[$symbol][$interval][] = $json;
@@ -2317,7 +2317,7 @@ class API
      * This function downloads ca bundle for curl website
      * and uses it as part of the curl options
      */
-    private function downloadCurlCaBundle()
+    protected function downloadCurlCaBundle()
     {
         $output_filename = getcwd() . "/ca.pem";
 
@@ -2361,17 +2361,17 @@ class API
         fclose($fp);
     }
     
-    private function floorDecimal($n, $decimals=2)
+    protected function floorDecimal($n, $decimals=2)
     {   
         return floor($n * pow(10, $decimals)) / pow(10, $decimals);
     }
 
 
-    private function setXMbxUsedWeight (int $usedWeight) : void {
+    protected function setXMbxUsedWeight (int $usedWeight) : void {
         $this->xMbxUsedWeight = $usedWeight;
     }
 
-    private function setXMbxUsedWeight1m (int $usedWeight1m) : void {
+    protected function setXMbxUsedWeight1m (int $usedWeight1m) : void {
         $this->xMbxUsedWeight1m = $usedWeight1m;
     }
 
