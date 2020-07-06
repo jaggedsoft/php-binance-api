@@ -547,6 +547,25 @@ class API
         $params["wapi"] = true;
         return $this->httpRequest("v3/assetDetail.html", 'GET', $params, true);
     }
+	
+	
+    /**
+     * Fetch current(daily) trade fee of symbol, values in percentage.
+     * for more info visit binance official api document
+     *
+     * $symbol = "BNBBTC"; or any other symbol or even a set of symbols in an array
+     * @param string $symbol
+     * @return mixed
+     */
+    public function tradeFee(string $symbol)
+    {
+	$params = [
+            "symbol" => $symbol,
+            "wapi" => true,
+        ];
+	    
+        return $this->httpRequest("v3/tradeFee.html", 'GET', $params, true);
+    }
 
     /**
      * withdraw requests a asset be withdrawn from binance to another wallet
