@@ -58,6 +58,7 @@ class RateLimiter
             'cumulative' => 0,
             'depositAddress' => 1,
             'depositHistory' => 1,
+            'assetDetail' => 1,
             'depth' => 1,
             'depthCache' => 1,
             'displayDepth' => 1,
@@ -235,9 +236,9 @@ class RateLimiter
      */
     public function __call(string $name, array $arguments)
     {
-        $weight = $this->weights[$name];
+        $weight = $this->weights[$name] ?? false;
 
-        if ($weight > 0) {
+        if ($weight && $weight > 0) {
             $this->requestsPerMinute();
             if (in_array($name, $this->ordersfunctions) === true) {
                 $this->ordersPerSecond();

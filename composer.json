@@ -24,7 +24,8 @@
     },
     "autoload": {
         "classmap": [
-          "php-binance-api.php"
+          "php-binance-api.php",
+          "php-binance-api-rate-limiter.php"
         ]
     }
 }
