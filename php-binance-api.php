@@ -587,7 +587,7 @@ class API
      * @return array with error message or array transaction
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "API Withdraw", bool $transactionFeeFlag = false,$network = null)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false,$network = null)
     {
         $options = [
             "asset" => $asset,
@@ -597,7 +597,7 @@ class API
             "wapi" => true,
         ];
         if (is_null($addressName) === false && empty($addressName) === false) {
-            $options['name'] = $addressName;
+            $options['name'] = str_replace(' ', '%20', $addressName);
         }
         if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
