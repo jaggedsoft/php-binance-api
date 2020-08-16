@@ -1028,8 +1028,7 @@ class API
         if (curl_errno($curl) > 0) {
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
-            echo 'Curl error: ' . curl_error($curl) . "\n";
-            return [];
+            throw new \Exception('Curl error: ' . curl_error($curl));
         }
     
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
@@ -1059,7 +1058,7 @@ class API
         if(isset($json['msg'])){
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
-            echo "signedRequest error: {$output}" . PHP_EOL;
+            throw new \Exception('signedRequest error: '.print_r($output, true));
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
