@@ -832,8 +832,9 @@ class API
             echo "Error: unable to fetch your account details" . PHP_EOL;
         }
 
-        if (isset($account['balances']) === false) {
+        if (isset($account['balances']) === false || empty($account['balances'])) {
             echo "Error: your balances were empty or unset" . PHP_EOL;
+	    return [];
         }
 
         return $this->balanceData($account, $priceData);
