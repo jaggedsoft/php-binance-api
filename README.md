@@ -3,7 +3,7 @@
 [![HitCount](http://hits.dwyl.io/jaggedsoft/php-binance-api.svg)](http://hits.dwyl.io/jaggedsoft/php-binance-api) 
 [![Packagist Downloads](https://img.shields.io/packagist/dt/jaggedsoft/php-binance-api.svg?style=flat-square)](https://packagist.org/packages/jaggedsoft/php-binance-api) 
 
-> **Help Wanted:** I don't have time to actively maintain this project anymore, for full support use the [Javascript API](https://github.com/jaggedsoft/node-binance-api). <br/> ***Pull requests from the community are welcome.***
+> **Help wanted:** This library is officially depreciated and will only be actively maintained by the community, for full support use the [Javascript API](https://github.com/jaggedsoft/node-binance-api). <br/> ***Pull requests are welcome.***
 <!--
 [![Build Status](https://travis-ci.org/jaggedsoft/php-binance-api.svg?branch=master&style=flat-square)](https://travis-ci.org/jaggedsoft/php-binance-api) 
 [![Coverage Status](https://coveralls.io/repos/github/jaggedsoft/php-binance-api/badge.svg?branch=master&style=flat-square)](https://coveralls.io/github/jaggedsoft/php-binance-api) 
