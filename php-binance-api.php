@@ -453,7 +453,7 @@ class API
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function orders(string $symbol, int $limit = 500, int $fromOrderId = -1, array $params = []) {
+    public function orders(string $symbol, int $limit = 500, int $fromOrderId = 0, array $params = []) {
 	$params["symbol"] = $symbol;
 	$params["limit"] = $limit;
         if ( $fromOrderId ) $params["orderId"] = $fromOrderId;
