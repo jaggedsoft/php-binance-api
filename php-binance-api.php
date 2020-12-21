@@ -1056,7 +1056,7 @@ class API
             $this->setXMbxUsedWeight1m($header['x-mbx-used-weight-1m']);
         }
 
-        if(isset($json['msg'])){
+        if(isset($json['msg']) && !empty($json['msg'])){
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
             throw new \Exception('signedRequest error: '.print_r($output, true));
