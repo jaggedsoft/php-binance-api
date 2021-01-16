@@ -1,5 +1,5 @@
 {
-    "name": "jaggedsoft/php-binance-api",
+    "name": "makashtekar/php-binance-api",
     "description": "PHP Binance API is an asynchronous PHP library for the Binance API designed to be easy to use.",
     "keywords": ["Binance","cryptocurrency","WebSocket"],
     "license": "MIT",
