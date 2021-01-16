@@ -10,6 +10,7 @@
  * ============================================================
  * A curl HTTP REST wrapper for the binance currency exchange
  */
+
 namespace Binance;
 
 // PHP version check
@@ -51,7 +52,7 @@ class API
     protected $btc_total = 0.00;
 
     // /< value of available onOrder assets
-    
+
     protected $exchangeInfo = NULL;
     protected $lastRequest = [];
 
@@ -329,8 +330,8 @@ class API
     {
         return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
     }
-	
-	
+
+
     /**
      * numberOfDecimals() returns the signifcant digits level based on the minimum order amount.
      *
@@ -339,9 +340,10 @@ class API
      * @param $val float the minimum order amount for the pair
      * @return integer (signifcant digits) based on the minimum order amount
      */
-    public function numberOfDecimals($val = 0.00000001){
+    public function numberOfDecimals($val = 0.00000001)
+    {
         $val = sprintf("%.14f", $val);
-        $parts = explode('.', $val); 
+        $parts = explode('.', $val);
         $parts[1] = rtrim($parts[1], "0");
         return strlen($parts[1]);
     }
@@ -453,10 +455,11 @@ class API
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function orders(string $symbol, int $limit = 500, int $fromOrderId = 0, array $params = []) {
-	$params["symbol"] = $symbol;
-	$params["limit"] = $limit;
-        if ( $fromOrderId ) $params["orderId"] = $fromOrderId;
+    public function orders(string $symbol, int $limit = 500, int $fromOrderId = 0, array $params = [])
+    {
+        $params["symbol"] = $symbol;
+        $params["limit"] = $limit;
+        if ($fromOrderId) $params["orderId"] = $fromOrderId;
         return $this->httpRequest("v3/allOrders", "GET", $params, true);
     }
 
@@ -526,19 +529,18 @@ class API
      */
     public function exchangeInfo()
     {
-        if(!$this->exchangeInfo){
-            
+        if (!$this->exchangeInfo) {
+
             $arr = $this->httpRequest("v1/exchangeInfo");
-            
+
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
-            
-            foreach($arr['symbols'] as $key => $value){
+
+            foreach ($arr['symbols'] as $key => $value) {
                 $this->exchangeInfo['symbols'][$value['symbol']] = $value;
             }
-            
         }
-        
+
         return $this->exchangeInfo;
     }
 
@@ -547,8 +549,8 @@ class API
         $params["wapi"] = true;
         return $this->httpRequest("v3/assetDetail.html", 'GET', $params, true);
     }
-	
-	
+
+
     /**
      * Fetch current(daily) trade fee of symbol, values in percentage.
      * for more info visit binance official api document
@@ -559,11 +561,11 @@ class API
      */
     public function tradeFee(string $symbol)
     {
-	$params = [
+        $params = [
             "symbol" => $symbol,
             "wapi" => true,
         ];
-	    
+
         return $this->httpRequest("v3/tradeFee.html", 'GET', $params, true);
     }
 
@@ -587,7 +589,7 @@ class API
      * @return array with error message or array transaction
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false,$network = null)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false, $network = null)
     {
         $options = [
             "asset" => $asset,
@@ -834,7 +836,7 @@ class API
 
         if (isset($account['balances']) === false || empty($account['balances'])) {
             echo "Error: your balances were empty or unset" . PHP_EOL;
-	    return [];
+            return [];
         }
 
         return $this->balanceData($account, $priceData);
@@ -953,18 +955,18 @@ class API
                 unset($params['wapi']);
                 $base = $this->wapi;
             }
-		
+
             if (isset($params['sapi'])) {
                 unset($params['sapi']);
                 $base = $this->sapi;
             }
-		
+
             $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
                 $endpoint = $base . $url;
-				$params['signature'] = $signature; // signature needs to be inside BODY
-				$query = http_build_query($params, '', '&'); // rebuilding query
+                $params['signature'] = $signature; // signature needs to be inside BODY
+                $query = http_build_query($params, '', '&'); // rebuilding query
             } else {
                 $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             }
@@ -1031,15 +1033,15 @@ class API
             // not outputing errors, hides it from users and ends up with tickets on github
             throw new \Exception('Curl error: ' . curl_error($curl));
         }
-    
+
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $header = substr($output, 0, $header_size);
         $output = substr($output, $header_size);
-        
+
         curl_close($curl);
-        
+
         $json = json_decode($output, true);
-        
+
         $this->lastRequest = [
             'url' => $url,
             'method' => $method,
@@ -1056,10 +1058,10 @@ class API
             $this->setXMbxUsedWeight1m($header['x-mbx-used-weight-1m']);
         }
 
-        if(isset($json['msg'])){
+        if (isset($json['msg'])) {
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
-            throw new \Exception('signedRequest error: '.print_r($output, true));
+            throw new \Exception('signedRequest error: ' . print_r($output, true));
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
@@ -1127,6 +1129,10 @@ class API
 
         if (isset($flags['newOrderRespType'])) {
             $opt['newOrderRespType'] = $flags['newOrderRespType'];
+        }
+
+        if (isset($flags['newClientOrderId'])) {
+            $opt['newClientOrderId'] = $flags['newClientOrderId'];
         }
 
         $qstring = ($test === false) ? "v3/order" : "v3/order/test";
@@ -1235,7 +1241,7 @@ class API
                 $btc_value += $obj['free'];
                 $btc_total += $obj['free'] + $obj['locked'];
                 continue;
-            } elseif ( $asset === 'USDT' || $asset === 'USDC' || $asset === 'PAX' || $asset === 'BUSD' ) {
+            } elseif ($asset === 'USDT' || $asset === 'USDC' || $asset === 'PAX' || $asset === 'BUSD') {
                 $btcValue = $obj['free'] / $priceData['BTCUSDT'];
                 $btcTotal = ($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'];
                 $balances[$asset]['btcValue'] = $btcValue;
@@ -1716,14 +1722,12 @@ class API
             if ($bid[1] == "0.00000000") {
                 unset($this->depthCache[$symbol]['bids'][$bid[0]]);
             }
-
         }
         foreach ($json['a'] as $ask) {
             $this->depthCache[$symbol]['asks'][$ask[0]] = $ask[1];
             if ($ask[1] == "0.00000000") {
                 unset($this->depthCache[$symbol]['asks'][$ask[0]]);
             }
-
         }
     }
 
@@ -2287,7 +2291,7 @@ class API
         // @codeCoverageIgnoreEnd
     }
 
-	/**
+    /**
      * bookTicker Get bookTicker for all symbols
      *
      * $api->bookTicker(function($api, $ticker) {
@@ -2297,7 +2301,7 @@ class API
      * @param $callback callable function closer that takes 2 arguments, $api and $ticker data
      * @return null
      */
-	public function bookTicker(callable $callback)
+    public function bookTicker(callable $callback)
     {
         $endpoint = '!bookticker';
         $this->subscriptions[$endpoint] = true;
@@ -2313,14 +2317,14 @@ class API
                 }
                 $json = json_decode($data, true);
 
-				$markets = [
-					"updateId"  => $json['u'],
-					"symbol"    => $json['s'],
-					"bid_price" => $json['b'],
-					"bid_qty"   => $json['B'],
-					"ask_price" => $json['a'],
-					"ask_qty"   => $json['A'],
-				];
+                $markets = [
+                    "updateId"  => $json['u'],
+                    "symbol"    => $json['s'],
+                    "bid_price" => $json['b'],
+                    "bid_qty"   => $json['B'],
+                    "ask_price" => $json['a'],
+                    "ask_qty"   => $json['A'],
+                ];
                 call_user_func($callback, $this, $markets);
             });
             $ws->on('close', function ($code = null, $reason = null) {
@@ -2382,27 +2386,30 @@ class API
         fwrite($fp, $result);
         fclose($fp);
     }
-    
-    protected function floorDecimal($n, $decimals=2)
-    {   
+
+    protected function floorDecimal($n, $decimals = 2)
+    {
         return floor($n * pow(10, $decimals)) / pow(10, $decimals);
     }
 
 
-    protected function setXMbxUsedWeight (int $usedWeight) : void {
+    protected function setXMbxUsedWeight(int $usedWeight): void
+    {
         $this->xMbxUsedWeight = $usedWeight;
     }
 
-    protected function setXMbxUsedWeight1m (int $usedWeight1m) : void {
+    protected function setXMbxUsedWeight1m(int $usedWeight1m): void
+    {
         $this->xMbxUsedWeight1m = $usedWeight1m;
     }
 
-    public function getXMbxUsedWeight () : int {
+    public function getXMbxUsedWeight(): int
+    {
         $this->xMbxUsedWeight;
     }
 
-    public function getXMbxUsedWeight1m () : int {
+    public function getXMbxUsedWeight1m(): int
+    {
         $this->xMbxUsedWeight1m;
     }
-    
 }
