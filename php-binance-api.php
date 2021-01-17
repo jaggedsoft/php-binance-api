@@ -548,6 +548,11 @@ class API
         return $this->httpRequest("v3/assetDetail.html", 'GET', $params, true);
     }
 	
+    public function userAssetDetail()
+    {
+        $params["wapi"] = true;
+        return $this->httpRequest("v3/userAssetDribbletLog.html", 'GET', $params, true);
+    }
 	
     /**
      * Fetch current(daily) trade fee of symbol, values in percentage.
