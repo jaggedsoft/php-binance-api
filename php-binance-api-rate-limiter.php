@@ -5,7 +5,7 @@
  * @package php-binance-api
  * @link https://github.com/jaggedsoft/php-binance-api
  * ============================================================
- * @copyright 2017-2018
+ * @copyright 2017-20201
  * @author Jon Eyrick
  * @license MIT License
  * ============================================================
@@ -229,7 +229,7 @@ class RateLimiter
     }
 
     /**
-     * magic call to redirect cal to the API, caputinrg and monitoring the weight limit
+     * magic call to redirect call to the API, capturing and monitoring the weight limit
      *
      * @param $name the function to call
      * @param $arguments the paramters to the function
