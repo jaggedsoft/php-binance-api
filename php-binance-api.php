@@ -548,7 +548,7 @@ class API
         return $this->httpRequest("v3/assetDetail.html", 'GET', $params, true);
     }
 	
-    public function userAssetDetail()
+    public function userAssetDribbletLog()
     {
         $params["wapi"] = true;
         return $this->httpRequest("v3/userAssetDribbletLog.html", 'GET', $params, true);
