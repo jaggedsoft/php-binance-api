@@ -300,6 +300,41 @@ class API
     }
 
     /**
+     * marketQuoteBuy attempts to create a currency order at given market price
+     *
+     * $quantity = 1;
+     * $order = $api->marketQuoteBuy("BNBBTC", $quantity);
+     *
+     * @param $symbol string the currency symbol
+     * @param $quantity string the quantity of the quote to use
+     * @param $flags array additional options for order type
+     * @return array with error message or the order details
+     */
+    public function marketQuoteBuy(string $symbol, $quantity, array $flags = [])
+    {
+        $flags['isQuoteOrder'] = true;
+
+        return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
+    }
+
+    /**
+     * marketQuoteBuyTest attempts to create a TEST currency order at given market price
+     *
+     * @see marketBuy()
+     *
+     * @param $symbol string the currency symbol
+     * @param $quantity string the quantity of the quote to use
+     * @param $flags array additional options for order type
+     * @return array with error message or the order details
+     */
+    public function marketQuoteBuyTest(string $symbol, $quantity, array $flags = [])
+    {
+        $flags['isQuoteOrder'] = true;
+
+        return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
+    }
+
+    /**
      * marketBuy attempts to create a currency order at given market price
      *
      * $quantity = 1;
@@ -344,6 +379,43 @@ class API
         $parts = explode('.', $val); 
         $parts[1] = rtrim($parts[1], "0");
         return strlen($parts[1]);
+    }
+
+    /**
+     * marketQuoteSell attempts to create a currency order at given market price
+     *
+     * $quantity = 1;
+     * $order = $api->marketSell("BNBBTC", $quantity);
+     *
+     * @param $symbol string the currency symbol
+     * @param $quantity string the quantity of the quote you want to obtain
+     * @param $flags array additional options for order type
+     * @return array with error message or the order details
+     */
+    public function marketQuoteSell(string $symbol, $quantity, array $flags = [])
+    {
+        $flags['isQuoteOrder'] = true;
+        $c = $this->numberOfDecimals($this->exchangeInfo()['symbols'][$symbol]['filters'][2]['minQty']);
+        $quantity = $this->floorDecimal($quantity, $c);
+
+        return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
+    }
+
+    /**
+     * marketQuoteSellTest attempts to create a TEST currency order at given market price
+     *
+     * @see marketSellTest()
+     *
+     * @param $symbol string the currency symbol
+     * @param $quantity string the quantity of the quote you want to obtain
+     * @param $flags array additional options for order type
+     * @return array with error message or the order details
+     */
+    public function marketQuoteSellTest(string $symbol, $quantity, array $flags = [])
+    {
+        $flags['isQuoteOrder'] = true;
+
+        return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags, true);
     }
 
     /**
@@ -1115,6 +1187,11 @@ class API
         if ($type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT") {
             $opt["price"] = $price;
             $opt["timeInForce"] = "GTC";
+        }
+
+        if ($type === "MARKET" && isset($flags['isQuoteOrder']) && $flags['isQuoteOrder']) {
+            unset($opt['quantity']);
+            $opt['quoteOrderQty'] = $quantity;
         }
 
         if (isset($flags['stopPrice'])) {
