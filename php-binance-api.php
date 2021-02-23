@@ -514,7 +514,7 @@ class API
     }
 
 	/**
-	 *
+	 * cancel open orders function
 	 * @param string|null $symbol
 	 * @return array
 	 * @throws \Exception
