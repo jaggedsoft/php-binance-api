@@ -513,6 +513,23 @@ class API
         return $this->httpRequest("v3/openOrders", "GET", $params, true);
     }
 
+	/**
+	 *
+	 * @param string|null $symbol
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function cancelOpenOrders(string $symbol = null)
+	{
+		$params = [];
+		if (is_null($symbol) != true) {
+			$params = [
+				"symbol" => $symbol,
+			];
+		}
+		return $this->httpRequest("v3/openOrders", "DELETE", $params, true);
+	}
+
     /**
      * orders attempts to get the orders for all or a specific currency
      *
