@@ -441,6 +441,13 @@ class API
         return $this->httpRequest("v3/openOrders", "GET", $params, true);
     }
 
+    /**
+     * Cancel all open orders method
+     * $api->cancelOpenOrders( "BNBBTC" );
+     * @param $symbol string the currency symbol
+     * @return array with error message or the order details
+     * @throws \Exception
+     */
     public function cancelOpenOrders(string $symbol = null)
     {
         $params = [];
