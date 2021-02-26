@@ -513,22 +513,16 @@ class API
         return $this->httpRequest("v3/openOrders", "GET", $params, true);
     }
 
-	/**
-	 * cancel open orders function
-	 * @param string|null $symbol
-	 * @return array
-	 * @throws \Exception
-	 */
-	public function cancelOpenOrders(string $symbol = null)
-	{
-		$params = [];
-		if (is_null($symbol) != true) {
-			$params = [
-				"symbol" => $symbol,
-			];
-		}
-		return $this->httpRequest("v3/openOrders", "DELETE", $params, true);
-	}
+    public function cancelOpenOrders(string $symbol = null)
+    {
+        $params = [];
+        if (is_null($symbol) != true) {
+            $params = [
+                "symbol" => $symbol,
+            ];
+        }
+        return $this->httpRequest("v3/openOrders", "DELETE", $params, true);
+    }
 
     /**
      * orders attempts to get the orders for all or a specific currency
@@ -2303,9 +2297,16 @@ class API
 
         $this->subscriptions['@userdata'] = true;
 
+        $loop = \React\EventLoop\Factory::create();
+        $loop->addPeriodicTimer(30*60, function () {
+            $listenKey = $this->listenKey;
+            $this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", []);
+        });
+        $connector = new \Ratchet\Client\Connector($loop);
+
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect($this->stream . $this->listenKey)->then(function ($ws) {
+        $connector($this->stream . $this->listenKey)->then(function ($ws) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2332,7 +2333,8 @@ class API
             // WPCS: XSS OK.
             echo "userData: Could not connect: {$e->getMessage()}" . PHP_EOL;
         });
-        // @codeCoverageIgnoreEnd
+
+        $loop->run();
     }
 
     /**
