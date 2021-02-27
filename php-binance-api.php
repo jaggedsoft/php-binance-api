@@ -27,6 +27,8 @@ if (version_compare(phpversion(), '7.0', '<=')) {
  */
 class API
 {
+    use Margin;
+
     protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
