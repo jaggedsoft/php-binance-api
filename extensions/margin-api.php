@@ -17,6 +17,7 @@ trait Margin
     public function marginIsolatedTransfer(string $asset, string $symbol, string $transFrom, string $transTo, $amount)
     {
         $opt = [
+            "sapi" => true,
             "asset" => $asset,
             "symbol" => $symbol,
             "transFrom" => $transFrom,
@@ -36,7 +37,7 @@ trait Margin
             echo "warning: amount expected numeric got " . gettype($amount) . PHP_EOL;
         }
 
-        $qstring = "/sapi/v1/margin/isolated/transfer";
+        $qstring = "v1/margin/isolated/transfer";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
 }
