@@ -21,9 +21,9 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginIsolatedOrder(string $symbol, string $side = "BUY", string $type = "LIMIT", $quantity = null, $quoteOrderQty = null, $price = null, $stopPrice = null, $newClientOrderId = null, $icebergQty = null, $newOrderRespType = null, $sideEffectType = null, $timeInForce = null)
+    public function marginIsolatedOrder(string $symbol, string $side = "BUY", string $type = "LIMIT", $quantity = null, $quoteOrderQty = null, $price = null, $stopPrice = null, $newClientOrderId = null, $icebergQty = null, $newOrderRespType = null, $sideEffectType = "NO_SIDE_EFFECT", $timeInForce = "GTC")
     {
-        return $this->marginOrder($symbol, $side, $type, true, $quantity, $quoteOrderQty, $price, $stopPrice, $newClientOrderId, $icebergQty, $newOrderRespType, $sideEffectType, $timeInForce);
+        return $this->marginOrder($symbol, $side, $type, "TRUE", $quantity, $quoteOrderQty, $price, $stopPrice, $newClientOrderId, $icebergQty, $newOrderRespType, $sideEffectType, $timeInForce);
     }
 
     /**
@@ -45,7 +45,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginOrder(string $symbol, string $side = "BUY", string $type = "LIMIT", $isIsolated = false, $quantity = null, $quoteOrderQty = null, $price = null, $stopPrice = null, $newClientOrderId = null, $icebergQty = null, $newOrderRespType = null, $sideEffectType = "NO_SIDE_EFFECT", $timeInForce = null)
+    public function marginOrder(string $symbol, string $side = "BUY", string $type = "LIMIT", $isIsolated = "FALSE", $quantity = null, $quoteOrderQty = null, $price = null, $stopPrice = null, $newClientOrderId = null, $icebergQty = null, $newOrderRespType = null, $sideEffectType = "NO_SIDE_EFFECT", $timeInForce = "GTC")
     {
         // 类型 | 强制要求的参数
         // LIMIT | timeInForce, quantity, price
@@ -67,30 +67,40 @@ trait Margin
 
         switch($type) {
             case "LIMIT":
+                $opt['newOrderRespType'] = 'FULL';
                 $opt = array_merge($opt, compact('timeInForce', 'quantity', 'price'));
                 break;
             case "MARKET":
+                $opt['newOrderRespType'] = 'FULL';
                 if(!is_null($quoteOrderQty))
                     $opt['quoteOrderQty'] = $quoteOrderQty;
                 else
                     $opt['quantity'] = $quantity;
                 break;
             case "STOP_LOSS":
+                $opt['newOrderRespType'] = 'ACK';
                 $opt = array_merge($opt, compact('quantity', 'stopPrice'));
                 break;
             case "STOP_LOSS_LIMIT":
+                $opt['newOrderRespType'] = 'ACK';
                 $opt = array_merge($opt, compact('timeInForce', 'quantity', 'price', 'stopPrice'));
                 break;
             case "TAKE_PROFIT":
+                $opt['newOrderRespType'] = 'ACK';
                 $opt = array_merge($opt, compact('quantity', 'stopPrice'));
                 break;
             case "TAKE_PROFIT_LIMIT":
+                $opt['newOrderRespType'] = 'ACK';
                 $opt = array_merge($opt, compact('timeInForce', 'quantity', 'price', 'stopPrice'));
                 break;
             case "LIMIT_MAKER":
+                $opt['newOrderRespType'] = 'ACK';
                 $opt = array_merge($opt, compact('quantity', 'price'));
                 break;
         }
+
+        if(!is_null($newOrderRespType))
+            $opt['newOrderRespType'] = $newOrderRespType;
 
         $qstring = "v1/margin/order";
         return $this->httpRequest($qstring, "POST", $opt, true);
