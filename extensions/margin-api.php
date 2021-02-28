@@ -45,7 +45,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginOrder(string $symbol, string $side = "BUY", string $type = "LIMIT", $isIsolated = false, $quantity = null, $quoteOrderQty = null, $price = null, $stopPrice = null, $newClientOrderId = null, $icebergQty = null, $newOrderRespType = null, $sideEffectType = null, $timeInForce = null)
+    public function marginOrder(string $symbol, string $side = "BUY", string $type = "LIMIT", $isIsolated = false, $quantity = null, $quoteOrderQty = null, $price = null, $stopPrice = null, $newClientOrderId = null, $icebergQty = null, $newOrderRespType = null, $sideEffectType = "NO_SIDE_EFFECT", $timeInForce = null)
     {
         // 类型 | 强制要求的参数
         // LIMIT | timeInForce, quantity, price
@@ -62,6 +62,7 @@ trait Margin
             "side" => $side,
             "type" => $type,
             "isIsolated" => $isIsolated,
+            "sideEffectType" => $sideEffectType
         ];
 
         switch($type) {
