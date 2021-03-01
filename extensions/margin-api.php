@@ -107,6 +107,21 @@ trait Margin
     }
 
     /**
+     * 逐倉杠杆账户撤销订单 (TRADE)
+     *
+     * @param $symbol string BTC
+     * @param $orderId LONG
+     * @param $origClientOrderId string
+     * @param $newClientOrderId string
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginDeleteIsolatedOrder(string $symbol, $orderId = null, string $origClientOrderId = null, string $newClientOrderId = null)
+    {
+        return $this->marginDeleteOrder($symbol, "TRUE", $orderId, $origClientOrderId, $newClientOrderId);
+    }
+
+    /**
      * 杠杆账户撤销订单 (TRADE)
      *
      * @param $symbol string BTC
