@@ -132,7 +132,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginDeleteOrder(string $symbol, $isIsolated = false, $orderId = null, string $origClientOrderId = null, string $newClientOrderId = null)
+    public function marginDeleteOrder(string $symbol, $isIsolated = "FALSE", $orderId = null, string $origClientOrderId = null, string $newClientOrderId = null)
     {
         $opt = [
             "sapi" => true,
@@ -150,6 +150,47 @@ trait Margin
     }
 
     /**
+     * 查询杠杆账户订单 (USER_DATA) 一些历史订单的 cummulativeQuoteQty < 0, 是指当前数据不存在。
+     *
+     * @param $symbol string BTC
+     * @param $orderId LONG 
+     * @param $origClientOrderId string
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginGetIsIsolatedOrder(string $symbol, $orderId = null, string $origClientOrderId = null)
+    {
+        return $this->marginGetOrder($symbol, "TRUE", $orderId, $origClientOrderId);
+    }
+
+    /**
+     * 查询杠杆账户订单 (USER_DATA) 一些历史订单的 cummulativeQuoteQty < 0, 是指当前数据不存在。
+     *
+     * @param $symbol string BTC
+     * @param $isIsolated bool 是否為逐倉交易
+     * @param $orderId LONG 
+     * @param $origClientOrderId string
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginGetOrder(string $symbol, $isIsolated = "FALSE", $orderId = null, string $origClientOrderId = null)
+    {
+        $opt = [
+            "sapi" => true,
+            "symbol" => $symbol,
+            "isIsolated" => $isIsolated,
+        ];
+
+        if(!is_null($origClientOrderId))
+            $opt['origClientOrderId'] = $origClientOrderId;
+        else
+            $opt['orderId'] = $orderId;
+
+        $qstring = "v1/margin/order";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
      * 杠杆账户撤销单一交易对的所有挂单 (TRADE)
      *
      * @param $symbol string BTC
@@ -157,7 +198,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginDeleteOpenOrders(string $symbol, $isIsolated = false)
+    public function marginDeleteOpenOrders(string $symbol, $isIsolated = "FALSE")
     {
         $opt = [
             "sapi" => true,
