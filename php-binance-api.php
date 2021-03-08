@@ -28,11 +28,14 @@ if (version_compare(phpversion(), '7.0', '<=')) {
 class API
 {
     protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
+    protected $baseTestnet = 'https://testnet.binance.vision/api/'; // /< Testnet REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
     protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
+    protected $streamTestnet = 'wss://testnet.binance.vision/ws/'; // /< Testnet endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
     protected $api_secret; // /< API secret that was given to you when you created the api key
+    protected $useTestnet = false; // /< Enable/disable testnet (https://testnet.binance.vision/)
     protected $depthCache = []; // /< Websockets depth cache
     protected $depthQueue = []; // /< Websockets depth queue
     protected $chartQueue = []; // /< Websockets chart queue
@@ -65,6 +68,7 @@ class API
      * No arguments - use file setup
      * 1 argument - file to load config from
      * 2 arguments - api key and api secret
+     * 3 arguments - api key, api secret and use testnet flag
      *
      * @return null
      */
@@ -85,6 +89,11 @@ class API
             case 2:
                 $this->api_key = $param[0];
                 $this->api_secret = $param[1];
+                break;
+            case 3:
+                $this->api_key = $param[0];
+                $this->api_secret = $param[1];
+                $this->useTestnet = (bool)$param[2];
                 break;
             default:
                 echo 'Please see valid constructors here: https://github.com/jaggedsoft/php-binance-api/blob/master/examples/constructor.php';
@@ -139,6 +148,7 @@ class API
         $contents = json_decode(file_get_contents($file), true);
         $this->api_key = isset($contents['api-key']) ? $contents['api-key'] : "";
         $this->api_secret = isset($contents['api-secret']) ? $contents['api-secret'] : "";
+        $this->useTestnet = isset($contents['use-testnet']) ? (bool)$contents['use-testnet'] : false;
     }
 
     /**
@@ -937,7 +947,7 @@ class API
 
     /**
      * coins get list coins
-     * 
+     *
      * $coins = $api->coins();
      * @return array with error message or array containing coins
      * @throws \Exception
@@ -1052,15 +1062,21 @@ class API
                 throw new \Exception("signedRequest error: API Secret not set!");
             }
 
-            $base = $this->base;
+            $base = $this->getRestEndpoint();
             $ts = (microtime(true) * 1000) + $this->info['timeOffset'];
             $params['timestamp'] = number_format($ts, 0, '.', '');
             if (isset($params['wapi'])) {
+                if ($this->useTestnet) {
+                    throw new \Exception("wapi endpoints are not available in testnet");
+                }
                 unset($params['wapi']);
                 $base = $this->wapi;
             }
 		
             if (isset($params['sapi'])) {
+                if ($this->useTestnet) {
+                    throw new \Exception("sapi endpoints are not available in testnet");
+                }
                 unset($params['sapi']);
                 $base = $this->sapi;
             }
@@ -1082,11 +1098,11 @@ class API
         }
         // params so buildquery string and append to url
         else if (count($params) > 0) {
-            curl_setopt($curl, CURLOPT_URL, $this->base . $url . '?' . $query);
+            curl_setopt($curl, CURLOPT_URL, $this->getRestEndpoint() . $url . '?' . $query);
         }
         // no params so just the base url
         else {
-            curl_setopt($curl, CURLOPT_URL, $this->base . $url);
+            curl_setopt($curl, CURLOPT_URL, $this->getRestEndpoint() . $url);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
             ));
@@ -1949,7 +1965,7 @@ class API
             $endpoint = strtolower($symbol) . '@depthCache';
             $this->subscriptions[$endpoint] = true;
 
-            $connector($this->stream . strtolower($symbol) . '@depth')->then(function ($ws) use ($callback, $symbol, $loop, $endpoint) {
+            $connector($this->getWsEndpoint() . strtolower($symbol) . '@depth')->then(function ($ws) use ($callback, $symbol, $loop, $endpoint) {
                 $ws->on('message', function ($data) use ($ws, $callback, $loop, $endpoint) {
                     if ($this->subscriptions[$endpoint] === false) {
                         //$this->subscriptions[$endpoint] = null;
@@ -2019,7 +2035,7 @@ class API
             $endpoint = strtolower($symbol) . '@trades';
             $this->subscriptions[$endpoint] = true;
 
-            $connector($this->stream . strtolower($symbol) . '@aggTrade')->then(function ($ws) use ($callback, $symbol, $loop, $endpoint) {
+            $connector($this->getWsEndpoint() . strtolower($symbol) . '@aggTrade')->then(function ($ws) use ($callback, $symbol, $loop, $endpoint) {
                 $ws->on('message', function ($data) use ($ws, $callback, $loop, $endpoint) {
                     if ($this->subscriptions[$endpoint] === false) {
                         //$this->subscriptions[$endpoint] = null;
@@ -2073,7 +2089,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect($this->stream . $endpoint)->then(function ($ws) use ($callback, $symbol, $endpoint) {
+        \Ratchet\Client\connect($this->getWsEndpoint() . $endpoint)->then(function ($ws) use ($callback, $symbol, $endpoint) {
             $ws->on('message', function ($data) use ($ws, $callback, $symbol, $endpoint) {
                 if ($this->subscriptions[$endpoint] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2150,7 +2166,7 @@ class API
             $this->info[$symbol][$interval]['firstOpen'] = 0;
             $endpoint = strtolower($symbol) . '@kline_' . $interval;
             $this->subscriptions[$endpoint] = true;
-            $connector($this->stream . $endpoint)->then(function ($ws) use ($callback, $symbol, $loop, $endpoint, $interval) {
+            $connector($this->getWsEndpoint() . $endpoint)->then(function ($ws) use ($callback, $symbol, $loop, $endpoint, $interval) {
                 $ws->on('message', function ($data) use ($ws, $loop, $callback, $endpoint) {
                     if ($this->subscriptions[$endpoint] === false) {
                         //$this->subscriptions[$endpoint] = null;
@@ -2212,7 +2228,7 @@ class API
         foreach ($symbols as $symbol) {
             $endpoint = strtolower($symbol) . '@kline_' . $interval;
             $this->subscriptions[$endpoint] = true;
-            $connector($this->stream . $endpoint)->then(function ($ws) use ($callback, $symbol, $loop, $endpoint, $interval) {
+            $connector($this->getWsEndpoint() . $endpoint)->then(function ($ws) use ($callback, $symbol, $loop, $endpoint, $interval) {
                 $ws->on('message', function ($data) use ($ws, $loop, $callback, $endpoint) {
                     if ($this->subscriptions[$endpoint] === false) {
                         $loop->stop();
@@ -2324,7 +2340,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        $connector($this->stream . $this->listenKey)->then(function ($ws) {
+        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2372,7 +2388,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect($this->stream . '!miniTicker@arr')->then(function ($ws) use ($callback, $endpoint) {
+        \Ratchet\Client\connect($this->getWsEndpoint() . '!miniTicker@arr')->then(function ($ws) use ($callback, $endpoint) {
             $ws->on('message', function ($data) use ($ws, $callback, $endpoint) {
                 if ($this->subscriptions[$endpoint] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2423,7 +2439,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        \Ratchet\Client\connect($this->stream . '!bookTicker')->then(function ($ws) use ($callback, $endpoint) {
+        \Ratchet\Client\connect($this->getWsEndpoint() . '!bookTicker')->then(function ($ws) use ($callback, $endpoint) {
             $ws->on('message', function ($data) use ($ws, $callback, $endpoint) {
                 if ($this->subscriptions[$endpoint] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2523,5 +2539,16 @@ class API
     public function getXMbxUsedWeight1m () : int {
         $this->xMbxUsedWeight1m;
     }
-    
+
+    private function getRestEndpoint() : string {
+        return $this->useTestnet ? $this->baseTestnet : $this->base;
+    }
+
+    private function getWsEndpoint() : string {
+        return $this->useTestnet ? $this->streamTestnet : $this->stream;
+    }
+
+    public function isOnTestnet() : bool {
+        return $this->useTestnet;
+    }
 }
