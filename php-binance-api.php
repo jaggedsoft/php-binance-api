@@ -936,6 +936,17 @@ class API
     }
 
     /**
+     * networks get list networks
+     * 
+     * $networks = $api->networks();
+     * @return array with error message or array containing networks
+     * @throws \Exception
+     */
+    public function networks(){
+        return $this->httpRequest('v1/capital/config/getall', 'GET', [ 'sapi' => true ], true);
+    }
+
+    /**
      * getProxyUriString get Uniform Resource Identifier string assocaited with proxy config
      *
      * $balances = $api->getProxyUriString();
