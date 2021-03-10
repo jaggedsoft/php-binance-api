@@ -936,13 +936,13 @@ class API
     }
 
     /**
-     * networks get list networks
+     * coins get list coins
      * 
-     * $networks = $api->networks();
-     * @return array with error message or array containing networks
+     * $coins = $api->coins();
+     * @return array with error message or array containing coins
      * @throws \Exception
      */
-    public function networks(){
+    public function coins(){
         return $this->httpRequest('v1/capital/config/getall', 'GET', [ 'sapi' => true ], true);
     }
 
