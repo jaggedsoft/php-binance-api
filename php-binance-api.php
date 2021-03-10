@@ -2482,7 +2482,7 @@ class API
             die(getcwd() . ' folder is not writeable, please check your permissions to download CA Certificates, or use $api->caOverride = true;');
         }
 
-        $host = "https://curl.haxx.se/ca/cacert.pem";
+        $host = "https://curl.se/ca/cacert.pem";
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $host);
         curl_setopt($curl, CURLOPT_VERBOSE, 0);
