@@ -158,7 +158,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginGetIsIsolatedOrder(string $symbol, $orderId = null, string $origClientOrderId = null)
+    public function marginGetIsolatedOrder(string $symbol, $orderId = null, string $origClientOrderId = null)
     {
         return $this->marginGetOrder($symbol, "TRUE", $orderId, $origClientOrderId);
     }
@@ -208,6 +208,39 @@ trait Margin
 
         $qstring = "v1/margin/openOrders";
         return $this->httpRequest($qstring, "DELETE", $opt, true);
+    }
+
+    /**
+     * 查询逐倉杠杆账户挂单记录 (USER_DATA)
+     *
+     * @param $symbol string BTC
+     * @param $isIsolated bool 是否為逐倉交易
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginIsolatedOpenOrders(string $symbol)
+    {
+        return $this->marginOpenOrders($symbol, "TRUE");
+    }
+
+    /**
+     * 查询杠杆账户挂单记录 (USER_DATA)
+     *
+     * @param $symbol string BTC
+     * @param $isIsolated bool 是否為逐倉交易
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginOpenOrders(string $symbol, $isIsolated = "FALSE")
+    {
+        $opt = [
+            "sapi" => true,
+            "symbol" => $symbol,
+            "isIsolated" => $isIsolated,
+        ];
+
+        $qstring = "v1/margin/openOrders";
+        return $this->httpRequest($qstring, "GET", $opt, true);
     }
 
     /**
