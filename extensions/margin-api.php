@@ -267,4 +267,38 @@ trait Margin
         $qstring = "v1/margin/isolated/transfer";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
+
+    /**
+     * 查询杠杆资产 (MARKET_DATA)
+     *
+     * @param $asset string 被划转的资产, 比如, BTC
+     * @return json containing the response
+     * @throws \Exception
+     */
+    public function marginAsset(string $asset)
+    {
+        $opt = [
+            "sapi" => true,
+            "asset" => $asset,
+        ];
+
+        $qstring = "v1/margin/asset";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 获取所有杠杆资产信息 (MARKET_DATA)
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginAllAsset()
+    {
+        $opt = [
+            "sapi" => true,
+        ];
+
+        $qstring = "v1/margin/allAssets";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
 }
