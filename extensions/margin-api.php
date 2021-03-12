@@ -264,6 +264,28 @@ trait Margin
     }
 
     /**
+     * 查询杠杆逐仓账户信息
+     *
+     * @param $symbols string 最多可以传5个symbol; 由","分隔的字符串表示. e.g. "BTCUSDT,BNBUSDT,ADAUSDT"
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginIsolatedAccountByKey(string $symbols = null)
+    {
+        $account = $this->marginIsolatedAccount($symbols);
+        if(array_key_exists('assets', $account)) {;
+            $tmp = [];
+            $keys = [];
+            // 只記錄在 SymbolType 裡存在的資訊
+            foreach($account['assets'] as $key => $value){
+                $tmp[$value['symbol']] = $value;
+            }
+            $account['assets'] = $tmp;
+        }
+        return $account;
+    }
+
+    /**
      * 杠杆逐仓账户划转 (MARGIN)
      *
      * @param $asset string 被划转的资产, 比如, BTC
