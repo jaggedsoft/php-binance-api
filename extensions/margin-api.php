@@ -264,7 +264,7 @@ trait Margin
     }
 
     /**
-     * 查询杠杆逐仓账户信息
+     * 查询杠杆逐仓账户信息 by key
      *
      * @param $symbols string 最多可以传5个symbol; 由","分隔的字符串表示. e.g. "BTCUSDT,BNBUSDT,ADAUSDT"
      * @return array containing the response
@@ -275,7 +275,6 @@ trait Margin
         $account = $this->marginIsolatedAccount($symbols);
         if(array_key_exists('assets', $account)) {;
             $tmp = [];
-            $keys = [];
             // 只記錄在 SymbolType 裡存在的資訊
             foreach($account['assets'] as $key => $value){
                 $tmp[$value['symbol']] = $value;
@@ -354,6 +353,40 @@ trait Margin
         ];
 
         $qstring = "v1/margin/allAssets";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 获取杠杆利率历史 (USER_DATA)
+     *
+     * @param $asset string 被划转的资产, 比如, BTC
+     * @param $vipLevel string 默认用户当前等级
+     * @param $startTime LONG 默认7天前
+     * @param $endTime LONG 默认当天，时间间隔最大为3个月
+     * @param $limit int 默认20，最大100
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginInterestRateHistory(string $asset, string $vipLevel = null, $startTime = 0, $endTime = 0, $limit = 20)
+    {
+        $opt = [
+            "sapi" => true,
+            "asset" => $asset,
+        ];
+
+        if($vipLevel)
+            $opt['vipLevel'] = $vipLevel;
+
+        if($startTime)
+            $opt['startTime'] = $startTime;
+
+        if($endTime)
+            $opt['endTime'] = $endTime;
+
+        if($limit)
+            $opt['limit'] = $limit;
+
+        $qstring = "v1/margin/interestRateHistory";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
 }
