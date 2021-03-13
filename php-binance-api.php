@@ -563,7 +563,6 @@ class API
     /**
      * history Get the complete account trade history for all or a specific currency
      *
-     * $allHistory = $api->history();
      * $BNBHistory = $api->history("BNBBTC");
      * $limitBNBHistory = $api->history("BNBBTC",5);
      * $limitBNBHistoryFromId = $api->history("BNBBTC",5,3);
