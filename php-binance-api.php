@@ -395,7 +395,7 @@ class API
      * marketQuoteSell attempts to create a currency order at given market price
      *
      * $quantity = 1;
-     * $order = $api->marketSell("BNBBTC", $quantity);
+     * $order = $api->marketQuoteSell("BNBBTC", $quantity);
      *
      * @param $symbol string the currency symbol
      * @param $quantity string the quantity of the quote you want to obtain
