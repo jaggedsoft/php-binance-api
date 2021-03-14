@@ -883,6 +883,35 @@ class API
             "symbol" => $symbol,
         ]));
     }
+	
+    /**
+     * historicalTrades Get historical trades for a specific currency
+     *
+     * $ENJHistTrades = $api->historicalTrades("ENJUSDT");
+     * $limitENJHistTrades = $api->historicalTrades("ENJUSDT",5);
+     * $limitENJHistTradesFromId = $api->historicalTrades("ENJUSDT",5,3);
+     *
+     * @param $symbol string (mandatory) the currency symbol
+     * @param $limit int (optional) the amount of trades returned, default=500 max=1000
+     * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
+     * @return Array of trades
+     * @throws \Exception
+     */
+    public function historicalTrades(string $symbol, int $limit = 500, int $fromTradeId = -1)
+    {
+        $parameters = [
+            "symbol" => $symbol,
+            "limit" => $limit,
+        ];
+        if ($fromTradeId > 0) {
+            $parameters["fromId"] = $fromTradeId;
+        }
+        
+        // The endpoint cannot handle extra parameters like 'timestamp' or 'signature',
+	// but it needs the http header with the key so we need to construct it here
+        $query = http_build_query($parameters, '', '&');
+        return $this->httpRequest("v3/historicalTrades?$query");
+    }
 
     /**
      * depth get Market depth
