@@ -2078,10 +2078,10 @@ class API
     /**
      * chart Pulls /kline data and subscribes to @klines WebSocket endpoint
      *
-     * $api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+     * $api->chart(["BNBBTC"], function($api, $symbol, $chart) {
      * echo "{$symbol} chart update\n";
      * print_r($chart);
-     * });
+     * }, "15m");
      *
      * @param $symbols string required symbols
      * @param $interval string time inteval
@@ -2090,7 +2090,7 @@ class API
      * @return null
      * @throws \Exception
      */
-    public function chart($symbols, string $interval = "30m", callable $callback, $limit = 500)
+    public function chart($symbols, callable $callback, string $interval = "30m", $limit = 500)
     {
         if (!is_array($symbols)) {
             $symbols = [
