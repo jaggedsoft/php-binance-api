@@ -191,6 +191,18 @@ trait Margin
     }
 
     /**
+     * 杠杆账户撤销单一交易对的所有逐倉挂单 (TRADE)
+     *
+     * @param $symbol string BTC
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginDeleteIsolatedOpenOrders(string $symbol)
+    {
+        return $this->marginDeleteOpenOrders($symbol, "TRUE");
+    }
+
+    /**
      * 杠杆账户撤销单一交易对的所有挂单 (TRADE)
      *
      * @param $symbol string BTC
