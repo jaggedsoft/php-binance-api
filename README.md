@@ -12,7 +12,22 @@
 [![Code consistency](https://squizlabs.github.io/PHP_CodeSniffer/analysis/jaggedsoft/php-binance-api/grade.svg?style=flat-square)](https://squizlabs.github.io/PHP_CodeSniffer/analysis/jaggedsoft/php-binance-api)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/683459a5a71c4875956cf23078a0c39b)](https://www.codacy.com/app/dmzoneill/php-binance-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jaggedsoft/php-binance-api&amp;utm_campaign=Badge_Grade)
 -->
+# Updates - Futures
+
+- userDataStream (you can add func as third parameter which starts on ws connect)
+- userDataStreamF (same but for futures)
+
+```php
+   global $api;
+   $quantity = 1.00;
+   $price = 59000.58;
+   $api->sell("BTCUSDT", $quantity, $price, "LIMIT", [], true);
+   // true paramater is for futures
+   // if its true then it using futures server else default
+```
+
 # PHP Binance API
+
 This project is designed to help you make your own projects that interact with the [Binance API](https://github.com/binance-exchange/binance-official-api-docs). You can stream candlestick chart data, market depth, or use other advanced features such as setting stop losses and iceberg orders. This project seeks to have complete API coverage including WebSockets.
 
 #### Installation
