@@ -212,7 +212,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginGetIsolatedAllOrders(string $symbol, $orderId = null, $startTime = null, $endTime = null, $fromId = null, $limit = 500)
+    public function marginGetIsolatedAllOrders(string $symbol, $orderId = null, $startTime = null, $endTime = null, $limit = 500)
     {
         return $this->marginGetAllOrders($symbol, "TRUE", $orderId, $startTime, $endTime, $limit);
     }
@@ -229,7 +229,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginGetAllOrders(string $symbol, $isIsolated = "FALSE", $orderId = null, $startTime = null, $endTime = null, $fromId = null, $limit = 500)
+    public function marginGetAllOrders(string $symbol, $isIsolated = "FALSE", $orderId = null, $startTime = null, $endTime = null, $limit = 500)
     {
         $opt = [
             "sapi" => true,
