@@ -153,8 +153,10 @@ trait Margin
      * 查询逐倉杠杆账户交易历史
      *
      * @param $symbol string BTCUSDT
-     * @param $orderId LONG 
-     * @param $origClientOrderId string
+     * @param $startTime LONG 
+     * @param $endTime LONG 
+     * @param $fromId LONG 
+     * @param $limit int
      * @return array containing the response
      * @throws \Exception
      */
@@ -168,8 +170,10 @@ trait Margin
      *
      * @param $symbol string BTCUSDT
      * @param $isIsolated bool 是否為逐倉交易
-     * @param $orderId LONG 
-     * @param $origClientOrderId string
+     * @param $startTime LONG 
+     * @param $endTime LONG 
+     * @param $fromId LONG 
+     * @param $limit int
      * @return array containing the response
      * @throws \Exception
      */
@@ -194,6 +198,58 @@ trait Margin
             $opt['limit'] = $limit;
 
         $qstring = "v1/margin/myTrades";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 查询逐倉杠杆账户的所有订单
+     *
+     * @param $symbol string BTCUSDT
+     * @param $orderId LONG 
+     * @param $startTime LONG 
+     * @param $endTime LONG
+     * @param $limit int
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginGetIsolatedAllOrders(string $symbol, $orderId = null, $startTime = null, $endTime = null, $fromId = null, $limit = 500)
+    {
+        return $this->marginGetAllOrders($symbol, "TRUE", $orderId, $startTime, $endTime, $limit);
+    }
+
+    /**
+     * 查询杠杆账户的所有订单
+     *
+     * @param $symbol string BTCUSDT
+     * @param $isIsolated bool 是否為逐倉交易
+     * @param $orderId LONG 
+     * @param $startTime LONG 
+     * @param $endTime LONG
+     * @param $limit int
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginGetAllOrders(string $symbol, $isIsolated = "FALSE", $orderId = null, $startTime = null, $endTime = null, $fromId = null, $limit = 500)
+    {
+        $opt = [
+            "sapi" => true,
+            "symbol" => $symbol,
+            "isIsolated" => $isIsolated,
+        ];
+
+        if(!is_null($startTime))
+            $opt['startTime'] = $startTime;
+
+        if(!is_null($endTime))
+            $opt['endTime'] = $endTime;
+
+        if(!is_null($orderId))
+            $opt['orderId'] = $orderId;
+
+        if(!is_null($limit))
+            $opt['limit'] = $limit;
+
+        $qstring = "v1/margin/allOrders";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
 
