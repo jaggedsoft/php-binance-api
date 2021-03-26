@@ -254,6 +254,46 @@ trait Margin
     }
 
     /**
+     * 逐倉杠杆账户归还借贷
+     *
+     * @param $asset string 
+     * @param $amount int 
+     * @param $symbol string BTCUSDT
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginIsolatedRepay($asset, $amount, string $symbol)
+    {
+        return $this->marginRepay($asset, $amount, "TRUE", $symbol);
+    }
+
+    /**
+     * 杠杆账户归还借贷
+     *
+     * @param $asset string 
+     * @param $amount int 
+     * @param $symbol string BTCUSDT
+     * @param $isIsolated bool 是否為逐倉交易
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginRepay($asset, $amount, $isIsolated = "FALSE", string $symbol = null)
+    {
+        $opt = [
+            "sapi" => true,
+            "asset" => $asset,
+            "amount" => $amount,
+            "isIsolated" => $isIsolated,
+        ];
+
+        if($isIsolated != "FALSE")
+            $opt['symbol'] = $symbol;
+
+        $qstring = "v1/margin/repay";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
      * 查询杠杆账户订单 (USER_DATA) 一些历史订单的 cummulativeQuoteQty < 0, 是指当前数据不存在。
      *
      * @param $symbol string BTC
