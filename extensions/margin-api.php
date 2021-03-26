@@ -158,7 +158,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginGetIsolatedMyTrades(string $symbol, $startTime = null, string $endTime = null, string $fromId, $limit = 500)
+    public function marginGetIsolatedMyTrades(string $symbol, $startTime = null, $endTime = null, $fromId = null, $limit = 500)
     {
         return $this->marginGetMyTrades($symbol, "TRUE", $startTime, $endTime, $fromId, $limit);
     }
@@ -173,7 +173,7 @@ trait Margin
      * @return array containing the response
      * @throws \Exception
      */
-    public function marginGetMyTrades(string $symbol, $isIsolated = "FALSE", $startTime = null, string $endTime = null, string $fromId, $limit = 500)
+    public function marginGetMyTrades(string $symbol, $isIsolated = "FALSE", $startTime = null, $endTime = null, $fromId = null, $limit = 500)
     {
         $opt = [
             "sapi" => true,
