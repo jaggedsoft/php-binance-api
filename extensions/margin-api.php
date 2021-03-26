@@ -150,6 +150,54 @@ trait Margin
     }
 
     /**
+     * 查询逐倉杠杆账户交易历史
+     *
+     * @param $symbol string BTCUSDT
+     * @param $orderId LONG 
+     * @param $origClientOrderId string
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginGetIsolatedMyTrades(string $symbol, $startTime = null, string $endTime = null, string $fromId, $limit = 500)
+    {
+        return $this->marginGetMyTrades($symbol, "TRUE", $startTime, $endTime, $fromId, $limit);
+    }
+
+    /**
+     * 查询杠杆账户交易历史
+     *
+     * @param $symbol string BTCUSDT
+     * @param $isIsolated bool 是否為逐倉交易
+     * @param $orderId LONG 
+     * @param $origClientOrderId string
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginGetMyTrades(string $symbol, $isIsolated = "FALSE", $startTime = null, string $endTime = null, string $fromId, $limit = 500)
+    {
+        $opt = [
+            "sapi" => true,
+            "symbol" => $symbol,
+            "isIsolated" => $isIsolated,
+        ];
+
+        if(!is_null($startTime))
+            $opt['startTime'] = $startTime;
+
+        if(!is_null($endTime))
+            $opt['endTime'] = $endTime;
+
+        if(!is_null($fromId))
+            $opt['fromId'] = $fromId;
+
+        if(!is_null($limit))
+            $opt['limit'] = $limit;
+
+        $qstring = "v1/margin/myTrades";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
      * 查询杠杆账户订单 (USER_DATA) 一些历史订单的 cummulativeQuoteQty < 0, 是指当前数据不存在。
      *
      * @param $symbol string BTC
