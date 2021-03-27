@@ -150,6 +150,24 @@ trait Margin
     }
 
     /**
+     * 查询杠杆价格指数
+     *
+     * @param $symbol string BTC
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginPriceIndex(string $symbol)
+    {
+        $opt = [
+            "sapi" => true,
+            "symbol" => $symbol,
+        ];
+
+        $qstring = "v1/margin/priceIndex";
+        return $this->httpRequest($qstring, "DELETE", $opt, true);
+    }
+
+    /**
      * 查询逐倉杠杆账户交易历史
      *
      * @param $symbol string BTCUSDT
