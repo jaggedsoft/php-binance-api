@@ -164,7 +164,7 @@ trait Margin
         ];
 
         $qstring = "v1/margin/priceIndex";
-        return $this->httpRequest($qstring, "DELETE", $opt, true);
+        return $this->httpRequest($qstring, "GET", $opt, true);
     }
 
     /**
