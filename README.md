@@ -55,10 +55,25 @@ php composer.phar require "jaggedsoft/php-binance-api @dev"
 
 </details>
 
-#### Getting started
+#### Getting started FAPI
+```php
+require 'vendor/autoload.php';
+require 'php-binance-fapi.php';
+// 1. config in home directory
+$fapi = new Binance\FAPI();
+// 2. config in specified file
+$fapi = new Binance\FAPI( "somefile.json" );
+// 3. config by specifying api key and secret
+$fapi = new Binance\FAPI("<api key>","<secret>");
+// 4. config by specifying api key, api secret and testnet flag. By default the testnet is disabled
+$fapi = new Binance\FAPI("<testnet api key>","<testnet secret>", true);
+```
+
+#### Getting started API
 `composer require jaggedsoft/php-binance-api`
 ```php
 require 'vendor/autoload.php';
+require 'php-binance-api.php';
 // 1. config in home directory
 $api = new Binance\API();
 // 2. config in specified file
@@ -1208,34 +1223,43 @@ bid: 0.00022258
 
 #### User Data: Account Balance Updates, Trade Updates, New Orders, Filled Orders, Cancelled Orders via WebSocket
 ```php
-$balance_update = function($api, $balances) {
-	print_r($balances);
-	echo "Balance update".PHP_EOL;
+$run = function () {
+   global $api;
+   $quantity = 1.00;
+   $price = 59000.58;
+   $api->sell("BTCUSDT", $quantity, $price, "LIMIT", [], true);
+   echo "Startup Function Completed";
 };
 
-$order_update = function($api, $report) {
-	echo "Order update".PHP_EOL;
-	print_r($report);
-	$price = $report['price'];
-	$quantity = $report['quantity'];
-	$symbol = $report['symbol'];
-	$side = $report['side'];
-	$orderType = $report['orderType'];
-	$orderId = $report['orderId'];
-	$orderStatus = $report['orderStatus'];
-	$executionType = $report['orderStatus'];
-	if ( $executionType == "NEW" ) {
-		if ( $executionType == "REJECTED" ) {
-			echo "Order Failed! Reason: {$report['rejectReason']}".PHP_EOL;
-		}
-		echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})".PHP_EOL;
-		echo "..price: {$price}, quantity: {$quantity}".PHP_EOL;
-		return;
-	}
-	//NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
-	echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}".PHP_EOL;
+$balance_update = function ($api, $balances) {
+   print_r($balances);
+   echo "Balance update" . PHP_EOL;
 };
-$api->userData($balance_update, $order_update);
+
+$order_update = function ($api, $report) {
+   echo "Order update" . PHP_EOL;
+   print_r($report);
+   $price = $report['price'];
+   $quantity = $report['quantity'];
+   $symbol = $report['symbol'];
+   $side = $report['side'];
+   $orderType = $report['orderType'];
+   $orderId = $report['orderId'];
+   $orderStatus = $report['orderStatus'];
+   $executionType = $report['orderStatus'];
+   if ($executionType == "NEW") {
+      if ($executionType == "REJECTED") {
+         echo "Order Failed! Reason: {$report['rejectReason']}" . PHP_EOL;
+      }
+      echo "{$symbol} {$side} {$orderType} ORDER #{$orderId} ({$orderStatus})" . PHP_EOL;
+      echo "price: {$price}, quantity: {$quantity}" . PHP_EOL;
+      return;
+   }
+   //NEW, CANCELED, REPLACED, REJECTED, TRADE, EXPIRED
+   echo "{$symbol} {$side} {$executionType} {$orderType} ORDER #{$orderId}" . PHP_EOL;
+};
+
+$api->userData($balance_update, $order_update, $run);
 ```
 
 <details>
