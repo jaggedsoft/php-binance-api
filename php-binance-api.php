@@ -1138,7 +1138,8 @@ class API
         if(isset($json['msg']) && !empty($json['msg'])){
             // should always output error, not only on httpdebug
             // not outputing errors, hides it from users and ends up with tickets on github
-            throw new \Exception('signedRequest error: '.print_r($output, true) . "\nrequest data: ".print_r($this->lastRequest, true));
+            $this->lastRequest['output'] = $output;
+            throw new \Exception('signedRequest error: '.print_r($output, true));
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
