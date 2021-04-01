@@ -602,7 +602,7 @@ class API
      */
     public function useServerTime()
     {
-        $request = $this->httpRequest("v1/time");
+        $request = $this->httpRequest("v3/time");
         if (isset($request['serverTime'])) {
             $this->info['timeOffset'] = $request['serverTime'] - (microtime(true) * 1000);
         }
@@ -618,7 +618,7 @@ class API
      */
     public function time()
     {
-        return $this->httpRequest("v1/time");
+        return $this->httpRequest("v3/time");
     }
 
     /**
@@ -632,7 +632,7 @@ class API
     public function exchangeInfo()
     {
         if (!$this->exchangeInfo) {
-            $arr = $this->httpRequest("v1/exchangeInfo");
+            $arr = $this->httpRequest("v3/exchangeInfo");
             
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
