@@ -2388,7 +2388,7 @@ class API
                 }
                 $json = json_decode($data);
                 $type = $json->e;
-                if ($type === "outboundAccountInfo") {
+                if ($type === "outboundAccountPosition") {
                     $balances = $this->balanceHandler($json->B);
                     $this->info['balanceCallback']($this, $balances);
                 } elseif ($type === "executionReport") {
