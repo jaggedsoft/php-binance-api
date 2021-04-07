@@ -889,28 +889,34 @@ class API
     }
     
     /**
-     * historicalTrades Get historical trades for a specific currency
+     * historicalTrades - Get historical trades for a specific currency
      *
-     * $ENJHistTrades = $api->historicalTrades("ENJUSDT");
-     * $limitENJHistTrades = $api->historicalTrades("ENJUSDT",5);
-     * $limitENJHistTradesFromId = $api->historicalTrades("ENJUSDT",5,3);
+     * @link https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#old-trade-lookup-market_data
+     * @link https://binance-docs.github.io/apidocs/spot/en/#old-trade-lookup
      *
-     * @param $symbol string (mandatory) the currency symbol
-     * @param $limit int (optional) the amount of trades returned, default=500 max=1000
-     * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
-     * @return Array of trades
+     * @property int $weight 5
+     * Standard weight is 5 but if no tradeId is given, weight is 1
+     *
+     * @param string $symbol  (mandatory) to query, e.g. BNBBTC
+     * @param int    $limit   (optional)  limit the amount of trades, default 500, max 1000
+     * @param int    $tradeId (optional)  return the orders from this orderId onwards, negative to get recent ones
+     *
+     * @return array containing the response
      * @throws \Exception
      */
-    public function historicalTrades(string $symbol, int $limit = 500, int $fromTradeId = -1)
+    public function historicalTrades(string $symbol, int $limit = 500, int $tradeId = -1)
     {
         $parameters = [
             "symbol" => $symbol,
             "limit" => $limit,
         ];
         if ($fromTradeId > 0) {
-            $parameters["fromId"] = $fromTradeId;
+            $parameters["fromId"] = $tradeId;
+        } else {
+            // if there is no tradeId given, we can use v3/trades, weight is 1 and not 5
+            return $this->httpRequest("v3/trades", "GET", $parameters);
         }
-        
+
         // The endpoint cannot handle extra parameters like 'timestamp' or 'signature',
         // but it needs the http header with the key so we need to construct it here
         $query = http_build_query($parameters, '', '&');
