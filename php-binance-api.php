@@ -1218,9 +1218,11 @@ class API
         }
 
         if (isset($json['msg']) && !empty($json['msg'])) {
-            // should always output error, not only on httpdebug
-            // not outputing errors, hides it from users and ends up with tickets on github
-            throw new \Exception('signedRequest error: '.print_r($output, true));
+            if ( $url != 'v1/system/status' && $url != 'v3/systemStatus.html' && $url != 'v3/accountStatus.html') {
+                // should always output error, not only on httpdebug
+                // not outputing errors, hides it from users and ends up with tickets on github
+                throw new \Exception('signedRequest error: '.print_r($output, true));
+            }
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
@@ -2603,4 +2605,96 @@ class API
     {
         return $this->useTestnet;
     }
+
+    /**
+     * systemStatus - Status indicator for sapi and wapi
+     * 0 = Normal, 1 = System Maintenance
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#system-status-system
+     * 
+     * @property int $weight 0
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function systemStatus()
+    {
+        $arr = array();
+        $arr['sapi'] = $this->httpRequest("v1/system/status", 'GET', [ 'sapi' => true ], true);
+        $arr['wapi'] = $this->httpRequest("v3/systemStatus.html", 'GET', [ 'wapi' => true ], true);
+        return $arr;
+    }
+    
+    /**
+     * accountSnapshot - Daily Account Snapshot at 00:00:00 UTC
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#daily-account-snapshot-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $type      (mandatory) Should be SPOT, MARGIN or FUTURES
+     * @param int    $nbrDays   (optional)  Number of days. Default 5, min 5, max 30
+     * @param long   $startTime (optional)  Start time, e.g. 1617580799000
+     * @param long   $endTime   (optional)  End time, e.g. 1617667199000
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function accountSnapshot($type, $nbrDays = 5, $startTime = 0, $endTime = 0)
+    {
+        if ($nbrDays < 5 || $nbrDays > 30)
+            $nbrDays = 5;
+            
+        $params = [
+            'sapi' => true,
+            'type' => $type,
+            ];
+            
+        if ($startTime > 0)
+            $params['startTime'] = $startTime;
+        if ($endTime > 0)
+            $params['endTime'] = $startTime;
+        if ($nbrDays != 5)
+            $params['limit'] = $limit;
+            
+        return $this->httpRequest("v1/accountSnapshot", 'GET', $params, true);
+    }
+    
+    /**
+     * accountStatus - Fetch account status detail.
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-user_data
+     * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-sapi-user_data
+     * 
+     * @property int $weight 2
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function accountStatus()
+    {
+        $arr = array();
+        $arr['sapi'] = $this->httpRequest("v1/account/status", 'GET', [ 'sapi' => true ], true);
+        $arr['wapi'] = $this->httpRequest("v3/accountStatus.html", 'GET', [ 'wapi' => true ], true);
+        return $arr;
+    }
+    
+    /**
+     * apiTradingStatus - Fetch account API trading status detail.
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data
+     * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-sapi-user_data
+     * 
+     * @property int $weight 2
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function apiTradingStatus()
+    {
+        $arr = array();
+        $arr['sapi'] = $this->httpRequest("v1/account/apiTradingStatus", 'GET', [ 'sapi' => true ], true);
+        $arr['wapi'] = $this->httpRequest("v3/apiTradingStatus.html", 'GET', [ 'wapi' => true ], true);
+        return $arr;
+    }    
 }
