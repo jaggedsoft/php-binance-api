@@ -2612,7 +2612,7 @@ class API
      * 
      * @link https://binance-docs.github.io/apidocs/spot/en/#system-status-system
      * 
-     * @property int $weight 0
+     * @property int $weight 1
      * 
      * @return array containing the response
      * @throws \Exception
@@ -2620,6 +2620,13 @@ class API
     public function systemStatus()
     {
         $arr = array();
+        $api_status = $this->httpRequest("v3/ping", 'GET');
+        if ( empty($api_status) ) {
+            $arr['api']['status']  = 'ping ok';    
+        } else {
+            $arr['api']['status']  = $api_status;    
+        }
+         
         $arr['sapi'] = $this->httpRequest("v1/system/status", 'GET', [ 'sapi' => true ], true);
         $arr['wapi'] = $this->httpRequest("v3/systemStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
