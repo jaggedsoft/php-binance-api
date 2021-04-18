@@ -32,7 +32,7 @@ class API
     protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
-    protected $fapi = 'https://fapi.binance.com/fapi/'; // /< REST endpoint for the features API
+    protected $fapi = 'https://fapi.binance.com/'; // /< REST endpoint for the features API
     protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
     protected $api_secret; // /< API secret that was given to you when you created the api key
