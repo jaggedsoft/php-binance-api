@@ -910,7 +910,7 @@ class API
             "symbol" => $symbol,
             "limit" => $limit,
         ];
-        if ($fromTradeId > 0) {
+        if ($tradeId > 0) {
             $parameters["fromId"] = $tradeId;
         } else {
             // if there is no tradeId given, we can use v3/trades, weight is 1 and not 5
