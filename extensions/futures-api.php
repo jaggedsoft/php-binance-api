@@ -1,6 +1,8 @@
 <?php
 namespace Binance;
 
+use Exception;
+
 trait Futures 
 {
     /**
@@ -635,6 +637,336 @@ trait Futures
     }
 
     /**
+     * 更改持仓模式(TRADE)
+     *
+     * @param $dualSidePosition string "true": 双向持仓模式；"false": 单向持仓模式
+     * @return json containing the response
+     * @throws \Exception
+     */
+    public function futuresPositionSideDual(string $dualSidePosition = 'false')
+    {
+        $opt = [
+            "fapi" => true,
+            "dualSidePosition" => $dualSidePosition,
+        ];
+
+        $qstring = "fapi/v1/positionSide/dual";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
+     * 查询持仓模式(USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresGetPositionSideDual()
+    {
+        $opt = [
+            "fapi" => true,
+        ];
+
+        $qstring = "fapi/v1/positionSide/dual";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 下单 (TRADE)
+     *
+     * @param $symbol STRING 交易对
+     * @param $side ENUM 买卖方向 SELL, BUY
+     * @param $positionSide ENUM 持仓方向，单向持仓模式下非必填，默认且仅可填BOTH;在双向持仓模式下必填,且仅可选择 LONG 或 SHORT
+     * @param $type ENUM 订单类型 LIMIT, MARKET, STOP, TAKE_PROFIT, STOP_MARKET, TAKE_PROFIT_MARKET, TRAILING_STOP_MARKET
+     * @param $reduceOnly STRING true, false; 非双开模式下默认false；双开模式下不接受此参数； 使用closePosition不支持此参数。
+     * @param $quantity DECIMAL 下单数量,使用closePosition不支持此参数。
+     * @param $price DECIMAL 委托价格
+     * @param $newClientOrderId STRING 用户自定义的订单号，不可以重复出现在挂单中。如空缺系统会自动赋值。必须满足正则规则 ^[\.A-Z\:/a-z0-9_-]{1,36}$
+     * @param $stopPrice DECIMAL 触发价, 仅 STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET 需要此参数
+     * @param $closePosition STRING	 true, false；触发后全部平仓，仅支持STOP_MARKET和TAKE_PROFIT_MARKET；不与quantity合用；自带只平仓效果，不与reduceOnly 合用
+     * @param $activationPrice DECIMAL 追踪止损激活价格，仅TRAILING_STOP_MARKET 需要此参数, 默认为下单当前市场价格(支持不同workingType)
+     * @param $callbackRate DECIMAL 追踪止损回调比例，可取值范围[0.1, 5],其中 1代表1% ,仅TRAILING_STOP_MARKET 需要此参数
+     * @param $timeInForce ENUM 有效方法
+     * @param $workingType ENUM stopPrice 触发类型: MARK_PRICE(标记价格), CONTRACT_PRICE(合约最新价). 默认 CONTRACT_PRICE
+     * @param $priceProtect STRING 条件单触发保护："TRUE","FALSE", 默认"FALSE". 仅 STOP, STOP_MARKET, TAKE_PROFIT, TAKE_PROFIT_MARKET 需要此参数
+     * @param $newOrderRespType ENUM "ACK", "RESULT", 默认 "ACK"
+     * @param $test boolean 是否測試購買?
+     * @return json containing the response
+     * @throws \Exception
+     */
+    public function futuresOrder(string $symbol, string $side, string $type, $positionSide = null, $reduceOnly = null, $quantity = null, $price = null, $newClientOrderId = null, $stopPrice = null, $closePosition = null, $activationPrice = null, $callbackRate = null, $timeInForce = null, $workingType = null, $priceProtect = null, $newOrderRespType = "RESULT", bool $test = false)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+            "side" => $side,
+            "type" => $type,
+            "newOrderRespType" => $newOrderRespType,
+        ];
+
+        // 驗證必要參數
+        switch($type) 
+        {
+            case 'LIMIT':
+                if(is_null($timeInForce) or is_null($quantity) or is_null($price))
+                    throw new Exception('根據 order type的不同，強制要求參數：timeInForce, quantity, price');
+                
+                break;
+            case 'MARKET':
+                if(is_null($quantity))
+                    throw new Exception('根據 order type的不同，強制要求參數：quantity');
+                break;
+            case 'STOP':
+            case 'TAKE_PROFIT':
+                if(is_null($quantity) or is_null($price) or is_null($stopPrice))
+                    throw new Exception('根據 order type的不同，強制要求參數：quantity, price, stopPrice');
+                break;
+            case 'STOP_MARKET':
+            case 'TAKE_PROFIT_MARKET':
+                if(is_null($stopPrice))
+                    throw new Exception('根據 order type的不同，強制要求參數：stopPrice');
+                break;
+            case 'TRAILING_STOP_MARKET':
+                if(is_null($callbackRate))
+                    throw new Exception('根據 order type的不同，強制要求參數：callbackRate');
+                break;
+        }
+
+        $qstring = ($test) ? "fapi/v1/order/test" : "fapi/v1/order";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
+     * 查询订单 (USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @param $orderId LONG 系统订单号
+     * @param $origClientOrderId string 用户自定义的订单号
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresGetOrder(string $symbol, $orderId = null, $origClientOrderId = null)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+        ];
+        
+        if(!is_null($orderId))
+            $opt['orderId'] = $orderId;
+
+        if(!is_null($origClientOrderId))
+            $opt['origClientOrderId'] = $origClientOrderId;
+
+        $qstring = "fapi/v1/order";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 查询订单 (USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @param $orderId LONG 系统订单号
+     * @param $origClientOrderId string 用户自定义的订单号
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresDeleteOrder(string $symbol, $orderId = null, $origClientOrderId = null)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+        ];
+        
+        if(!is_null($orderId))
+            $opt['orderId'] = $orderId;
+
+        if(!is_null($origClientOrderId))
+            $opt['origClientOrderId'] = $origClientOrderId;
+
+        $qstring = "fapi/v1/order";
+        return $this->httpRequest($qstring, "DELETE", $opt, true);
+    }
+
+    /**
+     * 撤销全部订单 (TRADE)
+     *
+     * @param $symbol string 交易对
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresAllOpenOrders(string $symbol)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+        ];
+        
+        $qstring = "fapi/v1/allOpenOrders";
+        return $this->httpRequest($qstring, "DELETE", $opt, true);
+    }
+
+    /**
+     * 倒计时撤销所有订单 (TRADE)
+     *
+     * @param $symbol string 交易对
+     * @param $countdownTime LONG 倒计时。 1000 表示 1 秒； 0 表示取消倒计时撤单功能。
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresCountdownCancelAll(string $symbol, $countdownTime = 1000)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+            "countdownTime" => $countdownTime,
+        ];
+        
+        $qstring = "fapi/v1/countdownCancelAll";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
+     * 查询当前挂单 (USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @param $orderId LONG 系统订单号
+     * @param $origClientOrderId string 用户自定义的订单号
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresOpenOrder(string $symbol, $orderId = null, $origClientOrderId = null)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+        ];
+        
+        if(!is_null($orderId))
+            $opt['orderId'] = $orderId;
+
+        if(!is_null($origClientOrderId))
+            $opt['origClientOrderId'] = $origClientOrderId;
+        
+        $qstring = "fapi/v1/openOrder";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 查看当前全部挂单 (USER_DATA)
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresOpenOrders(string $symbol = null)
+    {
+        $opt = [
+            "fapi" => true,
+        ];
+
+        if(!is_null($symbol))
+            $opt['symbol'] = $symbol;
+        
+        $qstring = "fapi/v1/openOrders";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 账户信息V2 (USER_DATA)
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresAccount()
+    {
+        $opt = [
+            "fapi" => true,
+        ];
+
+        $qstring = "fapi/v2/account";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 调整开仓杠杆 (TRADE)
+     *
+     * @param $symbol string 交易对
+     * @param $leverage int 目标杠杆倍数：1 到 125 整数
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresLeverage(string $symbol, $leverage = 5)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+            "leverage" => $leverage,
+        ];
+        
+        $qstring = "fapi/v1/leverage";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
+     * 变换逐仓模式 (TRADE)
+     *
+     * @param $symbol string 交易对
+     * @param $marginType ENUM 保证金模式 ISOLATED(逐仓), CROSSED(全仓)
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresIsolatedMarginType(string $symbol)
+    {
+        return $this->futuresMarginType($symbol, 'ISOLATED');
+    }
+
+    /**
+     * 变换逐全仓模式 (TRADE)
+     *
+     * @param $symbol string 交易对
+     * @param $marginType ENUM 保证金模式 ISOLATED(逐仓), CROSSED(全仓)
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresMarginType(string $symbol, $marginType = 'CROSSED')
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+            "marginType" => $marginType,
+        ];
+        
+        $qstring = "fapi/v1/marginType";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
+     * 调整逐仓保证金 (TRADE)
+     *
+     * @param $symbol string 交易对
+     * @param $positionSide ENUM 持仓方向，单向持仓模式下非必填，默认且仅可填BOTH;在双向持仓模式下必填,且仅可选择 LONG 或 SHORT
+     * @param $amount DECIMAL 保证金资金
+     * @param $type int 调整方向 1: 增加逐仓保证金，2: 减少逐仓保证金
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresPositionMargin(string $symbol, $amount, $type = 1, $positionSide = null)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+            "amount" => $amount,
+            "type" => $type,
+        ];
+
+        if(!is_null($positionSide))
+            $opt['positionSide'] = $positionSide;
+        
+        $qstring = "fapi/v1/positionMargin";
+        return $this->httpRequest($qstring, "POST", $opt, true);
+    }
+
+    /**
      * 用户持仓风险V2 (USER_DATA)
      *
      * @param $symbol string 交易对
@@ -649,6 +981,42 @@ trait Futures
         ];
 
         $qstring = "fapi/v2/positionRisk";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 获取账户损益资金流水(USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @param $incomeType STRING 收益类型 "TRANSFER"，"WELCOME_BONUS", "REALIZED_PNL"，"FUNDING_FEE", "COMMISSION", and "INSURANCE_CLEAR"
+     * @param $startTime LONG 起始时间
+     * @param $endTime LONG 结束时间
+     * @param $limit INT 返回的结果集数量 默认值:100 最大值:1000
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresIncome(string $symbol = null, $incomeType = null, $startTime = null, $endTime = null, $limit = null)
+    {
+        $opt = [
+            "fapi" => true,
+        ];
+
+        if(!is_null($symbol))
+            $opt['symbol'] = $symbol;
+
+        if(!is_null($incomeType))
+            $opt['incomeType'] = $incomeType;
+
+        if(!is_null($startTime))
+            $opt['startTime'] = $startTime;
+
+        if(!is_null($endTime))
+            $opt['endTime'] = $endTime;
+
+        if(!is_null($limit))
+            $opt['limit'] = $limit;
+
+        $qstring = "fapi/v1/income";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
 }
