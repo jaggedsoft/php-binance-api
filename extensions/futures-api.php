@@ -1019,4 +1019,27 @@ trait Futures
         $qstring = "fapi/v1/income";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
+
+    /**
+     * 用户手续费率 (USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresCommissionRate(string $symbol)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+        ];
+
+        $qstring = "fapi/v1/commissionRate";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+        // return: {
+        //     "symbol": "BTCUSDT",
+        //     "makerCommissionRate": "0.0002",  // 0.02%
+        //     "takerCommissionRate": "0.0004"   // 0.04%
+        // }
+    }
 }
