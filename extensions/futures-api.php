@@ -872,6 +872,35 @@ trait Futures
     }
 
     /**
+     * 账户信息V2 by key
+     *
+     * @param $symbols string 最多可以传5个symbol; 由","分隔的字符串表示. e.g. "BTCUSDT,BNBUSDT,ADAUSDT"
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresAccountByKey()
+    {
+        $account = $this->futuresAccount();
+        if(array_key_exists('assets', $account)) {;
+            $tmp = [];
+            // 只記錄在 SymbolType 裡存在的資訊
+            foreach($account['assets'] as $key => $value){
+                $tmp[$value['asset']] = $value;
+            }
+            $account['assets'] = $tmp;
+        }
+        if(array_key_exists('positions', $account)) {;
+            $tmp = [];
+            // 只記錄在 SymbolType 裡存在的資訊
+            foreach($account['positions'] as $key => $value){
+                $tmp[$value['symbol']] = $value;
+            }
+            $account['positions'] = $tmp;
+        }
+        return $account;
+    }
+
+    /**
      * 账户信息V2 (USER_DATA)
      *
      * @return array containing the response
