@@ -745,6 +745,27 @@ trait Futures
         if(!is_null($closePosition) and $closePosition != 'false')
             $opt['closePosition'] = $closePosition;
 
+        if(!is_null($positionSide))
+            $opt['positionSide'] = $positionSide;
+
+        if(!is_null($reduceOnly))
+            $opt['reduceOnly'] = $reduceOnly;
+
+        if(!is_null($newClientOrderId))
+            $opt['newClientOrderId'] = $newClientOrderId;
+
+        if(!is_null($activationPrice))
+            $opt['activationPrice'] = $activationPrice;
+
+        if(!is_null($workingType))
+            $opt['workingType'] = $workingType;
+
+        if(!is_null($priceProtect))
+            $opt['priceProtect'] = $priceProtect;
+
+        if(!is_null($newOrderRespType))
+            $opt['newOrderRespType'] = $newOrderRespType;
+
         $qstring = ($test) ? "fapi/v1/order/test" : "fapi/v1/order";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
