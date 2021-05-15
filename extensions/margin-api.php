@@ -563,4 +563,20 @@ trait Margin
         $qstring = "v1/margin/interestRateHistory";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
+
+    /**
+     * 获取所有逐仓杠杆交易对
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginIsolatedAllPairs()
+    {
+        $opt = [
+            "sapi" => true,
+        ];
+
+        $qstring = "v1/margin/isolated/allPairs";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
 }

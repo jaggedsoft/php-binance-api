@@ -706,44 +706,49 @@ trait Futures
         if(!is_null($newOrderRespType))
             $opt['newOrderRespType'] = $newOrderRespType;
 
-        // 驗證必要參數
-        switch($type) 
-        {
-            case 'LIMIT':
-                if(is_null($timeInForce) or is_null($quantity) or is_null($price))
-                    throw new Exception('根據 order type的不同，強制要求參數：timeInForce, quantity, price');
-                $opt['timeInForce'] = $timeInForce;
-                $opt['quantity'] = $quantity;
-                $opt['price'] = $price;
-                break;
-            case 'MARKET':
-                if(is_null($quantity))
-                    throw new Exception('根據 order type的不同，強制要求參數：quantity');
-                $opt['quantity'] = $quantity;
-                break;
-            case 'STOP':
-            case 'TAKE_PROFIT':
-                if(is_null($quantity) or is_null($price) or is_null($stopPrice))
-                    throw new Exception('根據 order type的不同，強制要求參數：quantity, price, stopPrice');
-                $opt['quantity'] = $quantity;
-                $opt['price'] = $price;
-                $opt['stopPrice'] = $stopPrice;
-                break;
-            case 'STOP_MARKET':
-            case 'TAKE_PROFIT_MARKET':
-                if(is_null($stopPrice))
-                    throw new Exception('根據 order type的不同，強制要求參數：stopPrice');
-                $opt['stopPrice'] = $stopPrice;
-                break;
-            case 'TRAILING_STOP_MARKET':
-                if(is_null($callbackRate))
-                    throw new Exception('根據 order type的不同，強制要求參數：callbackRate');
-                $opt['callbackRate'] = $callbackRate;
-                break;
-        }
-
-        if(!is_null($closePosition) and $closePosition != 'false')
+        if(!is_null($closePosition) and $closePosition != 'false') {
+            if(is_null($stopPrice))
+                throw new Exception('當 closePosition 為 true 強制要求參數：stopPrice');
+            $opt['stopPrice'] = $stopPrice;
             $opt['closePosition'] = $closePosition;
+        }
+        else {
+            // 驗證必要參數
+            switch($type) 
+            {
+                case 'LIMIT':
+                    if(is_null($timeInForce) or is_null($quantity) or is_null($price))
+                        throw new Exception('根據 order type的不同，強制要求參數：timeInForce, quantity, price');
+                    $opt['timeInForce'] = $timeInForce;
+                    $opt['quantity'] = $quantity;
+                    $opt['price'] = $price;
+                    break;
+                case 'MARKET':
+                    if(is_null($quantity))
+                        throw new Exception('根據 order type的不同，強制要求參數：quantity');
+                    $opt['quantity'] = $quantity;
+                    break;
+                case 'STOP':
+                case 'TAKE_PROFIT':
+                    if(is_null($quantity) or is_null($price) or is_null($stopPrice))
+                        throw new Exception('根據 order type的不同，強制要求參數：quantity, price, stopPrice');
+                    $opt['quantity'] = $quantity;
+                    $opt['price'] = $price;
+                    $opt['stopPrice'] = $stopPrice;
+                    break;
+                case 'STOP_MARKET':
+                case 'TAKE_PROFIT_MARKET':
+                    if(is_null($stopPrice))
+                        throw new Exception('根據 order type的不同，強制要求參數：stopPrice');
+                    $opt['stopPrice'] = $stopPrice;
+                    break;
+                case 'TRAILING_STOP_MARKET':
+                    if(is_null($callbackRate))
+                        throw new Exception('根據 order type的不同，強制要求參數：callbackRate');
+                    $opt['callbackRate'] = $callbackRate;
+                    break;
+            }
+        }
 
         if(!is_null($positionSide))
             $opt['positionSide'] = $positionSide;
@@ -776,11 +781,12 @@ trait Futures
      * @param $symbol STRING 交易对
      * @param $side ENUM 买卖方向 SELL, BUY
      * @param $type ENUM 订单类型 LIMIT, MARKET, STOP, TAKE_PROFIT, STOP_MARKET, TAKE_PROFIT_MARKET, TRAILING_STOP_MARKET
+     * @param $stop_price int 限價
      * @throws \Exception
      */
-    public function featuresClosePositionOrder(string $symbol, string $side, string $type = 'STOP_MARKET', bool $test = false)
+    public function featuresClosePositionOrder(string $symbol, string $side, string $type = 'STOP_MARKET', $stop_price, bool $test = false)
     {
-        return $this->futuresOrder($symbol, $side, $type, null, null, null, null, null, null, 'true', null, null, null, null, null, "RESULT", $test);
+        return $this->futuresOrder($symbol, $side, $type, null, null, null, null, null, $stop_price, 'true', null, null, null, null, null, "RESULT", $test);
     }
 
     /**
@@ -806,6 +812,40 @@ trait Futures
             $opt['origClientOrderId'] = $origClientOrderId;
 
         $qstring = "fapi/v1/order";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
+
+    /**
+     * 查询订单 (USER_DATA)
+     *
+     * @param $symbol string 交易对
+     * @param $orderId LONG 只返回此orderID及之后的订单，缺省返回最近的订单
+     * @param $startTime string 起始时间
+     * @param $endTime string 结束时间
+     * @param $limit int 返回的结果集数量 默认值:500 最大值:1000
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function futuresAllOrders(string $symbol, $orderId = null, $startTime = null, $endTime = null, $limit = null)
+    {
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+        ];
+        
+        if(!is_null($orderId))
+            $opt['orderId'] = $orderId;
+
+        if(!is_null($startTime))
+            $opt['startTime'] = $startTime;
+
+        if(!is_null($endTime))
+            $opt['endTime'] = $endTime;
+
+        if(!is_null($limit))
+            $opt['limit'] = $limit;
+
+        $qstring = "fapi/v1/allOrders";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
 
