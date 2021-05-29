@@ -168,6 +168,19 @@ trait Margin
     }
 
     /**
+     * 查询杠杆价格指数
+     *
+     * @param $symbol string BTC
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginPrice(string $symbol)
+    {
+        $ticker = $this->marginPriceIndex($symbol);
+        return $ticker['price'];
+    }
+
+    /**
      * 查询逐倉杠杆账户交易历史
      *
      * @param $symbol string BTCUSDT
