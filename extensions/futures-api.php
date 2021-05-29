@@ -784,7 +784,7 @@ trait Futures
      * @param $stop_price int 限價
      * @throws \Exception
      */
-    public function featuresClosePositionOrder(string $symbol, string $side, string $type = 'STOP_MARKET', $stop_price, bool $test = false)
+    public function featuresClosePositionOrder(string $symbol, string $side, string $type = 'STOP_MARKET', $stop_price = null, bool $test = false)
     {
         return $this->futuresOrder($symbol, $side, $type, null, null, null, null, null, $stop_price, 'true', null, null, null, null, null, "RESULT", $test);
     }
