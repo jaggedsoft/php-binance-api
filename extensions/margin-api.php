@@ -592,4 +592,37 @@ trait Margin
         $qstring = "v1/margin/isolated/allPairs";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
+
+    /**
+     * 获取所有 VIP LEVEL 交易對手續費
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginVipSpecList() 
+    {
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => 'https://www.binance.com/gateway-api/v1/friendly/margin/vip/spec/list-all',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => ['Cookie: cid=kIck7YK5'],
+        ]);
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $resp = json_decode($response);
+        if(array_key_exists('data', $resp)) {;
+            $tmp = [];
+            foreach($resp['data'] as $key => $value){
+                $tmp[$value['assetName']] = $value;
+            }
+            $resp['data'] = $tmp;
+        }
+        return $resp;
+    }
 }
