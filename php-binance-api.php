@@ -1195,7 +1195,7 @@ class API
         }
     
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-        $header = substr($output, 0, $header_size);
+        $header = $this->get_headers_from_curl_response($output);
         $output = substr($output, $header_size);
         
         curl_close($curl);
@@ -1228,6 +1228,28 @@ class API
         $this->transfered += strlen($output);
         $this->requestCount++;
         return $json;
+    }
+
+    /**
+     * Converts the output of the CURL header to an array
+     *
+     * @param $response string containing the response
+     * @return array headers converted to an array
+     */
+    public function get_headers_from_curl_response(string $header)
+    {
+        $headers = array();
+        $header_text = substr($header, 0, strpos($header, "\r\n\r\n"));
+
+        foreach (explode("\r\n", $header_text) as $i => $line)
+            if ($i === 0)
+                $headers['http_code'] = $line;
+            else {
+                list ($key, $value) = explode(': ', $line);
+                $headers[$key] = $value;
+            }
+
+        return $headers;
     }
 
     /**
