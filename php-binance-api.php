@@ -1233,7 +1233,7 @@ class API
     /**
      * Converts the output of the CURL header to an array
      *
-     * @param $response string containing the response
+     * @param $header string containing the response
      * @return array headers converted to an array
      */
     public function get_headers_from_curl_response(string $header)
