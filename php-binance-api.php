@@ -12,7 +12,10 @@
  */
 namespace Binance;
 
+require 'EchoLogger.php';
+
 use Exception;
+use Psr\Log\LoggerInterface;
 
 // PHP version check
 if (version_compare(phpversion(), '7.0', '<=')) {
@@ -29,6 +32,8 @@ if (version_compare(phpversion(), '7.0', '<=')) {
  */
 class API
 {
+    private $logger = null;
+
     protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
     protected $baseTestnet = 'https://testnet.binance.vision/api/'; // /< Testnet REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
@@ -56,7 +61,7 @@ class API
     protected $btc_total = 0.00;
 
     // /< value of available onOrder assets
-    
+
     protected $exchangeInfo = null;
     protected $lastRequest = [];
 
@@ -77,6 +82,19 @@ class API
     public function __construct()
     {
         $param = func_get_args();
+
+        for($i = 0; $i < count($param); $i++) {
+            if($param[$i] instanceof LoggerInterface) {
+                $this->logger = $param[$i];
+                array_splice($param, $i, 1);
+                break;
+            }
+        }
+
+        if($this->logger == null) {
+            $this->logger = new EchoLogger();
+        }
+
         switch (count($param)) {
             case 0:
                 $this->setupApiConfigFromFile();
@@ -98,7 +116,7 @@ class API
                 $this->useTestnet = (bool)$param[2];
                 break;
             default:
-                echo 'Please see valid constructors here: https://github.com/jaggedsoft/php-binance-api/blob/master/examples/constructor.php';
+                $this->logger->critical('Please see valid constructors here: https://github.com/jaggedsoft/php-binance-api/blob/master/examples/constructor.php');
         }
     }
 
@@ -143,8 +161,8 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            echo "Unable to load config from: " . $file . PHP_EOL;
-            echo "Detected no API KEY or SECRET, all signed requests will fail" . PHP_EOL;
+            $this->logger->info("Unable to load config from: " . $file . PHP_EOL);
+            $this->logger->info("Detected no API KEY or SECRET, all signed requests will fail" . PHP_EOL);
             return;
         }
         $contents = json_decode(file_get_contents($file), true);
@@ -169,8 +187,8 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            echo "Unable to load config from: " . $file . PHP_EOL;
-            echo "No curl options will be set" . PHP_EOL;
+            $this->logger->info("Unable to load config from: " . $file . PHP_EOL);
+            $this->logger->info("No curl options will be set" . PHP_EOL);
             return;
         }
         $contents = json_decode(file_get_contents($file), true);
@@ -192,8 +210,8 @@ class API
             return;
         }
         if (file_exists($file) === false) {
-            echo "Unable to load config from: " . $file . PHP_EOL;
-            echo "No proxies will be used " . PHP_EOL;
+            $this->logger->info("Unable to load config from: " . $file . PHP_EOL);
+            $this->logger->info("No proxies will be used " . PHP_EOL);
             return;
         }
         $contents = json_decode(file_get_contents($file), true);
@@ -376,8 +394,8 @@ class API
     {
         return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
     }
-    
-    
+
+
     /**
      * numberOfDecimals() returns the signifcant digits level based on the minimum order amount.
      *
@@ -633,15 +651,15 @@ class API
     {
         if (!$this->exchangeInfo) {
             $arr = $this->httpRequest("v3/exchangeInfo");
-            
+
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
-            
+
             foreach ($arr['symbols'] as $key => $value) {
                 $this->exchangeInfo['symbols'][$value['symbol']] = $value;
             }
         }
-        
+
         return $this->exchangeInfo;
     }
     
@@ -672,13 +690,13 @@ class API
             
         }
     }
-    
+
     public function userAssetDribbletLog()
     {
         $params["wapi"] = true;
         return $this->httpRequest("v3/userAssetDribbletLog.html", 'GET', $params, true);
     }
-    
+
     /**
      * Fetch current(daily) trade fee of symbol, values in percentage.
      * for more info visit binance official api document
@@ -693,7 +711,7 @@ class API
             "symbol" => $symbol,
             "wapi" => true,
         ];
-        
+
         return $this->httpRequest("v3/tradeFee.html", 'GET', $params, true);
     }
 
@@ -909,7 +927,7 @@ class API
             "symbol" => $symbol,
         ]));
     }
-    
+
     /**
      * historicalTrades - Get historical trades for a specific currency
      *
@@ -963,7 +981,7 @@ class API
 
         if (isset($symbol) === false || is_string($symbol) === false) {
             // WPCS: XSS OK.
-            echo "asset: expected bool false, " . gettype($symbol) . " given" . PHP_EOL;
+            $this->logger->info("asset: expected bool false, " . gettype($symbol) . " given" . PHP_EOL);
         }
         $json = $this->httpRequest("v1/depth", "GET", [
             "symbol" => $symbol,
@@ -994,11 +1012,11 @@ class API
         $account = $this->httpRequest("v3/account", "GET", [], true);
 
         if (is_array($account) === false) {
-            echo "Error: unable to fetch your account details" . PHP_EOL;
+            $this->logger->info("Error: unable to fetch your account details" . PHP_EOL);
         }
 
         if (isset($account['balances']) === false || empty($account['balances'])) {
-            echo "Error: your balances were empty or unset" . PHP_EOL;
+            $this->logger->info("Error: your balances were empty or unset" . PHP_EOL);
             return [];
         }
 
@@ -1039,7 +1057,7 @@ class API
 
         if (in_array($uri, $supportedProtocols) === false) {
             // WPCS: XSS OK.
-            echo "Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ", $supportedProtocols) . PHP_EOL;
+            $this->logger->info("Unknown proxy protocol '" . $this->proxyConf['proto'] . "', supported protocols are " . implode(", ", $supportedProtocols) . PHP_EOL);
         }
 
         $uri .= "://";
@@ -1047,7 +1065,7 @@ class API
 
         if (isset($this->proxyConf['address']) === false) {
             // WPCS: XSS OK.
-            echo "warning: proxy address not set defaulting to localhost" . PHP_EOL;
+            $this->logger->warning("warning: proxy address not set defaulting to localhost" . PHP_EOL);
         }
 
         $uri .= ":";
@@ -1055,7 +1073,7 @@ class API
 
         if (isset($this->proxyConf['address']) === false) {
             // WPCS: XSS OK.
-            echo "warning: proxy port not set defaulting to 1080" . PHP_EOL;
+            $this->logger->warning("warning: proxy port not set defaulting to 1080" . PHP_EOL);
         }
 
         return $uri;
@@ -1133,7 +1151,7 @@ class API
                 unset($params['wapi']);
                 $base = $this->wapi;
             }
-        
+
             if (isset($params['sapi'])) {
                 if ($this->useTestnet) {
                     throw new \Exception("sapi endpoints are not available in testnet");
@@ -1141,7 +1159,7 @@ class API
                 unset($params['sapi']);
                 $base = $this->sapi;
             }
-        
+
             $query = http_build_query($params, '', '&');
             $query = str_replace([ '%40' ], [ '@' ], $query);//if send data type "e-mail" then binance return: [Signature for this request is not valid.]
             $signature = hash_hmac('sha256', $query, $this->api_secret);
@@ -1215,15 +1233,15 @@ class API
             // not outputing errors, hides it from users and ends up with tickets on github
             throw new \Exception('Curl error: ' . curl_error($curl));
         }
-    
+
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $header = $this->get_headers_from_curl_response($output);
         $output = substr($output, $header_size);
-        
+
         curl_close($curl);
-        
+
         $json = json_decode($output, true);
-        
+
         $this->lastRequest = [
             'url' => $url,
             'method' => $method,
@@ -1312,12 +1330,12 @@ class API
 
         if (is_numeric($quantity) === false) {
             // WPCS: XSS OK.
-            echo "warning: quantity expected numeric got " . gettype($quantity) . PHP_EOL;
+            $this->logger->warning("warning: quantity expected numeric got " . gettype($quantity) . PHP_EOL);
         }
 
         if (is_string($price) === false) {
             // WPCS: XSS OK.
-            echo "warning: price expected string got " . gettype($price) . PHP_EOL;
+            $this->logger->warning("warning: price expected string got " . gettype($price) . PHP_EOL);
         }
 
         if ($type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT") {
@@ -1390,7 +1408,7 @@ class API
         }
 
         if (count($response) === 0) {
-            echo "warning: v1/klines returned empty array, usually a blip in the connection or server" . PHP_EOL;
+            $this->logger->warning("warning: v1/klines returned empty array, usually a blip in the connection or server" . PHP_EOL);
             return [];
         }
 
@@ -1420,8 +1438,8 @@ class API
 
         if (empty($array) || empty($array['balances'])) {
             // WPCS: XSS OK.
-            echo "balanceData error: Please make sure your system time is synchronized: call \$api->useServerTime() before this function" . PHP_EOL;
-            echo "ERROR: Invalid request. Please double check your API keys and permissions." . PHP_EOL;
+            $this->logger->error("balanceData error: Please make sure your system time is synchronized: call \$api->useServerTime() before this function" . PHP_EOL);
+            $this->logger->error("ERROR: Invalid request. Please double check your API keys and permissions." . PHP_EOL);
             return [];
         }
 
@@ -2069,12 +2087,12 @@ class API
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop) {
                     // WPCS: XSS OK.
-                    echo "depthCache({$symbol}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                    $this->logger->info("depthCache({$symbol}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol) {
                 // WPCS: XSS OK.
-                echo "depthCache({$symbol})) Could not connect: {$e->getMessage()}" . PHP_EOL;
+                $this->logger->info("depthCache({$symbol})) Could not connect: {$e->getMessage()}" . PHP_EOL);
                 $loop->stop();
             });
             $this->depth($symbol, 100);
@@ -2145,12 +2163,12 @@ class API
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop) {
                     // WPCS: XSS OK.
-                    echo "trades({$symbol}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                    $this->logger->info("trades({$symbol}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol) {
                 // WPCS: XSS OK.
-                echo "trades({$symbol}) Could not connect: {$e->getMessage()}" . PHP_EOL;
+                $this->logger->info("trades({$symbol}) Could not connect: {$e->getMessage()}" . PHP_EOL);
                 $loop->stop();
             });
         }
@@ -2195,11 +2213,11 @@ class API
             });
             $ws->on('close', function ($code = null, $reason = null) {
                 // WPCS: XSS OK.
-                echo "ticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                $this->logger->info("ticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
             });
         }, function ($e) {
             // WPCS: XSS OK.
-            echo "ticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $this->logger->info("ticker: Could not connect: {$e->getMessage()}" . PHP_EOL);
         });
         // @codeCoverageIgnoreEnd
     }
@@ -2276,7 +2294,7 @@ class API
                 });
             }, function ($e) use ($loop, $symbol, $interval) {
                 // WPCS: XSS OK.
-                echo "chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
+                $this->logger->info("chart({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL);
                 $loop->stop();
             });
             $this->candlesticks($symbol, $interval, $limit);
@@ -2334,12 +2352,12 @@ class API
                 });
                 $ws->on('close', function ($code = null, $reason = null) use ($symbol, $loop, $interval) {
                     // WPCS: XSS OK.
-                    echo "kline({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                    $this->logger->info("kline({$symbol},{$interval}) WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
                     $loop->stop();
                 });
             }, function ($e) use ($loop, $symbol, $interval) {
                 // WPCS: XSS OK.
-                echo "kline({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL;
+                $this->logger->info("kline({$symbol},{$interval})) Could not connect: {$e->getMessage()}" . PHP_EOL);
                 $loop->stop();
             });
         }
@@ -2453,11 +2471,11 @@ class API
             });
             $ws->on('close', function ($code = null, $reason = null) {
                 // WPCS: XSS OK.
-                echo "userData: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                $this->logger->info("userData: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
             });
         }, function ($e) {
             // WPCS: XSS OK.
-            echo "userData: Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $this->logger->info("userData: Could not connect: {$e->getMessage()}" . PHP_EOL);
         });
 
         $loop->run();
@@ -2505,11 +2523,11 @@ class API
             });
             $ws->on('close', function ($code = null, $reason = null) {
                 // WPCS: XSS OK.
-                echo "miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                $this->logger->info("miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
             });
         }, function ($e) {
             // WPCS: XSS OK.
-            echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $this->logger->info("miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL);
         });
         // @codeCoverageIgnoreEnd
     }
@@ -2552,11 +2570,11 @@ class API
             });
             $ws->on('close', function ($code = null, $reason = null) {
                 // WPCS: XSS OK.
-                echo "miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                $this->logger->info("miniticker: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL);
             });
         }, function ($e) {
             // WPCS: XSS OK.
-            echo "miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $this->logger->info("miniticker: Could not connect: {$e->getMessage()}" . PHP_EOL);
         });
         // @codeCoverageIgnoreEnd
     }
@@ -2595,21 +2613,21 @@ class API
         curl_close($curl);
 
         if ($result === false) {
-            echo "Unable to to download the CA bundle $host" . PHP_EOL;
+            $this->logger->error("Unable to to download the CA bundle $host" . PHP_EOL);
             return;
         }
 
         $fp = fopen($output_filename, 'w');
 
         if ($fp === false) {
-            echo "Unable to write $output_filename, please check permissions on folder" . PHP_EOL;
+            $this->logger->error("Unable to write $output_filename, please check permissions on folder" . PHP_EOL);
             return;
         }
 
         fwrite($fp, $result);
         fclose($fp);
     }
-    
+
     protected function floorDecimal($n, $decimals=2)
     {
         return floor($n * pow(10, $decimals)) / pow(10, $decimals);
@@ -2654,11 +2672,11 @@ class API
     /**
      * systemStatus - Status indicator for sapi and wapi
      * 0 = Normal, 1 = System Maintenance
-     * 
+     *
      * @link https://binance-docs.github.io/apidocs/spot/en/#system-status-system
-     * 
+     *
      * @property int $weight 1
-     * 
+     *
      * @return array containing the response
      * @throws \Exception
      */
@@ -2667,28 +2685,28 @@ class API
         $arr = array();
         $api_status = $this->httpRequest("v3/ping", 'GET');
         if ( empty($api_status) ) {
-            $arr['api']['status']  = 'ping ok';    
+            $arr['api']['status']  = 'ping ok';
         } else {
-            $arr['api']['status']  = $api_status;    
+            $arr['api']['status']  = $api_status;
         }
-         
+
         $arr['sapi'] = $this->httpRequest("v1/system/status", 'GET', [ 'sapi' => true ], true);
         $arr['wapi'] = $this->httpRequest("v3/systemStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
     }
-    
+
     /**
      * accountSnapshot - Daily Account Snapshot at 00:00:00 UTC
-     * 
+     *
      * @link https://binance-docs.github.io/apidocs/spot/en/#daily-account-snapshot-user_data
-     * 
+     *
      * @property int $weight 1
-     * 
+     *
      * @param string $type      (mandatory) Should be SPOT, MARGIN or FUTURES
      * @param int    $nbrDays   (optional)  Number of days. Default 5, min 5, max 30
      * @param long   $startTime (optional)  Start time, e.g. 1617580799000
      * @param long   $endTime   (optional)  End time, e.g. 1617667199000
-     * 
+     *
      * @return array containing the response
      * @throws \Exception
      */
@@ -2696,30 +2714,30 @@ class API
     {
         if ($nbrDays < 5 || $nbrDays > 30)
             $nbrDays = 5;
-            
+
         $params = [
             'sapi' => true,
             'type' => $type,
             ];
-            
+
         if ($startTime > 0)
             $params['startTime'] = $startTime;
         if ($endTime > 0)
             $params['endTime'] = $startTime;
         if ($nbrDays != 5)
             $params['limit'] = $limit;
-            
+
         return $this->httpRequest("v1/accountSnapshot", 'GET', $params, true);
     }
-    
+
     /**
      * accountStatus - Fetch account status detail.
-     * 
+     *
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-user_data
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-sapi-user_data
-     * 
+     *
      * @property int $weight 2
-     * 
+     *
      * @return array containing the response
      * @throws \Exception
      */
@@ -2730,15 +2748,15 @@ class API
         $arr['wapi'] = $this->httpRequest("v3/accountStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
     }
-    
+
     /**
      * apiTradingStatus - Fetch account API trading status detail.
-     * 
+     *
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-sapi-user_data
-     * 
+     *
      * @property int $weight 2
-     * 
+     *
      * @return array containing the response
      * @throws \Exception
      */
@@ -2748,5 +2766,5 @@ class API
         $arr['sapi'] = $this->httpRequest("v1/account/apiTradingStatus", 'GET', [ 'sapi' => true ], true);
         $arr['wapi'] = $this->httpRequest("v3/apiTradingStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
-    }    
+    }
 }
