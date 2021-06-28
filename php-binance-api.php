@@ -644,7 +644,16 @@ class API
         
         return $this->exchangeInfo;
     }
-
+    
+    /**
+     * assetDetail - Fetch details of assets supported on Binance
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#asset-detail-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @return array containing the response
+     */
     public function assetDetail()
     {
         $params["sapi"] = true;
