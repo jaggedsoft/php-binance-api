@@ -647,8 +647,21 @@ class API
 
     public function assetDetail()
     {
-        $params["wapi"] = true;
-        return $this->httpRequest("v3/assetDetail.html", 'GET', $params, true);
+        $params["sapi"] = true;
+        $arr = $this->httpRequest("v1/asset/assetDetail", 'GET', $params, true);
+        // wrap into another array for backwards compatibility with the old wapi one
+        if (!empty($arr['BTC']['withdrawFee'])) {
+            return array(
+                'success'     => 1,
+                'assetDetail' => $arr,
+                );
+        } else {
+            return array(
+                'success'     => 0,
+                'assetDetail' => array(),
+                );
+            
+        }
     }
     
     public function userAssetDribbletLog()
