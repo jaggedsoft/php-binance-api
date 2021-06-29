@@ -2707,7 +2707,7 @@ class API
         if ($endTime > 0)
             $params['endTime'] = $startTime;
         if ($nbrDays != 5)
-            $params['limit'] = $limit;
+            $params['limit'] = $nbrDays;
             
         return $this->httpRequest("v1/accountSnapshot", 'GET', $params, true);
     }
