@@ -673,10 +673,39 @@ class API
         }
     }
     
+    /**
+     * userAssetDribbletLog - Log of the conversion of the dust assets to BNB
+     * @deprecated
+     */
     public function userAssetDribbletLog()
     {
         $params["wapi"] = true;
+        trigger_error('Deprecated - function will disappear on 2021-08-01 from Binance. Please switch to $api->dustLog().', E_USER_DEPRECATED);
         return $this->httpRequest("v3/userAssetDribbletLog.html", 'GET', $params, true);
+    }
+    
+    /**
+     * dustLog - Log of the conversion of the dust assets to BNB
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#dustlog-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param long  $startTime  (optional)  Start time, e.g. 1617580799000
+     * @param long  $endTime    (optional)  End time, e.g. 1617580799000. Endtime is mandatory if startTime is set.
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function dustLog($startTime = NULL, $endTime = NULL)
+    {
+        $params["sapi"] = true;
+        if (!empty($startTime) && !empty($endTime)) {
+            $params['startTime'] = $startTime;
+            $params['endTime'] = $endTime;
+        }
+
+        return $this->httpRequest("v1/asset/dribblet", 'GET', $params, true);
     }
     
     /**
@@ -722,33 +751,35 @@ class API
     }
 
     /**
-     * withdraw requests a asset be withdrawn from binance to another wallet
-     *
-     * $asset = "BTC";
-     * $address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
-     * $amount = 0.2;
-     * $response = $api->withdraw($asset, $address, $amount);
-     *
-     * $address = "44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn";
-     * $addressTag = "0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1";
-     * $amount = 0.1;
-     * $response = $api->withdraw($asset, $address, $amount, $addressTag);
-     *
-     * @param $asset string the currency such as BTC
-     * @param $address string the addressed to whihc the asset should be deposited
-     * @param $amount double the amount of the asset to transfer
-     * @param $addressTag string adtional transactionid required by some assets
-     * @return array with error message or array transaction
+     * withdraw - Submit a withdraw request to move an asset to another wallet
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#withdraw-sapi
+     * 
+     * @example https://github.com/jaggedsoft/php-binance-api#withdraw   Standard withdraw
+     * @example https://github.com/jaggedsoft/php-binance-api#withdraw-with-addresstag   Withdraw with addressTag for e.g. XRP
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $asset               (mandatory)  An asset, e.g. BTC
+     * @param string $address             (mandatory)  The address where to send, e.g. 1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa or 44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn
+     * @param string $amount              (mandatory)  The amount, e.g. 0.2
+     * @param string $addressTag          (optional)   Mandatory secondary address for some assets (XRP,XMR,etc), e.g. 0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1
+     * @param string $addressName         (optional)   Description of the address
+     * @param string $transactionFeeFlag  (optional)   When making internal transfer, true for returning the fee to the destination account; false for returning the fee back to the departure account.
+     * @param string $network             (optional)   
+     * @param string $orderId             (optional)   Client id for withdraw
+     * 
+     * @return array containing the response
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false, $network = null)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false, $network = null, $orderId = null)
     {
         $options = [
-            "asset" => $asset,
+            "coin" => $asset,
             "address" => $address,
             "amount" => $amount,
             "transactionFeeFlag" => $transactionFeeFlag,
-            "wapi" => true,
+            "sapi" => true,
         ];
         if (is_null($addressName) === false && empty($addressName) === false) {
             $options['name'] = str_replace(' ', '%20', $addressName);
@@ -759,7 +790,10 @@ class API
         if (is_null($network) === false && empty($network) === false) {
             $options['network'] = $network;
         }
-        return $this->httpRequest("v3/withdraw.html", "POST", $options, true);
+        if (is_null($orderId) === false && empty($orderId) === false) {
+            $options['withdrawOrderId'] = $orderId;
+        }
+        return $this->httpRequest("v1/capital/withdraw/apply", "POST", $options, true);
     }
 
     /**
