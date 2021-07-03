@@ -2747,12 +2747,12 @@ class API
     }
 
     /**
-     * systemStatus - Status indicator for sapi and wapi
-     * 0 = Normal, 1 = System Maintenance
-     * 
+     * systemStatus - Status indicator for api sapi
+     *
+     * @link https://binance-docs.github.io/apidocs/spot/en/#test-connectivity
      * @link https://binance-docs.github.io/apidocs/spot/en/#system-status-system
      * 
-     * @property int $weight 1
+     * @property int $weight 2
      * 
      * @return array containing the response
      * @throws \Exception
@@ -2768,7 +2768,6 @@ class API
         }
          
         $arr['sapi'] = $this->httpRequest("v1/system/status", 'GET', [ 'sapi' => true ], true);
-        $arr['wapi'] = $this->httpRequest("v3/systemStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
     }
     
@@ -2811,9 +2810,8 @@ class API
      * accountStatus - Fetch account status detail.
      * 
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-user_data
-     * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-sapi-user_data
      * 
-     * @property int $weight 2
+     * @property int $weight 1
      * 
      * @return array containing the response
      * @throws \Exception
@@ -2822,7 +2820,6 @@ class API
     {
         $arr = array();
         $arr['sapi'] = $this->httpRequest("v1/account/status", 'GET', [ 'sapi' => true ], true);
-        $arr['wapi'] = $this->httpRequest("v3/accountStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
     }
     
@@ -2830,9 +2827,8 @@ class API
      * apiTradingStatus - Fetch account API trading status detail.
      * 
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data
-     * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-sapi-user_data
      * 
-     * @property int $weight 2
+     * @property int $weight 1
      * 
      * @return array containing the response
      * @throws \Exception
@@ -2841,7 +2837,6 @@ class API
     {
         $arr = array();
         $arr['sapi'] = $this->httpRequest("v1/account/apiTradingStatus", 'GET', [ 'sapi' => true ], true);
-        $arr['wapi'] = $this->httpRequest("v3/apiTradingStatus.html", 'GET', [ 'wapi' => true ], true);
         return $arr;
     }    
 }
