@@ -797,84 +797,121 @@ class API
     }
 
     /**
-     * depositAddress get the deposit address for an asset
-     *
-     * $depositAddress = $api->depositAddress("VEN");
-     *
-     * @param $asset string the currency such as BTC
-     * @return array with error message or array deposit address information
+     * depositAddress - Get the deposit address for an asset
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#deposit-address-supporting-network-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $asset    (mandatory)  An asset, e.g. BTC
+     * @param string $network  (optional)   You can get network in networkList from /sapi/v1/capital/config/getall   
+     * 
+     * @return array containing the response
      * @throws \Exception
      */
-    public function depositAddress(string $asset)
+    public function depositAddress(string $asset, $network = null)
     {
         $params = [
-            "wapi" => true,
-            "asset" => $asset,
+            "sapi" => true,
+            "coin" => $asset,
         ];
-        return $this->httpRequest("v3/depositAddress.html", "GET", $params, true);
+        if (is_null($network) === false && empty($network) === false) {
+            $params['network'] = $network;
+        }
+        
+        $return = $this->httpRequest("v1/capital/deposit/address", "GET", $params, true);
+
+        // Adding for backwards compatibility with wapi
+        $return['asset'] = $return['coin'];
+        $return['addressTag'] = $return['tag'];
+        
+        if (!empty($return['address'])) {
+            $return['success'] = 1;
+        } else {
+            $return['success'] = 0;
+        }
+
+        return $return;
     }
 
     /**
-     * depositAddress get the deposit history for an asset
-     *
-     * $depositHistory = $api->depositHistory();
-     *
-     * $depositHistory = $api->depositHistory( "BTC" );
-     *
-     * @param $asset string empty or the currency such as BTC
-     * @param $params array optional startTime, endTime, status parameters
-     * @return array with error message or array deposit history information
+     * depositHistory - Get the deposit history for one or all assets
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#deposit-history-supporting-network-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $asset    (optional)  An asset, e.g. BTC - or leave empty for all
+     * @param array  $params   (optional)  An array of additional parameters that the API endpoint allows   
+     * 
+     * @return array containing the response
      * @throws \Exception
      */
     public function depositHistory(string $asset = null, array $params = [])
     {
-        $params["wapi"] = true;
+        $params["sapi"] = true;
         if (is_null($asset) === false) {
-            $params['asset'] = $asset;
+            $params['coin'] = $asset;
         }
-        return $this->httpRequest("v3/depositHistory.html", "GET", $params, true);
+        $return = $this->httpRequest("v1/capital/deposit/hisrec", "GET", $params, true);
+
+        // Adding for backwards compatibility with wapi
+        foreach ($return as $key->$item) {
+            $return[$key]['asset'] = $item['coin'];
+        }
+        
+        return $return;
+        
     }
 
     /**
-     * withdrawHistory get the withdrawal history for an asset
-     *
-     * $withdrawHistory = $api->withdrawHistory();
-     *
-     * $withdrawHistory = $api->withdrawHistory( "BTC" );
-     *
-     * @param $asset string empty or the currency such as BTC
-     * @param $params array optional startTime, endTime, status parameters
-     * @return array with error message or array deposit history information
+     * withdrawHistory - Get the withdraw history for one or all assets
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#withdraw-history-supporting-network-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $asset    (optional)  An asset, e.g. BTC - or leave empty for all
+     * @param array  $params   (optional)  An array of additional parameters that the API endpoint allows: status, offset, limit, startTime, endTime  
+     * 
+     * @return array containing the response
      * @throws \Exception
      */
     public function withdrawHistory(string $asset = null, array $params = [])
     {
-        $params["wapi"] = true;
+        $params["sapi"] = true;
         if (is_null($asset) === false) {
-            $params['asset'] = $asset;
+            $params['coin'] = $asset;
         }
-        return $this->httpRequest("v3/withdrawHistory.html", "GET", $params, true);
+        // Wrapping in array for backwards compatibility with wapi
+        $return = array(
+            'withdrawList' => $this->httpRequest("v1/capital/withdraw/history", "GET", $params, true)
+            );
+        
+        // Adding for backwards compatibility with wapi
+        $return['success'] = 1;
+
+        return $return;
     }
 
     /**
-     * withdrawFee get the withdrawal fee for an asset
-     *
-     * $withdrawFee = $api->withdrawFee( "BTC" );
-     *
-     * @param $asset string currency such as BTC
-     * @return array with error message or array containing withdrawFee
+     * withdrawFee - Get the withdrawal fee for an asset
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $asset    (mandatory)  An asset, e.g. BTC
+     * 
+     * @return array containing the response
      * @throws \Exception
      */
     public function withdrawFee(string $asset)
     {
-        $params = [
-            "wapi" => true,
-        ];
+        $return = $this->assetDetail();
 
-        $response = $this->httpRequest("v3/assetDetail.html", "GET", $params, true);
-
-        if (isset($response['success'], $response['assetDetail'], $response['assetDetail'][$asset]) && $response['success']) {
-            return $response['assetDetail'][$asset];
+        if (isset($return['success'], $return['assetDetail'], $return['assetDetail'][$asset]) && $return['success']) {
+            return $return['assetDetail'][$asset];
+        } else {
+            return array();
         }
     }
 
