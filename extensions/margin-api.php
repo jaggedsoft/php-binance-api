@@ -592,4 +592,21 @@ trait Margin
         $qstring = "v1/margin/isolated/allPairs";
         return $this->httpRequest($qstring, "GET", $opt, true);
     }
+
+    /**
+     * 获取所有逐仓杠杆交易对
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function marginIsolatedPairs($symbol)
+    {
+        $opt = [
+            "sapi" => true,
+            "symbol" => $symbol,
+        ];
+
+        $qstring = "v1/margin/isolated/pair";
+        return $this->httpRequest($qstring, "GET", $opt, true);
+    }
 }
