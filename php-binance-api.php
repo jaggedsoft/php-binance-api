@@ -576,10 +576,12 @@ class API
      * @param $symbol string the currency symbol
      * @param $limit int the amount of orders returned
      * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
+     * @param $startTime int (optional) return the orders from this time onwards. null to ignore
+     * @param $endTime int (optional) return the orders from this time backwards. null to ignore
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1)
+    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
     {
         $parameters = [
             "symbol" => $symbol,
@@ -587,6 +589,12 @@ class API
         ];
         if ($fromTradeId > 0) {
             $parameters["fromId"] = $fromTradeId;
+        }
+        if (isset($startTime)) {
+            $parameters["startTime"] = $startTime;
+        }
+        if (isset($endTime)) {
+            $parameters["endTime"] = $endTime;
         }
 
         return $this->httpRequest("v3/myTrades", "GET", $parameters, true);
