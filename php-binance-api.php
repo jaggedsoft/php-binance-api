@@ -2847,4 +2847,25 @@ class API
         $arr['sapi'] = $this->httpRequest("v1/account/apiTradingStatus", 'GET', [ 'sapi' => true ], true);
         return $arr;
     }    
+    
+    /**
+     * Swap from one currency to another
+     * @param $baseAsset
+     * @param $quoteAsset
+     * @param $quoteQty
+     * @return array
+     * @throws \Exception
+     */
+    public function bswap($baseAsset, $quoteAsset, $quoteQty) {
+
+        $arr = array();
+        $arr['sapi'] = $this->httpRequest("v1/bswap/quote", 'GET', [
+            'sapi' => true,
+            'quoteAsset'=>$quoteAsset,
+            'baseAsset'=>$baseAsset,
+            'quoteQty'=> $quoteQty,
+        ], true);
+
+        return $arr;
+    }
 }
