@@ -864,7 +864,7 @@ class API
         $return = $this->httpRequest("v1/capital/deposit/hisrec", "GET", $params, true);
 
         // Adding for backwards compatibility with wapi
-        foreach ($return as $key->$item) {
+        foreach ($return as $key=>$item) {
             $return[$key]['asset'] = $item['coin'];
         }
         
