@@ -660,13 +660,21 @@ class API
      * 
      * @property int $weight 1
      * 
+     * @param string $asset  (optional)  Should be an asset, e.g. BNB or empty to get the full list
+     *
      * @return array containing the response
      */
-    public function assetDetail()
+    public function assetDetail($asset = '')
     {
         $params["sapi"] = true;
+        if ($asset != '' && gettype($asset) == 'string')
+            $params['asset'] = $asset;
         $arr = $this->httpRequest("v1/asset/assetDetail", 'GET', $params, true);
-        // wrap into another array for backwards compatibility with the old wapi one
+        // if asset was set, no backward compatibility needed as this was implemented later
+        if (isset($params['asset']))
+            return $arr;
+
+        // wrap into another array for backward compatibility with the old wapi one
         if (!empty($arr['BTC']['withdrawFee'])) {
             return array(
                 'success'     => 1,
