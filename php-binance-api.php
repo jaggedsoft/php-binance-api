@@ -1222,7 +1222,7 @@ class API
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
-        $query = http_build_query($params, '', '&');
+        $query = $this->binance_build_query($params, '', '&');
 
         // signed with params
         if ($signed === true) {
@@ -1253,13 +1253,13 @@ class API
                 $base = $this->sapi;
             }
         
-            $query = http_build_query($params, '', '&');
+            $query = $this->binance_build_query($params, '', '&');
             $query = str_replace([ '%40' ], [ '@' ], $query);//if send data type "e-mail" then binance return: [Signature for this request is not valid.]
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
                 $endpoint = $base . $url;
                 $params['signature'] = $signature; // signature needs to be inside BODY
-                $query = http_build_query($params, '', '&'); // rebuilding query
+                $query = $this->binance_build_query($params, '', '&'); // rebuilding query
             } else {
                 $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             }
@@ -1363,6 +1363,35 @@ class API
         return $json;
     }
 
+    /**
+     * binance_build_query - Wrapper for http_build_query to allow arrays as parameters
+     * 
+     * sapi v1/asset/dust can have an array, so it needs a conversion
+     * 
+     * @param array  $params  (mandatory)   Parameters to convert to http query
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    protected function binance_build_query($params = [])
+    {
+        $new_arr = array();
+        $query_add = '';
+        foreach ($params as $label=>$item) {
+            if ( gettype($item) == 'array' ) {
+                foreach ($item as $arritem) {
+                    $query_add = $label . '=' . $arritem . '&' . $query_add;
+                }
+            } else {
+                $new_arr[$label] = $item;
+            }
+        }
+        $query = http_build_query($new_arr, '', '&');
+        $query = $query_add . $query;
+
+        return $query;
+    }    
+    
     /**
      * Converts the output of the CURL header to an array
      *
