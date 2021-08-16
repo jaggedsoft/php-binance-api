@@ -1222,7 +1222,7 @@ class API
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
-        $query = $this->binance_build_query($params, '', '&');
+        $query = $this->binance_build_query($params);
 
         // signed with params
         if ($signed === true) {
