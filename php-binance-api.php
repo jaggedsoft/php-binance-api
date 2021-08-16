@@ -1253,13 +1253,13 @@ class API
                 $base = $this->sapi;
             }
         
-            $query = $this->binance_build_query($params, '', '&');
+            $query = $this->binance_build_query($params);
             $query = str_replace([ '%40' ], [ '@' ], $query);//if send data type "e-mail" then binance return: [Signature for this request is not valid.]
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
                 $endpoint = $base . $url;
                 $params['signature'] = $signature; // signature needs to be inside BODY
-                $query = $this->binance_build_query($params, '', '&'); // rebuilding query
+                $query = $this->binance_build_query($params); // rebuilding query
             } else {
                 $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             }
