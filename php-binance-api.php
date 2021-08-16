@@ -723,6 +723,26 @@ class API
 
         return $this->httpRequest("v1/asset/dribblet", 'GET', $params, true);
     }
+
+    /**
+     * dustTransfer - Convert dust assets ( < 0.001 BTC) to BNB
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param string|array  $assets  (mandatory)  Asset(s), e.g. IOST or array like ['IOST','AAVE','CHZ']
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function dustTransfer($assets)
+    {
+        $params["sapi"] = true;
+        $params["asset"] = $assets;
+
+        return $this->httpRequest("v1/asset/dust", 'POST', $params, true);
+    }
     
     /**
      * @deprecated
