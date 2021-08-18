@@ -1,6 +1,5 @@
 [![Latest Version](https://img.shields.io/github/release/jaggedsoft/php-binance-api.svg?style=flat-square)](https://github.com/jaggedsoft/php-binance-api/releases) 
 [![GitHub last commit](https://img.shields.io/github/last-commit/jaggedsoft/php-binance-api.svg?style=flat-square)](#) 
-[![HitCount](http://hits.dwyl.io/jaggedsoft/php-binance-api.svg)](http://hits.dwyl.io/jaggedsoft/php-binance-api) 
 [![Packagist Downloads](https://img.shields.io/packagist/dt/jaggedsoft/php-binance-api.svg?style=flat-square)](https://packagist.org/packages/jaggedsoft/php-binance-api) 
 
 > **Help wanted:** This library is officially depreciated and will only be actively maintained by the community, for full support use the [Javascript API](https://github.com/jaggedsoft/node-binance-api). <br/> ***Pull requests are welcome.***
@@ -50,7 +49,9 @@ $api = new Binance\API();
 $api = new Binance\API( "somefile.json" );
 // 3. config by specifying api key and secret
 $api = new Binance\API("<api key>","<secret>");
-// 4. Rate Limiting Support
+// 4. config by specifying api key, api secret and testnet flag. By default the testnet is disabled
+$api = new Binance\API("<testnet api key>","<testnet secret>", true);
+// 5. Rate Limiting Support
 $api = new Binance\RateLimiter(new Binance\API());
 ```
 See [additional options](https://github.com/jaggedsoft/php-binance-api/#config-file-in-home-directory) for more options and help installing on Windows
@@ -1339,6 +1340,19 @@ cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
 {
     "api-key": "<api key>",
     "api-secret": "<secret>"
+}
+EOF
+```
+
+#### Config file in home directory to operate on testnet
+Testnet have its own credentials, see the [testnet documentation page](https://testnet.binance.vision/) for more details.
+```bash
+mkdir -vp ~/.config/jaggedsoft/
+cat >  ~/.config/jaggedsoft/php-binance-api.json << EOF
+{
+    "api-key": "<testnet api key>",
+    "api-secret": "<testnet secret>",
+    "use-testnet": true
 }
 EOF
 ```
