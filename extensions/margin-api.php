@@ -2,7 +2,23 @@
 namespace Binance;
 
 trait Margin 
-{
+{    
+    /**
+     * 查詢槓桿借貸階梯
+     *
+     * @param  mixed $symbol
+     * @return void
+     */
+    public function marginIsolatedLadder(string $symbol)
+    {
+        $opt = [
+            "bapi" => true,
+        ];
+
+        $qstring = "margin/v1/friendly/isolated-margin/ladder/{$symbol}";
+        return $this->httpRequest($qstring, "GET", $opt);
+    }
+
     /**
      * 杠杆账户逐倉下单 (TRADE)
      *

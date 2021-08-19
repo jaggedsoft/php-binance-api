@@ -36,6 +36,7 @@ class API
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
     protected $fapi = 'https://fapi.binance.com/'; // /< REST endpoint for the features API
+    protected $bapi = 'https://www.binance.com/bapi/'; // /< REST endpoint for the base API
     protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
     protected $streamTestnet = 'wss://testnet.binance.vision/ws/'; // /< Testnet endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
@@ -1279,6 +1280,11 @@ class API
             if (isset($params['fapi'])) {
                 unset($params['fapi']);
                 $base = $this->fapi;
+            }
+		
+            if (isset($params['bapi'])) {
+                unset($params['bapi']);
+                $base = $this->bapi;
             }
         
             $query = $this->binance_build_query($params);
