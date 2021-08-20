@@ -1066,10 +1066,10 @@ $api->miniTicker(function($api, $ticker) {
 
 #### Realtime Complete Chart Updates via WebSockets
 ```php
-$api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+$api->chart(["BNBBTC"], function($api, $symbol, $chart) {
 	echo "{$symbol} chart update\n";
 	print_r($chart);
-});
+}, "15m");
 ```
 <details>
  <summary>View Response</summary>

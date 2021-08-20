@@ -29,10 +29,14 @@ if (version_compare(phpversion(), '7.0', '<=')) {
  */
 class API
 {
+    use Margin, Futures;
+
     protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
     protected $baseTestnet = 'https://testnet.binance.vision/api/'; // /< Testnet REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
+    protected $fapi = 'https://fapi.binance.com/'; // /< REST endpoint for the features API
+    protected $bapi = 'https://www.binance.com/bapi/'; // /< REST endpoint for the base API
     protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
     protected $streamTestnet = 'wss://testnet.binance.vision/ws/'; // /< Testnet endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
@@ -1272,6 +1276,16 @@ class API
                 unset($params['sapi']);
                 $base = $this->sapi;
             }
+		
+            if (isset($params['fapi'])) {
+                unset($params['fapi']);
+                $base = $this->fapi;
+            }
+		
+            if (isset($params['bapi'])) {
+                unset($params['bapi']);
+                $base = $this->bapi;
+            }
         
             $query = $this->binance_build_query($params);
             $query = str_replace([ '%40' ], [ '@' ], $query);//if send data type "e-mail" then binance return: [Signature for this request is not valid.]
@@ -2367,10 +2381,10 @@ class API
     /**
      * chart Pulls /kline data and subscribes to @klines WebSocket endpoint
      *
-     * $api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+     * $api->chart(["BNBBTC"], function($api, $symbol, $chart) {
      * echo "{$symbol} chart update\n";
      * print_r($chart);
-     * });
+     * }, "15m");
      *
      * @param $symbols string required symbols
      * @param $interval string time inteval

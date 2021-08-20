@@ -8,9 +8,9 @@ require 'vendor/autoload.php';
 $api = new Binance\API();
 
 // Get complete realtime chart data via WebSockets
-$api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+$api->chart(["BNBBTC"], function($api, $symbol, $chart) {
     echo "{$symbol} chart update\n";
     print_r($chart);
     $endpoint = strtolower( $symbol ) . '@kline_' . "15m";
     $api->terminate( $endpoint );
-});
+}, "15m");

@@ -84,10 +84,10 @@ print_r($ticks);
 
 
 // Get complete realtime chart data via WebSockets
-//$api->chart(["BNBBTC"], "15m", function($api, $symbol, $chart) {
+//$api->chart(["BNBBTC"], function($api, $symbol, $chart) {
 //    echo "{$symbol} chart update\n";
 //    print_r($chart);
-//});
+//}, "15m");
 
 
 // Grab realtime updated depth cache via WebSockets
