@@ -1719,7 +1719,7 @@ class API
     }
 
     /**
-     * tickerStreamHandler Convert WebSocket trade execution into array
+     * executionHandler Convert WebSocket trade execution into array
      *
      * $data = $this->executionHandler( $json );
      *
