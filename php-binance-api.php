@@ -639,10 +639,14 @@ class API
      * @return array with error message or exchange info array
      * @throws \Exception
      */
-    public function exchangeInfo()
+    public function exchangeInfo($symbol = null)
     {
         if (!$this->exchangeInfo) {
-            $arr = $this->httpRequest("v3/exchangeInfo");
+            
+            $parameters = [];
+            if($symbol) $parameters["symbol"] = $symbol;
+
+            $arr = $this->httpRequest("v3/exchangeInfo", "GET", $parameters);
             
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
@@ -816,9 +820,11 @@ class API
             "coin" => $asset,
             "address" => $address,
             "amount" => $amount,
-            "transactionFeeFlag" => $transactionFeeFlag,
             "sapi" => true,
         ];
+
+        if($transactionFeeFlag) $options['transactionFeeFlag'] = true;
+        
         if (is_null($addressName) === false && empty($addressName) === false) {
             $options['name'] = str_replace(' ', '%20', $addressName);
         }
@@ -2981,4 +2987,18 @@ class API
 
         return $this->httpRequest("v3/order/oco", "POST", $opt, true);
     }    
+
+    /**
+    * avgPrice get the average price of a symbol
+    *
+    * $avgPrice = $api->avgPrice( "ETHBTC" );
+    *
+    * @return array with error message or array with symbol price
+    * @throws \Exception
+    */
+    public function avgPrice(string $symbol)
+    {
+        $ticker = $this->httpRequest("v3/avgPrice", "GET", ["symbol" => $symbol]);
+        return $ticker['price'];
+    }
 }
