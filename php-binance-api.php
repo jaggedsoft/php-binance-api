@@ -632,21 +632,41 @@ class API
     }
 
     /**
-     * exchangeInfo Gets the complete exchange info, including limits, currency options etc.
+     * exchangeInfo -  Gets the complete exchange info, including limits, currency options etc.
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#exchange-information
      *
      * $info = $api->exchangeInfo();
+     * $info = $api->exchangeInfo('BTCUSDT');
      *
-     * @return array with error message or exchange info array
+     * $arr = array('ATABUSD','BTCUSDT');
+     * $info = $api->exchangeInfo($arr);
+     *
+     * @property int $weight 10
+     *
+     * @param string|array  $symbols  (optional)  A symbol or an array of symbols, default is empty
+     *
+     * @return array containing the response
      * @throws \Exception
      */
-    public function exchangeInfo($symbol = null)
+    public function exchangeInfo($symbols = null)
     {
         if (!$this->exchangeInfo) {
-            
+            $arr = array();
+            $arr['symbols'] = array();
             $parameters = [];
-            if($symbol) $parameters["symbol"] = $symbol;
 
-            $arr = $this->httpRequest("v3/exchangeInfo", "GET", $parameters);
+            if ($symbols) {
+                if (gettype($symbols) == "string") {
+                    $parameters["symbol"] = $symbols;
+                    $arr = $this->httpRequest("v3/exchangeInfo", "GET", $parameters);
+                }                    
+                if (gettype($symbols) == "array")  {
+                    $arr = $this->httpRequest('v3/exchangeInfo?symbols=' . '["' . implode('","', $symbols) . '"]');
+                }
+            } else {
+                $arr = $this->httpRequest("v3/exchangeInfo");
+            }
             
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
@@ -823,14 +843,14 @@ class API
             "sapi" => true,
         ];
 
-        if($transactionFeeFlag) $options['transactionFeeFlag'] = true;
-        
         if (is_null($addressName) === false && empty($addressName) === false) {
             $options['name'] = str_replace(' ', '%20', $addressName);
         }
         if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
         }
+        if ($transactionFeeFlag) $options['transactionFeeFlag'] = true;
+        
         if (is_null($network) === false && empty($network) === false) {
             $options['network'] = $network;
         }
@@ -2989,11 +3009,15 @@ class API
     }    
 
     /**
-    * avgPrice get the average price of a symbol
+    * avgPrice - get the average price of a symbol based on the last 5 minutes
     *
     * $avgPrice = $api->avgPrice( "ETHBTC" );
     *
-    * @return array with error message or array with symbol price
+    * @property int $weight 1
+    *
+    * @param string $symbol (mandatory) a symbol, e.g. ETHBTC
+    *
+    * @return string with symbol price
     * @throws \Exception
     */
     public function avgPrice(string $symbol)
