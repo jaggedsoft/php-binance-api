@@ -3024,6 +3024,7 @@ class API
     {
         $ticker = $this->httpRequest("v3/avgPrice", "GET", ["symbol" => $symbol]);
         return $ticker['price'];
+    }
 
       
     /*********************************************
