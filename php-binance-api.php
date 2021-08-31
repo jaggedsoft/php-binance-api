@@ -33,6 +33,8 @@ class API
     protected $baseTestnet = 'https://testnet.binance.vision/api/'; // /< Testnet REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
+    protected $fapi = 'https://fapi.binance.com/'; // /< REST endpoint for the futures API
+    protected $bapi = 'https://www.binance.com/bapi/'; // /< REST endpoint for the internal Binance API
     protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
     protected $streamTestnet = 'wss://testnet.binance.vision/ws/'; // /< Testnet endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
@@ -630,17 +632,41 @@ class API
     }
 
     /**
-     * exchangeInfo Gets the complete exchange info, including limits, currency options etc.
+     * exchangeInfo -  Gets the complete exchange info, including limits, currency options etc.
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#exchange-information
      *
      * $info = $api->exchangeInfo();
+     * $info = $api->exchangeInfo('BTCUSDT');
      *
-     * @return array with error message or exchange info array
+     * $arr = array('ATABUSD','BTCUSDT');
+     * $info = $api->exchangeInfo($arr);
+     *
+     * @property int $weight 10
+     *
+     * @param string|array  $symbols  (optional)  A symbol or an array of symbols, default is empty
+     *
+     * @return array containing the response
      * @throws \Exception
      */
-    public function exchangeInfo()
+    public function exchangeInfo($symbols = null)
     {
         if (!$this->exchangeInfo) {
-            $arr = $this->httpRequest("v3/exchangeInfo");
+            $arr = array();
+            $arr['symbols'] = array();
+            $parameters = [];
+
+            if ($symbols) {
+                if (gettype($symbols) == "string") {
+                    $parameters["symbol"] = $symbols;
+                    $arr = $this->httpRequest("v3/exchangeInfo", "GET", $parameters);
+                }                    
+                if (gettype($symbols) == "array")  {
+                    $arr = $this->httpRequest('v3/exchangeInfo?symbols=' . '["' . implode('","', $symbols) . '"]');
+                }
+            } else {
+                $arr = $this->httpRequest("v3/exchangeInfo");
+            }
             
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
@@ -660,13 +686,21 @@ class API
      * 
      * @property int $weight 1
      * 
+     * @param string $asset  (optional)  Should be an asset, e.g. BNB or empty to get the full list
+     *
      * @return array containing the response
      */
-    public function assetDetail()
+    public function assetDetail($asset = '')
     {
         $params["sapi"] = true;
+        if ($asset != '' && gettype($asset) == 'string')
+            $params['asset'] = $asset;
         $arr = $this->httpRequest("v1/asset/assetDetail", 'GET', $params, true);
-        // wrap into another array for backwards compatibility with the old wapi one
+        // if asset was set, no backward compatibility needed as this was implemented later
+        if (isset($params['asset']))
+            return $arr;
+
+        // wrap into another array for backward compatibility with the old wapi one
         if (!empty($arr['BTC']['withdrawFee'])) {
             return array(
                 'success'     => 1,
@@ -714,6 +748,26 @@ class API
         }
 
         return $this->httpRequest("v1/asset/dribblet", 'GET', $params, true);
+    }
+
+    /**
+     * dustTransfer - Convert dust assets ( < 0.001 BTC) to BNB
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-user_data
+     * 
+     * @property int $weight 1
+     * 
+     * @param string|array  $assets  (mandatory)  Asset(s), e.g. IOST or array like ['IOST','AAVE','CHZ']
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function dustTransfer($assets)
+    {
+        $params["sapi"] = true;
+        $params["asset"] = $assets;
+
+        return $this->httpRequest("v1/asset/dust", 'POST', $params, true);
     }
     
     /**
@@ -786,15 +840,17 @@ class API
             "coin" => $asset,
             "address" => $address,
             "amount" => $amount,
-            "transactionFeeFlag" => $transactionFeeFlag,
             "sapi" => true,
         ];
+
         if (is_null($addressName) === false && empty($addressName) === false) {
             $options['name'] = str_replace(' ', '%20', $addressName);
         }
         if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
         }
+        if ($transactionFeeFlag) $options['transactionFeeFlag'] = true;
+        
         if (is_null($network) === false && empty($network) === false) {
             $options['network'] = $network;
         }
@@ -864,7 +920,7 @@ class API
         $return = $this->httpRequest("v1/capital/deposit/hisrec", "GET", $params, true);
 
         // Adding for backwards compatibility with wapi
-        foreach ($return as $key->$item) {
+        foreach ($return as $key=>$item) {
             $return[$key]['asset'] = $item['coin'];
         }
         
@@ -1214,7 +1270,7 @@ class API
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
-        $query = http_build_query($params, '', '&');
+        $query = $this->binance_build_query($params);
 
         // signed with params
         if ($signed === true) {
@@ -1244,14 +1300,23 @@ class API
                 unset($params['sapi']);
                 $base = $this->sapi;
             }
-        
-            $query = http_build_query($params, '', '&');
+
+            if (isset($params['fapi'])) {
+                unset($params['fapi']);
+                $base = $this->fapi;
+            }
+
+            if (isset($params['bapi'])) {
+                unset($params['bapi']);
+                $base = $this->bapi;
+            }
+            $query = $this->binance_build_query($params);
             $query = str_replace([ '%40' ], [ '@' ], $query);//if send data type "e-mail" then binance return: [Signature for this request is not valid.]
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
                 $endpoint = $base . $url;
                 $params['signature'] = $signature; // signature needs to be inside BODY
-                $query = http_build_query($params, '', '&'); // rebuilding query
+                $query = $this->binance_build_query($params); // rebuilding query
             } else {
                 $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
             }
@@ -1355,6 +1420,35 @@ class API
         return $json;
     }
 
+    /**
+     * binance_build_query - Wrapper for http_build_query to allow arrays as parameters
+     * 
+     * sapi v1/asset/dust can have an array, so it needs a conversion
+     * 
+     * @param array  $params  (mandatory)   Parameters to convert to http query
+     * 
+     * @return array containing the response
+     * @throws \Exception
+     */
+    protected function binance_build_query($params = [])
+    {
+        $new_arr = array();
+        $query_add = '';
+        foreach ($params as $label=>$item) {
+            if ( gettype($item) == 'array' ) {
+                foreach ($item as $arritem) {
+                    $query_add = $label . '=' . $arritem . '&' . $query_add;
+                }
+            } else {
+                $new_arr[$label] = $item;
+            }
+        }
+        $query = http_build_query($new_arr, '', '&');
+        $query = $query_add . $query;
+
+        return $query;
+    }    
+    
     /**
      * Converts the output of the CURL header to an array
      *
@@ -1651,7 +1745,7 @@ class API
     }
 
     /**
-     * tickerStreamHandler Convert WebSocket trade execution into array
+     * executionHandler Convert WebSocket trade execution into array
      *
      * $data = $this->executionHandler( $json );
      *
@@ -2846,26 +2940,120 @@ class API
         $arr = array();
         $arr['sapi'] = $this->httpRequest("v1/account/apiTradingStatus", 'GET', [ 'sapi' => true ], true);
         return $arr;
-    }    
+    }
     
     /**
-     * Swap from one currency to another
-     * @param $baseAsset
-     * @param $quoteAsset
-     * @param $quoteQty
-     * @return array
+     * ocoOrder - Create a new OCO order
+     * 
+     * @link https://binance-docs.github.io/apidocs/spot/en/#new-oco-trade
+     * 
+     * @property int $weight 1
+     * 
+     * @param string $side       (mandatory)   Should be SELL or BUY
+     * @param string $symbol     (mandatory)   The symbol, e.g. BTCBUSD
+     * @param float  $quantity   (mandatory)   Quantity to buy/sell
+     * @param int    $price      (mandatory)   Price
+     * @param int    $stopprice  (mandatory)   Stop Price
+     * @param int    $stoplimitprice        (optional)   Stop Limit Price
+     * @param int    $stoplimittimeinforce  (optional)   GTC, FOK or IOC
+     * @param array  $flags                 (optional)   Extra flags/parameters
+     * 
+     * @return array containing the response
      * @throws \Exception
      */
-    public function bswap($baseAsset, $quoteAsset, $quoteQty) {
+    public function ocoOrder(string $side, string $symbol, $quantity, $price, $stopprice, $stoplimitprice = null, $stoplimittimeinforce = 'GTC', array $flags = [])
+    {
+        $opt = [
+            "symbol" => $symbol,
+            "side" => $side,
+            "recvWindow" => 60000,
+        ];
 
-        $arr = array();
-        $arr['sapi'] = $this->httpRequest("v1/bswap/quote", 'GET', [
-            'sapi' => true,
-            'quoteAsset'=>$quoteAsset,
-            'baseAsset'=>$baseAsset,
-            'quoteQty'=> $quoteQty,
-        ], true);
+        if (is_numeric($quantity) === false) {
+            $error = "Parameter quantity expected numeric for ' $side . ' ' . $symbol .', got " . gettype($quantity);
+            trigger_error($error, E_USER_ERROR);
+        } else {
+            $opt['quantity'] = $quantity;
+        }
 
-        return $arr;
+        if (is_numeric($price) === false) {
+            $error = "Parameter price expected numeric for ' $side . ' ' . $symbol .', got " . gettype($price);
+            trigger_error($error, E_USER_ERROR);
+        } else {
+            $opt['price'] = $price;
+        }
+
+        if (is_numeric($stopprice) === false) {
+            $error = "Parameter stopprice expected numeric for ' $side . ' ' . $symbol .', got " . gettype($stopprice);
+            trigger_error($error, E_USER_ERROR);
+        } else {
+            $opt['stopprice'] = $stopprice;
+        }
+
+        if (is_null($stoplimitprice) === false && empty($stoplimitprice) === false) {
+            $opt['stopLimitPrice'] = $stoplimitprice;
+            if ( ($stoplimittimeinforce == 'FOK') || ($stoplimittimeinforce == 'IOC') ) {
+                $opt['stopLimitTimeInForce'] = $stoplimittimeinforce;
+            } else {
+                $opt['stopLimitTimeInForce'] = 'GTC'; // `Good 'till cancel`. Needed if flag `stopLimitPrice` used.
+            }
+        }
+
+        // Check other flags
+        foreach (array('icebergQty','stopIcebergQty','listClientOrderId','limitClientOrderId','stopClientOrderId','newOrderRespType') as $flag) {
+            if ( isset($flags[$flag]) && !empty($flags[$flag]) )
+                $opt[$flag] = $flags[$flag];
+        }
+
+        return $this->httpRequest("v3/order/oco", "POST", $opt, true);
+    }    
+
+    /**
+    * avgPrice - get the average price of a symbol based on the last 5 minutes
+    *
+    * $avgPrice = $api->avgPrice( "ETHBTC" );
+    *
+    * @property int $weight 1
+    *
+    * @param string $symbol (mandatory) a symbol, e.g. ETHBTC
+    *
+    * @return string with symbol price
+    * @throws \Exception
+    */
+    public function avgPrice(string $symbol)
+    {
+        $ticker = $this->httpRequest("v3/avgPrice", "GET", ["symbol" => $symbol]);
+        return $ticker['price'];
+
+      
+    /*********************************************
+     * 
+     * Binance Liquid Swap (bswap) functions
+     * 
+     * https://binance-docs.github.io/apidocs/spot/en/#bswap-endpoints
+     * 
+     *********************************************/
+
+    /**
+    * bswapQuote - Request a quote for swap of quote asset (selling) or base asset (buying), essentially price/exchange rates.
+    *
+    * @property int $weight 2
+    *
+    * @param string $baseAsset  (mandatory) e.g. ETH
+    * @param string $quoteAsset (mandatory) e.g. BTC
+    * @param string $quoteQty   (mandatory)
+    *
+    * @return array containing the response
+    * @throws \Exception
+    */
+    public function bswapQuote($baseAsset, $quoteAsset, $quoteQty) {
+        $opt = [
+            'sapi'       => true,
+            'quoteAsset' => $quoteAsset,
+            'baseAsset'  => $baseAsset,
+            'quoteQty'   => $quoteQty,
+        ];
+      
+        return $this->httpRequest("v1/bswap/quote", 'GET', $opt, true);
     }
 }
