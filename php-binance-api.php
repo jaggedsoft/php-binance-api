@@ -3024,5 +3024,36 @@ class API
     {
         $ticker = $this->httpRequest("v3/avgPrice", "GET", ["symbol" => $symbol]);
         return $ticker['price'];
+
+      
+    /*********************************************
+     * 
+     * Binance Liquid Swap (bswap) functions
+     * 
+     * https://binance-docs.github.io/apidocs/spot/en/#bswap-endpoints
+     * 
+     *********************************************/
+
+    /**
+    * bswapQuote - Request a quote for swap of quote asset (selling) or base asset (buying), essentially price/exchange rates.
+    *
+    * @property int $weight 2
+    *
+    * @param string $baseAsset  (mandatory) e.g. ETH
+    * @param string $quoteAsset (mandatory) e.g. BTC
+    * @param string $quoteQty   (mandatory)
+    *
+    * @return array containing the response
+    * @throws \Exception
+    */
+    public function bswapQuote($baseAsset, $quoteAsset, $quoteQty) {
+        $opt = [
+            'sapi'       => true,
+            'quoteAsset' => $quoteAsset,
+            'baseAsset'  => $baseAsset,
+            'quoteQty'   => $quoteQty,
+        ];
+      
+        return $this->httpRequest("v1/bswap/quote", 'GET', $opt, true);
     }
 }
