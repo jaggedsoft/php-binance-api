@@ -1374,6 +1374,8 @@ class API
             if (file_exists(getcwd() . '/ca.pem') === false) {
                 $this->downloadCurlCaBundle();
             }
+            
+            curl_setopt($curl, CURLOPT_CAINFO, getcwd() . '/ca.pem');
         }
 
         $output = curl_exec($curl);
