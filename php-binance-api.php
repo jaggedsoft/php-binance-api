@@ -1371,11 +1371,14 @@ class API
         }
 
         if ($this->caOverride === false) {
-            if (file_exists(getcwd() . '/ca.pem') === false) {
+            $ca_file = getcwd() . '/ca.pem';
+            if (file_exists($ca_file) === false) {
                 $this->downloadCurlCaBundle();
             }
+            if (file_exists($ca_file) === true) {
+                curl_setopt($curl, CURLOPT_CAINFO, $ca_file);
+            }
             
-            curl_setopt($curl, CURLOPT_CAINFO, getcwd() . '/ca.pem');
         }
 
         $output = curl_exec($curl);
