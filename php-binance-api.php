@@ -2987,7 +2987,7 @@ class API
             $error = "Parameter stopprice expected numeric for ' $side . ' ' . $symbol .', got " . gettype($stopprice);
             trigger_error($error, E_USER_ERROR);
         } else {
-            $opt['stopprice'] = $stopprice;
+            $opt['stopPrice'] = $stopprice;
         }
 
         if (is_null($stoplimitprice) === false && empty($stoplimitprice) === false) {
