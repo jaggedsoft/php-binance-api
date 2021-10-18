@@ -2825,12 +2825,12 @@ class API
 
     public function getXMbxUsedWeight() : int
     {
-        $this->xMbxUsedWeight;
+        return $this->xMbxUsedWeight;
     }
 
     public function getXMbxUsedWeight1m() : int
     {
-        $this->xMbxUsedWeight1m;
+        return $this->xMbxUsedWeight1m;
     }
 
     private function getRestEndpoint() : string
