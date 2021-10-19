@@ -1177,6 +1177,17 @@ class API
     }
 
     /**
+     * Get details from funding wallet
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function getFundingWallet()
+    {
+        return $this->httpRequest('v1/asset/get-funding-asset', 'POST', [ 'sapi' => true ], true);
+    }
+
+    /**
      * getProxyUriString get Uniform Resource Identifier string assocaited with proxy config
      *
      * $balances = $api->getProxyUriString();
