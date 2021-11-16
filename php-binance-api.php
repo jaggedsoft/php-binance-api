@@ -1538,7 +1538,11 @@ class API
         if (isset($flags['newOrderRespType'])) {
             $opt['newOrderRespType'] = $flags['newOrderRespType'];
         }
-
+        
+        if (isset($flags['newClientOrderId'])) {
+            $opt['newClientOrderId'] = $flags['newClientOrderId'];
+        }
+        
         $qstring = ($test === false) ? "v3/order" : "v3/order/test";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
