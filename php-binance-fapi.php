@@ -10,9 +10,8 @@
  * ============================================================
  * A curl HTTP REST wrapper for the binance currency exchange
  */
-namespace Binance;
 
-use Exception;
+namespace Binance;
 
 // PHP version check
 if (version_compare(phpversion(), '7.0', '<=')) {
@@ -27,15 +26,13 @@ if (version_compare(phpversion(), '7.0', '<=')) {
  * require 'vendor/autoload.php';
  * $api = new Binance\\API();
  */
-class API
+class FAPI
 {
-    protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
+    protected $base = 'https://fapi.binance.com/fapi/'; // /< REST endpoint for the currency exchange
     protected $baseTestnet = 'https://testnet.binance.vision/api/'; // /< Testnet REST endpoint for the currency exchange
     protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
-    protected $fapi = 'https://fapi.binance.com/'; // /< REST endpoint for the futures API
-    protected $bapi = 'https://www.binance.com/bapi/'; // /< REST endpoint for the internal Binance API
-    protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
+    protected $stream = 'wss://fstream.binance.com/ws/'; // /< Endpoint for establishing websocket connections
     protected $streamTestnet = 'wss://testnet.binance.vision/ws/'; // /< Testnet endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
     protected $api_secret; // /< API secret that was given to you when you created the api key
@@ -58,8 +55,8 @@ class API
     protected $btc_total = 0.00;
 
     // /< value of available onOrder assets
-    
-    protected $exchangeInfo = null;
+
+    protected $exchangeInfo = NULL;
     protected $lastRequest = [];
 
     protected $xMbxUsedWeight = 0;
@@ -246,7 +243,7 @@ class API
      */
     public function buy(string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [])
     {
-        return $this->order("BUY", $symbol, $quantity, $price, $type, $flags);
+        return $this->order("BUY", $symbol, $quantity, $price, $type, $flags, false);
     }
 
     /**
@@ -293,7 +290,7 @@ class API
      */
     public function sell(string $symbol, $quantity, $price, string $type = "LIMIT", array $flags = [])
     {
-        return $this->order("SELL", $symbol, $quantity, $price, $type, $flags);
+        return $this->order("SELL", $symbol, $quantity, $price, $type, $flags, false);
     }
 
     /**
@@ -328,7 +325,7 @@ class API
     {
         $flags['isQuoteOrder'] = true;
 
-        return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
+        return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, false);
     }
 
     /**
@@ -361,7 +358,7 @@ class API
      */
     public function marketBuy(string $symbol, $quantity, array $flags = [])
     {
-        return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags);
+        return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, false);
     }
 
     /**
@@ -378,8 +375,8 @@ class API
     {
         return $this->order("BUY", $symbol, $quantity, 0, "MARKET", $flags, true);
     }
-    
-    
+
+
     /**
      * numberOfDecimals() returns the signifcant digits level based on the minimum order amount.
      *
@@ -413,7 +410,7 @@ class API
         $c = $this->numberOfDecimals($this->exchangeInfo()['symbols'][$symbol]['filters'][2]['minQty']);
         $quantity = $this->floorDecimal($quantity, $c);
 
-        return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
+        return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags, false);
     }
 
     /**
@@ -449,7 +446,7 @@ class API
         $c = $this->numberOfDecimals($this->exchangeInfo()['symbols'][$symbol]['filters'][2]['minQty']);
         $quantity = $this->floorDecimal($quantity, $c);
 
-        return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags);
+        return $this->order("SELL", $symbol, $quantity, 0, "MARKET", $flags, false);
     }
 
     /**
@@ -485,7 +482,9 @@ class API
             "symbol" => $symbol,
             "orderId" => $orderid,
         ];
-        return $this->httpRequest("v3/order", "DELETE", array_merge($params, $flags), true);
+
+        
+        return $this->httpRequest("v1/order", "DELETE", array_merge($params, $flags), true);
     }
 
     /**
@@ -501,7 +500,7 @@ class API
      */
     public function orderStatus(string $symbol, $orderid)
     {
-        return $this->httpRequest("v3/order", "GET", [
+        return $this->httpRequest("v1/order", "GET", [
             "symbol" => $symbol,
             "orderId" => $orderid,
         ], true);
@@ -525,7 +524,7 @@ class API
                 "symbol" => $symbol,
             ];
         }
-        return $this->httpRequest("v3/openOrders", "GET", $params, true);
+        return $this->httpRequest("v1/openOrders", "GET", $params, true);
     }
 
     /**
@@ -543,7 +542,7 @@ class API
                 "symbol" => $symbol,
             ];
         }
-        return $this->httpRequest("v3/openOrders", "DELETE", $params, true);
+        return $this->httpRequest("v1/openOrders", "DELETE", $params, true);
     }
 
     /**
@@ -562,10 +561,8 @@ class API
     {
         $params["symbol"] = $symbol;
         $params["limit"] = $limit;
-        if ($fromOrderId) {
-            $params["orderId"] = $fromOrderId;
-        }
-        return $this->httpRequest("v3/allOrders", "GET", $params, true);
+        if ($fromOrderId) $params["orderId"] = $fromOrderId;
+        return $this->httpRequest("v1/allOrders", "GET", $params, true);
     }
 
     /**
@@ -578,12 +575,10 @@ class API
      * @param $symbol string the currency symbol
      * @param $limit int the amount of orders returned
      * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
-     * @param $startTime int (optional) return the orders from this time onwards. null to ignore
-     * @param $endTime int (optional) return the orders from this time backwards. null to ignore
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
+    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1)
     {
         $parameters = [
             "symbol" => $symbol,
@@ -592,14 +587,8 @@ class API
         if ($fromTradeId > 0) {
             $parameters["fromId"] = $fromTradeId;
         }
-        if (isset($startTime)) {
-            $parameters["startTime"] = $startTime;
-        }
-        if (isset($endTime)) {
-            $parameters["endTime"] = $endTime;
-        }
 
-        return $this->httpRequest("v3/myTrades", "GET", $parameters, true);
+        return $this->httpRequest("v1/myTrades", "GET", $parameters, true);
     }
 
     /**
@@ -612,7 +601,7 @@ class API
      */
     public function useServerTime()
     {
-        $request = $this->httpRequest("v3/time");
+        $request = $this->httpRequest("v1/time");
         if (isset($request['serverTime'])) {
             $this->info['timeOffset'] = $request['serverTime'] - (microtime(true) * 1000);
         }
@@ -628,151 +617,47 @@ class API
      */
     public function time()
     {
-        return $this->httpRequest("v3/time");
+        return $this->httpRequest("v1/time");
     }
 
     /**
-     * exchangeInfo -  Gets the complete exchange info, including limits, currency options etc.
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#exchange-information
+     * exchangeInfo Gets the complete exchange info, including limits, currency options etc.
      *
      * $info = $api->exchangeInfo();
-     * $info = $api->exchangeInfo('BTCUSDT');
      *
-     * $arr = array('ATABUSD','BTCUSDT');
-     * $info = $api->exchangeInfo($arr);
-     *
-     * @property int $weight 10
-     *
-     * @param string|array  $symbols  (optional)  A symbol or an array of symbols, default is empty
-     *
-     * @return array containing the response
+     * @return array with error message or exchange info array
      * @throws \Exception
      */
-    public function exchangeInfo($symbols = null)
+    public function exchangeInfo()
     {
         if (!$this->exchangeInfo) {
-            $arr = array();
-            $arr['symbols'] = array();
-            $parameters = [];
 
-            if ($symbols) {
-                if (gettype($symbols) == "string") {
-                    $parameters["symbol"] = $symbols;
-                    $arr = $this->httpRequest("v3/exchangeInfo", "GET", $parameters);
-                }                    
-                if (gettype($symbols) == "array")  {
-                    $arr = $this->httpRequest('v3/exchangeInfo?symbols=' . '["' . implode('","', $symbols) . '"]');
-                }
-            } else {
-                $arr = $this->httpRequest("v3/exchangeInfo");
-            }
-            
+            $arr = $this->httpRequest("v1/exchangeInfo");
+
             $this->exchangeInfo = $arr;
             $this->exchangeInfo['symbols'] = null;
-            
+
             foreach ($arr['symbols'] as $key => $value) {
                 $this->exchangeInfo['symbols'][$value['symbol']] = $value;
             }
         }
-        
+
         return $this->exchangeInfo;
     }
-    
-    /**
-     * assetDetail - Fetch details of assets supported on Binance
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#asset-detail-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $asset  (optional)  Should be an asset, e.g. BNB or empty to get the full list
-     *
-     * @return array containing the response
-     */
-    public function assetDetail($asset = '')
-    {
-        $params["sapi"] = true;
-        if ($asset != '' && gettype($asset) == 'string')
-            $params['asset'] = $asset;
-        $arr = $this->httpRequest("v1/asset/assetDetail", 'GET', $params, true);
-        // if asset was set, no backward compatibility needed as this was implemented later
-        if (isset($params['asset']))
-            return $arr;
 
-        // wrap into another array for backward compatibility with the old wapi one
-        if (!empty($arr['BTC']['withdrawFee'])) {
-            return array(
-                'success'     => 1,
-                'assetDetail' => $arr,
-                );
-        } else {
-            return array(
-                'success'     => 0,
-                'assetDetail' => array(),
-                );
-            
-        }
+    public function assetDetail()
+    {
+        $params["wapi"] = true;
+        return $this->httpRequest("v1/assetDetail.html", 'GET', $params, true);
     }
-    
-    /**
-     * userAssetDribbletLog - Log of the conversion of the dust assets to BNB
-     * @deprecated
-     */
+
     public function userAssetDribbletLog()
     {
         $params["wapi"] = true;
-        trigger_error('Deprecated - function will disappear on 2021-08-01 from Binance. Please switch to $api->dustLog().', E_USER_DEPRECATED);
-        return $this->httpRequest("v3/userAssetDribbletLog.html", 'GET', $params, true);
-    }
-    
-    /**
-     * dustLog - Log of the conversion of the dust assets to BNB
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#dustlog-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param long  $startTime  (optional)  Start time, e.g. 1617580799000
-     * @param long  $endTime    (optional)  End time, e.g. 1617580799000. Endtime is mandatory if startTime is set.
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function dustLog($startTime = NULL, $endTime = NULL)
-    {
-        $params["sapi"] = true;
-        if (!empty($startTime) && !empty($endTime)) {
-            $params['startTime'] = $startTime;
-            $params['endTime'] = $endTime;
-        }
-
-        return $this->httpRequest("v1/asset/dribblet", 'GET', $params, true);
+        return $this->httpRequest("v1/userAssetDribbletLog.html", 'GET', $params, true);
     }
 
     /**
-     * dustTransfer - Convert dust assets ( < 0.001 BTC) to BNB
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#dust-transfer-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string|array  $assets  (mandatory)  Asset(s), e.g. IOST or array like ['IOST','AAVE','CHZ']
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function dustTransfer($assets)
-    {
-        $params["sapi"] = true;
-        $params["asset"] = $assets;
-
-        return $this->httpRequest("v1/asset/dust", 'POST', $params, true);
-    }
-    
-    /**
-     * @deprecated
-     *
      * Fetch current(daily) trade fee of symbol, values in percentage.
      * for more info visit binance official api document
      *
@@ -786,196 +671,130 @@ class API
             "symbol" => $symbol,
             "wapi" => true,
         ];
-        trigger_error('Function tradeFee is deprecated and will be removed from Binance on Aug 1, 2021. Please use $api->commissionFee', E_USER_DEPRECATED);
-        
-        return $this->httpRequest("v3/tradeFee.html", 'GET', $params, true);
-    }
-    
-    /**
-     * commissionFee - Fetch commission trade fee
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#trade-fee-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $symbol  (optional)  Should be a symbol, e.g. BNBUSDT or empty to get the full list
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */    
-    public function commissionFee($symbol = '')
-    {
-        $params = array('sapi' => true);
-        if ($symbol != '' && gettype($symbol) == 'string')
-            $params['symbol'] = $symbol;
 
-        return $this->httpRequest("v1/asset/tradeFee", 'GET', $params, true);
+        return $this->httpRequest("v1/tradeFee.html", 'GET', $params, true);
     }
 
     /**
-     * withdraw - Submit a withdraw request to move an asset to another wallet
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#withdraw-sapi
-     * 
-     * @example https://github.com/jaggedsoft/php-binance-api#withdraw   Standard withdraw
-     * @example https://github.com/jaggedsoft/php-binance-api#withdraw-with-addresstag   Withdraw with addressTag for e.g. XRP
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $asset               (mandatory)  An asset, e.g. BTC
-     * @param string $address             (mandatory)  The address where to send, e.g. 1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa or 44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn
-     * @param string $amount              (mandatory)  The amount, e.g. 0.2
-     * @param string $addressTag          (optional)   Mandatory secondary address for some assets (XRP,XMR,etc), e.g. 0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1
-     * @param string $addressName         (optional)   Description of the address
-     * @param string $transactionFeeFlag  (optional)   When making internal transfer, true for returning the fee to the destination account; false for returning the fee back to the departure account.
-     * @param string $network             (optional)   
-     * @param string $orderId             (optional)   Client id for withdraw
-     * 
-     * @return array containing the response
+     * withdraw requests a asset be withdrawn from binance to another wallet
+     *
+     * $asset = "BTC";
+     * $address = "1C5gqLRs96Xq4V2ZZAR1347yUCpHie7sa";
+     * $amount = 0.2;
+     * $response = $api->withdraw($asset, $address, $amount);
+     *
+     * $address = "44tLjmXrQNrWJ5NBsEj2R77ZBEgDa3fEe9GLpSf2FRmhexPvfYDUAB7EXX1Hdb3aMQ9FLqdJ56yaAhiXoRsceGJCRS3Jxkn";
+     * $addressTag = "0e5e38a01058dbf64e53a4333a5acf98e0d5feb8e523d32e3186c664a9c762c1";
+     * $amount = 0.1;
+     * $response = $api->withdraw($asset, $address, $amount, $addressTag);
+     *
+     * @param $asset string the currency such as BTC
+     * @param $address string the addressed to whihc the asset should be deposited
+     * @param $amount double the amount of the asset to transfer
+     * @param $addressTag string adtional transactionid required by some assets
+     * @return array with error message or array transaction
      * @throws \Exception
      */
-    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false, $network = null, $orderId = null)
+    public function withdraw(string $asset, string $address, $amount, $addressTag = null, $addressName = "", bool $transactionFeeFlag = false, $network = null)
     {
         $options = [
-            "coin" => $asset,
+            "asset" => $asset,
             "address" => $address,
             "amount" => $amount,
-            "sapi" => true,
+            "transactionFeeFlag" => $transactionFeeFlag,
+            "wapi" => true,
         ];
-
         if (is_null($addressName) === false && empty($addressName) === false) {
             $options['name'] = str_replace(' ', '%20', $addressName);
         }
         if (is_null($addressTag) === false && empty($addressTag) === false) {
             $options['addressTag'] = $addressTag;
         }
-        if ($transactionFeeFlag) $options['transactionFeeFlag'] = true;
-        
         if (is_null($network) === false && empty($network) === false) {
             $options['network'] = $network;
         }
-        if (is_null($orderId) === false && empty($orderId) === false) {
-            $options['withdrawOrderId'] = $orderId;
-        }
-        return $this->httpRequest("v1/capital/withdraw/apply", "POST", $options, true);
+        return $this->httpRequest("v1/withdraw.html", "POST", $options, true);
     }
 
     /**
-     * depositAddress - Get the deposit address for an asset
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#deposit-address-supporting-network-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $asset    (mandatory)  An asset, e.g. BTC
-     * @param string $network  (optional)   You can get network in networkList from /sapi/v1/capital/config/getall   
-     * 
-     * @return array containing the response
+     * depositAddress get the deposit address for an asset
+     *
+     * $depositAddress = $api->depositAddress("VEN");
+     *
+     * @param $asset string the currency such as BTC
+     * @return array with error message or array deposit address information
      * @throws \Exception
      */
-    public function depositAddress(string $asset, $network = null)
+    public function depositAddress(string $asset)
     {
         $params = [
-            "sapi" => true,
-            "coin" => $asset,
+            "wapi" => true,
+            "asset" => $asset,
         ];
-        if (is_null($network) === false && empty($network) === false) {
-            $params['network'] = $network;
-        }
-        
-        $return = $this->httpRequest("v1/capital/deposit/address", "GET", $params, true);
-
-        // Adding for backwards compatibility with wapi
-        $return['asset'] = $return['coin'];
-        $return['addressTag'] = $return['tag'];
-        
-        if (!empty($return['address'])) {
-            $return['success'] = 1;
-        } else {
-            $return['success'] = 0;
-        }
-
-        return $return;
+        return $this->httpRequest("v1/depositAddress.html", "GET", $params, true);
     }
 
     /**
-     * depositHistory - Get the deposit history for one or all assets
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#deposit-history-supporting-network-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $asset    (optional)  An asset, e.g. BTC - or leave empty for all
-     * @param array  $params   (optional)  An array of additional parameters that the API endpoint allows   
-     * 
-     * @return array containing the response
+     * depositAddress get the deposit history for an asset
+     *
+     * $depositHistory = $api->depositHistory();
+     *
+     * $depositHistory = $api->depositHistory( "BTC" );
+     *
+     * @param $asset string empty or the currency such as BTC
+     * @param $params array optional startTime, endTime, status parameters
+     * @return array with error message or array deposit history information
      * @throws \Exception
      */
     public function depositHistory(string $asset = null, array $params = [])
     {
-        $params["sapi"] = true;
+        $params["wapi"] = true;
         if (is_null($asset) === false) {
-            $params['coin'] = $asset;
+            $params['asset'] = $asset;
         }
-        $return = $this->httpRequest("v1/capital/deposit/hisrec", "GET", $params, true);
-
-        // Adding for backwards compatibility with wapi
-        foreach ($return as $key=>$item) {
-            $return[$key]['asset'] = $item['coin'];
-        }
-        
-        return $return;
-        
+        return $this->httpRequest("v1/depositHistory.html", "GET", $params, true);
     }
 
     /**
-     * withdrawHistory - Get the withdraw history for one or all assets
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#withdraw-history-supporting-network-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $asset    (optional)  An asset, e.g. BTC - or leave empty for all
-     * @param array  $params   (optional)  An array of additional parameters that the API endpoint allows: status, offset, limit, startTime, endTime  
-     * 
-     * @return array containing the response
+     * withdrawHistory get the withdrawal history for an asset
+     *
+     * $withdrawHistory = $api->withdrawHistory();
+     *
+     * $withdrawHistory = $api->withdrawHistory( "BTC" );
+     *
+     * @param $asset string empty or the currency such as BTC
+     * @param $params array optional startTime, endTime, status parameters
+     * @return array with error message or array deposit history information
      * @throws \Exception
      */
     public function withdrawHistory(string $asset = null, array $params = [])
     {
-        $params["sapi"] = true;
+        $params["wapi"] = true;
         if (is_null($asset) === false) {
-            $params['coin'] = $asset;
+            $params['asset'] = $asset;
         }
-        // Wrapping in array for backwards compatibility with wapi
-        $return = array(
-            'withdrawList' => $this->httpRequest("v1/capital/withdraw/history", "GET", $params, true)
-            );
-        
-        // Adding for backwards compatibility with wapi
-        $return['success'] = 1;
-
-        return $return;
+        return $this->httpRequest("v1/withdrawHistory.html", "GET", $params, true);
     }
 
     /**
-     * withdrawFee - Get the withdrawal fee for an asset
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $asset    (mandatory)  An asset, e.g. BTC
-     * 
-     * @return array containing the response
+     * withdrawFee get the withdrawal fee for an asset
+     *
+     * $withdrawFee = $api->withdrawFee( "BTC" );
+     *
+     * @param $asset string currency such as BTC
+     * @return array with error message or array containing withdrawFee
      * @throws \Exception
      */
     public function withdrawFee(string $asset)
     {
-        $return = $this->assetDetail();
+        $params = [
+            "wapi" => true,
+        ];
 
-        if (isset($return['success'], $return['assetDetail'], $return['assetDetail'][$asset]) && $return['success']) {
-            return $return['assetDetail'][$asset];
-        } else {
-            return array();
+        $response = $this->httpRequest("v1/assetDetail.html", "GET", $params, true);
+
+        if (isset($response['success'], $response['assetDetail'], $response['assetDetail'][$asset]) && $response['success']) {
+            return $response['assetDetail'][$asset];
         }
     }
 
@@ -989,7 +808,7 @@ class API
      */
     public function prices()
     {
-        return $this->priceData($this->httpRequest("v3/ticker/price"));
+        return $this->priceData($this->httpRequest("v1/ticker/price"));
     }
 
     /**
@@ -1002,7 +821,7 @@ class API
      */
     public function price(string $symbol)
     {
-        $ticker = $this->httpRequest("v3/ticker/price", "GET", ["symbol" => $symbol]);
+        $ticker = $this->httpRequest("v1/ticker/price", "GET", ["symbol" => $symbol]);
 
         return $ticker['price'];
     }
@@ -1017,7 +836,7 @@ class API
      */
     public function bookPrices()
     {
-        return $this->bookPriceData($this->httpRequest("v3/ticker/bookTicker"));
+        return $this->bookPriceData($this->httpRequest("v1/ticker/bookTicker"));
     }
 
     /**
@@ -1030,7 +849,7 @@ class API
      */
     public function account()
     {
-        return $this->httpRequest("v3/account", "GET", [], true);
+        return $this->httpRequest("v1/account", "GET", [], true);
     }
 
     /**
@@ -1068,40 +887,34 @@ class API
             "symbol" => $symbol,
         ]));
     }
-    
+
     /**
-     * historicalTrades - Get historical trades for a specific currency
+     * historicalTrades Get historical trades for a specific currency
      *
-     * @link https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#old-trade-lookup-market_data
-     * @link https://binance-docs.github.io/apidocs/spot/en/#old-trade-lookup
+     * $ENJHistTrades = $api->historicalTrades("ENJUSDT");
+     * $limitENJHistTrades = $api->historicalTrades("ENJUSDT",5);
+     * $limitENJHistTradesFromId = $api->historicalTrades("ENJUSDT",5,3);
      *
-     * @property int $weight 5
-     * Standard weight is 5 but if no tradeId is given, weight is 1
-     *
-     * @param string $symbol  (mandatory) to query, e.g. BNBBTC
-     * @param int    $limit   (optional)  limit the amount of trades, default 500, max 1000
-     * @param int    $tradeId (optional)  return the orders from this orderId onwards, negative to get recent ones
-     *
-     * @return array containing the response
+     * @param $symbol string (mandatory) the currency symbol
+     * @param $limit int (optional) the amount of trades returned, default=500 max=1000
+     * @param $fromTradeId int (optional) return the orders from this order onwards. negative for all
+     * @return Array of trades
      * @throws \Exception
      */
-    public function historicalTrades(string $symbol, int $limit = 500, int $tradeId = -1)
+    public function historicalTrades(string $symbol, int $limit = 500, int $fromTradeId = -1)
     {
         $parameters = [
             "symbol" => $symbol,
             "limit" => $limit,
         ];
-        if ($tradeId > 0) {
-            $parameters["fromId"] = $tradeId;
-        } else {
-            // if there is no tradeId given, we can use v3/trades, weight is 1 and not 5
-            return $this->httpRequest("v3/trades", "GET", $parameters);
+        if ($fromTradeId > 0) {
+            $parameters["fromId"] = $fromTradeId;
         }
 
         // The endpoint cannot handle extra parameters like 'timestamp' or 'signature',
         // but it needs the http header with the key so we need to construct it here
         $query = http_build_query($parameters, '', '&');
-        return $this->httpRequest("v3/historicalTrades?$query");
+        return $this->httpRequest("v1/historicalTrades?$query");
     }
 
     /**
@@ -1150,7 +963,7 @@ class API
             $priceData = false;
         }
 
-        $account = $this->httpRequest("v3/account", "GET", [], true);
+        $account = $this->httpRequest("v1/account", "GET", [], true);
 
         if (is_array($account) === false) {
             echo "Error: unable to fetch your account details" . PHP_EOL;
@@ -1173,7 +986,7 @@ class API
      */
     public function coins()
     {
-        return $this->httpRequest('v1/capital/config/getall', 'GET', [ 'sapi' => true ], true);
+        return $this->httpRequest('v1/capital/config/getall', 'GET', ['sapi' => true], true);
     }
 
     /**
@@ -1256,6 +1069,7 @@ class API
      * @return array containing the response
      * @throws \Exception
      */
+
     protected function httpRequest(string $url, string $method = "GET", array $params = [], bool $signed = false)
     {
         if (function_exists('curl_init') === false) {
@@ -1270,7 +1084,7 @@ class API
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_VERBOSE, $this->httpDebug);
-        $query = $this->binance_build_query($params);
+        $query = http_build_query($params, '', '&');
 
         // signed with params
         if ($signed === true) {
@@ -1282,7 +1096,7 @@ class API
                 throw new \Exception("signedRequest error: API Secret not set!");
             }
 
-            $base = $this->getRestEndpoint();
+            $fbase = $this->getRestEndpoint();
             $ts = (microtime(true) * 1000) + $this->info['timeOffset'];
             $params['timestamp'] = number_format($ts, 0, '.', '');
             if (isset($params['wapi'])) {
@@ -1290,35 +1104,25 @@ class API
                     throw new \Exception("wapi endpoints are not available in testnet");
                 }
                 unset($params['wapi']);
-                $base = $this->wapi;
+                $fbase = $this->wapi;
             }
-        
+
             if (isset($params['sapi'])) {
                 if ($this->useTestnet) {
                     throw new \Exception("sapi endpoints are not available in testnet");
                 }
                 unset($params['sapi']);
-                $base = $this->sapi;
+                $fbase = $this->sapi;
             }
 
-            if (isset($params['fapi'])) {
-                unset($params['fapi']);
-                $base = $this->fapi;
-            }
-
-            if (isset($params['bapi'])) {
-                unset($params['bapi']);
-                $base = $this->bapi;
-            }
-            $query = $this->binance_build_query($params);
-            $query = str_replace([ '%40' ], [ '@' ], $query);//if send data type "e-mail" then binance return: [Signature for this request is not valid.]
+            $query = http_build_query($params, '', '&');
             $signature = hash_hmac('sha256', $query, $this->api_secret);
             if ($method === "POST") {
-                $endpoint = $base . $url;
+                $endpoint = $fbase . $url;
                 $params['signature'] = $signature; // signature needs to be inside BODY
-                $query = $this->binance_build_query($params); // rebuilding query
+                $query = http_build_query($params, '', '&'); // rebuilding query
             } else {
-                $endpoint = $base . $url . '?' . $query . '&signature=' . $signature;
+                $endpoint = $fbase . $url . '?' . $query . '&signature=' . $signature;
             }
 
             curl_setopt($curl, CURLOPT_URL, $endpoint);
@@ -1327,7 +1131,7 @@ class API
             ));
         }
         // params so buildquery string and append to url
-        elseif (count($params) > 0) {
+        else if (count($params) > 0) {
             curl_setopt($curl, CURLOPT_URL, $this->getRestEndpoint() . $url . '?' . $query);
         }
         // no params so just the base url
@@ -1383,15 +1187,15 @@ class API
             // not outputing errors, hides it from users and ends up with tickets on github
             throw new \Exception('Curl error: ' . curl_error($curl));
         }
-    
+
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-        $header = $this->get_headers_from_curl_response($output);
+        $header = substr($output, 0, $header_size);
         $output = substr($output, $header_size);
-        
+
         curl_close($curl);
-        
+
         $json = json_decode($output, true);
-        
+
         $this->lastRequest = [
             'url' => $url,
             'method' => $method,
@@ -1409,66 +1213,13 @@ class API
         }
 
         if (isset($json['msg']) && !empty($json['msg'])) {
-            if ( $url != 'v1/system/status' && $url != 'v3/systemStatus.html' && $url != 'v3/accountStatus.html') {
-                // should always output error, not only on httpdebug
-                // not outputing errors, hides it from users and ends up with tickets on github
-                throw new \Exception('signedRequest error: '.print_r($output, true));
-            }
+            // should always output error, not only on httpdebug
+            // not outputing errors, hides it from users and ends up with tickets on github
+            throw new \Exception('signedRequest error: ' . print_r($output, true));
         }
         $this->transfered += strlen($output);
         $this->requestCount++;
         return $json;
-    }
-
-    /**
-     * binance_build_query - Wrapper for http_build_query to allow arrays as parameters
-     * 
-     * sapi v1/asset/dust can have an array, so it needs a conversion
-     * 
-     * @param array  $params  (mandatory)   Parameters to convert to http query
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    protected function binance_build_query($params = [])
-    {
-        $new_arr = array();
-        $query_add = '';
-        foreach ($params as $label=>$item) {
-            if ( gettype($item) == 'array' ) {
-                foreach ($item as $arritem) {
-                    $query_add = $label . '=' . $arritem . '&' . $query_add;
-                }
-            } else {
-                $new_arr[$label] = $item;
-            }
-        }
-        $query = http_build_query($new_arr, '', '&');
-        $query = $query_add . $query;
-
-        return $query;
-    }    
-    
-    /**
-     * Converts the output of the CURL header to an array
-     *
-     * @param $header string containing the response
-     * @return array headers converted to an array
-     */
-    public function get_headers_from_curl_response(string $header)
-    {
-        $headers = array();
-        $header_text = substr($header, 0, strpos($header, "\r\n\r\n"));
-
-        foreach (explode("\r\n", $header_text) as $i => $line)
-            if ($i === 0)
-                $headers['http_code'] = $line;
-            else {
-                list ($key, $value) = explode(': ', $line);
-                $headers[$key] = $value;
-            }
-
-        return $headers;
     }
 
     /**
@@ -1538,12 +1289,9 @@ class API
         if (isset($flags['newOrderRespType'])) {
             $opt['newOrderRespType'] = $flags['newOrderRespType'];
         }
+
         
-        if (isset($flags['newClientOrderId'])) {
-            $opt['newClientOrderId'] = $flags['newClientOrderId'];
-        }
-        
-        $qstring = ($test === false) ? "v3/order" : "v3/order/test";
+        $qstring = ($test === false) ? "v1/order" : "v1/order/test";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
 
@@ -1678,9 +1426,7 @@ class API
         }
         if (is_array($priceData)) {
             uasort($balances, function ($opA, $opB) {
-                if ($opA == $opB)
-                    return 0;
-                return ($opA['btcValue'] < $opB['btcValue']) ? 1 : -1;
+                return $opA['btcValue'] < $opB['btcValue'];
             });
             $this->btc_value = $btc_value;
             $this->btc_total = $btc_total;
@@ -1749,7 +1495,7 @@ class API
     }
 
     /**
-     * executionHandler Convert WebSocket trade execution into array
+     * tickerStreamHandler Convert WebSocket trade execution into array
      *
      * $data = $this->executionHandler( $json );
      *
@@ -1771,6 +1517,13 @@ class API
             "clientOrderId" => $json->c,
             "orderTime" => $json->T,
             "eventTime" => $json->E,
+        ];
+    }
+    protected function executionHandlerF(\stdClass $json)
+    {
+        $o = $json->o;
+        return [
+            $o,
         ];
     }
 
@@ -2420,11 +2173,8 @@ class API
      * @return null
      * @throws \Exception
      */
-    public function chart($symbols, string $interval = "30m", callable $callback = null, $limit = 500)
+    public function chart($symbols, string $interval = "30m", callable $callback, $limit = 500)
     {
-        if (is_null($callback)) {
-            throw new Exception("You must provide a valid callback");
-        }
         if (!is_array($symbols)) {
             $symbols = [
                 $symbols,
@@ -2504,11 +2254,8 @@ class API
      * @return null
      * @throws \Exception
      */
-    public function kline($symbols, string $interval = "30m", callable $callback = null)
+    public function kline($symbols, string $interval = "30m", callable $callback)
     {
-        if (is_null($callback)) {
-            throw new Exception("You must provide a valid callback");
-        }
         if (!is_array($symbols)) {
             $symbols = [
                 $symbols,
@@ -2577,6 +2324,16 @@ class API
         $loop->run();
     }
 
+    public function keepAliveF()
+    {
+        $loop = \React\EventLoop\Factory::create();
+        $loop->addPeriodicTimer(30, function () {
+            $listenKey = $this->listenKey;
+            $this->httpRequest("v1/listenkey?listenKey={$listenKey}", "PUT", []);
+        });
+        $loop->run();
+    }
+
     /**
      * userData Issues userDataStream token and keepalive, subscribes to userData WebSocket
      *
@@ -2615,10 +2372,12 @@ class API
      * @return null
      * @throws \Exception
      */
+
     public function userData(&$balance_callback, &$execution_callback = false, &$runFunction = false)
     {
-        $response = $this->httpRequest("v1/userDataStream", "POST", []);
+        $response = $this->httpRequest("v1/listenKey", "POST", []);
         $this->listenKey = $response['listenKey'];
+        echo "listenKey = " . $response['listenKey'] . PHP_EOL;
         $this->info['balanceCallback'] = $balance_callback;
         $this->info['executionCallback'] = $execution_callback;
         $this->info['run'] = $runFunction;
@@ -2626,9 +2385,9 @@ class API
         $this->subscriptions['@userdata'] = true;
 
         $loop = \React\EventLoop\Factory::create();
-        $loop->addPeriodicTimer(30*60, function () {
+        $loop->addPeriodicTimer(30 * 60, function () {
             $listenKey = $this->listenKey;
-            $this->httpRequest("v1/userDataStream?listenKey={$listenKey}", "PUT", []);
+            $this->httpRequest("v1/listenKey?listenKey={$listenKey}", "PUT", []);
         });
         $connector = new \Ratchet\Client\Connector($loop);
 
@@ -2646,11 +2405,16 @@ class API
                 }
                 $json = json_decode($data);
                 $type = $json->e;
-                if ($type === "outboundAccountPosition") {
+                if ($type === "outboundAccountInfo") {
                     $balances = $this->balanceHandler($json->B);
                     $this->info['balanceCallback']($this, $balances);
                 } elseif ($type === "executionReport") {
                     $report = $this->executionHandler($json);
+                    if ($this->info['executionCallback']) {
+                        $this->info['executionCallback']($this, $report);
+                    }
+                } elseif ($type === "ORDER_TRADE_UPDATE") {
+                    $report = $this->executionHandlerF($json);
                     if ($this->info['executionCallback']) {
                         $this->info['executionCallback']($this, $report);
                     }
@@ -2667,6 +2431,7 @@ class API
 
         $loop->run();
     }
+
 
     /**
      * miniTicker Get miniTicker for all symbols
@@ -2814,255 +2579,45 @@ class API
         fwrite($fp, $result);
         fclose($fp);
     }
-    
-    protected function floorDecimal($n, $decimals=2)
+
+    protected function floorDecimal($n, $decimals = 2)
     {
         return floor($n * pow(10, $decimals)) / pow(10, $decimals);
     }
 
 
-    protected function setXMbxUsedWeight(int $usedWeight) : void
+    protected function setXMbxUsedWeight(int $usedWeight): void
     {
         $this->xMbxUsedWeight = $usedWeight;
     }
 
-    protected function setXMbxUsedWeight1m(int $usedWeight1m) : void
+    protected function setXMbxUsedWeight1m(int $usedWeight1m): void
     {
         $this->xMbxUsedWeight1m = $usedWeight1m;
     }
 
-    public function getXMbxUsedWeight() : int
+    public function getXMbxUsedWeight(): int
     {
-        return $this->xMbxUsedWeight;
+        $this->xMbxUsedWeight;
     }
 
-    public function getXMbxUsedWeight1m() : int
+    public function getXMbxUsedWeight1m(): int
     {
-        return $this->xMbxUsedWeight1m;
+        $this->xMbxUsedWeight1m;
     }
 
-    private function getRestEndpoint() : string
+    private function getRestEndpoint(): string
     {
         return $this->useTestnet ? $this->baseTestnet : $this->base;
     }
 
-    private function getWsEndpoint() : string
+    private function getWsEndpoint(): string
     {
         return $this->useTestnet ? $this->streamTestnet : $this->stream;
     }
 
-    public function isOnTestnet() : bool
+    public function isOnTestnet(): bool
     {
         return $this->useTestnet;
-    }
-
-    /**
-     * systemStatus - Status indicator for api sapi
-     *
-     * @link https://binance-docs.github.io/apidocs/spot/en/#test-connectivity
-     * @link https://binance-docs.github.io/apidocs/spot/en/#system-status-system
-     * 
-     * @property int $weight 2
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function systemStatus()
-    {
-        $arr = array();
-        $api_status = $this->httpRequest("v3/ping", 'GET');
-        if ( empty($api_status) ) {
-            $arr['api']['status']  = 'ping ok';    
-        } else {
-            $arr['api']['status']  = $api_status;    
-        }
-         
-        $arr['sapi'] = $this->httpRequest("v1/system/status", 'GET', [ 'sapi' => true ], true);
-        return $arr;
-    }
-    
-    /**
-     * accountSnapshot - Daily Account Snapshot at 00:00:00 UTC
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#daily-account-snapshot-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $type      (mandatory) Should be SPOT, MARGIN or FUTURES
-     * @param int    $nbrDays   (optional)  Number of days. Default 5, min 5, max 30
-     * @param long   $startTime (optional)  Start time, e.g. 1617580799000
-     * @param long   $endTime   (optional)  End time, e.g. 1617667199000
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function accountSnapshot($type, $nbrDays = 5, $startTime = 0, $endTime = 0)
-    {
-        if ($nbrDays < 5 || $nbrDays > 30)
-            $nbrDays = 5;
-            
-        $params = [
-            'sapi' => true,
-            'type' => $type,
-            ];
-            
-        if ($startTime > 0)
-            $params['startTime'] = $startTime;
-        if ($endTime > 0)
-            $params['endTime'] = $startTime;
-        if ($nbrDays != 5)
-            $params['limit'] = $nbrDays;
-            
-        return $this->httpRequest("v1/accountSnapshot", 'GET', $params, true);
-    }
-    
-    /**
-     * accountStatus - Fetch account status detail.
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#account-status-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function accountStatus()
-    {
-        $arr = array();
-        $arr['sapi'] = $this->httpRequest("v1/account/status", 'GET', [ 'sapi' => true ], true);
-        return $arr;
-    }
-    
-    /**
-     * apiTradingStatus - Fetch account API trading status detail.
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data
-     * 
-     * @property int $weight 1
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function apiTradingStatus()
-    {
-        $arr = array();
-        $arr['sapi'] = $this->httpRequest("v1/account/apiTradingStatus", 'GET', [ 'sapi' => true ], true);
-        return $arr;
-    }
-    
-    /**
-     * ocoOrder - Create a new OCO order
-     * 
-     * @link https://binance-docs.github.io/apidocs/spot/en/#new-oco-trade
-     * 
-     * @property int $weight 1
-     * 
-     * @param string $side       (mandatory)   Should be SELL or BUY
-     * @param string $symbol     (mandatory)   The symbol, e.g. BTCBUSD
-     * @param float  $quantity   (mandatory)   Quantity to buy/sell
-     * @param int    $price      (mandatory)   Price
-     * @param int    $stopprice  (mandatory)   Stop Price
-     * @param int    $stoplimitprice        (optional)   Stop Limit Price
-     * @param int    $stoplimittimeinforce  (optional)   GTC, FOK or IOC
-     * @param array  $flags                 (optional)   Extra flags/parameters
-     * 
-     * @return array containing the response
-     * @throws \Exception
-     */
-    public function ocoOrder(string $side, string $symbol, $quantity, $price, $stopprice, $stoplimitprice = null, $stoplimittimeinforce = 'GTC', array $flags = [])
-    {
-        $opt = [
-            "symbol" => $symbol,
-            "side" => $side,
-            "recvWindow" => 60000,
-        ];
-
-        if (is_numeric($quantity) === false) {
-            $error = "Parameter quantity expected numeric for ' $side . ' ' . $symbol .', got " . gettype($quantity);
-            trigger_error($error, E_USER_ERROR);
-        } else {
-            $opt['quantity'] = $quantity;
-        }
-
-        if (is_numeric($price) === false) {
-            $error = "Parameter price expected numeric for ' $side . ' ' . $symbol .', got " . gettype($price);
-            trigger_error($error, E_USER_ERROR);
-        } else {
-            $opt['price'] = $price;
-        }
-
-        if (is_numeric($stopprice) === false) {
-            $error = "Parameter stopprice expected numeric for ' $side . ' ' . $symbol .', got " . gettype($stopprice);
-            trigger_error($error, E_USER_ERROR);
-        } else {
-            $opt['stopPrice'] = $stopprice;
-        }
-
-        if (is_null($stoplimitprice) === false && empty($stoplimitprice) === false) {
-            $opt['stopLimitPrice'] = $stoplimitprice;
-            if ( ($stoplimittimeinforce == 'FOK') || ($stoplimittimeinforce == 'IOC') ) {
-                $opt['stopLimitTimeInForce'] = $stoplimittimeinforce;
-            } else {
-                $opt['stopLimitTimeInForce'] = 'GTC'; // `Good 'till cancel`. Needed if flag `stopLimitPrice` used.
-            }
-        }
-
-        // Check other flags
-        foreach (array('icebergQty','stopIcebergQty','listClientOrderId','limitClientOrderId','stopClientOrderId','newOrderRespType') as $flag) {
-            if ( isset($flags[$flag]) && !empty($flags[$flag]) )
-                $opt[$flag] = $flags[$flag];
-        }
-
-        return $this->httpRequest("v3/order/oco", "POST", $opt, true);
-    }    
-
-    /**
-    * avgPrice - get the average price of a symbol based on the last 5 minutes
-    *
-    * $avgPrice = $api->avgPrice( "ETHBTC" );
-    *
-    * @property int $weight 1
-    *
-    * @param string $symbol (mandatory) a symbol, e.g. ETHBTC
-    *
-    * @return string with symbol price
-    * @throws \Exception
-    */
-    public function avgPrice(string $symbol)
-    {
-        $ticker = $this->httpRequest("v3/avgPrice", "GET", ["symbol" => $symbol]);
-        return $ticker['price'];
-    }
-
-      
-    /*********************************************
-     * 
-     * Binance Liquid Swap (bswap) functions
-     * 
-     * https://binance-docs.github.io/apidocs/spot/en/#bswap-endpoints
-     * 
-     *********************************************/
-
-    /**
-    * bswapQuote - Request a quote for swap of quote asset (selling) or base asset (buying), essentially price/exchange rates.
-    *
-    * @property int $weight 2
-    *
-    * @param string $baseAsset  (mandatory) e.g. ETH
-    * @param string $quoteAsset (mandatory) e.g. BTC
-    * @param string $quoteQty   (mandatory)
-    *
-    * @return array containing the response
-    * @throws \Exception
-    */
-    public function bswapQuote($baseAsset, $quoteAsset, $quoteQty) {
-        $opt = [
-            'sapi'       => true,
-            'quoteAsset' => $quoteAsset,
-            'baseAsset'  => $baseAsset,
-            'quoteQty'   => $quoteQty,
-        ];
-      
-        return $this->httpRequest("v1/bswap/quote", 'GET', $opt, true);
     }
 }
