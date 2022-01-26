@@ -2633,7 +2633,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) {
+        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) use ($loop) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2652,13 +2652,15 @@ class API
                     }
                 }
             });
-            $ws->on('close', function ($code = null, $reason = null) {
+            $ws->on('close', function ($code = null, $reason = null) use ($loop) {
                 // WPCS: XSS OK.
                 echo "userData: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                $loop->stop();
             });
-        }, function ($e) {
+        }, function ($e) use ($loop) {
             // WPCS: XSS OK.
             echo "userData: Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $loop->stop();
         });
 
         $loop->run();
