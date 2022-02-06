@@ -2930,6 +2930,21 @@ class API
         $arr['sapi'] = $this->httpRequest("v1/account/status", 'GET', [ 'sapi' => true ], true);
         return $arr;
     }
+
+    /**
+     * apiRestriction - Fetch a set of API restrictions
+     *
+     * @link https://binance-docs.github.io/apidocs/spot/en/#get-api-key-permission-user_data
+     *
+     * @property int $weight 1
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function apiRestrictions()
+    {
+        return $this->httpRequest("v1/account/apiRestrictions", 'GET', ['sapi' => true], true);
+    }
     
     /**
      * apiTradingStatus - Fetch account API trading status detail.
