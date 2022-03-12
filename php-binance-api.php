@@ -997,7 +997,7 @@ class API
      *
      * $price = $api->price( "ETHBTC" );
      *
-     * @return array with error message or array with symbol price
+     * @return string with error message or array with symbol price
      * @throws \Exception
      */
     public function price(string $symbol)
