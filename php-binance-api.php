@@ -35,7 +35,7 @@ class API
     protected $sapi = 'https://api.binance.com/sapi/'; // /< REST endpoint for the supporting network API
     protected $fapi = 'https://fapi.binance.com/'; // /< REST endpoint for the futures API
     protected $bapi = 'https://www.binance.com/bapi/'; // /< REST endpoint for the internal Binance API
-    protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
+    protected $stream = 'wss://stream.binance.com:443/ws/'; // /< Endpoint for establishing websocket connections
     protected $streamTestnet = 'wss://testnet.binance.vision/ws/'; // /< Testnet endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
     protected $api_secret; // /< API secret that was given to you when you created the api key
