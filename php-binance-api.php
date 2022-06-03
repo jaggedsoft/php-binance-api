@@ -3078,4 +3078,22 @@ class API
       
         return $this->httpRequest("v1/bswap/quote", 'GET', $opt, true);
     }
+
+    /**
+    * payHistory - get Binance Pay transactions.
+    *
+    * @property int $limit
+    *
+    * @return array containing the response
+    * @throws \Exception
+    */
+    public function payHistory($limit)
+    {
+        $opt = [
+            'sapi'       => true,
+            'limit' => $limit
+        ];
+      
+        return $this->httpRequest("v1/pay/transactions", 'GET', $opt, true);
+    }
 }
