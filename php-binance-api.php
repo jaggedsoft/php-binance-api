@@ -2633,7 +2633,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) {
+        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) use ($loop) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2652,13 +2652,15 @@ class API
                     }
                 }
             });
-            $ws->on('close', function ($code = null, $reason = null) {
+            $ws->on('close', function ($code = null, $reason = null) use ($loop) {
                 // WPCS: XSS OK.
                 echo "userData: WebSocket Connection closed! ({$code} - {$reason})" . PHP_EOL;
+                $loop->stop();
             });
-        }, function ($e) {
+        }, function ($e) use ($loop) {
             // WPCS: XSS OK.
             echo "userData: Could not connect: {$e->getMessage()}" . PHP_EOL;
+            $loop->stop();
         });
 
         $loop->run();
@@ -2927,6 +2929,21 @@ class API
         $arr = array();
         $arr['sapi'] = $this->httpRequest("v1/account/status", 'GET', [ 'sapi' => true ], true);
         return $arr;
+    }
+
+    /**
+     * apiRestriction - Fetch a set of API restrictions
+     *
+     * @link https://binance-docs.github.io/apidocs/spot/en/#get-api-key-permission-user_data
+     *
+     * @property int $weight 1
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function apiRestrictions()
+    {
+        return $this->httpRequest("v1/account/apiRestrictions", 'GET', ['sapi' => true], true);
     }
     
     /**
