@@ -1263,8 +1263,9 @@ class API
             throw new \Exception("Sorry cURL is not installed!");
         }
 
+
         if ($this->caOverride === false) {
-            if (file_exists(getcwd() . '/ca.pem') === false) {
+            if (file_exists(storage_path() . '/ca.pem') === false) {
                 $this->downloadCurlCaBundle();
             }
         }
@@ -1305,6 +1306,9 @@ class API
             if (isset($params['fapi'])) {
                 unset($params['fapi']);
                 $base = $this->fapi;
+                if ($this->useTestnet) {
+                    $base = $this->fapiTestnet;
+                }
             }
 
             if (isset($params['bapi'])) {
@@ -1325,7 +1329,7 @@ class API
             curl_setopt($curl, CURLOPT_URL, $endpoint);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
-            ));
+            ));dd($endpoint);
         }
         // params so buildquery string and append to url
         elseif (count($params) > 0) {
@@ -1562,6 +1566,73 @@ class API
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
 
+    public function futuresOrder(string $side, string $symbol, $quantity, $price, string $type = "MARKET", array $flags = [], bool $test = false)
+    {
+        //dd($side, $symbol, $quantity, $price, $type, $flags, $test);
+        $opt = [
+            "fapi" => $test,
+            "symbol" => $symbol,
+            "side" => $side,
+            "type" => $type,
+            "quantity" => number_format($quantity, 3, '.', ''),
+            "recvWindow" => 60000,
+        ];
+
+
+        //dd($opt);
+
+        // someone has preformated there 8 decimal point double already
+        // dont do anything, leave them do whatever they want
+        if (gettype($price) !== "string") {
+            // for every other type, lets format it appropriately
+            $price = number_format($price, 8, '.', '');
+        }
+
+        if (is_numeric($quantity) === false) {
+            // WPCS: XSS OK.
+            echo "warning: quantity expected numeric got " . gettype($quantity) . PHP_EOL;
+        }
+
+        if (is_string($price) === false) {
+            // WPCS: XSS OK.
+            echo "warning: price expected string got " . gettype($price) . PHP_EOL;
+        }
+
+        if ($type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT") {
+            $opt["price"] = $price;
+            $opt["timeInForce"] = "GTC";
+        }
+
+        if ($type === "MARKET" && isset($flags['isQuoteOrder']) && $flags['isQuoteOrder']) {
+            unset($opt['quantity']);
+            $opt['quoteOrderQty'] = $quantity;
+        }
+
+        if (isset($flags['stopPrice'])) {
+            $opt['stopPrice'] = $flags['stopPrice'];
+        }
+
+        if (isset($flags['icebergQty'])) {
+            $opt['icebergQty'] = $flags['icebergQty'];
+        }
+
+        if (isset($flags['newOrderRespType'])) {
+            $opt['newOrderRespType'] = $flags['newOrderRespType'];
+        }
+
+        if (isset($flags['newClientOrderId'])) {
+            $opt['newClientOrderId'] = $flags['newClientOrderId'];
+        }
+
+        return $this->httpRequest("fapi/v1/order", "POST", $opt, true);
+    }
+
+    public function customRequest( $url, $method = 'GET', $opt = [], $signed = true ) {
+
+        $opt['fapi'] = true;
+        return $this->httpRequest($url, $method, $opt, $signed);
+    }
+
     /**
      * candlesticks get the candles for the given intervals
      * 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
@@ -1659,7 +1730,7 @@ class API
         }
 
         if (count($response) === 0) {
-            echo "warning: v1/klines returned empty array, usually a blip in the connection or server" . PHP_EOL;
+            echo "warning: v1/continuousKlines returned empty array, usually a blip in the connection or server" . PHP_EOL;
             return [];
         }
 
@@ -1667,6 +1738,61 @@ class API
 
         $ticks = $this->chartData($pair, $interval, $response);
         $this->charts[$pair][$interval] = $ticks;
+        return $ticks;
+    }
+
+    /**
+     * markPriceKlines get the mark price for the given intervals
+     * 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
+     *
+     * $candles = $api->markPriceKlines("BTCUSDT", "5m", 500, 1607444700000, 1607444759999);
+     *
+     * @param $symbol string to query
+     * @param $contractType string contract type
+     * @param $interval string to request
+     * @param $limit int limit the amount of candles
+     * @param $startTime string request candle information starting from here
+     * @param $endTime string request candle information ending here
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function markPriceKlines(string $symbol,string $contractType, string $interval = "5m", int $limit = 500, $startTime = null, $endTime = null)
+    {
+        if (!isset($this->charts[$symbol])) {
+            $this->charts[$symbol] = [];
+        }
+
+        $opt = [
+            "fapi" => true,
+            "symbol" => $symbol,
+            "contractType" => $contractType,
+            "interval" => $interval,
+            "limit" => $limit,
+        ];
+
+        if ($startTime) {
+            $opt["startTime"] = $startTime;
+        }
+
+        if ($endTime) {
+            $opt["endTime"] = $endTime;
+        }
+
+        $response = $this->httpRequest("fapi/v1/markPriceKlines", "GET", $opt, false);
+
+        if (is_array($response) === false) {
+            return [];
+        }
+
+        if (count($response) === 0) {
+            echo "warning: v1/markPriceKlines returned empty array, usually a blip in the connection or server" . PHP_EOL;
+            return [];
+        }
+
+
+
+        $ticks = $this->chartData($symbol, $interval, $response);
+        $this->charts[$symbol][$interval] = $ticks;
         return $ticks;
     }
 
@@ -1868,13 +1994,13 @@ class API
         foreach ($ticks as $tick) {
             list($openTime, $open, $high, $low, $close, $assetVolume, $closeTime, $baseVolume, $trades, $assetBuyVolume, $takerBuyVolume, $ignored) = $tick;
             $output[$openTime] = [
+                "openTime" => $openTime,
+                "closeTime" => $closeTime,
                 "open" => $open,
                 "high" => $high,
                 "low" => $low,
                 "close" => $close,
                 "volume" => $baseVolume,
-                "openTime" => $openTime,
-                "closeTime" => $closeTime,
                 "assetVolume" => $assetVolume,
                 "baseVolume" => $baseVolume,
                 "trades" => $trades,
@@ -2841,10 +2967,10 @@ class API
      */
     protected function downloadCurlCaBundle()
     {
-        $output_filename = getcwd() . "/ca.pem";
+        $output_filename = storage_path() . "/ca.pem";
 
-        if (is_writable(getcwd()) === false) {
-            die(getcwd() . ' folder is not writeable, please check your permissions to download CA Certificates, or use $api->caOverride = true;');
+        if (is_writable(storage_path()) === false) {
+            die(storage_path() . ' folder is not writeable, please check your permissions to download CA Certificates, or use $api->caOverride = true;');
         }
 
         $host = "https://curl.se/ca/cacert.pem";
