@@ -1329,7 +1329,7 @@ class API
             curl_setopt($curl, CURLOPT_URL, $endpoint);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'X-MBX-APIKEY: ' . $this->api_key,
-            ));dd($endpoint);
+            ));
         }
         // params so buildquery string and append to url
         elseif (count($params) > 0) {
@@ -1566,8 +1566,9 @@ class API
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
 
-    public function futuresOrder(string $side, string $symbol, $quantity, $price, string $type = "MARKET", array $flags = [], bool $test = false)
+    public function futuresOrder(string $side, string $symbol, $quantity, string $type = "MARKET", array $flags = [], bool $test = false)
     {
+        //dd($quantity);
         //dd($side, $symbol, $quantity, $price, $type, $flags, $test);
         $opt = [
             "fapi" => $test,
@@ -1583,25 +1584,25 @@ class API
 
         // someone has preformated there 8 decimal point double already
         // dont do anything, leave them do whatever they want
-        if (gettype($price) !== "string") {
+        /*if (gettype($price) !== "string") {
             // for every other type, lets format it appropriately
             $price = number_format($price, 8, '.', '');
-        }
+        }*/
 
         if (is_numeric($quantity) === false) {
             // WPCS: XSS OK.
             echo "warning: quantity expected numeric got " . gettype($quantity) . PHP_EOL;
         }
 
-        if (is_string($price) === false) {
+        /*if (is_string($price) === false) {
             // WPCS: XSS OK.
             echo "warning: price expected string got " . gettype($price) . PHP_EOL;
-        }
+        }*/
 
-        if ($type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT") {
+        /*if ($type === "LIMIT" || $type === "STOP_LOSS_LIMIT" || $type === "TAKE_PROFIT_LIMIT") {
             $opt["price"] = $price;
             $opt["timeInForce"] = "GTC";
-        }
+        }*/
 
         if ($type === "MARKET" && isset($flags['isQuoteOrder']) && $flags['isQuoteOrder']) {
             unset($opt['quantity']);
@@ -1610,10 +1611,6 @@ class API
 
         if (isset($flags['stopPrice'])) {
             $opt['stopPrice'] = $flags['stopPrice'];
-        }
-
-        if (isset($flags['icebergQty'])) {
-            $opt['icebergQty'] = $flags['icebergQty'];
         }
 
         if (isset($flags['newOrderRespType'])) {
