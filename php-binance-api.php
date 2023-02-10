@@ -1519,7 +1519,11 @@ class API
         if (isset($flags['newOrderRespType'])) {
             $opt['newOrderRespType'] = $flags['newOrderRespType'];
         }
-
+        
+        if (isset($flags['newClientOrderId'])) {
+            $opt['newClientOrderId'] = $flags['newClientOrderId'];
+        }
+        
         $qstring = ($test === false) ? "v3/order" : "v3/order/test";
         return $this->httpRequest($qstring, "POST", $opt, true);
     }
@@ -2618,7 +2622,7 @@ class API
 
         // @codeCoverageIgnoreStart
         // phpunit can't cover async function
-        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) {
+        $connector($this->getWsEndpoint() . $this->listenKey)->then(function ($ws) use ($loop) {
             $ws->on('message', function ($data) use ($ws) {
                 if ($this->subscriptions['@userdata'] === false) {
                     //$this->subscriptions[$endpoint] = null;
@@ -2637,15 +2641,19 @@ class API
                     }
                 }
             });
-            $ws->on('close', function ($code = null, $reason = null) {
+            $ws->on('close', function ($code = null, $reason = null) use ($loop) {
                 // WPCS: XSS OK.
+
                 $msg = "userData: WebSocket Connection closed! ({$code} - {$reason})";
                 throw new RuntimeException($msg);
+
             });
-        }, function ($e) {
+        }, function ($e) use ($loop) {
             // WPCS: XSS OK.
+
             $msg = "userData: Could not connect: {$e->getMessage()}";
             throw new RuntimeException($msg);
+
         });
 
         $loop->run();
@@ -2821,12 +2829,12 @@ class API
 
     public function getXMbxUsedWeight(): int
     {
-        $this->xMbxUsedWeight;
+        return $this->xMbxUsedWeight;
     }
 
     public function getXMbxUsedWeight1m(): int
     {
-        $this->xMbxUsedWeight1m;
+        return $this->xMbxUsedWeight1m;
     }
 
     private function getRestEndpoint(): string
@@ -2922,6 +2930,21 @@ class API
     }
 
     /**
+     * apiRestriction - Fetch a set of API restrictions
+     *
+     * @link https://binance-docs.github.io/apidocs/spot/en/#get-api-key-permission-user_data
+     *
+     * @property int $weight 1
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function apiRestrictions()
+    {
+        return $this->httpRequest("v1/account/apiRestrictions", 'GET', ['sapi' => true], true);
+    }
+    
+    /**
      * apiTradingStatus - Fetch account API trading status detail.
      *
      * @link https://binance-docs.github.io/apidocs/spot/en/#account-api-trading-status-user_data
@@ -2983,7 +3006,7 @@ class API
             $error = "Parameter stopprice expected numeric for ' $side . ' ' . $symbol .', got " . gettype($stopprice);
             trigger_error($error, E_USER_ERROR);
         } else {
-            $opt['stopprice'] = $stopprice;
+            $opt['stopPrice'] = $stopprice;
         }
 
         if (is_null($stoplimitprice) === false && empty($stoplimitprice) === false) {
